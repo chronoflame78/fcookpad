@@ -8,7 +8,6 @@ import {
   NavItem,
   NavLink
 } from "reactstrap";
-import { Link } from "react-router-dom";
 
 export default class TopMenu extends React.Component {
   constructor(props) {

@@ -1,6 +1,12 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams
+} from "react-router-dom";
 import './App.css';
 import Post from "./pages/Post";
 import TopMenu from "./components/TopMenu";
@@ -12,7 +18,10 @@ function App() {
       <div className="App">
         <TopMenu />
         <Route path="/" exact component={Index} />
-        <Route path="/post/" exact component={Post} />
+         <Route path="/post/" exact component={Post} /> 
+       
+        <Route path="/post/:id" component={Post}/>
+
       </div>
     </Router>
   );
