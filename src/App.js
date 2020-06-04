@@ -11,6 +11,7 @@ import './App.css';
 import Post from "./pages/Post";
 import TopMenu from "./components/TopMenu";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 const Index = () => <h2>Home</h2>;
 function App() {
   return (

@@ -1,0 +1,44 @@
+.Post{
+    background-color: #fafaf5
+}
+
+.title{
+    font-size: 80px;
+    text-decoration: underline;
+    text-decoration-color: #f15a24;
+}
+
+.authorName{
+    text-align: center;
+    font-weight: 500;
+    color: #f15a24;
+}
+
+.avatar{
+    text-align: center;
+}
+
+.info{
+    margin-top: 30px;
+    border: 3px solid #f15a24;
+    border-radius: 40px;
+    padding: 30px;
+}
+
+.ingredients{
+    font-size: 30px;
+    margin-left: 30px;
+}
+
+.des-title{
+    text-align: center;
+    font-size: 40px;
+    padding: 20px;
+    padding-top: 30px;
+    font-weight: 500;
+}
+
+.des-content{
+    font-size: 30px;
+    padding: 20px;
+}
