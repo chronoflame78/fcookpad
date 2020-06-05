@@ -13,6 +13,7 @@ const CustomCarousel = (props) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
   const items = props.items;
+  var number = 0;
 
   const next = () => {
     if (animating) return;
@@ -31,14 +32,14 @@ const CustomCarousel = (props) => {
     setActiveIndex(newIndex);
   }
 
-  const slides = items.map((item) => {
+  const slides = items.map((item, index) => {
     return (
       <CarouselItem
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
-        key={item.src}
+        key={index}
       >
-          <div class="album-cover"></div>
+          <div className="album-cover"></div>
           <style>
         {
           `.album-cover {
@@ -53,8 +54,7 @@ const CustomCarousel = (props) => {
             }`
         }
       </style>
-        {/* <img src={item.src} alt={item.altText} /> */}
-        <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+        
       </CarouselItem>
     );
   });
@@ -65,7 +65,7 @@ const CustomCarousel = (props) => {
       next={next}
       previous={previous}
     >
-      <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
+      <CarouselIndicators items={items} key={number++} activeIndex={activeIndex} onClickHandler={goToIndex} />
       {slides}
       <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
       <CarouselControl direction="next" directionText="Next" onClickHandler={next} />

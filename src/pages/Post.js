@@ -5,15 +5,16 @@ import Step from '../components/Step';
 import Avatar from '../components/Avatar';
 import '../css/Post.css';
 import CustomCarousel from '../components/CustomCarousel';
-
+import { FaBeer } from 'react-icons/fa';
 
 class Post extends Component {
-  
+
   constructor(props) {
     console.log("post constructor");
     super(props);
     this.state = {
-      post: {}
+      post: {},
+      login: true
     };
 
   }
@@ -21,18 +22,28 @@ class Post extends Component {
   componentDidMount() {
     console.log("post did mount");
     this.mounted = true;
-    axios.get("https://e8gbf.sse.codesandbox.io/" + this.props.match.params.id).then(res => {
-      if(this.mounted){
+    axios.get("http://3.133.113.96:2000/api/posts/" + this.props.match.params.id).then(res => {
+      if (this.mounted) {
         console.log(res.data);
+        console.log(res.data.data);
+        console.log(res.data.data.post);
         this.setState({
-          post: res.data
+          post: res.data.data.post
         });
       }
-      
     });
+    // axios.get("https://e8gbf.sse.codesandbox.io/" + this.props.match.params.id).then(res => {
+    //   if (this.mounted) {
+    //     console.log(res.data);
+    //     this.setState({
+    //       post: res.data
+    //     });
+    //   }
+
+    // });
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.mounted = false;
     console.log("post will mount");
   }
@@ -43,15 +54,19 @@ class Post extends Component {
     console.log(post);
     var images = this.state.post.images;
     var items = [];
-    if(images){
-      items = images.map(x => ({src: x}));
+    if (images) {
+      items = images.map(x => ({ src: x }));
     }
     var comments = [];
-    if(this.state.post.comments){
+    if (this.state.post.comments) {
       comments = this.state.post.comments;
     };
-    if(Object.keys(post).length === 0 && post.constructor === Object){
-      return(<h2>Post not found</h2>);
+    var steps = [];
+    if (this.state.post.steps) {
+      steps = this.state.post.steps;
+    };
+    if (Object.keys(post).length === 0 && post.constructor === Object) {
+      return (<h2>Post not found</h2>);
     }
     return (
       <div className="Post">
@@ -60,49 +75,84 @@ class Post extends Component {
             <Col sm="9"><h1 className="title">{post.title}</h1></Col>
             <Col sm="3">
               <div className="avatar">
-                <Avatar image={post.author_avatar} size={64} name={post.author_name}/>
-              </div>             
+                <Avatar image={post.author_avatar} size={64} name={post.author_name} />
+              </div>
               <div className="authorName">{post.author_name}</div>
             </Col>
           </Row>
           <Row>
             <Col>
-            <div className="info">
-              <div className="d-flex flex-column flex-md-row">
-                <CustomCarousel items={items}/>
-                <div className="ingredients">
-                { post.ingredients && post.ingredients.map(x => (
-                  <p>{x}</p>
-                 )) }
+              <div className="info">
+                <div className="d-flex flex-column flex-md-row">
+                  <CustomCarousel items={items} />
+                  <div className="ingredients">
+                    {post.ingredients && post.ingredients.map((x, index) => (
+                      <p key={index}><FaBeer /> {x}</p>
+                    ))}
+                  </div>
                 </div>
+                <div className="des-title">Description</div>
+                <div className="des-content">{post.description}</div>
               </div>
-              <div className="des-title">Description</div>
-              <div className="des-content">{post.description}</div>
+              <div class="line"></div>
+              <div className="info">
+                <div className="des-title-orange">Hướng dẫn</div>
+                {steps && steps.map((x, index) => (
+                  <Step key={index} description={x.content} image={x.image} />
+                ))}
               </div>
             </Col>
           </Row>
-          <Row></Row>
-          
-          
-          <h2>{post.author_avatar}</h2>
-          { post.ingredients && post.ingredients.map(x => (
-              <h2>{x}</h2>
-            )) }
-          { post.images && post.images.map(x => (
-              <h2>{x}</h2>
-            )) }
-          { comments && comments.map(x => (
-              <h2>{x.content}</h2>
-            )) }
-          <Step title={post.title}/>
-          <h2>{post.datetime}</h2>
-          {/* { post.comments && post.comments.map(x => (
-              <h2>{x}</h2>
-            )) } */}
-          <iframe width="560" height="315"
-           src="https://www.youtube.com/embed/TTmfGULw0Uw"
-            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-             allowfullscreen></iframe>
+          <Row>
+            <Col>
+              <div className="youtube-video">
+                <iframe width="560" height="315"
+                  src={post.video}
+                  frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen></iframe>
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <div className="comment-div">
+                <div className="des-title-orange2">Bình luận</div>
+                <div className="comment-txt">Xem tất cả bình luận</div>
+                
+                {comments && comments.map((x, index) => (
+                  <div key={index} className="comment-item d-flex align-items-center">
+                    <Avatar  image={x.user_avatar} name={x.author_name} size={64}/>
+                  <div className="comment-content">
+                    <div className="user-name-comment">{x.user_name}</div>
+                    <div>{x.content}</div>
+                    
+                    </div>
+                  </div>
+                  
+                  
+                ))}
+                {!this.state.login && <div className="add-comment">Đăng nhập để bình luận</div>}
+                {this.state.login &&
+                 <div className="comment-item-login d-flex align-items-center">
+                 <Avatar image={post.author_avatar} size={64} name={post.author_name} />
+                <div className="add-comment-login">
+                  <input placeholder="Viết bình luận.." className="input-comment" type="text" name="name" />
+                </div>
+                </div>
+                }
+                
+                
+                
+                
+              </div>
+            
+            </Col>
+          </Row>
+
+
+
+
+
         </Container>
       </div>
     );

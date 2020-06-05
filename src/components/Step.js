@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
-
+import '../css/Step.css';
 
 class Step extends Component{
     constructor(props){
@@ -17,17 +17,16 @@ class Step extends Component{
 
     render(){
         return(
-            <div>
-            <div className="container" style={{borderRadius: '4px', border: '1px solid'}}>
+            <div className="custom-div">
+            <div className="container">
         <div className="row align-items-center">
           <div className="col-lg-6">
             <div className="mt-3">
-              <img src={require('../images/logo.png')} alt="" className="img-fluid mx-auto d-block img-thumbnail" />
+              <img src={this.props.image} alt="" className="img-fluid mx-auto d-block img-thumbnail custom-image" />
             </div>
           </div>
           <div className="col-lg-6">
             <div className="mt-3">
-              <h2>{this.props.title}</h2>
               <div>
                 {this.props.description}
               </div>

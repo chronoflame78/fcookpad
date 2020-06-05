@@ -23,6 +23,7 @@
     border: 3px solid #f15a24;
     border-radius: 40px;
     padding: 30px;
+    background-color: #ffffff;
 }
 
 .ingredients{
@@ -41,4 +42,93 @@
 .des-content{
     font-size: 30px;
     padding: 20px;
+}
+
+.youtube-video{
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+}
+
+.comment-div{
+    border-top: 1px solid gray;
+}
+
+.des-title-orange{
+    font-size: 40px;
+    padding: 20px;
+    padding-top: 30px;
+    font-weight: 500;
+    color: #f15a24;
+}
+
+.des-title-orange2{
+    font-size: 40px;
+    padding-left: 20px;
+    padding-top: 30px;
+    font-weight: 500;
+    color: #f15a24;
+}
+
+.comment-txt{
+    padding-left: 22px;
+}
+
+.comment-item{
+    padding: 20px;
+}
+
+.comment-content{
+    padding: 20px;
+    margin-left: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.add-comment{
+    height: 40px;
+    background-color: #f15a24;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #ffffff;
+    line-height: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.add-comment-login{
+    height: 40px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 40px;
+    margin-left: 20px;
+    width: 100%;
+}
+
+.input-comment{
+    width: 100%;
+    border-radius: 10px;
+    border-width: 1px;
+    padding-left: 20px;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.comment-item-login{
+    padding: 20px;
+}
+
+.user-name-comment{
+    font-size: 20px;
+    font-weight: 500;
+    color: #f15a24;
+}
+
+.line{
+    border-bottom: 1px solid;
+    height: 50px;
+    margin-bottom: 45px;
 }
