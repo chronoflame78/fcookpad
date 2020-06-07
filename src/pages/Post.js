@@ -5,7 +5,7 @@ import Step from '../components/Step';
 import Avatar from '../components/Avatar';
 import '../css/Post.css';
 import CustomCarousel from '../components/CustomCarousel';
-import { FaBeer } from 'react-icons/fa';
+import Loader from '../components/Loader';
 
 class Post extends Component {
 
@@ -14,7 +14,8 @@ class Post extends Component {
     super(props);
     this.state = {
       post: {},
-      login: true
+      login: false,
+      loading: true
     };
 
   }
@@ -28,10 +29,16 @@ class Post extends Component {
         console.log(res.data.data);
         console.log(res.data.data.post);
         this.setState({
-          post: res.data.data.post
+          post: res.data.data.post,
+          loading: false
         });
       }
-    });
+    }).catch(error => {
+      console.log(error.response);
+      this.setState({
+        loading: false
+      });
+  });
     // axios.get("https://e8gbf.sse.codesandbox.io/" + this.props.match.params.id).then(res => {
     //   if (this.mounted) {
     //     console.log(res.data);
@@ -50,9 +57,13 @@ class Post extends Component {
 
   render() {
     console.log("post render");
+    if (this.state.loading) return <Loader />;
     var post = this.state.post;
     console.log(post);
-    var images = this.state.post.images;
+    var images = [];
+    if(this.state.post.images){
+      images = this.state.post.images;
+    }
     var items = [];
     if (images) {
       items = images.map(x => ({ src: x }));
@@ -71,7 +82,7 @@ class Post extends Component {
     return (
       <div className="Post">
         <Container>
-          <Row>
+          <Row className="main-title">
             <Col sm="9"><h1 className="title">{post.title}</h1></Col>
             <Col sm="3">
               <div className="avatar">
@@ -79,34 +90,35 @@ class Post extends Component {
               </div>
               <div className="authorName">{post.author_name}</div>
             </Col>
-          </Row>
+          </Row>         
           <Row>
             <Col>
+            <div className="line"></div>
               <div className="info">
                 <div className="d-flex flex-column flex-md-row">
                   <CustomCarousel items={items} />
                   <div className="ingredients">
                     {post.ingredients && post.ingredients.map((x, index) => (
-                      <p key={index}><FaBeer /> {x}</p>
+                      <p key={index}><i className="fa fa-arrow-right" /> {x}</p>
                     ))}
                   </div>
                 </div>
-                <div className="des-title">Description</div>
                 <div className="des-content">{post.description}</div>
               </div>
-              <div class="line"></div>
-              <div className="info">
+              <div className="line"></div>
+              <div className="info-2">
                 <div className="des-title-orange">Hướng dẫn</div>
                 {steps && steps.map((x, index) => (
-                  <Step key={index} description={x.content} image={x.image} />
+                  <Step key={index} num={index} description={x.content} image={x.image} />
                 ))}
               </div>
             </Col>
           </Row>
           <Row>
             <Col>
+            <div className="line"></div>
               <div className="youtube-video">
-                <iframe width="560" height="315"
+                <iframe width="100%" height="400px"
                   src={post.video}
                   frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen></iframe>
@@ -121,15 +133,14 @@ class Post extends Component {
                 
                 {comments && comments.map((x, index) => (
                   <div key={index} className="comment-item d-flex align-items-center">
-                    <Avatar  image={x.user_avatar} name={x.author_name} size={64}/>
+                    <Avatar image={x.user_avatar} name={x.user_name} size={64}/>
                   <div className="comment-content">
                     <div className="user-name-comment">{x.user_name}</div>
                     <div>{x.content}</div>
                     
                     </div>
                   </div>
-                  
-                  
+                                 
                 ))}
                 {!this.state.login && <div className="add-comment">Đăng nhập để bình luận</div>}
                 {this.state.login &&
@@ -139,20 +150,11 @@ class Post extends Component {
                   <input placeholder="Viết bình luận.." className="input-comment" type="text" name="name" />
                 </div>
                 </div>
-                }
-                
-                
-                
-                
+                }              
               </div>
             
             </Col>
           </Row>
-
-
-
-
-
         </Container>
       </div>
     );

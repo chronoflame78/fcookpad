@@ -46,7 +46,7 @@ const CustomCarousel = (props) => {
             width: 500px;
             height: 300px;
             background-color: #DDD;
-            background-image: url('https://via.placeholder.com/1000x1000');
+            background-image: url('`+item.src+`');
             background-size: cover;
             background-position: center;
             color:#fff;

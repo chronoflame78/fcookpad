@@ -15,6 +15,7 @@ class Avatar extends Component{
         });       
     }
 
+
     componentDidMount(){
 
     }

@@ -4,8 +4,6 @@
 
 .title{
     font-size: 80px;
-    text-decoration: underline;
-    text-decoration-color: #f15a24;
 }
 
 .authorName{
@@ -19,15 +17,20 @@
 }
 
 .info{
-    margin-top: 30px;
-    border: 3px solid #f15a24;
-    border-radius: 40px;
+    border: 2px solid #f15a24;
+    border-radius: 5px;
     padding: 30px;
     background-color: #ffffff;
 }
 
+.info-2{
+    border: 2px solid #f15a24;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
 .ingredients{
-    font-size: 30px;
+    font-size: 20px;
     margin-left: 30px;
 }
 
@@ -40,13 +43,12 @@
 }
 
 .des-content{
-    font-size: 30px;
-    padding: 20px;
+    font-size: 20px;
+    padding-top: 20px;
 }
 
 .youtube-video{
     text-align: center;
-    margin: 20px;
     padding: 20px;
 }
 
@@ -56,8 +58,8 @@
 
 .des-title-orange{
     font-size: 40px;
-    padding: 20px;
-    padding-top: 30px;
+    padding-left: 35px;
+    padding-top: 20px;
     font-weight: 500;
     color: #f15a24;
 }
@@ -65,7 +67,7 @@
 .des-title-orange2{
     font-size: 40px;
     padding-left: 20px;
-    padding-top: 30px;
+    padding-top: 20px;
     font-weight: 500;
     color: #f15a24;
 }
@@ -128,7 +130,9 @@ textarea:focus, input:focus{
 }
 
 .line{
-    border-bottom: 1px solid;
     height: 50px;
-    margin-bottom: 45px;
+}
+
+.main-title{
+    padding-top: 20px;
 }
