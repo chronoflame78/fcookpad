@@ -23,7 +23,7 @@ class Post extends Component {
   componentDidMount() {
     console.log("post did mount");
     this.mounted = true;
-    axios.get("http://3.133.113.96:2000/api/posts/" + this.props.match.params.id).then(res => {
+    axios.get("//3.133.113.96:2000/api/posts/" + this.props.match.params.id).then(res => {
       if (this.mounted) {
         console.log(res.data);
         console.log(res.data.data);

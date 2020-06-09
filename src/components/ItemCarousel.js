@@ -7,8 +7,9 @@ const ItemCarousel = (props) => {
 
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json()).then(data => {
+        fetch('http://jsonplaceholder.typicode.com/users').then(res => res.json()).then(data => {
             setSuggestions(data);
+            console.log(data);
         })
     });
 
