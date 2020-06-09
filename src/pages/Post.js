@@ -5,7 +5,7 @@ import Step from '../components/Step';
 import Avatar from '../components/Avatar';
 import '../css/Post.css';
 import CustomCarousel from '../components/CustomCarousel';
-import Loader from '../components/Loader';
+import Loader from '../components/LoaderVer2';
 
 class Post extends Component {
 

@@ -51,7 +51,7 @@ const ItemCarousel = (props) => {
         ]
     }
     return (
-        <div className="container">
+        <div className="container container-item">
             <h6 className="text-muted">Friend Suggestions</h6>
             {suggestions.length === 0 ? (
                 <div className="spinner-border" role="status">
