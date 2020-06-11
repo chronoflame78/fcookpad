@@ -39,7 +39,7 @@ const CustomCarousel = (props) => {
         onExited={() => setAnimating(false)}
         key={index}
       >
-          <div className="album-cover"></div>
+          <div className="album-cover"></div>         
           <style>
         {
           `.album-cover {

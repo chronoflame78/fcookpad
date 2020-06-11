@@ -1,0 +1,53 @@
+.item-cover {
+    width: 230px;
+    height: 230px;
+    background-size: cover;
+    background-position: center;
+    color:#fff;
+    font-size: 20px;
+    border-radius: 10px;
+    }
+/* .container{
+max-width: 1080px;
+} */
+
+.section-title{
+    padding-left: 1.5rem;
+    margin-top: 24px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #FF5B1B;
+}
+
+.container-max-custom{
+    max-width: 1080px;
+}
+
+.see-more{
+    justify-content: center;
+    border-bottom: 1px solid #FF5B1B;
+    font-weight: bold;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.fa-star{
+    color: #FF5B1B;
+    font-size: 14px;
+}
+
+.item-title{
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.item-author-name{
+    font-size: 13px;
+}
+
+.item-date{
+    font-size: 13px;
+    float: right;
+    padding-right: 10px;
+}

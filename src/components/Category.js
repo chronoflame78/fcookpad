@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import Slider from "react-slick";
-import '../css/ItemCarousel.css';
+import '../css/Category.css';
+import axios from "axios";
 
-const ItemCarousel = (props) => {
-    const [suggestions, setSuggestions] = useState([])
-
+const Category = (props) => {
+    const [suggestions, setSuggestions] = useState([]);
 
     useEffect(() => {
-        fetch('http://jsonplaceholder.typicode.com/users').then(res => res.json()).then(data => {
-            setSuggestions(data);
-        })
+        axios.get("http://3.133.113.96:2000/api/home/category").then(res => {
+            setSuggestions(res.data.data.categorys);
+        }).catch(error => {
+            console.log(error)
+        });
     });
+
 
     let settings = {
         infinite: false,
         speed: 1000,
         arrows: true,
-        slidesToShow: 5,
-        slidesToScroll: 4,
+        slidesToShow: 7,
+        slidesToScroll: 3,
 
         responsive: [
             {
@@ -51,8 +54,8 @@ const ItemCarousel = (props) => {
         ]
     }
     return (
+        <div className="container-fluid bg-custom">
         <div className="container container-item">
-            <h6 className="text-muted">Friend Suggestions</h6>
             {suggestions.length === 0 ? (
                 <div className="spinner-border" role="status">
                     <span className="sr-only">Loading...</span>
@@ -60,22 +63,20 @@ const ItemCarousel = (props) => {
             ) : (
                     <Slider {...settings}>
                         {suggestions.map(current => (
-                            <div className="out" key={current.id}>
-                                <div className="card">
-                                    <img className="rounded-circle" alt={"users here"} src={`https://source.unsplash.com/random/${current.id}`} height={56} width={56} />
-                                    <div className="card-body">
-                                        <h5 className="card-title">{current.username}</h5>
-                                        <small className="card-text text-sm-center text-muted">In your contacts</small>
-                                        <br />
-                                        <button className="btn btn-sm follow btn-primary">Follow</button>
+                            <div className="out" key={current._id}>
+                                <div className="category-cover" style={{backgroundImage: "url("+current.image+")"}}>
+                                    <div className="overlay">
+                                        {current.title}
                                     </div>
                                 </div>
                             </div>
                         ))}
+
                     </Slider>
                 )}
+        </div>
         </div>
     );
 };
 
-export default ItemCarousel;
+export default Category;

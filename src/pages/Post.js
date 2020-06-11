@@ -23,7 +23,7 @@ class Post extends Component {
   componentDidMount() {
     console.log("post did mount");
     this.mounted = true;
-    axios.get("//3.133.113.96:2000/api/posts/" + this.props.match.params.id).then(res => {
+    axios.get("http://3.133.113.96:2000/api/posts/" + this.props.match.params.id).then(res => {
       if (this.mounted) {
         console.log(res.data);
         console.log(res.data.data);
@@ -38,7 +38,7 @@ class Post extends Component {
       this.setState({
         loading: false
       });
-  });
+    });
     // axios.get("https://e8gbf.sse.codesandbox.io/" + this.props.match.params.id).then(res => {
     //   if (this.mounted) {
     //     console.log(res.data);
@@ -61,7 +61,7 @@ class Post extends Component {
     var post = this.state.post;
     console.log(post);
     var images = [];
-    if(this.state.post.images){
+    if (this.state.post.images) {
       images = this.state.post.images;
     }
     var items = [];
@@ -90,10 +90,10 @@ class Post extends Component {
               </div>
               <div className="authorName">{post.author_name}</div>
             </Col>
-          </Row>         
+          </Row>
           <Row>
             <Col>
-            <div className="line"></div>
+              <div className="line"></div>
               <div className="info">
                 <div className="d-flex flex-column flex-md-row">
                   <CustomCarousel items={items} />
@@ -116,7 +116,7 @@ class Post extends Component {
           </Row>
           <Row>
             <Col>
-            <div className="line"></div>
+              <div className="line"></div>
               <div className="youtube-video">
                 <iframe width="100%" height="400px"
                   src={post.video}
@@ -130,29 +130,29 @@ class Post extends Component {
               <div className="comment-div">
                 <div className="des-title-orange2">Bình luận</div>
                 <div className="comment-txt">Xem tất cả bình luận</div>
-                
+
                 {comments && comments.map((x, index) => (
                   <div key={index} className="comment-item d-flex align-items-center">
-                    <Avatar image={x.user_avatar} name={x.user_name} size={64}/>
-                  <div className="comment-content">
-                    <div className="user-name-comment">{x.user_name}</div>
-                    <div>{x.content}</div>
-                    
+                    <Avatar image={x.user_avatar} name={x.user_name} size={64} />
+                    <div className="comment-content">
+                      <div className="user-name-comment">{x.user_name}</div>
+                      <div>{x.content}</div>
+
                     </div>
                   </div>
-                                 
+
                 ))}
                 {!this.state.login && <div className="add-comment">Đăng nhập để bình luận</div>}
                 {this.state.login &&
-                 <div className="comment-item-login d-flex align-items-center">
-                 <Avatar image={post.author_avatar} size={64} name={post.author_name} />
-                <div className="add-comment-login">
-                  <input placeholder="Viết bình luận.." className="input-comment" type="text" name="name" />
-                </div>
-                </div>
-                }              
+                  <div className="comment-item-login d-flex align-items-center">
+                    <Avatar image={post.author_avatar} size={64} name={post.author_name} />
+                    <div className="add-comment-login">
+                      <input placeholder="Viết bình luận.." className="input-comment" type="text" name="name" />
+                    </div>
+                  </div>
+                }
               </div>
-            
+
             </Col>
           </Row>
         </Container>
