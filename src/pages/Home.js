@@ -27,6 +27,7 @@ class Home extends Component {
       return(<div>
         <ItemCarousel/>
         <Section sectionName="TRENDING" tail="post_trending"/>
+        <Section sectionName="NEW" tail="post_new"/>
       </div>);
     }
   }
