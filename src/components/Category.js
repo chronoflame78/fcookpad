@@ -19,7 +19,7 @@ const Category = (props) => {
         infinite: false,
         speed: 1000,
         arrows: true,
-        slidesToShow: 7,
+        slidesToShow: 6,
         slidesToScroll: 1,
 
         responsive: [
@@ -66,7 +66,7 @@ const Category = (props) => {
                             <div className="out" key={current._id}>
                                 <div className="category-cover" style={{backgroundImage: "url("+current.image+")"}}>
                                     <div className="overlay">
-                                        {current.title}
+                                        {current.title.toUpperCase()}
                                     </div>
                                 </div>
                             </div>

@@ -14,7 +14,14 @@ class Section extends Component {
 
     getFormattedDate(date) {
         var today = new Date(date);
-        return today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
+        var month = "";
+        if(today.getMonth() < 9){
+            month = "0" + (today.getMonth()+1)
+        }
+        else{
+            month = today.getMonth() + 1
+        }
+        return today.getDate() + "/" + month + "/" + today.getFullYear();
     }
 
     showMore() {
@@ -52,13 +59,13 @@ class Section extends Component {
                 <div className="row section-title">{this.props.sectionName}</div>
                 <div className="row">
                     {topFourPosts && topFourPosts.map((x, index) => (
-                        <div key={index} className="col-sm-6 col-md-3 p-4">
+                        <div key={index} className="col-sm-6 col-md-3 py-4">
                             <NavLink to={"/posts/"+x._id}>
                             <div className="item-cover" style={{backgroundImage: "url("+x.images[0]+")"}}></div>
                             </NavLink>
                             <div className="item-title">{x.title}</div>
                             <div className="item-author-name">{x.author_name}</div>
-                            <div><i className="fa fa-star" />
+                            <div className="rating-and-date"><i className="fa fa-star" />
                             <i className="fa fa-star" />
                             <i className="fa fa-star" />
                             <i className="fa fa-star" />
@@ -68,10 +75,10 @@ class Section extends Component {
                         </div>
                     ))}
                 </div>
-                <div className="row see-more" onClick={this.showMore} >
-                    {this.state.itemsToShow===4 && "Xem thêm"}
-                    {this.state.itemsToShow!==4 && "Thu gọn"}
-                    </div>
+                <div className="row see-more" style={{marginLeft: '0px', marginRight: '0px'}} onClick={this.showMore} >
+                    {this.state.itemsToShow===4 && "XEM THÊM"}
+                    {this.state.itemsToShow!==4 && "THU GỌN"}
+                </div>
             </div>
 
         );
