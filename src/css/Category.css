@@ -6,8 +6,12 @@
     opacity: .5!important;
 }
 
+.slick-prev:hover:before, .slick-next:hover:before {
+    opacity: 1!important;
+}
+
 .bg-custom{
-    background-color: #FF5B1B;
+    background-color: rgba(255,91,27,1);
 }
 
 .slick-prev {
@@ -45,7 +49,14 @@
         display: flex;
         align-items: center;
         box-sizing:border-box;
-        font-size: 12px;
+        font-size: 13px;
         justify-content: center;
         text-align: center;
     }
+.category-cover:hover{
+    border-color: yellow;
+}
+.overlay:hover{
+    background:  rgba(0,0,0,0.7);
+    cursor: pointer;
+}

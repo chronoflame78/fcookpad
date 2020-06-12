@@ -30,6 +30,7 @@ class Avatar extends Component{
             <img src={this.props.image} 
             width={this.props.size} 
             height={this.props.size} 
+            alt=""
             className="rounded-circle" id="TooltipExample"/>
             <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.toggle}>
             {this.props.name}

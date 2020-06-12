@@ -35,7 +35,7 @@ export default class TopMenu extends React.Component {
                 <NavLink href="/">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/post">Post</NavLink>
+                <NavLink href="/posts">Post</NavLink>
               </NavItem>
             </Nav>
           </Collapse>

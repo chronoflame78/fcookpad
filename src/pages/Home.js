@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
-import { Container, Row, Col } from "reactstrap";
-import Loader from '../components/Loader';
-import ItemCarousel from '../components/Category';
+import Category from '../components/Category';
 import Section from '../components/Section';
 
 class Home extends Component {
@@ -25,7 +22,7 @@ class Home extends Component {
   
     render() {
       return(<div>
-        <ItemCarousel/>
+        <Category/>
         <Section sectionName="TRENDING" tail="post_trending"/>
         <Section sectionName="NEW" tail="post_new"/>
       </div>);

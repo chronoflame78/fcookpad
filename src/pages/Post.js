@@ -118,7 +118,7 @@ class Post extends Component {
             <Col>
               <div className="line"></div>
               <div className="youtube-video">
-                <iframe width="100%" height="400px"
+                <iframe title="video" width="100%" height="400px"
                   src={post.video}
                   frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen></iframe>

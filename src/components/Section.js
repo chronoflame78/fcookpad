@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import '../css/Section.css';
 import axios from "axios";
-
+import {NavLink} from "react-router-dom";
 class Section extends Component {
     constructor(props) {
         super(props);
@@ -30,7 +30,7 @@ class Section extends Component {
         axios.get("http://3.133.113.96:2000/api/home/" + this.props.tail).then(res => {
             if (this.mounted) {
                 this.setState({
-                    posts: res.data.data.posts,
+                    posts: res.data.data.post,
                 });
             }
         }).catch(error => {
@@ -53,7 +53,9 @@ class Section extends Component {
                 <div className="row">
                     {topFourPosts && topFourPosts.map((x, index) => (
                         <div key={index} className="col-sm-6 col-md-3 p-4">
+                            <NavLink to={"/posts/"+x._id}>
                             <div className="item-cover" style={{backgroundImage: "url("+x.images[0]+")"}}></div>
+                            </NavLink>
                             <div className="item-title">{x.title}</div>
                             <div className="item-author-name">{x.author_name}</div>
                             <div><i className="fa fa-star" />
@@ -62,7 +64,7 @@ class Section extends Component {
                             <i className="fa fa-star" />
                             <i className="fa fa-star" />
                             <span className="item-date"> {this.getFormattedDate(x.datetime)}</span>
-                            </div>
+                            </div>                          
                         </div>
                     ))}
                 </div>

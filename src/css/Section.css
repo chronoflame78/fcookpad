@@ -30,8 +30,8 @@ max-width: 1080px;
     padding-bottom: 10px;
     cursor: pointer;
     margin-bottom: 20px;
-    margin-right: 15px;
-    margin-left: 10px;
+    margin-right: 15px!important;
+    margin-left: 10px!important;
 }
 
 .fa-star{
