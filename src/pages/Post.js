@@ -68,10 +68,10 @@ class Post extends Component {
     if (images) {
       items = images.map(x => ({ src: x }));
     }
-    var comments = [];
-    if (this.state.post.comments) {
-      comments = this.state.post.comments;
-    };
+    // var comments = [];
+    // if (this.state.post.comments) {
+    //   comments = this.state.post.comments;
+    // };
     var steps = [];
     if (this.state.post.steps) {
       steps = this.state.post.steps;
@@ -131,7 +131,7 @@ class Post extends Component {
                 <div className="des-title-orange2">Bình luận</div>
                 <div className="comment-txt">Xem tất cả bình luận</div>
 
-                {comments && comments.map((x, index) => (
+                {/* {comments && comments.map((x, index) => (
                   <div key={index} className="comment-item d-flex align-items-center">
                     <Avatar image={x.user_avatar} name={x.user_name} size={64} />
                     <div className="comment-content">
@@ -141,7 +141,7 @@ class Post extends Component {
                     </div>
                   </div>
 
-                ))}
+                ))} */}
                 {!this.state.login && <div className="add-comment">Đăng nhập để bình luận</div>}
                 {this.state.login &&
                   <div className="comment-item-login d-flex align-items-center">
