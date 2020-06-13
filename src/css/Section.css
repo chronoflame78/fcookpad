@@ -8,9 +8,7 @@
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
-/* .container{
-max-width: 1080px;
-} */
+
 
 .section-title{
     padding-left: 1rem;
@@ -20,9 +18,9 @@ max-width: 1080px;
     color: #FF5B1B;
 }
 
-.container-max-custom{
+/* .container-max-custom{
     max-width: 1080px;
-}
+} */
 
 .see-more{
     justify-content: center;
