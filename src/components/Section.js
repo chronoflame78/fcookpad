@@ -59,7 +59,7 @@ class Section extends Component {
                 <div className="row section-title">{this.props.sectionName}</div>
                 <div className="row">
                     {topFourPosts && topFourPosts.map((x, index) => (
-                        <div key={index} className="col-sm-6 col-md-3 py-4">
+                        <div key={index} className="col-6 col-sm-6 col-md-3 py-4">
                             <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>
                                 <div className="item-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
                                     <div className="item-cover" >
