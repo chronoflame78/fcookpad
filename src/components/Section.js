@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import '../css/Section.css';
 import axios from "axios";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 class Section extends Component {
     constructor(props) {
         super(props);
@@ -15,10 +15,10 @@ class Section extends Component {
     getFormattedDate(date) {
         var today = new Date(date);
         var month = "";
-        if(today.getMonth() < 9){
-            month = "0" + (today.getMonth()+1)
+        if (today.getMonth() < 9) {
+            month = "0" + (today.getMonth() + 1)
         }
-        else{
+        else {
             month = today.getMonth() + 1
         }
         return today.getDate() + "/" + month + "/" + today.getFullYear();
@@ -26,11 +26,11 @@ class Section extends Component {
 
     showMore() {
         this.state.itemsToShow === 4 ? (
-          this.setState({ itemsToShow: 8 })
+            this.setState({ itemsToShow: 8 })
         ) : (
-          this.setState({ itemsToShow: 4})
-        )
-      }
+                this.setState({ itemsToShow: 4 })
+            )
+    }
 
     componentDidMount() {
         this.mounted = true;
@@ -60,24 +60,28 @@ class Section extends Component {
                 <div className="row">
                     {topFourPosts && topFourPosts.map((x, index) => (
                         <div key={index} className="col-sm-6 col-md-3 py-4">
-                            <NavLink to={"/posts/"+x._id}>
-                            <div className="item-cover" style={{backgroundImage: "url("+x.images[0]+")"}}></div>
+                            <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>
+                                <div className="item-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
+                                    <div className="item-cover" >
+                                        <span className="item-view">{x.views} <i className="fa fa-eye" /></span>
+                                    </div>
+                                </div>
                             </NavLink>
                             <div className="item-title">{x.title}</div>
                             <div className="item-author-name">{x.author_name}</div>
                             <div className="rating-and-date"><i className="fa fa-star" />
-                            <i className="fa fa-star" />
-                            <i className="fa fa-star" />
-                            <i className="fa fa-star" />
-                            <i className="fa fa-star" />
-                            <span className="item-date"> {this.getFormattedDate(x.datetime)}</span>
-                            </div>                          
+                                <i className="fa fa-star" />
+                                <i className="fa fa-star" />
+                                <i className="fa fa-star" />
+                                <i className="fa fa-star" />
+                                <span className="item-date" style={{paddingTop: '2px'}}> {this.getFormattedDate(x.datetime)}</span>
+                            </div>
                         </div>
                     ))}
                 </div>
-                <div className="row see-more" style={{marginLeft: '0px', marginRight: '0px'}} onClick={this.showMore} >
-                    {this.state.itemsToShow===4 && "XEM THÊM"}
-                    {this.state.itemsToShow!==4 && "THU GỌN"}
+                <div className="row see-more" style={{ marginLeft: '0px', marginRight: '0px' }} onClick={this.showMore} >
+                    {this.state.itemsToShow === 4 && "XEM THÊM"}
+                    {this.state.itemsToShow !== 4 && "THU GỌN"}
                 </div>
             </div>
 

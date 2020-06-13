@@ -34,7 +34,7 @@ class Post extends Component {
         });
       }
     }).catch(error => {
-      console.log(error.response);
+      console.log(error);
       this.setState({
         loading: false
       });
