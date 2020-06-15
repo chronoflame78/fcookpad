@@ -38,14 +38,13 @@ const CustomCarousel = (props) => {
         onExited={() => setAnimating(false)}
         key={index}
       >
-          <div className="album-cover"></div>         
+          <div className="album-cover" style={{backgroundImage: "url("+item.src+")"}}></div>         
           <style>
         {
           `.album-cover {
             width: 500px;
             height: 300px;
             background-color: #DDD;
-            background-image: url('`+item.src+`');
             background-size: cover;
             background-position: center;
             color:#fff;
