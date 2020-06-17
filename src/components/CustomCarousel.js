@@ -5,6 +5,7 @@ import {
   CarouselControl,
   CarouselIndicators,
 } from 'reactstrap';
+import '../css/CustomCarousel.css';
 
 
 
@@ -39,19 +40,6 @@ const CustomCarousel = (props) => {
         key={index}
       >
           <div className="album-cover" style={{backgroundImage: "url("+item.src+")"}}></div>         
-          <style>
-        {
-          `.album-cover {
-            width: 500px;
-            height: 300px;
-            background-color: #DDD;
-            background-size: cover;
-            background-position: center;
-            color:#fff;
-            font-size: 20px;
-            }`
-        }
-      </style>
         
       </CarouselItem>
     );

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import '../css/Step.css';
+import Picture from '../components/Picture';
 
 class Step extends Component {
 
@@ -17,12 +18,12 @@ class Step extends Component {
         <div className="custom-div">
           <div className="container">
             <div className="row">
-              <div className="col-lg-4 padding-custom">
+              <div className="col-lg-4 col-md-5 padding-custom">
                 <div className="mt-3">
-                  <img src={this.props.image} alt="" className="img-fluid mx-auto d-block img-thumbnail custom-image" />
+                  <Picture width="100%" height="250px" src={this.props.image}/>
                 </div>
               </div>
-              <div className="col-lg-8">
+              <div className="col-lg-8 col-md-7 ">
                 <div className="mt-3 txt-description">
                   <div>
                     {this.props.description}
@@ -40,12 +41,12 @@ class Step extends Component {
           <div className="line-bottom"></div>
           <div className="container">
             <div className="row">
-              <div className="col-lg-4 padding-custom">
+              <div className="col-lg-4 col-md-5 padding-custom">
                 <div className="mt-3">
-                  <img src={this.props.image} alt="" className="img-fluid mx-auto d-block img-thumbnail custom-image" />
+                  <Picture width="100%" height="250px" src={this.props.image}/>
                 </div>
               </div>
-              <div className="col-lg-8">
+              <div className="col-lg-8 col-md-7">
                 <div className="mt-3 txt-description">
                   <div>
                     {this.props.description}
@@ -62,16 +63,16 @@ class Step extends Component {
           <div className="line-bottom"></div>
           <div className="container">
             <div className="row">
-              <div className="col-lg-8">
+              <div className="col-lg-8 col-md-7">
                 <div className="mt-3 txt-description">
                   <div>
                     {this.props.description}
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 padding-custom">
+              <div className="col-lg-4 col-md-5 padding-custom">
                 <div className="mt-3">
-                  <img src={this.props.image} alt="" className="img-fluid mx-auto d-block img-thumbnail custom-image" />
+                  <Picture width="100%" height="250px" src={this.props.image}/>
                 </div>
               </div>
             </div>

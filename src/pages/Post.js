@@ -4,8 +4,9 @@ import { Container, Row, Col } from "reactstrap";
 import Step from '../components/Step';
 import Avatar from '../components/Avatar';
 import '../css/Post.css';
-import CustomCarousel from '../components/CustomCarousel';
+import CustomCarousel from '../components/ResponsiveCarousel';
 import Loader from '../components/LoaderVer2';
+
 
 class Post extends Component {
 
@@ -95,8 +96,10 @@ class Post extends Component {
             <Col>
               <div className="line"></div>
               <div className="info">
-                <div className="d-flex flex-column flex-md-row">
+                <div className="d-flex flex-column flex-md-row align-items-center">
+                  <div className="carousel-box">
                   <CustomCarousel items={items} />
+                  </div>                  
                   <div className="ingredients">
                     {post.ingredients && post.ingredients.map((x, index) => (
                       <p key={index}><i className="fa fa-arrow-right" /> {x}</p>

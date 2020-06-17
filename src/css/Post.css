@@ -31,7 +31,26 @@
 
 .ingredients{
     font-size: 20px;
-    margin-left: 30px;
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.ingredients p{
+    padding-left: 50px;
+}
+
+@media only screen and (max-width: 768px) {
+    .ingredients p{
+        padding-left: 0px;
+    }
+    .ingredients{
+        margin-top: 30px;
+    }
+}
+
+.carousel-box{
+    flex-grow: 1;
+    flex-basis: 0;
 }
 
 .des-title{
