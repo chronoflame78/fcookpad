@@ -34,7 +34,7 @@ class Section extends Component {
 
     componentDidMount() {
         this.mounted = true;
-        axios.get("http://3.133.113.96:2000/api/home/" + this.props.tail).then(res => {
+        axios.get("http://157.230.44.169:3000/api/home/" + this.props.tail).then(res => {
             if (this.mounted) {
                 this.setState({
                     posts: res.data.data.post,

@@ -7,7 +7,7 @@ const Category = (props) => {
     const [suggestions, setSuggestions] = useState([]);
 
     useEffect(() => {
-        axios.get("http://3.133.113.96:2000/api/home/category").then(res => {
+        axios.get("http://157.230.44.169:3000/api/home/category").then(res => {
             setSuggestions(res.data.data.categorys);
         }).catch(error => {
             console.log(error)

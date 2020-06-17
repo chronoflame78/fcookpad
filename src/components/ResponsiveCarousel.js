@@ -9,7 +9,7 @@ class DemoCarousel extends Component {
         var images = this.props.items;
         console.log(images);
         return (
-            <Carousel showThumbs={false}>
+            <Carousel showThumbs={false} autoPlay={true} infiniteLoop={true}>
                 {images && images.map((x, index) => (
                   <div key={index}>
                     <img width={500} height={300} src={x.src} />
