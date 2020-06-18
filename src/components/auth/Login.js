@@ -67,16 +67,10 @@ return (
                   value={this.state.email}
                   error={errors.email}
                   id="email"
-                  type="email"
-                  className={classnames("", {
-                    invalid: errors.email || errors.emailnotfound
-                  })}
+                  type="email"                  
                 />
                 <label htmlFor="email">Email</label>
-                <span className="red-text">
-                  {errors.email}
-                  {errors.emailnotfound}
-                </span>
+                
               </div>
               <div className="input-field col s12">
                 <input
@@ -84,17 +78,12 @@ return (
                   value={this.state.password}
                   error={errors.password}
                   id="password"
-                  type="password"
-                  className={classnames("", {
-                    invalid: errors.password || errors.passwordincorrect
-                  })}
+                  type="password"                 
                 />
                 <label htmlFor="password">Password</label>
-                <span className="red-text">
-                  {errors.password}
-                  {errors.passwordincorrect}
-                </span>
+                
               </div>
+              <div>{errors && errors.message}</div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{

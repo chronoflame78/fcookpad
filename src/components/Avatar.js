@@ -31,8 +31,8 @@ class Avatar extends Component{
             width={this.props.size} 
             height={this.props.size} 
             alt=""
-            className="rounded-circle" id="TooltipExample"/>
-            <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="TooltipExample" toggle={this.toggle}>
+            className="rounded-circle" id={"TooltipExample-"+this.props.signature}/>
+            <Tooltip placement="top" isOpen={this.state.tooltipOpen} target={"TooltipExample-"+this.props.signature} toggle={this.toggle}>
             {this.props.name}
             </Tooltip>
         </div>

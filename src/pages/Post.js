@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, NavLink } from "reactstrap";
 import Step from '../components/Step';
 import Avatar from '../components/Avatar';
 import '../css/Post.css';
 import CustomCarousel from '../components/ResponsiveCarousel';
 import Loader from '../components/LoaderVer2';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+const isEmpty = require("is-empty");
 
 
 class Post extends Component {
@@ -15,7 +18,6 @@ class Post extends Component {
     super(props);
     this.state = {
       post: {},
-      login: false,
       loading: true
     };
 
@@ -80,6 +82,8 @@ class Post extends Component {
     if (Object.keys(post).length === 0 && post.constructor === Object) {
       return (<h2>Post not found</h2>);
     }
+    const { user } = this.props.auth;
+    console.log(user);
     return (
       <div className="Post">
         <Container>
@@ -87,7 +91,7 @@ class Post extends Component {
             <Col sm="9"><h1 className="title">{post.title}</h1></Col>
             <Col sm="3">
               <div className="avatar">
-                <Avatar image={post.author_avatar} size={64} name={post.author_name} />
+                <Avatar signature="author" image={post.author_avatar} size={64} name={post.author_name} />
               </div>
               <div className="authorName">{post.author_name}</div>
             </Col>
@@ -136,7 +140,7 @@ class Post extends Component {
 
                 {/* {comments && comments.map((x, index) => (
                   <div key={index} className="comment-item d-flex align-items-center">
-                    <Avatar image={x.user_avatar} name={x.user_name} size={64} />
+                    <Avatar signature={index} image={x.user_avatar} name={x.user_name} size={64} />
                     <div className="comment-content">
                       <div className="user-name-comment">{x.user_name}</div>
                       <div>{x.content}</div>
@@ -145,10 +149,10 @@ class Post extends Component {
                   </div>
 
                 ))} */}
-                {!this.state.login && <div className="add-comment">Đăng nhập để bình luận</div>}
-                {this.state.login &&
+                {isEmpty(user) && <NavLink href="/login"><div className="add-comment">Đăng nhập để bình luận</div></NavLink>}
+                {!isEmpty(user) &&
                   <div className="comment-item-login d-flex align-items-center">
-                    <Avatar image={post.author_avatar} size={64} name={post.author_name} />
+                    <Avatar signature="main-user" image={post.author_avatar} size={64} name={user.user_name} />
                     <div className="add-comment-login">
                       <input placeholder="Viết bình luận.." className="input-comment" type="text" name="name" />
                     </div>
@@ -163,5 +167,12 @@ class Post extends Component {
     );
   }
 }
-
-export default Post;
+Post.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+export default connect(
+  mapStateToProps,
+)(Post);

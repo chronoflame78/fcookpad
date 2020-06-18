@@ -9,7 +9,7 @@ class Home extends Component {
       this.state = {
 
       };
-  
+      
     }
   
     componentDidMount() {
@@ -19,7 +19,7 @@ class Home extends Component {
     componentWillUnmount() {
 
     }
-  
+    
     render() {
       return(<div>
         <Category/>
