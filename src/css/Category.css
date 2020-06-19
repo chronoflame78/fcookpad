@@ -34,7 +34,10 @@
 }
 
 
-
+.loading-div{
+    width: 100%;
+    height: 129px;
+}
 
 
 .category-cover {

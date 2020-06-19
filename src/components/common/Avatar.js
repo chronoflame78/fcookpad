@@ -15,15 +15,6 @@ class Avatar extends Component{
         });       
     }
 
-
-    componentDidMount(){
-
-    }
-
-    componentWillUnmount(){
-
-    }
-
     render(){
         return(
         <div>

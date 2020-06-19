@@ -152,7 +152,7 @@ class Post extends Component {
                 {isEmpty(user) && <NavLink href="/login"><div className="add-comment">Đăng nhập để bình luận</div></NavLink>}
                 {!isEmpty(user) &&
                   <div className="comment-item-login d-flex align-items-center">
-                    <Avatar signature="main-user" image={post.author_avatar} size={64} name={user.user_name} />
+                    <Avatar signature="main-user" image={user.user_avatar} size={64} name={user.user_name} />
                     <div className="add-comment-login">
                       <input placeholder="Viết bình luận.." className="input-comment" type="text" name="name" />
                     </div>

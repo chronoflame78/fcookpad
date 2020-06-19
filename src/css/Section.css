@@ -37,6 +37,20 @@
     }
 }
 
+@media only screen and (max-width: 470px) {
+    .item-image-container{
+        width: 210px;
+        height: 210px; 
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .item-image-container{
+        width: 200px;
+        height: 200px; 
+    }
+}
+
 .item-image-container .item-cover{
     height: 100%;
     background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 20%);

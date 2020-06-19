@@ -1,21 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import Slider from "react-slick";
 import '../../css/Category.css';
 import axios from "axios";
+// import Loader from '../common/LoaderVer3';
 
-const Category = (props) => {
-    const [suggestions, setSuggestions] = useState([]);
+class Category extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            suggestions: []
+        };
 
-    useEffect(() => {
+    }
+
+    componentDidMount() {
+        console.log("post did mount");
+        this.mounted = true;
         axios.get("http://157.230.44.169:3000/api/home/category").then(res => {
-            setSuggestions(res.data.data.categorys);
+            if (this.mounted) {
+                this.setState({
+                    suggestions: res.data.data.categorys,
+                });
+            }
         }).catch(error => {
-            console.log(error)
+            console.log(error);
         });
-    });
+    }
+
+    componentWillUnmount() {
+        this.mounted = false;
+    }
 
 
-    let settings = {
+    settings = {
         infinite: false,
         speed: 1000,
         arrows: true,
@@ -53,30 +70,32 @@ const Category = (props) => {
             }
         ]
     }
-    return (
-        <div className="container-fluid bg-custom">
-        <div className="container container-item">
-            {suggestions.length === 0 ? (
-                <div className="spinner-border" role="status">
-                    <span className="sr-only">Loading...</span>
-                </div>
-            ) : (
-                    <Slider {...settings}>
-                        {suggestions.map(current => (
-                            <div className="out" key={current._id}>
-                                <div className="category-cover" style={{backgroundImage: "url("+current.image+")"}}>
-                                    <div className="overlay">
-                                        {current.title.toUpperCase()}
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
 
-                    </Slider>
-                )}
-        </div>
-        </div>
-    );
-};
+    render() {
+        return (
+            <div className="container-fluid bg-custom">
+                <div className="container container-item">
+                    {this.state.suggestions.length === 0 ? (
+                        <div className="loading-div"></div>
+                    ) : (
+                            <Slider {...this.settings}>
+                                {this.state.suggestions.map(current => (
+                                    <div className="out" key={current._id}>
+                                        <div className="category-cover" style={{ backgroundImage: "url(" + current.image + ")" }}>
+                                            <div className="overlay">
+                                                {current.title.toUpperCase()}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+
+                            </Slider>
+                        )}
+                </div>
+            </div>
+        )
+    }
+}
+
 
 export default Category;
