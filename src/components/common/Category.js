@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Slider from "react-slick";
-import '../css/Category.css';
+import '../../css/Category.css';
 import axios from "axios";
 
 const Category = (props) => {

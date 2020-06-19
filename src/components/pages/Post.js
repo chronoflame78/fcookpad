@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Container, Row, Col, NavLink } from "reactstrap";
-import Step from '../components/Step';
-import Avatar from '../components/Avatar';
-import '../css/Post.css';
-import CustomCarousel from '../components/ResponsiveCarousel';
-import Loader from '../components/LoaderVer2';
+import Step from '../common/Step';
+import Avatar from '../common/Avatar';
+import '../../css/Post.css';
+import CustomCarousel from '../common/ResponsiveCarousel';
+import Loader from '../common/LoaderVer2';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 const isEmpty = require("is-empty");

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Category from '../components/Category';
-import Section from '../components/Section';
+import Category from '../common/Category';
+import Section from '../common/Section';
+import Loader from '../common/LoaderVer2';
 
 class Home extends Component {
 
@@ -8,8 +9,7 @@ class Home extends Component {
       super(props);
       this.state = {
 
-      };
-      
+      };     
     }
   
     componentDidMount() {

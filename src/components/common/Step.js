@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import '../css/Step.css';
-import Picture from '../components/Picture';
+import '../../css/Step.css';
+import Picture from '../common/Picture';
 
 class Step extends Component {
 

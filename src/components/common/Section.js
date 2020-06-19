@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import '../css/Section.css';
+import '../../css/Section.css';
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 class Section extends Component {
@@ -7,7 +7,8 @@ class Section extends Component {
         super(props);
         this.state = {
             posts: [],
-            itemsToShow: 4
+            itemsToShow: 4,
+            loading: true
         }
         this.showMore = this.showMore.bind(this);
     }
@@ -38,6 +39,7 @@ class Section extends Component {
             if (this.mounted) {
                 this.setState({
                     posts: res.data.data.post,
+                    loading: false
                 });
             }
         }).catch(error => {
@@ -51,6 +53,9 @@ class Section extends Component {
 
     render() {
         var topFourPosts = [];
+        if (this.state.posts.length < 4) {
+            return(<div></div>);
+        }
         if (this.state.posts.length > 4) {
             topFourPosts = this.state.posts.slice(0, this.state.itemsToShow);
         }

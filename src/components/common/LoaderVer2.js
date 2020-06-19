@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../LavaLamp.svg';
+import logo from '../../LavaLamp.svg';
 function LoaderVer2() {
   return (
     <div className="spinner">

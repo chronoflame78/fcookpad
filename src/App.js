@@ -6,9 +6,9 @@ import {
   Switch
 } from "react-router-dom";
 import './App.css';
-import Post from "./pages/Post";
-import Home from "./pages/Home";
-import TopMenu from "./components/TopMenu";
+import Post from "./components/pages/Post";
+import Home from "./components/pages/Home";
+import TopMenu from "./components/layout/TopMenu";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -17,7 +17,7 @@ import Register from "./components/auth/Register";
 import { Provider } from "react-redux";
 import store from "./store";
 import PrivateRoute from "./components/private-route/PrivateRoute";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/pages/Dashboard";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
