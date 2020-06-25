@@ -55,7 +55,7 @@ function App() {
         <Route path="/register" exact component={Register} />    
         <Route path="/posts/:id" component={Post}/>
         <Route path="/confirm" exact component={ConfirmEmail} /> 
-        <Route path="/register/verify" exact component={VerifyAccount} /> 
+        <Route path="/register/verify/:token" exact component={VerifyAccount} /> 
         <Switch>
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>

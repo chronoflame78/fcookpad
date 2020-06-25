@@ -73,7 +73,7 @@ class Section extends Component {
                                 </div>
                             </NavLink>
                             <div className="item-title">{x.title}</div>
-                            <div className="item-author-name">{x.author_name}</div>
+                            <div className="item-author-name">{x.author.name}</div>
                             <div className="rating-and-date"><i className="fa fa-star" />
                                 <i className="fa fa-star" />
                                 <i className="fa fa-star" />

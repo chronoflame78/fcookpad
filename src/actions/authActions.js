@@ -41,6 +41,31 @@ export const loginUser = userData => dispatch => {
       })
     );
 };
+
+// Login - get user token
+export const verifyAccount = verifyToken => dispatch => {
+  axios
+    .post("http://157.230.44.169:3000/api/auth/verify", verifyToken)
+    .then(res => {
+      // Save to localStorage
+// Set token to localStorage
+      const { token } = res.data;
+      localStorage.setItem("jwtToken", token);
+      // Set token to Auth header
+      setAuthToken(token);
+      // Decode token to get user data
+      const decoded = jwt_decode(token);
+      // Set current user
+      dispatch(setCurrentUser(decoded));
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 // Set logged in user
 export const setCurrentUser = decoded => {
   return {

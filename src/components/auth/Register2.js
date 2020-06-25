@@ -97,7 +97,8 @@ class Register extends Component {
                                     value={this.state.passwordConfirm}
                                
                                     id="passwordConfirm"
-                                    type="password" placeholder="Confirm Password" />                                
+                                    type="password" placeholder="Confirm Password" /> 
+                                <input type="submit" style={{display: 'none'}}/>                               
                                 <div className="register-policy-part">
                                     <input onClick={this.onAgree} type="checkbox" />
                                     <label className="register-pol-text">By continuing, you agree to MlemMlem's

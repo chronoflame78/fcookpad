@@ -43,6 +43,8 @@ class Login extends Component {
     this.props.loginUser(userData); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
   };
   render() {
+    console.log(this.props);
+    console.log(this.state);
     const { errors } = this.state;
     return (
       <div className="login-body-wrapper">
@@ -73,6 +75,7 @@ class Login extends Component {
                   error={errors.password}
                   id="password"
                   type="password" placeholder="Password" />
+                <input type="submit" style={{display: 'none'}}/>
                 <div>{errors && errors.message}</div>
                 <a className="login-forgot-link" href="/">Forgot Username / Password?</a>
                 <div className="login-btn-container">                 

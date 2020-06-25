@@ -3,7 +3,6 @@ import '../../css/Confirm.css';
 
 
 class ConfirmEmail extends Component {
-
   render() {
     return (
       <div className="parent-content">

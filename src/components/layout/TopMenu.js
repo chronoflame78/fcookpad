@@ -26,7 +26,8 @@ export default class TopMenu extends React.Component {
   render() {
     if(window.location.pathname==='/login'||
     window.location.pathname==='/register'||
-    window.location.pathname==='/confirm'){
+    window.location.pathname==='/confirm'||
+    window.location.pathname.indexOf('/verify')!==-1){
       return(<div></div>);
     }
     return (

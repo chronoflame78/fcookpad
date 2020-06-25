@@ -1,10 +1,53 @@
 import React, { Component } from "react";
 import '../../css/Confirm.css';
-
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { verifyAccount } from "../../actions/authActions";
+const isEmpty = require("is-empty");
 
 class VerifyAccount extends Component {
+  constructor(props) {
+    console.log("post constructor");
+    super(props);
+    this.state = {
+      verify: false,
+      errors: {}
+    };
+
+  }
+
+  componentDidMount() {
+    // If logged in and user navigates to Login page, should redirect them to dashboard
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/");
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+       this.setState({
+         verify: true
+       })
+    }
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
+  }
 
   render() {
+    console.log(this.props.match.params.token);
+    console.log(this.state.errors);
+    console.log(this.props);
+    if(!isEmpty(this.state.errors)){
+      return(<div>{this.state.errors.message}</div>);
+      
+    }
+    if(this.state.verify === false){
+      this.props.verifyAccount(this.props.token);
+      return(<div></div>);
+    }   
     return (
       <div className="parent-content">
         <div className="verify-content-wrapper">
@@ -40,4 +83,16 @@ class VerifyAccount extends Component {
   }
 }
 
-export default VerifyAccount
+VerifyAccount.propTypes = {
+  verifyAccount: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+export default connect(
+  mapStateToProps,
+  { verifyAccount }
+)(VerifyAccount);
