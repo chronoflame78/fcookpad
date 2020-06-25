@@ -91,14 +91,14 @@
     padding: 20px;
 }
 
-.comment-content{
+.post-comment-content{
     padding: 20px;
     margin-left: 20px;
     background-color: #ffffff;
     border-radius: 10px;
 }
 
-.add-comment{
+.post-add-comment{
     height: 40px;
     background-color: #f15a24;
     border-radius: 10px;
@@ -110,7 +110,7 @@
     margin-right: 20px;
 }
 
-.add-comment-login{
+.post-add-comment-login{
     height: 40px;
     border-radius: 10px;
     text-align: center;
@@ -119,7 +119,7 @@
     width: 100%;
 }
 
-.input-comment{
+.post-input-comment{
     width: 100%;
     border-radius: 10px;
     border-width: 1px;

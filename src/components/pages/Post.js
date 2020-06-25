@@ -132,7 +132,7 @@ class Post extends Component {
                 {comments && comments.map((x, index) => (
                   <div key={index} className="post-comment-item d-flex align-items-center">
                     <Avatar signature={index} image={x.user.avatar} name={x.user.name} size={64} />
-                    <div className="comment-content">
+                    <div className="post-comment-content">
                       <div className="post-user-name-comment">{x.user_name}</div>
                       <div>{x.content}</div>
 
@@ -140,12 +140,12 @@ class Post extends Component {
                   </div>
 
                 ))}
-                {isEmpty(user) && <NavLink href="/login"><div className="add-comment">Đăng nhập để bình luận</div></NavLink>}
+                {isEmpty(user) && <NavLink href="/login"><div className="post-add-comment">Đăng nhập để bình luận</div></NavLink>}
                 {!isEmpty(user) &&
                   <div className="post-comment-item-login d-flex align-items-center">
                     <Avatar signature="main-user" image={user.user_avatar} size={64} name={user.user_name} />
-                    <div className="add-comment-login">
-                      <input placeholder="Viết bình luận.." className="input-comment" type="text" name="name" />
+                    <div className="post-add-comment-login">
+                      <input placeholder="Viết bình luận.." className="post-input-comment" type="text" name="name" />
                     </div>
                   </div>
                 }

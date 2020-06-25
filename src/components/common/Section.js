@@ -64,27 +64,27 @@ class Section extends Component {
                 <div className="row section-title">{this.props.sectionName}</div>
                 <div className="row">
                     {topFourPosts && topFourPosts.map((x, index) => (
-                        <div key={index} className="col-6 col-sm-6 col-md-3 py-4">
+                        <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">
                             <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>
-                                <div className="item-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
+                                <div className="section-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
                                     <div className="item-cover" >
-                                        <span className="item-view">{x.views} <i className="fa fa-eye" /></span>
+                                        <span className="section-item-view">{x.views} <i className="fa fa-eye" /></span>
                                     </div>
                                 </div>
                             </NavLink>
-                            <div className="item-title">{x.title}</div>
-                            <div className="item-author-name">{x.author.name}</div>
-                            <div className="rating-and-date"><i className="fa fa-star" />
+                            <div className="section-item-title">{x.title}</div>
+                            <div className="section-author-name">{x.author.name}</div>
+                            <div className="section-rating-date"><i className="fa fa-star" />
                                 <i className="fa fa-star" />
                                 <i className="fa fa-star" />
                                 <i className="fa fa-star" />
                                 <i className="fa fa-star" />
-                                <span className="item-date" style={{paddingTop: '2px'}}> {this.getFormattedDate(x.datetime)}</span>
+                                <span className="section-item-date" style={{paddingTop: '2px'}}> {this.getFormattedDate(x.datetime)}</span>
                             </div>
                         </div>
                     ))}
                 </div>
-                <div className="row see-more" style={{ marginLeft: '0px', marginRight: '0px' }} onClick={this.showMore} >
+                <div className="row section-see-more" style={{ marginLeft: '0px', marginRight: '0px' }} onClick={this.showMore} >
                     {this.state.itemsToShow === 4 && "XEM THÊM"}
                     {this.state.itemsToShow !== 4 && "THU GỌN"}
                 </div>

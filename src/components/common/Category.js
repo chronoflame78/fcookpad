@@ -73,10 +73,10 @@ class Category extends Component {
 
     render() {
         return (
-            <div className="container-fluid bg-custom">
-                <div className="container container-item">
+            <div className="container-fluid category-bg-custom">
+                <div className="container category-container-item">
                     {this.state.suggestions.length === 0 ? (
-                        <div className="loading-div"></div>
+                        <div className="category-loading-div"></div>
                     ) : (
                             <Slider {...this.settings}>
                                 {this.state.suggestions.map(current => (
