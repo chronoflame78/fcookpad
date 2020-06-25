@@ -1,0 +1,146 @@
+.parent-content {
+    /* Location of the image */
+    background-image: url("/images/background-img.png");
+    
+    /* Background image is centered vertically and horizontally at all times */
+    background-position: center center;
+    
+    /* Background image doesn't tile */
+    background-repeat: no-repeat;
+    
+    /* Background image is fixed in the viewport so that it doesn't move when 
+       the content's height is greater than the image's height */
+    background-attachment: fixed;
+    
+    /* This is what makes the background image rescale based
+       on the container's size */
+    background-size: cover;
+    
+    /* Set a background color that will be displayed
+       while the background image is loading */
+    background-color: #464646;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.content-wrapper {
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 0 15px rgba(50, 50, 50, 0.7);
+    height: auto;
+    width: 40%;
+    overflow: auto;
+    background-color: white !important;
+    display: inline-flex;
+    margin: auto;
+    justify-content: center;
+}
+
+.verify-content-wrapper {
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 0 15px rgba(50, 50, 50, 0.7);
+    height: auto;
+    width: 30%;
+    overflow: auto;
+    background-color: white !important;
+    display: inline-flex;
+    margin: auto;
+    justify-content: center;
+}
+
+.form-wrapper {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    text-align: center;
+    padding: 5px 15px 15px 15px;
+}
+
+.back-container {
+    width: 16.91px;
+    height:12.3px;
+}
+
+.logo-container {
+    margin: 0 auto;
+}
+
+.resend-btn-container {
+    width: 60%;
+    height: auto;
+    max-width: 239px;
+    max-height: 42px;
+    margin: 5px auto 10px auto;
+}
+
+.resend-btn {
+    width: 100%;
+}
+
+
+.quest-text {
+    font-size: 12px;
+    color: #ff5b1b;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .content-wrapper {
+        width: 60%;
+    }   
+
+    .resend-btn-container {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+
+    .form-wrapper, .resend-btn-container {
+        width: 100%;
+    }
+    .content-wrapper {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+
+    .content-wrapper {
+        width: 95%;
+    }
+
+}
+
+@media only screen and (max-width: 300px) {
+
+    .content-wrapper {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-height: 1000px) {
+    .resend-btn-container {
+        width: 100%;
+    }
+
+    .content-wrapper {
+        width: 80%;
+    }
+
+}
+
+
+
+.text-container {
+    font-weight: 500;
+}
+
+
+.justify-content {
+    width: 80%;
+    margin: 0 auto;
+}

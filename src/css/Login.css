@@ -1,0 +1,230 @@
+
+
+.login-body-wrapper {
+    /* Location of the image */
+    background-image: url("/images/background-img.png");
+    
+    /* Background image is centered vertically and horizontally at all times */
+    background-position: center center;
+    
+    /* Background image doesn't tile */
+    background-repeat: no-repeat;
+    
+    /* Background image is fixed in the viewport so that it doesn't move when 
+       the content's height is greater than the image's height */
+    background-attachment: fixed;
+    
+    /* This is what makes the background image rescale based
+       on the container's size */
+    background-size: cover;
+    
+    /* Set a background color that will be displayed
+       while the background image is loading */
+    background-color: #464646;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 65px;
+    padding-bottom: 65px;
+    height: 100vh;
+}
+
+.login-content-wrapper {
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 0 15px rgba(50, 50, 50, 0.7);
+    height: auto;
+    width: 55%;
+    overflow: auto;
+    background-color: white !important;
+    display: inline-flex;
+    margin: auto;
+}
+
+.login-form-wrapper {
+    display: block;
+    width: 50%;
+    height: 100%;
+    overflow: auto;
+    text-align: center;
+    padding: 5px 15px 15px 15px;
+}
+
+.login-form-image {
+    width: 50%;
+    overflow: auto;
+    background-image: url("/images/form-img.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.login-back-container {
+    width: 16.91px;
+    height:12.3px;
+}
+
+.login-logo-container {
+    margin: 0 auto;
+}
+
+.login-form-container form {
+    display: block;
+}
+
+.login-form-container form input[type=email]{
+    width: 65%;
+    margin: 5px;
+    border-radius: 3px;
+    border: solid #ff5b1b 1px;
+    height: 2.5rem;
+    min-height: 1.5rem;
+    padding-left: 8px;
+}
+
+.login-form-container form input[type=email]:focus {
+    border: solid #ff5b1b 2px;
+    outline: none;
+}
+
+.login-form-container form input[type=password]{
+    width: 65%;
+    margin: 5px;
+    border-radius: 3px;
+    border: solid #ff5b1b 1px;
+    height: 2.5rem;
+    min-height: 1.5rem;
+    padding-left: 8px;
+}
+
+.login-form-container form input[type=password]:focus {
+    border: solid #ff5b1b 2px;
+    outline: none;
+}
+
+.login-forgot-link {
+    font-size: 10px;
+    color: #ff5b1b;
+    position: relative;
+}
+
+.login-h4 {
+    font-weight: 600;
+}
+
+.login-btn-container {
+    width: 60%;
+    height: auto;
+    max-width: 239px;
+    max-height: 42px;
+    margin: 5px auto 10px auto;
+    cursor: pointer;
+}
+
+.login-or-div {
+    font-weight: bolder;
+}
+
+.login-btn {
+    width: 100%;
+}
+
+.login-gg-cont {
+    width: 60%;
+    height: auto;
+    max-width: 239px;
+    max-height: 42px;
+    margin: 10px auto 0 auto;
+}
+
+.login-fb-cont {
+    width: 60%;
+    height: auto;
+    max-width: 239px;
+    max-height: 42px;
+    margin: 0 auto;
+    margin: 10px auto 0 auto;
+}
+
+.login-signup-btn {
+    width: 40%;
+    height: auto;
+    max-width: 96px;
+    max-height: 31px;
+    margin: 0 auto;
+    margin: 10px auto 0 auto;
+}
+
+
+.login-quest-text {
+    font-size: 12px;
+    color: #ff5b1b;
+    margin-top: 10px;
+}
+
+
+@media only screen and (max-width: 950px) {
+    .login-content-wapper {
+        width: 90%;
+    }   
+
+    .login-gg-cont, .login-fb-cont, .login-btn-container {
+        width: 70%;
+    }
+
+    .login-uap-input {
+        width: 75% !important;
+    }
+
+    .login-wel-title h4{
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .login-form-image{
+        display: none !important;
+    }
+    .login-form-wrapper,
+    .login-gg-cont, .login-fb-cont, .login-btn-container {
+        width: 100%;
+    }
+    .login-content-wrapper {
+        width: 90%;
+    }
+    .login-uap-input {
+        width: 65% !important;
+    }
+    .login-wel-title h4{
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    .login-form-image{
+        display: none !important;
+    }
+    .login-form-wrapper, .login-content-wrapper,
+    .login-gg-cont, .login-fb-cont, .login-btn-container {
+        width: 100%;
+    }
+    .login-uap-input {
+        width: 95% !important;
+    }
+    .login-wel-title h4{
+        font-size: 0.95rem;
+    }
+}
+
+.register-policy-part {
+    width: 65%;
+    display: inline-flex;
+}
+
+.register-error{
+    width: 65%;
+    display: inline-flex;
+}
+
+.register-pol-text {
+    color: #ff5b1b;
+    font-size: 10px;
+}

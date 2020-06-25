@@ -12,8 +12,9 @@ import TopMenu from "./components/layout/TopMenu";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
+import Login from "./components/auth/Login2";
+import Register from "./components/auth/Register2";
+import ConfirmEmail from "./components/auth/ConfirmEmail";
 import { Provider } from "react-redux";
 import store from "./store";
 import PrivateRoute from "./components/private-route/PrivateRoute";
@@ -21,6 +22,7 @@ import Dashboard from "./components/pages/Dashboard";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
+import VerifyAccount from './components/auth/VerifyAccount';
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -41,6 +43,7 @@ if (localStorage.jwtToken) {
   }
 }
 
+
 function App() {
   return (
     <Provider store={store}>
@@ -51,6 +54,8 @@ function App() {
         <Route path="/login" exact component={Login} />      
         <Route path="/register" exact component={Register} />    
         <Route path="/posts/:id" component={Post}/>
+        <Route path="/confirm" exact component={ConfirmEmail} /> 
+        <Route path="/register/verify" exact component={VerifyAccount} /> 
         <Switch>
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>

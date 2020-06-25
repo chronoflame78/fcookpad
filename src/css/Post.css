@@ -1,81 +1,73 @@
-.Post{
+.post-container{
     background-color: #fafaf5
 }
 
-.title{
+.post-title{
     font-size: 80px;
 }
 
-.authorName{
+.post-author-name{
     text-align: center;
     font-weight: 500;
     color: #f15a24;
 }
 
-.avatar{
+.post-avatar{
     text-align: center;
 }
 
-.info{
+.post-info{
     border: 2px solid #f15a24;
     border-radius: 5px;
     padding: 30px;
     background-color: #ffffff;
 }
 
-.info-2{
+.post-info-2{
     border: 2px solid #f15a24;
     border-radius: 5px;
     background-color: #ffffff;
 }
 
-.ingredients{
+.post-ingredients{
     font-size: 20px;
     flex-grow: 1;
     flex-basis: 0;
 }
 
-.ingredients p{
+.post-ingredients p{
     padding-left: 50px;
 }
 
 @media only screen and (max-width: 768px) {
-    .ingredients p{
+    .post-ingredients p{
         padding-left: 0px;
     }
-    .ingredients{
+    .post-ingredients{
         margin-top: 30px;
     }
 }
 
-.carousel-box{
+.post-carousel-box{
     flex-grow: 1;
     flex-basis: 0;
 }
 
-.des-title{
-    text-align: center;
-    font-size: 40px;
-    padding: 20px;
-    padding-top: 30px;
-    font-weight: 500;
-}
-
-.des-content{
+.post-des-content{
     font-size: 20px;
     padding-top: 20px;
 }
 
-.youtube-video{
+.post-youtube-video{
     text-align: center;
     padding: 20px;
 }
 
-.comment-div{
+.post-comment-div{
     border-top: 1px solid gray;
 }
 
-.des-title-orange{
+.post-des-title{
     font-size: 40px;
     padding-left: 35px;
     padding-top: 20px;
@@ -83,7 +75,7 @@
     color: #f15a24;
 }
 
-.des-title-orange2{
+.post-des-title-2{
     font-size: 40px;
     padding-left: 20px;
     padding-top: 20px;
@@ -91,11 +83,11 @@
     color: #f15a24;
 }
 
-.comment-txt{
+.post-comment-txt{
     padding-left: 22px;
 }
 
-.comment-item{
+.post-comment-item{
     padding: 20px;
 }
 
@@ -138,20 +130,20 @@ textarea:focus, input:focus{
     outline: none;
 }
 
-.comment-item-login{
+.post-comment-item-login{
     padding: 20px;
 }
 
-.user-name-comment{
+.post-user-name-comment{
     font-size: 20px;
     font-weight: 500;
     color: #f15a24;
 }
 
-.line{
+.post-line{
     height: 50px;
 }
 
-.main-title{
+.post-main-title{
     padding-top: 20px;
 }

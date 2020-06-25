@@ -24,6 +24,11 @@ export default class TopMenu extends React.Component {
     });
   }
   render() {
+    if(window.location.pathname==='/login'||
+    window.location.pathname==='/register'||
+    window.location.pathname==='/confirm'){
+      return(<div></div>);
+    }
     return (
       <div>
         <Navbar color="light" light expand="md">

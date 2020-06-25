@@ -1,24 +1,19 @@
-.custom-div{
+.step-custom-div{
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
 }
 
-.custom-image{
-    width: 400px;
-    height: 250px!important;
-}
-
-.txt-description{
+.step-txt-description{
     font-size: 20px;
 }
 
-.padding-custom{
+.step-padding-custom{
     padding-left: 0px;
     padding-right: 0px;
 }
 
-.line-bottom{
+.step-line-bottom{
     border-bottom: 1px solid #c0c2c3;
     margin-left: 15px;
     margin-right: 15px;

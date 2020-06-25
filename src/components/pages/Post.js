@@ -29,10 +29,9 @@ class Post extends Component {
     axios.get("http://157.230.44.169:3000/api/posts/" + this.props.match.params.id).then(res => {
       if (this.mounted) {
         console.log(res.data);
-        console.log(res.data.data);
-        console.log(res.data.data.post);
+        console.log(res.data.post);
         this.setState({
-          post: res.data.data.post,
+          post: res.data.post,
           loading: false
         });
       }
@@ -42,15 +41,7 @@ class Post extends Component {
         loading: false
       });
     });
-    // axios.get("https://e8gbf.sse.codesandbox.io/" + this.props.match.params.id).then(res => {
-    //   if (this.mounted) {
-    //     console.log(res.data);
-    //     this.setState({
-    //       post: res.data
-    //     });
-    //   }
 
-    // });
   }
 
   componentWillUnmount() {
@@ -71,10 +62,10 @@ class Post extends Component {
     if (images) {
       items = images.map(x => ({ src: x }));
     }
-    // var comments = [];
-    // if (this.state.post.comments) {
-    //   comments = this.state.post.comments;
-    // };
+    var comments = [];
+    if (this.state.post.comments) {
+      comments = this.state.post.comments;
+    };
     var steps = [];
     if (this.state.post.steps) {
       steps = this.state.post.steps;
@@ -85,36 +76,36 @@ class Post extends Component {
     const { user } = this.props.auth;
     console.log(user);
     return (
-      <div className="Post">
+      <div className="post-container">
         <Container>
-          <Row className="main-title">
-            <Col sm="9"><h1 className="title">{post.title}</h1></Col>
+          <Row className="post-main-title">
+            <Col sm="9"><h1 className="post-title">{post.title}</h1></Col>
             <Col sm="3">
-              <div className="avatar">
-                <Avatar signature="author" image={post.author_avatar} size={64} name={post.author_name} />
+              <div className="post-avatar">
+                <Avatar signature="author" image={post.author.avatar} size={64} name={post.author.name} />
               </div>
-              <div className="authorName">{post.author_name}</div>
+              <div className="post-author-name">{post.author.name}</div>
             </Col>
           </Row>
           <Row>
             <Col>
-              <div className="line"></div>
-              <div className="info">
+              <div className="post-line"></div>
+              <div className="post-info">
                 <div className="d-flex flex-column flex-md-row align-items-center">
-                  <div className="carousel-box">
+                  <div className="post-carousel-box">
                   <CustomCarousel items={items} />
                   </div>                  
-                  <div className="ingredients">
+                  <div className="post-ingredients">
                     {post.ingredients && post.ingredients.map((x, index) => (
                       <p key={index}><i className="fa fa-arrow-right" /> {x}</p>
                     ))}
                   </div>
                 </div>
-                <div className="des-content">{post.description}</div>
+                <div className="post-des-content">{post.description}</div>
               </div>
-              <div className="line"></div>
-              <div className="info-2">
-                <div className="des-title-orange">Hướng dẫn</div>
+              <div className="post-line"></div>
+              <div className="post-info-2">
+                <div className="post-des-title">Hướng dẫn</div>
                 {steps && steps.map((x, index) => (
                   <Step key={index} num={index} description={x.content} image={x.image} />
                 ))}
@@ -123,8 +114,8 @@ class Post extends Component {
           </Row>
           <Row>
             <Col>
-              <div className="line"></div>
-              <div className="youtube-video">
+              <div className="post-line"></div>
+              <div className="post-youtube-video">
                 <iframe title="video" width="100%" height="400px"
                   src={post.video}
                   frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -134,24 +125,24 @@ class Post extends Component {
           </Row>
           <Row>
             <Col>
-              <div className="comment-div">
-                <div className="des-title-orange2">Bình luận</div>
-                <div className="comment-txt">Xem tất cả bình luận</div>
+              <div className="post-comment-div">
+                <div className="post-des-title-2">Bình luận</div>
+                <div className="post-comment-txt">Xem tất cả bình luận</div>
 
-                {/* {comments && comments.map((x, index) => (
-                  <div key={index} className="comment-item d-flex align-items-center">
-                    <Avatar signature={index} image={x.user_avatar} name={x.user_name} size={64} />
+                {comments && comments.map((x, index) => (
+                  <div key={index} className="post-comment-item d-flex align-items-center">
+                    <Avatar signature={index} image={x.user.avatar} name={x.user.name} size={64} />
                     <div className="comment-content">
-                      <div className="user-name-comment">{x.user_name}</div>
+                      <div className="post-user-name-comment">{x.user_name}</div>
                       <div>{x.content}</div>
 
                     </div>
                   </div>
 
-                ))} */}
+                ))}
                 {isEmpty(user) && <NavLink href="/login"><div className="add-comment">Đăng nhập để bình luận</div></NavLink>}
                 {!isEmpty(user) &&
-                  <div className="comment-item-login d-flex align-items-center">
+                  <div className="post-comment-item-login d-flex align-items-center">
                     <Avatar signature="main-user" image={user.user_avatar} size={64} name={user.user_name} />
                     <div className="add-comment-login">
                       <input placeholder="Viết bình luận.." className="input-comment" type="text" name="name" />

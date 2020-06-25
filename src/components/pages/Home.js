@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Category from '../common/Category';
 import Section from '../common/Section';
-
 class Home extends Component {
 
     constructor(props) {

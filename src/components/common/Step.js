@@ -15,16 +15,16 @@ class Step extends Component {
   render() {
     if(this.props.num === 0){
       return (
-        <div className="custom-div">
+        <div className="step-custom-div">
           <div className="container">
             <div className="row">
-              <div className="col-lg-4 col-md-5 padding-custom">
+              <div className="col-lg-4 col-md-5 step-padding-custom">
                 <div className="mt-3">
                   <Picture width="100%" height="250px" src={this.props.image}/>
                 </div>
               </div>
               <div className="col-lg-8 col-md-7 ">
-                <div className="mt-3 txt-description">
+                <div className="mt-3 step-txt-description">
                   <div>
                     {this.props.description}
                   </div>
@@ -37,17 +37,17 @@ class Step extends Component {
     }
     else if (this.props.num % 2 === 0) {
       return (
-        <div className="custom-div">
-          <div className="line-bottom"></div>
+        <div className="step-custom-div">
+          <div className="step-line-bottom"></div>
           <div className="container">
             <div className="row">
-              <div className="col-lg-4 col-md-5 padding-custom">
+              <div className="col-lg-4 col-md-5 step-padding-custom">
                 <div className="mt-3">
                   <Picture width="100%" height="250px" src={this.props.image}/>
                 </div>
               </div>
               <div className="col-lg-8 col-md-7">
-                <div className="mt-3 txt-description">
+                <div className="mt-3 step-txt-description">
                   <div>
                     {this.props.description}
                   </div>
@@ -59,18 +59,18 @@ class Step extends Component {
       );
     } else {
       return (
-        <div className="custom-div">
-          <div className="line-bottom"></div>
+        <div className="step-custom-div">
+          <div className="step-line-bottom"></div>
           <div className="container">
             <div className="row">
               <div className="col-lg-8 col-md-7">
-                <div className="mt-3 txt-description">
+                <div className="mt-3 step-txt-description">
                   <div>
                     {this.props.description}
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 col-md-5 padding-custom">
+              <div className="col-lg-4 col-md-5 step-padding-custom">
                 <div className="mt-3">
                   <Picture width="100%" height="250px" src={this.props.image}/>
                 </div>
