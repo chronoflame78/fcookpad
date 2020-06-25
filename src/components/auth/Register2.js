@@ -3,7 +3,8 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
-import '../../css/Login.css'
+import '../../css/Login.css';
+const isEmpty = require("is-empty");
 class Register extends Component {
     constructor() {
         super();
@@ -42,7 +43,39 @@ class Register extends Component {
     }
     onSubmit = e => {
         e.preventDefault();
-        if(this.state.agree === true){
+        if(isEmpty(this.state.email)){
+            this.setState({
+                errors:{
+                    status: 'fail',
+                    message: 'Email không được để trống'
+                }
+            })
+        }
+        else if(isEmpty(this.state.password)){
+            this.setState({
+                errors:{
+                    status: 'fail',
+                    message: 'Password không được để trống'
+                }
+            })
+        }
+        else if(this.state.password !== this.state.passwordConfirm){
+            this.setState({
+                errors:{
+                    status: 'fail',
+                    message: 'Passwood nhập lại không khớp'
+                }
+            })
+        }
+        else if(this.state.agree === false){
+            this.setState({
+                errors:{
+                    status: 'fail',
+                    message: 'Please read our terms of service and tick the checkbox'
+                }
+            });
+        }
+        else{
             const newUser = {
                 //   name: this.state.name,
                 email: this.state.email,
@@ -51,14 +84,7 @@ class Register extends Component {
             };
             this.props.registerUser(newUser, this.props.history);
         }
-        else{
-            this.setState({
-                errors:{
-                    status: 'fail',
-                    message: 'Please read our terms of service and tick the checkbox'
-                }
-            })
-        }
+
         
     };
     render() {
@@ -79,23 +105,23 @@ class Register extends Component {
                             <h4 className="login-h4">Welcome, chief!</h4>
                         </div>
                         <div className="login-form-container">
-                            <form className="log-in-form" noValidate onSubmit={this.onSubmit}>
+                            <form className="log-in-form" onSubmit={this.onSubmit}>
                                 <input onChange={this.onChange}
                                     className="login-uap-input"
                                     value={this.state.email}
-                                  
+                                    maxLength="40"
                                     id="email"
                                     type="email" placeholder="Email" />
                                 <input onChange={this.onChange}
                                     className="login-uap-input"
                                     value={this.state.password}
-                                
+                                    maxLength="40"
                                     id="password"
                                     type="password" placeholder="Password" />
                                 <input onChange={this.onChange}
                                     className="login-uap-input"
                                     value={this.state.passwordConfirm}
-                               
+                                    maxLength="40"
                                     id="passwordConfirm"
                                     type="password" placeholder="Confirm Password" /> 
                                 <input type="submit" style={{display: 'none'}}/>                               
