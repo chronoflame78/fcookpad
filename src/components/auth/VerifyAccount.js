@@ -45,7 +45,10 @@ class VerifyAccount extends Component {
       
     }
     if(this.state.verify === false){
-      this.props.verifyAccount(this.props.token);
+      const verifyToken = {
+        token: this.props.match.params.token
+      };
+      this.props.verifyAccount(verifyToken);
       return(<div></div>);
     }   
     return (
