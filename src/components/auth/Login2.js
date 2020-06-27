@@ -76,7 +76,7 @@ class Login extends Component {
                   id="password"
                   type="password" placeholder="Password" />
                 <input type="submit" style={{display: 'none'}}/>
-                <div>{errors && errors.message}</div>
+                <div className="register-error">{errors && errors.message}</div>
                 <a className="login-forgot-link" href="/">Forgot Username / Password?</a>
                 <div className="login-btn-container">                 
                     <img onClick={this.onSubmit} className="login-btn" src="/images/log-in.png" alt="Log In" />                 

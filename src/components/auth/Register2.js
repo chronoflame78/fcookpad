@@ -105,7 +105,7 @@ class Register extends Component {
                             <h4 className="login-h4">Welcome, chief!</h4>
                         </div>
                         <div className="login-form-container">
-                            <form className="log-in-form" onSubmit={this.onSubmit}>
+                            <form className="log-in-form" noValidate onSubmit={this.onSubmit}>
                                 <input onChange={this.onChange}
                                     className="login-uap-input"
                                     value={this.state.email}
@@ -115,13 +115,13 @@ class Register extends Component {
                                 <input onChange={this.onChange}
                                     className="login-uap-input"
                                     value={this.state.password}
-                                    maxLength="40"
+                                    maxLength="30"
                                     id="password"
                                     type="password" placeholder="Password" />
                                 <input onChange={this.onChange}
                                     className="login-uap-input"
                                     value={this.state.passwordConfirm}
-                                    maxLength="40"
+                                    maxLength="30"
                                     id="passwordConfirm"
                                     type="password" placeholder="Confirm Password" /> 
                                 <input type="submit" style={{display: 'none'}}/>                               
