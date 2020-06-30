@@ -24,11 +24,13 @@ class TopMenu extends React.Component {
     }
 
     handleClickOutside(event) {
-        if (this.wrapperRef && !this.wrapperRef.current.contains(event.target) && !this.avatarRef.current.contains(event.target)) {
-            this.setState({
-                isOpen: false
-            })
-        }
+        if(this.wrapperRef && this.wrapperRef.current){
+            if (!this.wrapperRef.current.contains(event.target) && !this.avatarRef.current.contains(event.target)) {
+                this.setState({
+                    isOpen: false
+                })
+            }
+        }   
     }
 
     state = {
@@ -44,10 +46,16 @@ class TopMenu extends React.Component {
     };
     toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
     render() {
+        if (window.location.pathname === '/login' ||
+            window.location.pathname === '/register' ||
+            window.location.pathname === '/confirm' ||
+            window.location.pathname.indexOf('/verify') !== -1) {
+            return (<div></div>);
+        }
         const { user } = this.props.auth;
         let fixedDiv, avatar;
         if (isEmpty(user)) {
-            avatar = <Avatar className="topmenu-margin-auto topmenu-bg" signature="nav_avatar" image={"/images/user_white.png"} size={50} tooltip={false}  />;
+            avatar = <Avatar className="topmenu-margin-auto topmenu-bg" signature="nav_avatar" image={"/images/user_white.png"} size={50} tooltip={false} />;
 
             if (this.state.isOpen) {
                 fixedDiv = <div ref={this.wrapperRef} className="topmenu-abs-div">
@@ -86,8 +94,8 @@ class TopMenu extends React.Component {
                     <form className="form-inline">
                         <div className="input-group">
                             <input className="form-control" type="text" placeholder="Tìm kiếm" />
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i className="fa fa-search" /></span>
+                            <div className="input-group-prepend">
+                                <span className="input-group-text"><i className="fa fa-search" /></span>
                             </div>
                         </div>
 
@@ -99,7 +107,7 @@ class TopMenu extends React.Component {
                         <img className="nav-add-without-txt" src="/images/nav-bar-add.png" alt="" />
                     </a>
                 </div>
-                <div className="topmenu-avatar" ref={this.avatarRef}  onClick={this.toggleOpen} >
+                <div className="topmenu-avatar" ref={this.avatarRef} onClick={this.toggleOpen} >
                     {avatar}
                     {fixedDiv}
                 </div>
