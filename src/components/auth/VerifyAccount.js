@@ -3,7 +3,10 @@ import '../../css/Confirm.css';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { verifyAccount } from "../../actions/authActions";
+import Page404 from '../pages/Page404';
+
 const isEmpty = require("is-empty");
+
 
 class VerifyAccount extends Component {
   constructor(props) {
@@ -41,7 +44,7 @@ class VerifyAccount extends Component {
     console.log(this.state.errors);
     console.log(this.props);
     if(!isEmpty(this.state.errors)){
-      return(<div>{this.state.errors.message}</div>);
+      return(<div><Page404/></div>);
       
     }
     if(this.state.verify === false){

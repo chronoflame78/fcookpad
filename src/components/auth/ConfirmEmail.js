@@ -1,9 +1,51 @@
 import React, { Component } from "react";
 import '../../css/Confirm.css';
-
+import queryString from 'query-string';
+import Countdown from '../common/Countdown';
+import axios from "axios";
 
 class ConfirmEmail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sent: false,
+    }
+  }
+
+  resendEmail = e => {
+    let params = queryString.parse(this.props.location.search);
+    let data = {
+      email: params.email
+    }
+    axios
+      .post("http://157.230.44.169:3000/api/auth/resendEmail", data)
+      .then(res => this.setState({
+        sent: true
+      })) 
+      .catch(err =>
+        console.log(err)
+      );
+  }
+
+
   render() {
+    let button;
+    if (this.state.sent === false) {
+      button =
+        <div className="resend-btn-container">
+          <button className="resend-btn" onClick={this.resendEmail}>Resend mail</button>
+        </div>;
+    } else {     
+      button =
+        <div>
+        <div className="resend-btn-container">
+          <button className="resend-btn-inactive" disabled>Email sent</button>       
+        </div>
+        {/* <span className="confirm-alert">Email sent! Please wait <span><Countdown timer={20}/></span>  seconds before try again</span> */}
+        </div>
+        
+    }
+
     return (
       <div className="parent-content">
         <div className="content-wrapper">
@@ -33,11 +75,8 @@ class ConfirmEmail extends Component {
                     Click button below to resend other mail.
                             </label>
                 </div>
-                <div className="resend-btn-container">
-                  <a href="/">
-                    <img className="resend-btn" src="/images/resend-email.png" alt="Resend Email" />
-                  </a>
-                </div>
+              {button}
+
               </div>
             </div>
           </div>

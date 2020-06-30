@@ -147,3 +147,7 @@ textarea:focus, input:focus{
 .post-main-title{
     padding-top: 20px;
 }
+
+.post-avatar-cover{
+    margin: 0 auto;
+}

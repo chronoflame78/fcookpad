@@ -8,9 +8,10 @@ import {
 } from "./types";
 // Register User
 export const registerUser = (userData, history) => dispatch => {
+  console.log(userData);
   axios
     .post("http://157.230.44.169:3000/api/auth/signup", userData)
-    .then(res => history.push("/confirm")) // re-direct to confirm email on successful register
+    .then(res => history.push("/confirm/?email="+userData.email)) // re-direct to confirm email on successful register
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -19,7 +20,7 @@ export const registerUser = (userData, history) => dispatch => {
     );
 };
 // Login - get user token
-export const loginUser = userData => dispatch => {
+export const loginUser = (userData, history) => dispatch => {
   axios
     .post("http://157.230.44.169:3000/api/auth/login", userData)
     .then(res => {
@@ -34,12 +35,22 @@ export const loginUser = userData => dispatch => {
       // Set current user
       dispatch(setCurrentUser(decoded));
     })
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
+    .catch(err => {
+      if(err.response.data.message === "You can not log in with this account"){
+        history.push("/confirm/?email="+userData.email);
+      }
+      else{
+        dispatch({
+               type: GET_ERRORS,
+               payload: err.response.data
+             });
+      }
+    })
+    //   dispatch({
+    //     type: GET_ERRORS,
+    //     payload: err.response.data
+    //   })
+    // );
 };
 
 // Login - get user token

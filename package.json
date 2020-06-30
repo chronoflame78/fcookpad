@@ -15,6 +15,7 @@
     "classnames": "^2.2.6",
     "is-empty": "^1.2.0",
     "jwt-decode": "^2.2.0",
+    "query-string": "^6.13.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.2.0",

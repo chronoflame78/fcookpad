@@ -8,7 +8,10 @@ import {
 import './App.css';
 import Post from "./components/pages/Post";
 import Home from "./components/pages/Home";
-import TopMenu from "./components/layout/TopMenu";
+import Create from "./components/pages/Create";
+import CreateStep2 from "./components/pages/CreateStep2";
+import TopMenu from "./components/layout/TopMenu2";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -54,11 +57,14 @@ function App() {
         <Route path="/login" exact component={Login} />      
         <Route path="/register" exact component={Register} />    
         <Route path="/posts/:id" component={Post}/>
-        <Route path="/confirm" exact component={ConfirmEmail} /> 
+        <Route path="/confirm" component={ConfirmEmail} />        
         <Route path="/register/verify/:token" exact component={VerifyAccount} /> 
         <Switch>
+          <PrivateRoute path="/create" component={Create} /> 
+          <PrivateRoute path="/step2" component={CreateStep2} /> 
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
+        
       </div>
     </Router>
     </Provider>

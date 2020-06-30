@@ -40,11 +40,9 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password
     };
-    this.props.loginUser(userData); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
+    this.props.loginUser(userData, this.props.history); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
   };
   render() {
-    console.log(this.props);
-    console.log(this.state);
     const { errors } = this.state;
     return (
       <div className="login-body-wrapper">

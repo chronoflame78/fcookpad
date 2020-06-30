@@ -8,6 +8,9 @@ import CustomCarousel from '../common/ResponsiveCarousel';
 import Loader from '../common/LoaderVer2';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import Footer from "../layout/Footer";
+import Page404 from '../pages/Page404';
+
 const isEmpty = require("is-empty");
 
 
@@ -71,7 +74,7 @@ class Post extends Component {
       steps = this.state.post.steps;
     };
     if (Object.keys(post).length === 0 && post.constructor === Object) {
-      return (<h2>Post not found</h2>);
+      return (<Page404/>);
     }
     const { user } = this.props.auth;
     console.log(user);
@@ -82,7 +85,7 @@ class Post extends Component {
             <Col sm="9"><h1 className="post-title">{post.title}</h1></Col>
             <Col sm="3">
               <div className="post-avatar">
-                <Avatar signature="author" image={post.author.avatar} size={64} name={post.author.name} />
+                <Avatar className="post-avatar-cover" signature="author" image={post.author.avatar} size={64} name={post.author.name} tooltip={true} />
               </div>
               <div className="post-author-name">{post.author.name}</div>
             </Col>
@@ -115,12 +118,15 @@ class Post extends Component {
           <Row>
             <Col>
               <div className="post-line"></div>
+              {post.video !== 'chua co video' &&
               <div className="post-youtube-video">
-                <iframe title="video" width="100%" height="400px"
-                  src={post.video}
-                  frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen></iframe>
-              </div>
+              <iframe title="video" width="100%" height="400px"
+                src={post.video}
+                frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen></iframe>
+            </div>
+              }
+              
             </Col>
           </Row>
           <Row>
@@ -131,7 +137,7 @@ class Post extends Component {
 
                 {comments && comments.map((x, index) => (
                   <div key={index} className="post-comment-item d-flex align-items-center">
-                    <Avatar signature={index} image={x.user.avatar} name={x.user.name} size={64} />
+                    <Avatar signature={index} image={x.user.avatar} name={x.user.name} size={64} tooltip={true} />
                     <div className="post-comment-content">
                       <div className="post-user-name-comment">{x.user_name}</div>
                       <div>{x.content}</div>
@@ -143,7 +149,7 @@ class Post extends Component {
                 {isEmpty(user) && <NavLink href="/login"><div className="post-add-comment">Đăng nhập để bình luận</div></NavLink>}
                 {!isEmpty(user) &&
                   <div className="post-comment-item-login d-flex align-items-center">
-                    <Avatar signature="main-user" image={user.user_avatar} size={64} name={user.user_name} />
+                    <Avatar signature="main-user" image={user.user_avatar} size={64} name={user.user_name} tooltip={true} />
                     <div className="post-add-comment-login">
                       <input placeholder="Viết bình luận.." className="post-input-comment" type="text" name="name" />
                     </div>
@@ -154,6 +160,7 @@ class Post extends Component {
             </Col>
           </Row>
         </Container>
+        <Footer/>
       </div>
     );
   }
