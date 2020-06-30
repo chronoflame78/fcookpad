@@ -1,9 +1,11 @@
 .head-navbar {
     display: flex;
     align-items: center;
-    min-height: 8vh;
     padding: 6px 0;
     background: -webkit-linear-gradient(left,#ff5f6d, #fcb69f);
+    position: fixed;
+    width: 100%;
+    z-index: 100;
 }
 
 .nav-links {
