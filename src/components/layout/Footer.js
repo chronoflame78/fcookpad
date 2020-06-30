@@ -6,7 +6,7 @@ export default class Footer extends React.Component {
 render(){
     return(
         <footer class="footer">
-        <div class="footer-above-content">
+        {/* <div class="footer-above-content">
             <div class="footer-text-and-btn">
                 <div class="footer-inner-content">
                     <div class="footer-text">
@@ -20,7 +20,7 @@ render(){
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
         <div class="footer-under-content">
             <div class="footer-logo-container">
                 <img class="footer-logo" src="/images/Logo.png"/>
