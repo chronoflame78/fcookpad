@@ -50,9 +50,29 @@
     height: 36px;
 }
 
+.topmenu-plus{
+    width: 20px;
+    margin-left: 10px;
+    padding-bottom: 2px;
+}
+
 .nav-add {
-    width: 168px;
-    height: 36px;
+    /* width: 168px;
+    height: 36px; */
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 20px;
+    border-radius: 27px;
+    padding: 6px 26px;
+    border: 1.5px solid #ffffff;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.nav-add:focus{
+    outline: none!important;
+    /* position: relative;
+    top: -5px; */
 }
 
 .nav-bar-avatar {
