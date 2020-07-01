@@ -1,6 +1,26 @@
 import React, { Component } from 'react'
 import axios from "axios";
 import Picture from '../common/Picture';
+import Footer from '../layout/Footer';
+
+const items = [
+    {
+        number: '1',
+        name: 'Món ăn mới',
+        active: true,
+    },
+    {
+        number: '2',
+        name: 'Nguyên liệu',
+        active: true,
+    },
+    {
+        number: '3',
+        name: 'Cách làm',
+        active: false,
+    }
+]
+
 class CreateStep2 extends Component {
 
     constructor(props) {
@@ -10,23 +30,32 @@ class CreateStep2 extends Component {
         };
     }
 
-    handleChange(e, index){
+    handleChange(e, index) {
         this.state.ingredients[index] = e.target.value;
-        this.setState({ingredients: this.state.ingredients})
+        this.setState({ ingredients: this.state.ingredients })
     };
 
-    addIngredient(){
-        if(this.state.ingredients.length < 10){
+    handleBack(e) {
+        this.props.history.push('/create');
+    };
+
+    cancelSubmit(e){
+        window.open('/', '_self')
+    }
+
+
+    addIngredient() {
+        if (this.state.ingredients.length < 10) {
             this.setState({
                 ingredients: [...this.state.ingredients, ""]
             })
         }
-        
+
     }
 
-    handleRemove(index){
-        this.state.ingredients.splice(index,1);
-        this.setState({ingredients: this.state.ingredients});
+    handleRemove(index) {
+        this.state.ingredients.splice(index, 1);
+        this.setState({ ingredients: this.state.ingredients });
 
     }
 
@@ -37,36 +66,72 @@ class CreateStep2 extends Component {
             ingredients: this.state.ingredients,
             step: 2
         }
+        
         console.log(data)
-        //   axios
-        //     .post("http://157.230.44.169:3000/api/auth/resendEmail", data)
-        //     .then(res => console.log(res)) 
-        //     .catch(err =>
-        //       console.log(err)
-        //     );
+           axios
+             .post("http://178.128.83.129:3000/api/posts/"+localStorage.getItem("create_id")+"/update", data)
+             .then(res => {this.props.history.push("/step3");}) 
+             .catch(err =>
+               console.log(err)
+             );
     }
 
 
     render() {
 
         return (
-            <div className="container">
+            <div>
+                <div className="container create-bg-white" style={{ paddingTop: '64px' }}>
+                    <div className="timeline">
+                        <div className="timeline-progress" style={{ width: '50%' }}></div>
+                        <div className="timeline-items">
+                            {items.map((item, i) => (
+                                <div key={i} className={"timeline-item" + (item.active ? ' active' : '')}>
+                                    <div className="timeline-number">{item.number}</div>
+                                    <div className="timeline-name">{item.name}</div>
+                                </div>
 
-                <form onSubmit={(e) => this.handleSubmit(e)}>
-                    {
-                        this.state.ingredients.map((ingredient, index) =>{
-                            return(
-                            <div key={index}>
-                                <input onChange={(e) => this.handleChange(e, index)} value={ingredient}/>
-                                {index>0&&<button onClick={() => this.handleRemove(index)}>Remove</button>}
-                            </div>
-                            );
-                        })
-                    }            
-                </form>
-                <button onClick={(e) => this.addIngredient(e)}>Thêm nguyên liệu</button>
-                <button type="submit" class="btn btn-primary" onClick={(e) => this.handleSubmit(e)}>Next</button>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="create-txt-field4">Món này cần những nguyên liệu gì thế bếp trưởng?</div>
+                    <form className="create-form" onSubmit={(e) => this.handleSubmit(e)}>
+                        {
+                            this.state.ingredients.map((ingredient, index) => {
+                                if(index === 0){
+                                    return (
+                                        <div key={index} className="form-group create-form-group">
+                                        <input maxLength="100" onChange={(e) => this.handleChange(e, index)} id={index} value={ingredient} type="text" className="form-control create-input-name" placeholder=" " />
+                                        <label className="create-label-name" for={index}>Nguyên liệu chính *</label>                                       
+                                    </div>
+                                    )
+                                }
+                                else{
+                                    return (
+                                    
+                                        <div key={index} className="form-group create-form-group">
+                                            <input maxLength="100" onChange={(e) => this.handleChange(e, index)} id={index} value={ingredient} type="text" className="form-control create-input-name" placeholder=" " />
+                                            <label className="create-label-name" for={index}>Nguyên liệu</label>
+                                            <div className="float-right"><button className="create-close-btn" onClick={() => this.handleRemove(index)}><i className="fa fa-times" /></button></div>
+                                        </div>
+    
+                                    );
+                                }
+                                
+                            })
+                        }
+                        <div className="create-add-btn-container"><button className="create-add-ingre" onClick={(e) => this.addIngredient(e)}><i className="fa fa-plus" /></button></div>
 
+                        <div className="create-button-container">
+                            <button className="btn btn-gray" onClick={(e) => this.cancelSubmit(e)}>Hủy</button>
+                            <button type="submit" class="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Tiếp</button>
+                            <button type="submit" class="btn btn-pink create-mr" onClick={(e) => this.handleBack(e)}>Trở lại</button>
+                        </div>
+                    </form>
+
+
+                </div>
+                <Footer />
             </div>
         )
     }

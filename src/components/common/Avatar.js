@@ -17,7 +17,6 @@ class Avatar extends Component{
     }
 
     render(){
-        console.log(this.props);
         if(this.props.tooltip === true){
             return(
                 <div className={"avatar-cover " + this.props.className} 

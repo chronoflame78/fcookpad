@@ -10,6 +10,7 @@ import Post from "./components/pages/Post";
 import Home from "./components/pages/Home";
 import Create from "./components/pages/Create";
 import CreateStep2 from "./components/pages/CreateStep2";
+import CreateStep3 from "./components/pages/CreateStep3";
 import TopMenu from "./components/layout/TopMenu2";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -59,9 +60,11 @@ function App() {
         <Route path="/posts/:id" component={Post}/>
         <Route path="/confirm" component={ConfirmEmail} />        
         <Route path="/register/verify/:token" exact component={VerifyAccount} /> 
+        <Route path="/step3" component={CreateStep3} /> 
         <Switch>
           <PrivateRoute path="/create" component={Create} /> 
           <PrivateRoute path="/step2" component={CreateStep2} /> 
+          {/* <PrivateRoute path="/step3" component={CreateStep3} />  */}
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
         

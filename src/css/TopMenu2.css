@@ -98,15 +98,16 @@
 }
 
 
-.form-control {
-    color: #ffffff !important;
+.topmenu-placeholder {
+    color: #ffffff!important;
     border: 1.5px solid #ffffff!important;
     background-color: transparent!important;
     border-top-left-radius: 15px!important;
     border-bottom-left-radius: 15px!important;
+    
 }
 
-.form-control::placeholder{
+.topmenu-placeholder::placeholder{
     color: #ffffff!important;
 }
 

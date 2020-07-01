@@ -93,7 +93,7 @@ class TopMenu extends React.Component {
                 <div className="form-search-container">
                     <form className="form-inline">
                         <div className="input-group">
-                            <input className="form-control" type="text" placeholder="Tìm kiếm" />
+                            <input className="form-control topmenu-placeholder" type="text" placeholder="Tìm kiếm" />
                             <div className="input-group-prepend">
                                 <span className="input-group-text"><i className="fa fa-search" /></span>
                             </div>

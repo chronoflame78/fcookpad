@@ -16,7 +16,7 @@ class Category extends Component {
     componentDidMount() {
         console.log("post did mount");
         this.mounted = true;
-        axios.get("http://157.230.44.169:3000/api/home/category").then(res => {
+        axios.get("http://178.128.83.129:3000/api/home/category").then(res => {
             if (this.mounted) {
                 this.setState({
                     suggestions: res.data.data.categorys,
