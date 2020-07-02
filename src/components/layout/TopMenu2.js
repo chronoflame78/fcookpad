@@ -104,7 +104,7 @@ class TopMenu extends React.Component {
                 <div className="topmenu-add-container">
                     <a className="nav-button-container" href="/create">
                         {/* <img className="nav-add" src="/images/nav_add_button.png" alt="" /> */}
-                        <button className="nav-add">Thêm món mới<img className="topmenu-plus" src="/images/Plus_Icon.png"/></button>
+                        <button className="nav-add">Thêm món mới<img className="topmenu-plus" alt="" src="/images/Plus_Icon.png"/></button>
                         <img className="nav-add-without-txt" src="/images/nav-bar-add.png" alt="" />
                     </a>
                 </div>

@@ -23,29 +23,29 @@ render(){
         </div> */}
         <div className="footer-under-content">
             <div className="footer-logo-container">
-                <img className="footer-logo" src="/images/Logo.png"/>
+                <img className="footer-logo" alt="" src="/images/Logo.png"/>
             </div>
             <div className="footer-contact-cont">
                 <div className="footer-social-outer-cont">
                     <ul className="footer-social-container">
                         <li>
-                            <a href="#">
-                                <img  className="footer-fb-icon-cont" src="/images/facebook.png"/>
+                            <a href="/">
+                                <img  className="footer-fb-icon-cont" alt="" src="/images/facebook.png"/>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <img  className="footer-yt-icon-cont" src="/images/youtube.png"/>
+                            <a href="/">
+                                <img  className="footer-yt-icon-cont" alt="" src="/images/youtube.png"/>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <img  className="footer-ig-icon-cont" src="/images/instagram.png"/>
+                            <a href="/">
+                                <img  className="footer-ig-icon-cont" alt="" src="/images/instagram.png"/>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <img  className="footer-pr-icon-cont" src="/images/pinterest.png"/>
+                            <a href="/">
+                                <img  className="footer-pr-icon-cont" alt="" src="/images/pinterest.png"/>
                             </a>
                         </li>
                     </ul>
@@ -53,13 +53,13 @@ render(){
                 <div className="footer-mail-cont">mlemmlem@gmail.com</div>
                 <div className="footer-bottom-links">
                     <div>
-                        <a href="#">Policy</a>
+                        <a href="/">Policy</a>
                     </div>
                     <div className="footer-mid-link">
-                        <a href="#">About us</a>   
+                        <a href="/">About us</a>   
                     </div>
                     <div>
-                        <a href="#">Terms</a>
+                        <a href="/">Terms</a>
                     </div>
                 </div>
             </div>

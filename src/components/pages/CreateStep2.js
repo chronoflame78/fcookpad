@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios";
-import Picture from '../common/Picture';
 import Footer from '../layout/Footer';
+const isEmpty = require("is-empty");
 
 const items = [
     {
@@ -26,8 +26,38 @@ class CreateStep2 extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ingredients: [""]
+            ingredients: [""],
+            errors: {}
         };
+    }
+
+    componentDidMount() {
+        this.mounted = true;
+        let create_id = localStorage.getItem("create_id");
+        if (create_id) {
+            axios.get("http://178.128.83.129:3000/api/posts/" + create_id).then(res => {
+                if (this.mounted) {
+                    console.log(res.data);
+                    console.log(res.data.post);
+                    if(res.data.post.ingredients.length > 0){
+                        this.setState({
+                            ingredients: res.data.post.ingredients,
+                        });
+                    }
+                    
+                }
+            }).catch(error => {
+                this.setState({
+                    errors: error.response.data
+                })
+            });
+        }
+
+
+    }
+
+    componentWillUnmount() {
+        this.mounted = false;
     }
 
     handleChange(e, index) {
@@ -39,12 +69,13 @@ class CreateStep2 extends Component {
         this.props.history.push('/create');
     };
 
-    cancelSubmit(e){
+    cancelSubmit(e) {
         window.open('/', '_self')
     }
 
 
-    addIngredient() {
+    addIngredient(e) {
+        e.preventDefault();
         if (this.state.ingredients.length < 10) {
             this.setState({
                 ingredients: [...this.state.ingredients, ""]
@@ -66,14 +97,16 @@ class CreateStep2 extends Component {
             ingredients: this.state.ingredients,
             step: 2
         }
-        
+
         console.log(data)
-           axios
-             .post("http://178.128.83.129:3000/api/posts/"+localStorage.getItem("create_id")+"/update", data)
-             .then(res => {this.props.history.push("/step3");}) 
-             .catch(err =>
-               console.log(err)
-             );
+        axios
+            .post("http://178.128.83.129:3000/api/posts/" + localStorage.getItem("create_id") + "/update", data)
+            .then(res => { this.props.history.push("/step3"); })
+            .catch(err =>
+                this.setState({
+                    errors: err.response.data
+                })
+            );
     }
 
 
@@ -98,34 +131,34 @@ class CreateStep2 extends Component {
                     <form className="create-form" onSubmit={(e) => this.handleSubmit(e)}>
                         {
                             this.state.ingredients.map((ingredient, index) => {
-                                if(index === 0){
+                                if (index === 0) {
                                     return (
                                         <div key={index} className="form-group create-form-group">
-                                        <input maxLength="100" onChange={(e) => this.handleChange(e, index)} id={index} value={ingredient} type="text" className="form-control create-input-name" placeholder=" " />
-                                        <label className="create-label-name" for={index}>Nguyên liệu chính *</label>                                       
-                                    </div>
+                                            <input autoComplete="off" maxLength="100" onChange={(e) => this.handleChange(e, index)} id={index} value={ingredient} type="text" className="form-control create-input-name" placeholder=" " />
+                                            <label className="create-label-name" for={index}>Nguyên liệu chính *</label>
+                                        </div>
                                     )
                                 }
-                                else{
+                                else {
                                     return (
-                                    
+
                                         <div key={index} className="form-group create-form-group">
-                                            <input maxLength="100" onChange={(e) => this.handleChange(e, index)} id={index} value={ingredient} type="text" className="form-control create-input-name" placeholder=" " />
+                                            <input autoComplete="off" maxLength="100" onChange={(e) => this.handleChange(e, index)} id={index} value={ingredient} type="text" className="form-control create-input-name" placeholder=" " />
                                             <label className="create-label-name" for={index}>Nguyên liệu</label>
                                             <div className="float-right"><button className="create-close-btn" onClick={() => this.handleRemove(index)}><i className="fa fa-times" /></button></div>
                                         </div>
-    
+
                                     );
                                 }
-                                
+
                             })
                         }
                         <div className="create-add-btn-container"><button className="create-add-ingre" onClick={(e) => this.addIngredient(e)}><i className="fa fa-plus" /></button></div>
-
+                        {!isEmpty(this.state.errors) && <div className="alert alert-danger">{this.state.errors.message}</div>}
                         <div className="create-button-container">
                             <button className="btn btn-gray" onClick={(e) => this.cancelSubmit(e)}>Hủy</button>
-                            <button type="submit" class="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Tiếp</button>
-                            <button type="submit" class="btn btn-pink create-mr" onClick={(e) => this.handleBack(e)}>Trở lại</button>
+                            <button type="submit" className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Tiếp</button>
+                            <button type="submit" className="btn btn-pink create-mr" onClick={(e) => this.handleBack(e)}>Trở lại</button>
                         </div>
                     </form>
 

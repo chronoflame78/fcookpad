@@ -12,7 +12,7 @@ class Home extends Component {
     }
   
     componentDidMount() {
-
+      localStorage.removeItem("create_id");
     }
   
     componentWillUnmount() {

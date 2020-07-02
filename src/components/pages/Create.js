@@ -3,6 +3,7 @@ import axios from "axios";
 import Picture from '../common/Picture';
 import '../../css/Create.css';
 import Footer from '../layout/Footer';
+const isEmpty = require("is-empty");
 const items = [
     {
         number: '1',
@@ -33,7 +34,7 @@ class Create extends Component {
             video: '',
             errors: {},
             category: [],
-            dropdown_value: '0'
+            dropdown_value: ''
         };
         this.inputImage = React.createRef();
     }
@@ -41,22 +42,50 @@ class Create extends Component {
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
-    
-    cancelSubmit(e){
+
+    cancelSubmit(e) {
         window.open('/', '_self')
     }
 
     componentDidMount() {
         this.mounted = true;
-        axios.get("http://178.128.83.129:3000/api/home/category").then(res => {
-            if (this.mounted) {
+        let create_id = localStorage.getItem("create_id");
+        if (create_id) {
+            axios.all([axios.get("http://178.128.83.129:3000/api/home/category"), axios.get("http://178.128.83.129:3000/api/posts/" + create_id)])
+            .then(axios.spread((...res) => {
+                if (this.mounted) {
+                    let video_url = res[1].data.post.video.replace('embed/', 'watch?v=');
+                    this.setState({
+                        category: res[0].data.data.categorys,
+                        title: res[1].data.post.title,
+                        description: res[1].data.post.description,
+                        imagePreviewUrl: res[1].data.post.images[0],
+                        video: video_url,
+                        dropdown_value: res[1].data.post.category
+                    });
+                }
+            })).catch(error => {
                 this.setState({
-                    category: res.data.data.categorys,
-                });
-            }
-        }).catch(error => {
-            console.log(error);
-        });
+                    errors: error.response.data
+                })
+            });
+        } else {
+            axios.get("http://178.128.83.129:3000/api/home/category").then(res => {
+                if (this.mounted) {
+                    this.setState({
+                        category: res.data.data.categorys,
+                    });
+                }
+            }).catch(error => {
+                this.setState({
+                    errors: error.response.data
+                })
+            });
+
+        }
+
+
+
     }
 
     componentWillUnmount() {
@@ -65,7 +94,8 @@ class Create extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        if (this.state.video && this.state.video.indexOf('https://www.youtube.com/watch?v=') != -1 && this.state.video.length !== 43) {
+        let create_id = localStorage.getItem("create_id");
+        if (this.state.video && this.state.video.indexOf('https://www.youtube.com/watch?v=') !== -1 && this.state.video.length !== 43) {
             this.setState({ errors: { message: "Incorrect youtube video url" } });
             return;
         }
@@ -76,12 +106,11 @@ class Create extends Component {
         formData.append('description', this.state.description);
         formData.append('step', 1);
         formData.append('imageCover', this.state.file);
-        if(this.state.dropdown_value !== '0'){
-            formData.append('category_id', this.state.dropdown_value);
-        }
+        formData.append('category', this.state.dropdown_value);
         formData.append('video', "https://www.youtube.com/embed/" + this.state.video.slice(32));
         console.log(formData)
-        axios
+        if(!create_id){
+            axios
             .post("http://178.128.83.129:3000/api/posts/create", formData)
             .then(res => {
                 const { id } = res.data;
@@ -96,6 +125,22 @@ class Create extends Component {
                 })
             }
             );
+        }else{
+            axios
+            .post("http://178.128.83.129:3000/api/posts/" + localStorage.getItem("create_id") + "/update", formData)
+            .then(res => {                
+                this.props.history.push("/step2");
+            })
+            .catch(err => {
+                console.log(err);
+                console.log(err.response.data);
+                this.setState({
+                    errors: err.response.data
+                })
+            }
+            );
+        }
+        
     }
 
     handleImageChange(e) {
@@ -115,15 +160,16 @@ class Create extends Component {
     }
 
     render() {
+        console.log(this.state.errors);
         let { imagePreviewUrl, video } = this.state;
         let $imagePreview = null;
         let youtube_video = null;
         let embed_video = "";
         if (imagePreviewUrl) {
-            $imagePreview = (<div onClick={() => console.log(this.inputImage.current.click())}><Picture width="500px" height="250px" src={imagePreviewUrl} /></div>);
+            $imagePreview = (<div onClick={() => console.log(this.inputImage.current.click())}><Picture width="100%" height="250px" src={imagePreviewUrl} /></div>);
         } else {
             $imagePreview = (<div className="previewText" onClick={() => console.log(this.inputImage.current.click())}>
-                <img className="create-step1-image" src="/images/photo_icon.png" />
+                <img className="create-step1-image" alt="" src="/images/photo_icon.png" />
                 <div className="create-txt-field1">Hôm nay có món gì vậy bếp trưởng?</div>
                 <div className="create-txt-field2">Hãy chia sẻ hình ảnh để mọi người chiêm ngưỡng</div>
                 <div className="create-txt-field3">tác phẩm của bạn nào :D</div>
@@ -137,74 +183,74 @@ class Create extends Component {
                 allowFullScreen></iframe>
         }
 
-        return (
+        return (          
             <div>
-            <div className="container create-bg-white" style={{ paddingTop: '60px' }}>
-                <div className="timeline">
-                    <div className="timeline-progress" style={{ width: '15%' }}></div>
-                    <div className="timeline-items">
-                        {items.map((item, i) => (
-                            <div key={i} className={"timeline-item" + (item.active ? ' active' : '')}>
-                                <div className="timeline-number">{item.number}</div>
-                                <div className="timeline-name">{item.name}</div>
-                            </div>
+                <div className="container create-bg-white" style={{ paddingTop: '60px' }}>
+                    <div className="timeline">
+                        <div className="timeline-progress" style={{ width: '15%' }}></div>
+                        <div className="timeline-items">
+                            {items.map((item, i) => (
+                                <div key={i} className={"timeline-item" + (item.active ? ' active' : '')}>
+                                    <div className="timeline-number">{item.number}</div>
+                                    <div className="timeline-name">{item.name}</div>
+                                </div>
 
-                        ))}
+                            ))}
+                        </div>
                     </div>
-                </div>
-                <div className="imgPreview" >
-                    {$imagePreview}
-                </div>
-                <form className="create-form" onSubmit={(e) => this.handleSubmit(e)}>
-                    <div className="form-group create-form-group">
-                        <input maxLength="100" onChange={this.onChange} id="title" value={this.state.title} type="text" className="form-control create-input-name" placeholder=" " />
-                        <label className="create-label-name" for="title">Tên món ăn *</label>
+                    <div className="imgPreview" >
+                        {$imagePreview}
                     </div>
-                    <div className="form-group create-form-group">
-                        <textarea maxLength="1000" onChange={this.onChange} id="description" style={{ resize: 'none' }} value={this.state.description}
-                            className="form-control create-input-description" rows="1" placeholder=" "></textarea>
-                        <label className="create-label-name" for="description">Mô tả món ăn *</label>
-                    </div>
+                    <form className="create-form" onSubmit={(e) => this.handleSubmit(e)}>
+                        <div className="form-group create-form-group">
+                            <input autoComplete="off" maxLength="100" onChange={this.onChange} id="title" value={this.state.title} type="text" className="form-control create-input-name" placeholder=" " />
+                            <label className="create-label-name" for="title">Tên món ăn *</label>
+                        </div>
+                        <div className="form-group create-form-group">
+                            <textarea spellCheck="false" maxLength="1000" onChange={this.onChange} id="description" style={{ resize: 'none' }} value={this.state.description}
+                                className="form-control create-input-description" rows="1" placeholder=" "></textarea>
+                            <label className="create-label-name" for="description">Mô tả món ăn *</label>
+                        </div>
 
-                    <div className="row">
-                        <div className="col-md-6">
-                            <div className="form-group create-dropdown">
-                                <select onChange={this.onChange} className="form-control create-form-group create-dropdown-color" value={this.state.dropdown_value} id="dropdown_value">
-                                <option className="create-option" disabled selected hidden value='0' >Danh mục</option>
-                                    {
-                                        this.state.category && this.state.category.map((x,i) =>
-                                        <option className="create-option" key={i} value={x._id}>{x.title}</option>
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="form-group create-dropdown">
+                                    <select onChange={this.onChange} className="form-control create-form-group create-dropdown-color" value={this.state.dropdown_value} id="dropdown_value">
+                                    <option className="create-option" disabled selected hidden value='' >Danh mục</option>
+                                        {
+                                            this.state.category && this.state.category.map((x, i) =>
+                                                <option className="create-option" key={i} value={x._id}>{x.title}</option>
                                             )
-                                    }
-                                    
-                                </select>
-                                {/* <label for="cars">Choose a car:</label> */}
-                            </div>
-                        </div>
-                        <div className="col-md-6">
-                            <div className="form-group create-form-group">
-                                <input maxLength="100" onChange={this.onChange} id="video" value={this.state.video} type="text" className="form-control create-input-name" placeholder=" " />
-                                <label className="create-label-name" for="video">Link youtube video <span className="create-mini-text">(Ex: https://www.youtube.com/watch?v=RBYDnaP3sto)</span></label>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <div className="row">
-                        <div className="col-md-6"></div>
-                        <div className="col-md-6">{youtube_video}</div>
-                    </div>
+                                        }
 
-                    <input style={{ display: 'none' }} type="file" ref={this.inputImage} id="upload_image" onChange={(e) => this.handleImageChange(e)} />
-                    {this.state.errors && <div>{this.state.errors.message}</div>}
-                    <div className="create-button-container">
-                    <button className="btn btn-gray" onClick={(e) => this.cancelSubmit(e)}>Hủy</button>
-                    <button type="submit" className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Tiếp</button>                    
-                    </div>
-                    
-                </form>
-                
-            </div>
-            <Footer/>
+                                    </select>
+                                    {/* <label for="cars">Choose a car:</label> */}
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="form-group create-form-group">
+                                    <input autoComplete="off" maxLength="100" onChange={this.onChange} id="video" value={this.state.video} type="text" className="form-control create-input-name" placeholder=" " />
+                                    <label className="create-label-name" for="video">Link youtube video <span className="create-mini-text">(Ex: https://www.youtube.com/watch?v=RBYDnaP3sto)</span></label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className="row">
+                            <div className="col-md-6"></div>
+                            <div className="col-md-6">{youtube_video}</div>
+                        </div>
+
+                        <input style={{ display: 'none' }} type="file" ref={this.inputImage} id="upload_image" onChange={(e) => this.handleImageChange(e)} />
+                        {!isEmpty(this.state.errors) && <div className="alert alert-danger">{this.state.errors.message}</div>}
+                        <div className="create-button-container">
+                            <button className="btn btn-gray" onClick={(e) => this.cancelSubmit(e)}>Hủy</button>
+                            <button type="submit" className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Tiếp</button>
+                        </div>
+
+                    </form>
+
+                </div>
+                <Footer />
             </div>
         )
     }

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import '../../css/Confirm.css';
 import queryString from 'query-string';
-import Countdown from '../common/Countdown';
 import axios from "axios";
 
 class ConfirmEmail extends Component {
