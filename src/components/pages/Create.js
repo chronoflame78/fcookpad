@@ -99,7 +99,10 @@ class Create extends Component {
             this.setState({ errors: { message: "Incorrect youtube video url" } });
             return;
         }
-        // TODO: do something with -> this.state.file
+        if(this.state.dropdown_value === ''){
+            this.setState({ errors: { message: "Xin hãy chọn 1 danh mục" } });
+            return;
+        }
         console.log('dropdown', this.state.dropdown_value);
         let formData = new FormData();
         formData.append('title', this.state.title);
@@ -216,7 +219,7 @@ class Create extends Component {
                             <div className="col-md-6">
                                 <div className="form-group create-dropdown">
                                     <select onChange={this.onChange} className="form-control create-form-group create-dropdown-color" value={this.state.dropdown_value} id="dropdown_value">
-                                    <option className="create-option" disabled selected hidden value='' >Danh mục</option>
+                                    <option className="create-option" disabled defaultValue hidden value='' >Danh mục</option>
                                         {
                                             this.state.category && this.state.category.map((x, i) =>
                                                 <option className="create-option" key={i} value={x._id}>{x.title}</option>

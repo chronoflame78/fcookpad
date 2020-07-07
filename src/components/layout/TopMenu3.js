@@ -1,12 +1,11 @@
 import React from "react";
-import '../../css/TopMenu2.css';
+import '../../css/TopMenu3.css';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import isEmpty from "is-empty";
 import Avatar from "../common/Avatar";
 import {Link} from 'react-router-dom';
-
 class TopMenu extends React.Component {
 
     constructor(props) {
@@ -57,7 +56,7 @@ class TopMenu extends React.Component {
         const { user } = this.props.auth;
         let fixedDiv, avatar;
         if (isEmpty(user)) {
-            avatar = <Avatar className="topmenu-margin-auto topmenu-bg" signature="nav_avatar" image={"/images/user_white.png"} size={50} tooltip={false} />;
+            avatar = <div  onClick={this.toggleOpen}><Avatar className="topmenu-margin-auto topmenu-bg" signature="nav_avatar" image={"/images/user_white.png"} size={50} tooltip={false} /></div>;
 
             if (this.state.isOpen) {
                 fixedDiv = <div ref={this.wrapperRef} className="topmenu-abs-div">
@@ -70,6 +69,40 @@ class TopMenu extends React.Component {
                     <div><a className="topmenu-hidden-link" href="/register">Register</a></div>
                 </div>
             }
+
+            return (
+                <nav className="head-navbar">
+                    <div className="topmenu-logo-container">
+                        <a href="/">
+                            <img width={50} height="auto" src="/images/Logo.png" alt="" />
+                        </a>
+                    </div>
+                    <div className="form-search-container">
+                        <form className="form-inline">
+                            <div className="input-group">
+                                <input className="form-control topmenu-placeholder" type="text" placeholder="Tìm kiếm" />
+                                <div className="input-group-prepend">
+                                    <span className="input-group-text"><i className="fa fa-search" /></span>
+                                </div>
+                            </div>
+    
+                        </form>
+                    </div>
+                    {/* <div className="topmenu-add-container">
+                        
+                    </div> */}
+                    <div className="topmenu-avatar" ref={this.avatarRef} >
+                    <a className="nav-button-container" href="/create">
+                            <button className="nav-add">Thêm món mới <i className="fa fa-plus"/></button>
+                            <img className="nav-add-without-txt" src="/images/nav-bar-add.png" alt="" />
+                        </a>
+                        <button className="nav-login-btn"><a href='/login'>Đăng nhập</a></button>
+                        <button className="nav-register-btn">Đăng ký</button>
+                        {avatar}
+                        {fixedDiv}
+                    </div>
+    
+                </nav>);
         } else {
             avatar = <Avatar className="topmenu-margin-auto" signature="nav_avatar" image={user.user_avatar} size={50} tooltip={false} />
 
@@ -88,9 +121,9 @@ class TopMenu extends React.Component {
         return (
             <nav className="head-navbar">
                 <div className="topmenu-logo-container">
-                    <Link to="/">
+                    <a href="/">
                         <img width={64} height={50} src="/images/Logo.png" alt="" />
-                    </Link>
+                    </a>
                 </div>
                 <div className="form-search-container">
                     <form className="form-inline">
@@ -104,13 +137,13 @@ class TopMenu extends React.Component {
                     </form>
                 </div>
                 <div className="topmenu-add-container">
-                    <Link className="nav-button-container" to="/create">
-                        {/* <img className="nav-add" src="/images/nav_add_button.png" alt="" /> */}
+                    <a className="nav-button-container" href="/create">
                         <button className="nav-add">Thêm món mới<img className="topmenu-plus" alt="" src="/images/Plus_Icon.png"/></button>
                         <img className="nav-add-without-txt" src="/images/nav-bar-add.png" alt="" />
-                    </Link>
+                    </a>
                 </div>
                 <div className="topmenu-avatar" ref={this.avatarRef} onClick={this.toggleOpen} >
+                
                     {avatar}
                     {fixedDiv}
                 </div>

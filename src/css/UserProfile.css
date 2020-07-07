@@ -1,0 +1,78 @@
+.userp-info-container{
+    background-color: #ffffff;
+    border: 1px solid #FF606D;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.userp-container{
+    padding-top: 60px;
+}
+
+.userp-row{
+    padding: 0 15px;
+}
+
+.userp-avatar{
+    margin: 0 auto;
+}
+
+.userp-title{
+    padding-left: 1rem;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FF606D;
+    margin-bottom: 10px;
+}
+
+.userp-description{
+    padding-left: 1rem;
+    height: 140px;
+}
+
+.userp-name{
+    font-weight: bold;
+    font-size: 26px;
+    margin-top: 10px;
+}
+
+.userp-smalltext{
+    color: rgba(25, 25, 25, 0.5);
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.userp-smalltext-end{
+    color: rgba(25, 25, 25, 0.5);
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 70px;
+}
+
+.userp-num{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.userp-views{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.userp-likes{
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}

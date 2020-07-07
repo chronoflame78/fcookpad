@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios";
 import Footer from '../layout/Footer';
+import Page404 from '../pages/Page404';
 const isEmpty = require("is-empty");
 
 const items = [
@@ -84,7 +85,8 @@ class CreateStep2 extends Component {
 
     }
 
-    handleRemove(index) {
+    handleRemove(e,index) {
+        e.preventDefault();
         this.state.ingredients.splice(index, 1);
         this.setState({ ingredients: this.state.ingredients });
 
@@ -111,7 +113,8 @@ class CreateStep2 extends Component {
 
 
     render() {
-
+        let create_id = localStorage.getItem("create_id");
+        if(!create_id) return(<Page404/>);
         return (
             <div>
                 <div className="container create-bg-white" style={{ paddingTop: '64px' }}>
@@ -145,7 +148,7 @@ class CreateStep2 extends Component {
                                         <div key={index} className="form-group create-form-group">
                                             <input autoComplete="off" maxLength="100" onChange={(e) => this.handleChange(e, index)} id={index} value={ingredient} type="text" className="form-control create-input-name" placeholder=" " />
                                             <label className="create-label-name" for={index}>Nguyên liệu</label>
-                                            <div className="float-right"><button className="create-close-btn" onClick={() => this.handleRemove(index)}><i className="fa fa-times" /></button></div>
+                                            <div className="float-right"><button type="button" className="create-close-btn" onClick={(e) => this.handleRemove(e,index)}><i className="fa fa-times" /></button></div>
                                         </div>
 
                                     );
@@ -157,8 +160,8 @@ class CreateStep2 extends Component {
                         {!isEmpty(this.state.errors) && <div className="alert alert-danger">{this.state.errors.message}</div>}
                         <div className="create-button-container">
                             <button className="btn btn-gray" onClick={(e) => this.cancelSubmit(e)}>Hủy</button>
-                            <button type="submit" className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Tiếp</button>
-                            <button type="submit" className="btn btn-pink create-mr" onClick={(e) => this.handleBack(e)}>Trở lại</button>
+                            <button className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Tiếp</button>
+                            <button className="btn btn-pink create-mr" onClick={(e) => this.handleBack(e)}>Trở lại</button>
                         </div>
                     </form>
 

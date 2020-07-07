@@ -2,15 +2,14 @@ import React, { Component } from "react";
 import '../../css/Section.css';
 import { NavLink } from "react-router-dom";
 
-class Section extends Component {
+class SectionTop extends Component {
     constructor(props) {
         super(props);
         this.state = {
             posts: [],
-            itemsToShow: 4,
-            loading: true
+            itemsToShow: 4
         }
-        this.showMore = this.showMore.bind(this);
+
     }
 
     getFormattedDate(date) {
@@ -25,13 +24,6 @@ class Section extends Component {
         return today.getDate() + "/" + month + "/" + today.getFullYear();
     }
 
-    showMore() {
-        this.state.itemsToShow === 4 ? (
-            this.setState({ itemsToShow: 8 })
-        ) : (
-                this.setState({ itemsToShow: 4 })
-            )
-    }
 
     render() {
         var topFourPosts = [];
@@ -43,37 +35,34 @@ class Section extends Component {
         }
         return (
             <div className="container container-max-custom">
-                <div className="row section-title">{this.props.sectionName}</div>
+                <div className="row section-title3">{this.props.sectionName}</div>
                 <div className="row">
                     {topFourPosts && topFourPosts.map((x, index) => (
-                        <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">
+                        <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-4">
                             <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>
-                                <div className="section-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
+                                <div className="section-image-container3" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
                                     <div className="item-cover" >
                                         <span className="section-item-view">{x.views} <i className="fa fa-eye" /></span>
                                     </div>
                                 </div>
                             </NavLink>
-                            <div className="section-item-title">{x.title}</div>
+                            <div className="section-item-title3">{x.title}</div>
                             <div className="section-author-name">{x.author.name}</div>
-                            <div className="section-rating-date"><i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
+                            <div className="section-rating-date"><i className="fa fa-star" style={{fontSize: '14px'}} />
+                                <i className="fa fa-star" style={{fontSize: '14px'}} />
+                                <i className="fa fa-star" style={{fontSize: '14px'}} />
+                                <i className="fa fa-star" style={{fontSize: '14px'}} />
+                                <i className="fa fa-star" style={{fontSize: '14px'}} />
                                 <span className="section-item-date" style={{paddingTop: '2px'}}> {this.getFormattedDate(x.datetime)}</span>
                             </div>
                         </div>
                     ))}
                 </div>
-                <div className="row section-see-more" style={{ marginLeft: '0px', marginRight: '0px' }} onClick={this.showMore} >
-                    {this.state.itemsToShow === 4 && "XEM THÊM"}
-                    {this.state.itemsToShow !== 4 && "THU GỌN"}
-                </div>
+                
             </div>
 
         );
     }
 }
 
-export default Section;
+export default SectionTop;

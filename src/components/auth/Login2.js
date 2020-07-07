@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-import '../../css/Login.css'
+import '../../css/Login.css';
+import { toast } from 'react-toastify';
 class Login extends Component {
   constructor() {
     super();
@@ -23,7 +24,7 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       // this.props.history.push("/dashboard"); // push user to dashboard when they login
-      this.props.history.goBack();
+      this.props.history.goBack();      
     }
     if (nextProps.errors) {
       this.setState({

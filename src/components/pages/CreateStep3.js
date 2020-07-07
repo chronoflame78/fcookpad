@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from "axios";
 import Picture from '../common/Picture';
 import Footer from '../layout/Footer';
+import Page404 from '../pages/Page404';
 const isEmpty = require("is-empty");
 
 const items = [
@@ -151,7 +152,10 @@ class CreateStep3 extends Component {
         console.log(formData);
         axios
              .post("http://178.128.83.129:3000/api/posts/"+localStorage.getItem("create_id")+"/update", formData)
-             .then(res => {this.props.history.push("/");}) 
+             .then(res => {this.props.history.push({
+                pathname: '/',
+                state: { createSuccess: true }
+              })}) 
              .catch(err =>
                 this.setState({
                     errors: err.response.data
@@ -161,6 +165,8 @@ class CreateStep3 extends Component {
 
 
     render() {
+        let create_id = localStorage.getItem("create_id");
+        if(!create_id) return(<Page404/>);
         let { imagePreviewUrl1, imagePreviewUrl2, imagePreviewUrl3, imagePreviewUrl4, imagePreviewUrl5 } = this.state;
         let imagestep1, imagestep2, imagestep3, imagestep4, imagestep5 = null;
         if (imagePreviewUrl1) {

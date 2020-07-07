@@ -11,8 +11,9 @@ import Home from "./components/pages/Home";
 import Create from "./components/pages/Create";
 import CreateStep2 from "./components/pages/CreateStep2";
 import CreateStep3 from "./components/pages/CreateStep3";
+import UserProfile from "./components/pages/UserProfile";
 import TopMenu from "./components/layout/TopMenu2";
-
+import Page404 from './components/pages/Page404';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -27,6 +28,9 @@ import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import VerifyAccount from './components/auth/VerifyAccount';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -47,25 +51,26 @@ if (localStorage.jwtToken) {
   }
 }
 
-
+toast.configure()
 function App() {
   return (
     <Provider store={store}>
      <Router>
       <div className="App">
         <TopMenu />
+        <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/login" exact component={Login} />      
         <Route path="/register" exact component={Register} />    
         <Route path="/posts/:id" component={Post}/>
         <Route path="/confirm" component={ConfirmEmail} />        
         <Route path="/register/verify/:token" exact component={VerifyAccount} /> 
-        <Route path="/step3" component={CreateStep3} /> 
-        <Switch>
-          <PrivateRoute path="/create" component={Create} /> 
-          <PrivateRoute path="/step2" component={CreateStep2} /> 
-          {/* <PrivateRoute path="/step3" component={CreateStep3} />  */}
-          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        <Route path="/userprofile/:id" component={UserProfile} /> 
+        <PrivateRoute path="/create" component={Create} /> 
+        <PrivateRoute path="/step2" component={CreateStep2} /> 
+        <PrivateRoute path="/step3" component={CreateStep3} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        <Route path="*"><Page404/></Route>
         </Switch>
         
       </div>
