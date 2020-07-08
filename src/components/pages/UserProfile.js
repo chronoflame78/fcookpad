@@ -80,10 +80,10 @@ class UserProfile extends Component {
             <div className="container">
                 <div className="row userp-row">
                     <div className="col-md-4 userp-info-container">
-                        <Avatar className="userp-avatar" image={"/images/user_white.png"} size={140} tooltip={false}/>
+                        <Avatar className="userp-avatar" image={this.state.userInfo.avatar} size={140} tooltip={false}/>
                         <div className="userp-name">{this.state.userInfo.name}</div>
-        <div className="userp-smalltext">Giới tính: {this.state.userInfo.gender}</div>
-                        <div className="userp-smalltext">Ngày sinh: {this.state.userInfo.birthday}</div>
+                        <div className="userp-smalltext"><i class="fas fa-venus-mars"></i> Giới tính: {this.state.userInfo.gender}</div>
+                        <div className="userp-smalltext"><i class="far fa-calendar-alt"></i> Ngày sinh: {this.state.userInfo.birthday}</div>
                         <div className="userp-num"><div className="userp-left"><img className="userp-icon" width={20} src="/images/post.png"/> &nbsp;Bài viết:</div><div className="userp-right">{this.state.userInfo.posts}</div></div>
                         <div className="userp-views"><div className="userp-left"><img className="userp-icon" width={20} src="/images/eye.png"/> &nbsp;Lượt xem:</div> <div className="userp-right">{this.state.userInfo.views}</div></div>
                         <div className="userp-likes"><div className="userp-left"><img className="userp-icon" width={20} src="/images/like.png"/> &nbsp;Lượt thích:</div> <div className="userp-right">{this.state.userInfo.likes}</div></div>

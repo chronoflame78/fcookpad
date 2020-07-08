@@ -12,6 +12,7 @@ import Create from "./components/pages/Create";
 import CreateStep2 from "./components/pages/CreateStep2";
 import CreateStep3 from "./components/pages/CreateStep3";
 import UserProfile from "./components/pages/UserProfile";
+import AccountSetting from "./components/pages/AccountSetting";
 import TopMenu from "./components/layout/TopMenu2";
 import Page404 from './components/pages/Page404';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -29,7 +30,7 @@ import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import VerifyAccount from './components/auth/VerifyAccount';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Check for token to keep user logged in
@@ -70,6 +71,7 @@ function App() {
         <PrivateRoute path="/step2" component={CreateStep2} /> 
         <PrivateRoute path="/step3" component={CreateStep3} />
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/accountsetting" component={AccountSetting} /> 
         <Route path="*"><Page404/></Route>
         </Switch>
         

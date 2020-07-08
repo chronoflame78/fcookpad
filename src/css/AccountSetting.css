@@ -1,0 +1,103 @@
+.asetting-info-container{
+    background-color: #ffffff;
+    border-right: 1px solid #D3D3D3;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.asetting-container{
+    padding-top: 60px;
+}
+
+.asetting-row{
+    padding: 0 15px;
+}
+
+.asetting-avatar{
+    margin: 0 auto;
+}
+
+.asetting-title{
+    padding-left: 1rem;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FF606D;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.asetting-description{
+    padding-left: 1rem;
+    height: 140px;
+}
+
+.asetting-name{
+    font-weight: bold;
+    font-size: 26px;
+    margin-top: 10px;
+}
+
+.asetting-smalltext{
+    color: rgba(25, 25, 25, 0.5);
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.asetting-smalltext-end{
+    color: rgba(25, 25, 25, 0.5);
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.asetting-num{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.asetting-views{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.asetting-likes{
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.asetting-icon{
+    position: relative;
+    top:-3px;
+}
+
+.asetting-form-container{
+    background-color: #ffffff;
+}
+
+.asetting-line{
+    margin: 0 10px;
+    border-bottom: 2px solid #D3D3D3;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    
+}
+
+.asetting-tab{
+    font-weight: bold;
+    color: rgba(25, 25, 25, 0.6);
+    margin: 10px 0;
+}

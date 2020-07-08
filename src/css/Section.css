@@ -123,8 +123,27 @@
     font-size: 24px;
 }
 
+.section-item-title a{
+    color: #212529;
+}
+
+.section-item-title:hover a{
+    color: #212529;
+    text-decoration: none;
+}
+
 .section-author-name{
     font-size: 18px;
+}
+
+.section-author-name a{
+    font-size: 18px;
+    color: #212529;
+}
+
+.section-author-name:hover a{
+    color: #212529;
+    text-decoration: none;
 }
 
 .section-author-name3{

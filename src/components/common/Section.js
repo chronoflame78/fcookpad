@@ -54,8 +54,8 @@ class Section extends Component {
                                     </div>
                                 </div>
                             </NavLink>
-                            <div className="section-item-title">{x.title}</div>
-                            <div className="section-author-name">{x.author.name}</div>
+                            <div className="section-item-title"><NavLink to={"/posts/" + x._id}>{x.title}</NavLink></div>
+                            <div className="section-author-name"><NavLink to={"/userprofile/"+x.author._id}>{x.author.name}</NavLink></div>
                             <div className="section-rating-date"><i className="fa fa-star" />
                                 <i className="fa fa-star" />
                                 <i className="fa fa-star" />
