@@ -84,7 +84,7 @@ class AccountSetting extends Component {
                     <div className="row asetting-row">
                         <div className="col-md-4 asetting-info-container">
                             <Avatar className="asetting-avatar" image={this.state.userInfo.avatar} size={140} tooltip={false} />
-                            <div className="asetting-name">{this.state.userInfo.name}</div>
+                            <div className="asetting-name">{this.state.userInfo.fullName}</div>
                             <div className="asetting-smalltext">Giới tính: {this.state.userInfo.gender}</div>
                             <div className="asetting-smalltext">Ngày sinh: {this.state.userInfo.birthday}</div>
                             <div className="asetting-num"><div className="asetting-left"><img className="asetting-icon" width={20} src="/images/post.png" /> &nbsp;Bài viết:</div><div className="asetting-right">{this.state.userInfo.posts}</div></div>
@@ -103,14 +103,49 @@ class AccountSetting extends Component {
                             <div className="asetting-title">
                                 Nhớ bấm lưu trước khi rời khỏi trang nhé
                             </div>
-                            <div className="asetting-description">
-                                {this.state.userInfo.description}
-                            </div>
+                            <form className="create-form" onSubmit={(e) => this.handleSubmit(e)}>
+                                <div className="form-group create-form-group">
+                                    <input readOnly autoComplete="off" maxLength="100" onChange={this.onChange} id="email" value={this.state.userInfo.email} type="text" className="form-control create-input-name" placeholder=" " />
+                                    <label className="create-label-name" for="email">Email</label>
+                                </div>
+                                <div className="form-group create-form-group">
+                                    <input autoComplete="off" maxLength="100" onChange={this.onChange} id="firstName" value={this.state.userInfo.firstName} type="text" className="form-control create-input-name" placeholder=" " />
+                                    <label className="create-label-name" for="firstName">Họ</label>
+                                </div>
+                                <div className="form-group create-form-group">
+                                    <input autoComplete="off" maxLength="100" onChange={this.onChange} id="lastName" value={this.state.userInfo.lastName} type="text" className="form-control create-input-name" placeholder=" " />
+                                    <label className="create-label-name" for="lastName">Tên</label>
+                                </div>
+                                <div className="form-group create-dropdown">
+                                    <select onChange={this.onChange} className="form-control create-form-group create-dropdown-color" value='' id="dropdown_value">
+                                        <option className="create-option" disabled defaultValue hidden value='' >Giới tính</option>
+                                        {
+                                            this.state.category && this.state.category.map((x, i) =>
+                                                <option className="create-option" key={i} value={x._id}>{x.title}</option>
+                                            )
+                                        }
+
+                                    </select>
+                                </div>
+                                <div className="form-group create-form-group">
+                                    <input autoComplete="off" maxLength="100" onChange={this.onChange} id="title" type="text" className="form-control create-input-name" placeholder=" " />
+                                    <label className="create-label-name" for="title">Ngày sinh</label>
+                                </div>
+                                <div className="form-group create-form-group">
+                                    <textarea spellCheck="false" maxLength="1000" onChange={this.onChange} id="description" style={{ resize: 'none' }} value={this.state.description}
+                                        className="form-control create-input-description" rows="1" placeholder=" "></textarea>
+                                    <label className="create-label-name" for="description">Mô tả về bản thân</label>
+                                </div>
+
+                                <div className="create-button-container">
+                                    <button type="submit" className="btn btn-pink">Lưu</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
 
                 </div>
-                
+
 
                 <Footer />
             </div>
