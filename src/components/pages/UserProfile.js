@@ -6,6 +6,7 @@ import '../../css/UserProfile.css';
 import Avatar from '../common/Avatar';
 import { NavLink } from "react-router-dom";
 import '../../css/Section.css';
+import Loader from '../common/LoaderVer2';
 const isEmpty = require("is-empty");
 class UserProfile extends Component {
     constructor(props) {
@@ -14,7 +15,8 @@ class UserProfile extends Component {
             userInfo: {},
             posts: [],
             top: [],
-            nextPage: 2
+            nextPage: 2,
+            loading: true
         };
         this.showMore = this.showMore.bind(this);
     }
@@ -57,7 +59,8 @@ class UserProfile extends Component {
                 this.setState({
                     userInfo: res[0].data.user,
                     posts: res[1].data.allPosts,
-                    top: res[2].data.topPost
+                    top: res[2].data.topPost,
+                    loading: false
                 });
             }
         })) 
@@ -71,6 +74,7 @@ class UserProfile extends Component {
       }
 
     render() {
+        if (this.state.loading) return <Loader />;
         return (
             <div className="userp-container">
             <div className="container">
@@ -78,11 +82,11 @@ class UserProfile extends Component {
                     <div className="col-md-4 userp-info-container">
                         <Avatar className="userp-avatar" image={"/images/user_white.png"} size={140} tooltip={false}/>
                         <div className="userp-name">{this.state.userInfo.name}</div>
-                        <div className="userp-smalltext">Giới tính: Nam</div>
-                        <div className="userp-smalltext">Ngày sinh: 01/07/2000</div>
-                        <div className="userp-num"><div className="userp-left">Bài viết:</div><div className="userp-right">145</div></div>
-                        <div className="userp-views"><div className="userp-left">Lượt xem:</div> <div className="userp-right">1020</div></div>
-                        <div className="userp-likes"><div className="userp-left">Lượt thích:</div> <div className="userp-right">220</div></div>
+        <div className="userp-smalltext">Giới tính: {this.state.userInfo.gender}</div>
+                        <div className="userp-smalltext">Ngày sinh: {this.state.userInfo.birthday}</div>
+                        <div className="userp-num"><div className="userp-left"><img className="userp-icon" width={20} src="/images/post.png"/> &nbsp;Bài viết:</div><div className="userp-right">{this.state.userInfo.posts}</div></div>
+                        <div className="userp-views"><div className="userp-left"><img className="userp-icon" width={20} src="/images/eye.png"/> &nbsp;Lượt xem:</div> <div className="userp-right">{this.state.userInfo.views}</div></div>
+                        <div className="userp-likes"><div className="userp-left"><img className="userp-icon" width={20} src="/images/like.png"/> &nbsp;Lượt thích:</div> <div className="userp-right">{this.state.userInfo.likes}</div></div>
                         <div className="userp-smalltext-end">Gia nhập kể từ ngày: 01/07/2020</div>
                     </div>
                     <div className="col-md-8">
@@ -90,7 +94,7 @@ class UserProfile extends Component {
                             MỘT CHÚT VỀ TÔI
                         </div>
                         <div className="userp-description">
-                        Không chỉ có đam mê về đồ ăn, tôi còn đam mê làm bố, thích được mọi người gọi mình là một daddy. Hôm nay là một ngày đẹp trời. Sinh nhật của tôi là 01/07/2000. 1..2..3..Dzô
+                        {this.state.userInfo.description}
                         </div>
                         <SectionTop sectionName="NỔI BẬT" posts={this.state.top}/>
                     </div>
@@ -98,7 +102,7 @@ class UserProfile extends Component {
                 
             </div>
             <div className="container container-max-custom">
-                <div className="row section-title">BÀI ĐĂNG</div>
+                <div className="row section-title2">BÀI ĐĂNG</div>
                 <div className="row">
                     {!isEmpty(this.state.posts)&&this.state.posts.map((x, index) => (
                         <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">

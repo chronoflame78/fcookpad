@@ -47,13 +47,13 @@ class SectionTop extends Component {
                                 </div>
                             </NavLink>
                             <div className="section-item-title3">{x.title}</div>
-                            <div className="section-author-name">{x.author.name}</div>
+                            <div className="section-author-name3">{x.author.name}</div>
                             <div className="section-rating-date"><i className="fa fa-star" style={{fontSize: '14px'}} />
                                 <i className="fa fa-star" style={{fontSize: '14px'}} />
                                 <i className="fa fa-star" style={{fontSize: '14px'}} />
                                 <i className="fa fa-star" style={{fontSize: '14px'}} />
                                 <i className="fa fa-star" style={{fontSize: '14px'}} />
-                                <span className="section-item-date" style={{paddingTop: '2px'}}> {this.getFormattedDate(x.datetime)}</span>
+                                <span className="section-item-date3" style={{paddingTop: '2px'}}> {this.getFormattedDate(x.datetime)}</span>
                             </div>
                         </div>
                     ))}

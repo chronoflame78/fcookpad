@@ -76,3 +76,8 @@
     justify-content: space-between;
     padding: 0 10px;
 }
+
+.userp-icon{
+    position: relative;
+    top:-3px;
+}

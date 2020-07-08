@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Container, Row, Col, NavLink } from "reactstrap";
+import { Container, Row, Col} from "reactstrap";
+import {NavLink} from 'react-router-dom';
 import Step from '../common/Step';
 import Avatar from '../common/Avatar';
 import '../../css/Post.css';
@@ -85,7 +86,9 @@ class Post extends Component {
             <Col sm="9"><h1 className="post-title">{post.title}</h1></Col>
             <Col sm="3">
               <div className="post-avatar">
+                <NavLink to={"/userprofile/"+ post.author._id}>
                 <Avatar className="post-avatar-cover" signature="author" image={post.author.avatar} size={64} name={post.author.name} tooltip={true} />
+                </NavLink>
               </div>
               <div className="post-author-name">{post.author.name}</div>
             </Col>
@@ -146,7 +149,7 @@ class Post extends Component {
                   </div>
 
                 ))}
-                {isEmpty(user) && <NavLink href="/login"><div className="post-add-comment">Đăng nhập để bình luận</div></NavLink>}
+                {isEmpty(user) && <a href="/login"><div className="post-add-comment">Đăng nhập để bình luận</div></a>}
                 {!isEmpty(user) &&
                   <div className="post-comment-item-login d-flex align-items-center">
                     <Avatar signature="main-user" image={user.user_avatar} size={64} name={user.user_name} tooltip={true} />
