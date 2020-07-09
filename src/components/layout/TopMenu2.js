@@ -76,12 +76,12 @@ class TopMenu extends React.Component {
             if (this.state.isOpen) {
                 fixedDiv = <div ref={this.wrapperRef} className="topmenu-abs-div">
                     <div><a className="topmenu-link" onClick={this.onLogoutClick}>Logout</a></div>
-                    <div><a className="topmenu-link" href="/dashboard">Dashboard</a></div>
+                    <div><a className="topmenu-link" href="/accountsetting">Account Setting</a></div>
                 </div>
             } else {
                 fixedDiv = <div ref={this.wrapperRef} className="topmenu-abs-div">
                     <div><a className="topmenu-hidden-link" onClick={this.onLogoutClick}>Logout</a></div>
-                    <div><a className="topmenu-hidden-link" href="/dashboard">Dashboard</a></div>
+                    <div><a className="topmenu-hidden-link" href="/accountsetting">Account Setting</a></div>
                 </div>
             }
         }

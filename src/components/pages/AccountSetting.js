@@ -161,7 +161,10 @@ class AccountSetting extends Component {
                 <div className="container">
                     <div className="row asetting-row">
                         <div className="col-md-4 asetting-info-container">
-                            <Avatar className="asetting-avatar" image={this.state.userInfo.avatar} size={140} tooltip={false} />
+                            {/* <Avatar className="asetting-avatar" image={this.state.userInfo.avatar} size={140} tooltip={false} /> */}
+                            <div className="asetting-avatar-cover asetting-avatar"
+                                style={{ width: 200, height: 200, backgroundImage: "url(" + this.state.userInfo.avatar + ")" }}
+                            ></div>
                             <div className="asetting-name">{this.state.userInfo.fullName}</div>
                             <div className="asetting-smalltext"><i className="fas fa-venus-mars"></i> Giới tính: {this.state.userInfo.gender}</div>
                             <div className="asetting-smalltext"><i className="far fa-calendar-alt"></i> Ngày sinh: {this.getFormattedDate(this.state.userInfo.birthday)}</div>

@@ -224,3 +224,11 @@
     border-radius: 0px;
     
 }
+
+.asetting-avatar-cover{
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #D3D3D3;
+}
