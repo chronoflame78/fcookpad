@@ -28,9 +28,9 @@
     text-align: center;
 }
 
-.asetting-description{
-    padding-left: 1rem;
-    height: 140px;
+.asetting-label-description{
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
 }
 
 .asetting-name{
@@ -59,7 +59,7 @@
     margin-top: 30px;
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0 30px;
 }
 
 .asetting-views{
@@ -68,7 +68,7 @@
     margin: 10px 0;
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0 30px;
 }
 
 .asetting-likes{
@@ -76,12 +76,13 @@
     font-weight: bold;
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0 30px;
 }
 
 .asetting-icon{
-    position: relative;
-    top:-3px;
+    width: 30px;
+    text-align: center;
+    margin-right: 10px;
 }
 
 .asetting-form-container{
@@ -100,4 +101,126 @@
     font-weight: bold;
     color: rgba(25, 25, 25, 0.6);
     margin: 10px 0;
+}
+
+.asetting-form-group{
+    margin-top: 20px;
+}
+
+.asetting-input-name{
+    border: 0!important;
+    border-bottom: 1px solid #e5e5e5!important;
+    outline: none;
+    border-radius: 0px!important;
+    color: rgba(0, 0, 0, 0.6)!important;
+}
+
+.asetting-input-name:focus{
+    border: 0!important;
+    border-bottom: 1px solid #FF5F6D!important;
+    outline: none!important;
+    box-shadow: none!important;
+    border-radius: 0px;
+    
+}
+
+.asetting-label-name{
+    position: relative;
+    top: -28px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.asetting-dropdown{
+    
+}
+
+.asetting-dropdown-color{
+    color: rgba(0, 0, 0, 0.6)!important;
+ 
+}
+
+.asetting-dropdown-color:focus{
+    color: #FF5F6D!important;
+ 
+}
+
+.asetting-option{
+
+}
+
+.asetting-input-description{
+    border: 0!important;
+    border-bottom: 1px solid #e5e5e5!important;
+    outline: none;
+    border-radius: 0px!important;
+    height: calc(2.25rem + 2px)!important;
+    color: rgba(0, 0, 0, 0.6)!important;
+}
+
+.asetting-input-description:focus{
+    border: 0!important;
+    border-bottom: 1px solid #FF5F6D!important;
+    outline: none!important;
+    box-shadow: none!important;
+    border-radius: 0px;
+    color: #FF5F6D!important;
+}
+
+.asetting-button-container{
+    height: 60px;
+    margin-top: 24px;
+}
+
+.btn-pink{
+    width: 100px;
+    float: right;
+    background-color: #ffffff;
+    color: #FF5F6D;
+    border:1px solid #FF5F6D!important;
+}
+
+.btn-pink:hover{
+    width: 100px;
+    float: right;
+    background-color: #FF5F6D;
+    color: #ffffff;
+}
+
+.form-control[readonly]{
+    background-color: #ffffff!important;
+}
+
+.asetting-label-gender{
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.asetting-label-date{
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.asetting-datepicker{
+    display: block;
+}
+
+.asetting-label-email{
+    position: relative;
+    top: -28px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.asetting-input-email{
+    border: 0!important;
+    border-bottom: 1px solid #e5e5e5!important;
+    outline: none;
+    border-radius: 0px!important;
+    color: rgba(0, 0, 0, 0.6)!important;
+}
+
+.asetting-input-email:focus{
+    outline: none!important;
+    box-shadow: none!important;
+    border-radius: 0px;
+    
 }
