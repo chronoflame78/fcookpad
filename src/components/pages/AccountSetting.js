@@ -159,7 +159,7 @@ class AccountSetting extends Component {
     }
 
     showMore(nextPage) {
-        axios.get("http://178.128.83.129:3000/api/users/" + this.props.match.params.id + "/posts?page=" + nextPage)
+        axios.get("http://178.128.83.129:3000/api/users/" + this.props.match.params.id + "/posts?page=" + nextPage+"&limit=3")
             .then(res => {
                 const arr = this.state.posts;
                 arr.push(...res.data.allPosts);
@@ -177,7 +177,7 @@ class AccountSetting extends Component {
         this.mounted = true;
         console.log(this.props.auth.user.id)
         axios.all([axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id),
-        axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id + "/posts?page=1")])
+        axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id + "/posts?page=1&limit=3")])
             .then(axios.spread((...res) => {
                 console.log(...res)
                 if (this.mounted) {
@@ -308,7 +308,8 @@ class AccountSetting extends Component {
                                                 </div>
                                             </div>
                                         </NavLink>
-                                        <div className="asetting-item-title">{x.title}</div>                                       
+                                        <div className="asetting-item-title">{x.title}</div> 
+                                        <div className="asetting-status-container"><div className="asetting-label">Trạng thái:</div><div className="asetting-status">{x.status}</div></div>                                        
                                     </div>
                                 ))}
                             </div>

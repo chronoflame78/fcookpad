@@ -342,3 +342,17 @@
     text-decoration: none;
 }
 
+.asetting-status-container{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    
+}
+
+.asetting-label{
+    font-weight: bold;
+}
+
+.asetting-status{
+    color: #01CE47;
+}
