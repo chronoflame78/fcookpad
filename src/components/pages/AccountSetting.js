@@ -7,6 +7,7 @@ import Avatar from '../common/Avatar';
 import { NavLink } from "react-router-dom";
 import '../../css/Section.css';
 import Loader from '../common/LoaderVer2';
+import ButtonLoader from '../common/Loader';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import DatePicker from 'react-datepicker';
@@ -36,7 +37,10 @@ class AccountSetting extends Component {
             top: [],
             nextPage: 2,
             loading: false,
-            errors: {}
+            errors: {},
+            buttonLoading: false,
+            file: '',
+            imagePreviewUrl: ''
         };
         this.showMore = this.showMore.bind(this);
     }
@@ -83,22 +87,57 @@ class AccountSetting extends Component {
         })
     }
 
+    handleImageChange(e) {
+        e.preventDefault();
+
+        let reader = new FileReader();
+        let file = e.target.files[0];
+        if(file){
+            reader.onloadend = () => {
+                this.setState({
+                    file: file,
+                    imagePreviewUrl: reader.result
+                });
+            }
+    
+            reader.readAsDataURL(file)
+        }
+        else{
+                this.setState({
+                    file: '',
+                    imagePreviewUrl: ''
+                });           
+        }
+        
+    }
+
     handleSubmit = e => {
         e.preventDefault();
+        this.setState({
+            buttonLoading: true
+        })
         let formData = new FormData();
         formData.append('firstName', this.state.userInfoUpdate.firstName);
         formData.append('lastName', this.state.userInfoUpdate.lastName);
         formData.append('birthday', this.state.userInfoUpdate.birthday);
         formData.append('description', this.state.userInfoUpdate.description);
         formData.append('gender', this.state.userInfoUpdate.gender);
+        if(this.state.file){
+            formData.append('avatar', this.state.file);
+        }
+        
         axios
             .post("http://178.128.83.129:3000/api/users", formData)
             .then(res => {
                 toast.success('Save successfully!', { position: toast.POSITION.TOP_RIGHT });
                 axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id)
-                    .then(resp => this.setState({
-                        userInfo: resp.data.user,
-                    })).catch(errs =>
+                    .then(resp => {                       
+                        this.setState({
+                            userInfo: resp.data.user,
+                            errors: {},
+                            buttonLoading: false
+                        })
+                    }).catch(errs =>
                         console.log(errs)
                     );
             })
@@ -106,7 +145,8 @@ class AccountSetting extends Component {
                 console.log(err);
                 console.log(err.response.data);
                 this.setState({
-                    errors: err.response.data
+                    errors: err.response.data,
+                    buttonLoading: false
                 })
             }
             );
@@ -160,11 +200,13 @@ class AccountSetting extends Component {
             <div className="asetting-container">
                 <div className="container">
                     <div className="row asetting-row">
-                        <div className="col-md-4 asetting-info-container">
-                            {/* <Avatar className="asetting-avatar" image={this.state.userInfo.avatar} size={140} tooltip={false} /> */}
-                            <div className="asetting-avatar-cover asetting-avatar"
-                                style={{ width: 200, height: 200, backgroundImage: "url(" + this.state.userInfo.avatar + ")" }}
-                            ></div>
+                        <div className="col-md-4 asetting-info-container">                           
+                            {!this.state.imagePreviewUrl && <div className="asetting-avatar-cover asetting-avatar"
+                                style={{ width: 200, height: 200, backgroundImage: "url(" + this.state.userInfo.avatar + ")" }}>
+                            </div>}
+                            {this.state.imagePreviewUrl && <div className="asetting-avatar-cover asetting-avatar"
+                                style={{ width: 200, height: 200, backgroundImage: "url(" + this.state.imagePreviewUrl + ")" }}>
+                            </div>}
                             <div className="asetting-name">{this.state.userInfo.fullName}</div>
                             <div className="asetting-smalltext"><i className="fas fa-venus-mars"></i> Giới tính: {this.state.userInfo.gender}</div>
                             <div className="asetting-smalltext"><i className="far fa-calendar-alt"></i> Ngày sinh: {this.getFormattedDate(this.state.userInfo.birthday)}</div>
@@ -175,10 +217,10 @@ class AccountSetting extends Component {
                             <div className="asetting-line"></div>
                             <div className="asetting-tab">Thông tin tài khoản</div>
                             <div className="asetting-tab">Công thức của tôi</div>
-                            <div className="asetting-tab">Danh mục yêu thích</div>
+                            {/* <div className="asetting-tab">Danh mục yêu thích</div>
                             <div className="asetting-tab">Công thức yêu thích</div>
                             <div className="asetting-tab">Công thức gần đây</div>
-                            <div className="asetting-tab">Thay đổi mật khẩu</div>
+                            <div className="asetting-tab">Thay đổi mật khẩu</div> */}
                         </div>
                         <div className="col-md-8 asetting-form-container">
                             <div className="asetting-title">
@@ -214,6 +256,9 @@ class AccountSetting extends Component {
                                             showMonthDropdown
                                             showYearDropdown
                                             dropdownMode="select"
+                                            className="form-control"
+                                            wrapperClassName="asetting-datepicker-wrapper"
+                                            popperClassName="asetting-datepicker-popper"
                                         />
                                     </div>
                                 </div>
@@ -223,9 +268,15 @@ class AccountSetting extends Component {
                                         className="form-control" rows="3" placeholder=" "></textarea>
 
                                 </div>
+                                <div className="form-group asetting-form-group">
+                                <label className="asetting-label-description" htmlFor="upload_image">Thay đổi ảnh đại diện</label>
+                                <input className="asetting-image-upload" accept="image/*" type="file" id="upload_image" onChange={(e) => this.handleImageChange(e)} />
+                                </div>
+                                
                                 {!isEmpty(this.state.errors) && <div className="alert alert-danger">{this.state.errors.message}</div>}
                                 <div className="asetting-button-container">
-                                    <button type="submit" className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Lưu</button>
+                                    {!this.state.buttonLoading && <button type="submit" className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Lưu</button>}
+                                    {this.state.buttonLoading && <button type="submit" className="btn btn-pink"><i class="fa fa-spinner fa-spin"></i></button>}
                                 </div>
                             </form>
                         </div>

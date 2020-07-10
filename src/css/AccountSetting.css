@@ -232,3 +232,19 @@
     cursor: pointer;
     border: 1px solid #D3D3D3;
 }
+
+.asetting-image-upload{
+    display: block;
+}
+
+.asetting-datepicker-wrapper{
+    width: 100%;
+}
+
+.asetting-datepicker-popper{
+    
+}
+
+.react-datepicker__triangle{
+    left: 200px!important;
+}
