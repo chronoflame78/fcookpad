@@ -34,13 +34,13 @@ class AccountSetting extends Component {
                 createAt: ''
             },
             posts: [],
-            top: [],
             nextPage: 2,
             loading: false,
             errors: {},
             buttonLoading: false,
             file: '',
-            imagePreviewUrl: ''
+            imagePreviewUrl: '',
+            tab: 1
         };
         this.showMore = this.showMore.bind(this);
     }
@@ -87,28 +87,34 @@ class AccountSetting extends Component {
         })
     }
 
+    changeTab = (e, index) => {
+        this.setState({
+            tab: index
+        })
+    }
+
     handleImageChange(e) {
         e.preventDefault();
 
         let reader = new FileReader();
         let file = e.target.files[0];
-        if(file){
+        if (file) {
             reader.onloadend = () => {
                 this.setState({
                     file: file,
                     imagePreviewUrl: reader.result
                 });
             }
-    
+
             reader.readAsDataURL(file)
         }
-        else{
-                this.setState({
-                    file: '',
-                    imagePreviewUrl: ''
-                });           
+        else {
+            this.setState({
+                file: '',
+                imagePreviewUrl: ''
+            });
         }
-        
+
     }
 
     handleSubmit = e => {
@@ -122,16 +128,16 @@ class AccountSetting extends Component {
         formData.append('birthday', this.state.userInfoUpdate.birthday);
         formData.append('description', this.state.userInfoUpdate.description);
         formData.append('gender', this.state.userInfoUpdate.gender);
-        if(this.state.file){
+        if (this.state.file) {
             formData.append('avatar', this.state.file);
         }
-        
+
         axios
             .post("http://178.128.83.129:3000/api/users", formData)
             .then(res => {
                 toast.success('Save successfully!', { position: toast.POSITION.TOP_RIGHT });
                 axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id)
-                    .then(resp => {                       
+                    .then(resp => {
                         this.setState({
                             userInfo: resp.data.user,
                             errors: {},
@@ -171,8 +177,7 @@ class AccountSetting extends Component {
         this.mounted = true;
         console.log(this.props.auth.user.id)
         axios.all([axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id),
-        axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id + "/posts?page=1"),
-        axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id + "/top")])
+        axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id + "/posts?page=1")])
             .then(axios.spread((...res) => {
                 console.log(...res)
                 if (this.mounted) {
@@ -180,7 +185,6 @@ class AccountSetting extends Component {
                         userInfo: res[0].data.user,
                         userInfoUpdate: res[0].data.user,
                         posts: res[1].data.allPosts,
-                        top: res[2].data.topPost,
                         loading: false
                     });
                 }
@@ -196,11 +200,21 @@ class AccountSetting extends Component {
 
     render() {
         if (this.state.loading) return <Loader />;
+        var tab1 = 'asetting-tab-active';
+        var tab2 = 'asetting-tab';
+        if(this.state.tab === 1){
+            tab1 = 'asetting-tab-active';
+            tab2 = 'asetting-tab';
+        }
+        else if(this.state.tab === 2){
+            tab1 = 'asetting-tab';
+            tab2 = 'asetting-tab-active';
+        }
         return (
             <div className="asetting-container">
                 <div className="container">
                     <div className="row asetting-row">
-                        <div className="col-md-4 asetting-info-container">                           
+                        <div className="col-md-4 asetting-info-container">
                             {!this.state.imagePreviewUrl && <div className="asetting-avatar-cover asetting-avatar"
                                 style={{ width: 200, height: 200, backgroundImage: "url(" + this.state.userInfo.avatar + ")" }}>
                             </div>}
@@ -215,18 +229,18 @@ class AccountSetting extends Component {
                             <div className="asetting-likes"><div className="asetting-left"><i className="far fa-heart asetting-icon"></i>Lượt thích:</div> <div className="asetting-right">{this.state.userInfo.likes}</div></div>
                             <div className="asetting-smalltext-end">Gia nhập kể từ ngày: 01/07/2020</div>
                             <div className="asetting-line"></div>
-                            <div className="asetting-tab">Thông tin tài khoản</div>
-                            <div className="asetting-tab">Công thức của tôi</div>
+                            <div className={tab1} onClick={(e, index) => this.changeTab(e, 1)}>Thông tin tài khoản</div>
+                            <div className={tab2} onClick={(e, index) => this.changeTab(e, 2)}>Công thức của tôi</div>
                             {/* <div className="asetting-tab">Danh mục yêu thích</div>
                             <div className="asetting-tab">Công thức yêu thích</div>
                             <div className="asetting-tab">Công thức gần đây</div>
                             <div className="asetting-tab">Thay đổi mật khẩu</div> */}
                         </div>
-                        <div className="col-md-8 asetting-form-container">
+                        {this.state.tab === 1 && <div className="col-md-8 asetting-form-container">
                             <div className="asetting-title">
-                                Nhớ bấm lưu trước khi rời khỏi trang nhé
+                                Thông tin tài khoản
                             </div>
-                            <form className="create-form" onSubmit={(e) => this.handleSubmit(e)}>
+                            <form className="asetting-form" onSubmit={(e) => this.handleSubmit(e)}>
                                 <div className="form-group asetting-form-group">
                                     <input readOnly autoComplete="off" maxLength="100" id="email" value={this.state.userInfoUpdate.email} type="text" className="form-control asetting-input-email" placeholder=" " />
                                     <label className="asetting-label-email" htmlFor="email">Email</label>
@@ -256,7 +270,7 @@ class AccountSetting extends Component {
                                             showMonthDropdown
                                             showYearDropdown
                                             dropdownMode="select"
-                                            className="form-control"
+                                            className="form-control asetting-date-text"
                                             wrapperClassName="asetting-datepicker-wrapper"
                                             popperClassName="asetting-datepicker-popper"
                                         />
@@ -265,21 +279,44 @@ class AccountSetting extends Component {
                                 <div className="form-group asetting-form-group">
                                     <label className="asetting-label-description" htmlFor="description">Mô tả về bản thân</label>
                                     <textarea spellCheck="false" maxLength="1000" onChange={this.onDescriptionChange} id="description" style={{ resize: 'none' }} value={this.state.userInfoUpdate.description}
-                                        className="form-control" rows="3" placeholder=" "></textarea>
+                                        className="form-control asetting-description" rows="3" placeholder=" "></textarea>
 
                                 </div>
                                 <div className="form-group asetting-form-group">
-                                <label className="asetting-label-description" htmlFor="upload_image">Thay đổi ảnh đại diện</label>
-                                <input className="asetting-image-upload" accept="image/*" type="file" id="upload_image" onChange={(e) => this.handleImageChange(e)} />
+                                    <label className="asetting-label-description" htmlFor="upload_image">Thay đổi ảnh đại diện</label>
+                                    <input className="asetting-image-upload" accept="image/*" type="file" id="upload_image" onChange={(e) => this.handleImageChange(e)} />
                                 </div>
-                                
+
                                 {!isEmpty(this.state.errors) && <div className="alert alert-danger">{this.state.errors.message}</div>}
                                 <div className="asetting-button-container">
                                     {!this.state.buttonLoading && <button type="submit" className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Lưu</button>}
                                     {this.state.buttonLoading && <button type="submit" className="btn btn-pink"><i class="fa fa-spinner fa-spin"></i></button>}
                                 </div>
                             </form>
-                        </div>
+                        </div>}
+                        {this.state.tab === 2 && <div className="col-md-8 asetting-form-container">
+                            <div className="asetting-title-tab2">
+                                Công thức của tôi
+                            </div>
+                            <div className="row">
+                                {!isEmpty(this.state.posts) && this.state.posts.map((x, index) => (
+                                    <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-4 py-4">
+                                        <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>
+                                            <div className="asetting-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
+                                                <div className="item-cover" >
+                                                    <span className="section-item-view">{x.views} <i className="fa fa-eye" /></span>
+                                                </div>
+                                            </div>
+                                        </NavLink>
+                                        <div className="asetting-item-title">{x.title}</div>                                       
+                                    </div>
+                                ))}
+                            </div>
+                            {(this.state.posts.length < this.state.userInfo.posts) &&
+                                <div className="row section-see-more" style={{ marginLeft: '0px', marginRight: '0px' }} onClick={() => this.showMore(this.state.nextPage)} >
+                                    XEM THÊM
+                                </div>}
+                        </div>}
                     </div>
 
                 </div>
