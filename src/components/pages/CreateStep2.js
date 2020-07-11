@@ -28,7 +28,8 @@ class CreateStep2 extends Component {
         super(props);
         this.state = {
             ingredients: [""],
-            errors: {}
+            errors: {},
+            buttonLoading: false
         };
     }
 
@@ -94,19 +95,23 @@ class CreateStep2 extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        // TODO: do something with -> this.state.file
+        this.setState({
+            buttonLoading: true
+        })
         let data = {
             ingredients: this.state.ingredients,
             step: 2
         }
 
-        console.log(data)
         axios
             .post("http://178.128.83.129:3000/api/posts/" + localStorage.getItem("create_id") + "/update", data)
-            .then(res => { this.props.history.push("/step3"); })
+            .then(res => { 
+                this.props.history.push("/step3");                 
+            })
             .catch(err =>
                 this.setState({
-                    errors: err.response.data
+                    errors: err.response.data,
+                    buttonLoading: false
                 })
             );
     }
@@ -160,7 +165,8 @@ class CreateStep2 extends Component {
                         {!isEmpty(this.state.errors) && <div className="alert alert-danger">{this.state.errors.message}</div>}
                         <div className="create-button-container">
                             <button className="btn btn-gray" onClick={(e) => this.cancelSubmit(e)}>Hủy</button>
-                            <button className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Tiếp</button>
+                            {!this.state.buttonLoading &&<button className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Tiếp</button>}
+                            {this.state.buttonLoading && <button type="submit" className="btn btn-pink"><i class="fa fa-spinner fa-spin"></i></button>}
                             <button className="btn btn-pink create-mr" onClick={(e) => this.handleBack(e)}>Trở lại</button>
                         </div>
                     </form>

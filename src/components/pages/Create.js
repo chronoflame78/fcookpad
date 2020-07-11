@@ -34,17 +34,20 @@ class Create extends Component {
             video: '',
             errors: {},
             category: [],
-            dropdown_value: ''
+            dropdown_value: '',
+            buttonLoading: false
         };
         this.inputImage = React.createRef();
     }
 
     onChange = e => {
+        e.preventDefault();
         this.setState({ [e.target.id]: e.target.value });
     };
 
-    cancelSubmit(e) {
-        window.open('/', '_self')
+    cancelSubmit = e => {
+        e.preventDefault();
+        window.open('/', '_self');
     }
 
     componentDidMount() {
@@ -99,11 +102,13 @@ class Create extends Component {
             this.setState({ errors: { message: "Incorrect youtube video url" } });
             return;
         }
-        if(this.state.dropdown_value === ''){
-            this.setState({ errors: { message: "Xin hãy chọn 1 danh mục" } });
-            return;
-        }
-        console.log('dropdown', this.state.dropdown_value);
+        // if(this.state.dropdown_value === ''){
+        //     this.setState({ errors: { message: "Xin hãy chọn 1 danh mục" } });
+        //     return;
+        // }
+        this.setState({
+            buttonLoading: true
+        })
         let formData = new FormData();
         formData.append('title', this.state.title);
         formData.append('description', this.state.description);
@@ -112,19 +117,20 @@ class Create extends Component {
         formData.append('category', this.state.dropdown_value);
         formData.append('video', "https://www.youtube.com/embed/" + this.state.video.slice(32));
         console.log(formData)
-        if(!create_id){
+        if(!create_id){      
             axios
             .post("http://178.128.83.129:3000/api/posts/create", formData)
             .then(res => {
                 const { id } = res.data;
                 localStorage.setItem("create_id", id);
-                this.props.history.push("/step2");
+                this.props.history.push("/step2");                
             })
             .catch(err => {
                 console.log(err);
                 console.log(err.response.data);
                 this.setState({
-                    errors: err.response.data
+                    errors: err.response.data,
+                    buttonLoading: false
                 })
             }
             );
@@ -169,7 +175,9 @@ class Create extends Component {
         let youtube_video = null;
         let embed_video = "";
         if (imagePreviewUrl) {
-            $imagePreview = (<div onClick={() => console.log(this.inputImage.current.click())}><Picture width="100%" height="250px" src={imagePreviewUrl} /></div>);
+            $imagePreview = (<div style={{padding: '0 100px'}} onClick={() => console.log(this.inputImage.current.click())}><div className="picture-cover" 
+            style={{width:'100%', height:'400px', backgroundImage: "url("+imagePreviewUrl+")"}}></div>             
+             </div>);
         } else {
             $imagePreview = (<div className="previewText" onClick={() => console.log(this.inputImage.current.click())}>
                 <img className="create-step1-image" alt="" src="/images/photo_icon.png" />
@@ -245,12 +253,16 @@ class Create extends Component {
 
                         <input style={{ display: 'none' }} type="file" ref={this.inputImage} id="upload_image" onChange={(e) => this.handleImageChange(e)} />
                         {!isEmpty(this.state.errors) && <div className="alert alert-danger">{this.state.errors.message}</div>}
-                        <div className="create-button-container">
-                            <button className="btn btn-gray" onClick={(e) => this.cancelSubmit(e)}>Hủy</button>
-                            <button type="submit" className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Tiếp</button>
-                        </div>
+                        
 
                     </form>
+                    <div className="create-form">
+                    <div className="create-button-container">
+                            <button className="btn btn-gray" onClick={(e) => this.cancelSubmit(e)}>Hủy</button>
+                            {!this.state.buttonLoading &&<button type="submit" className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Tiếp</button>}
+                            {this.state.buttonLoading && <button type="submit" className="btn btn-pink"><i class="fa fa-spinner fa-spin"></i></button>}
+                        </div>
+                        </div>
 
                 </div>
                 <Footer />

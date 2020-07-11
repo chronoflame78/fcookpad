@@ -44,13 +44,93 @@ class CreateStep3 extends Component {
             imagePreviewUrl4: "",
             imagePreviewUrl5: "",
             total_steps: 1,
-            errors: {}
+            errors: {},
+            buttonLoading: false
         };
         this.inputImage = React.createRef();
         this.inputImage2 = React.createRef();
         this.inputImage3 = React.createRef();
         this.inputImage4 = React.createRef();
         this.inputImage5 = React.createRef();
+    }
+
+    componentDidMount() {
+        this.mounted = true;
+        let create_id = localStorage.getItem("create_id");
+        let action = localStorage.getItem("action")
+        if (action === 'update') {
+            axios.get("http://178.128.83.129:3000/api/posts/" + create_id).then(res => {
+                if (this.mounted) {
+                    console.log(res.data);
+                    console.log(res.data.post);
+                    if(res.data.post.steps.length === 1){
+                        this.setState({
+                            imagePreviewUrl1: res.data.post.steps[0].image,
+                            step_content_1: res.data.post.steps[0].content
+                        });
+                    }
+                    else if(res.data.post.steps.length === 2){
+                        this.setState({
+                            imagePreviewUrl1: res.data.post.steps[0].image,
+                            step_content_1: res.data.post.steps[0].content,
+                            imagePreviewUrl2: res.data.post.steps[1].image,
+                            step_content_2: res.data.post.steps[1].content,
+                            total_steps: 2
+                        });
+                    }
+                    else if(res.data.post.steps.length === 3){
+                        this.setState({
+                            imagePreviewUrl1: res.data.post.steps[0].image,
+                            step_content_1: res.data.post.steps[0].content,
+                            imagePreviewUrl2: res.data.post.steps[1].image,
+                            step_content_2: res.data.post.steps[1].content,
+                            imagePreviewUrl3: res.data.post.steps[2].image,
+                            step_content_3: res.data.post.steps[2].content,
+                            total_steps: 3
+                        });
+                    }
+                    else if(res.data.post.steps.length === 4){
+                        this.setState({
+                            imagePreviewUrl1: res.data.post.steps[0].image,
+                            step_content_1: res.data.post.steps[0].content,
+                            imagePreviewUrl2: res.data.post.steps[1].image,
+                            step_content_2: res.data.post.steps[1].content,
+                            imagePreviewUrl3: res.data.post.steps[2].image,
+                            step_content_3: res.data.post.steps[2].content,
+                            imagePreviewUrl4: res.data.post.steps[3].image,
+                            step_content_4: res.data.post.steps[3].content,
+                            total_steps: 4
+                        });
+                    }
+                    else if(res.data.post.steps.length === 5){
+                        this.setState({
+                            imagePreviewUrl1: res.data.post.steps[0].image,
+                            step_content_1: res.data.post.steps[0].content,
+                            imagePreviewUrl2: res.data.post.steps[1].image,
+                            step_content_2: res.data.post.steps[1].content,
+                            imagePreviewUrl3: res.data.post.steps[2].image,
+                            step_content_3: res.data.post.steps[2].content,
+                            imagePreviewUrl4: res.data.post.steps[3].image,
+                            step_content_4: res.data.post.steps[3].content,
+                            imagePreviewUrl5: res.data.post.steps[4].image,
+                            step_content_5: res.data.post.steps[4].content,
+                            total_steps: 5
+                        });
+                    }
+                    
+                }
+            }).catch(error => {
+                this.setState({
+                    errors: error.response.data
+                })
+            });
+        }
+
+
+    }
+
+    componentWillUnmount() {
+        this.mounted = false;
     }
 
     handleChange(e) {
@@ -128,6 +208,10 @@ class CreateStep3 extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        this.setState({
+            buttonLoading: true
+        })
+        const action = localStorage.getItem('action');
         let formData = new FormData();
         console.log(this.state);
         formData.append('step1_image', this.state.step_image_1);
@@ -152,13 +236,26 @@ class CreateStep3 extends Component {
         console.log(formData);
         axios
              .post("http://178.128.83.129:3000/api/posts/"+localStorage.getItem("create_id")+"/update", formData)
-             .then(res => {this.props.history.push({
-                pathname: '/',
-                state: { createSuccess: true }
-              })}) 
+             .then(res => {
+                if(action === 'update'){
+                    this.props.history.push({
+                        pathname: '/accountsetting',
+                        state: { 
+                            editSuccess: true,
+                            postTab: 2
+                         }
+                      })
+                }else{
+                    this.props.history.push({
+                        pathname: '/',
+                        state: { createSuccess: true }
+                      })
+                }
+                }) 
              .catch(err =>
                 this.setState({
-                    errors: err.response.data
+                    errors: err.response.data,
+                    buttonLoading: false
                 })
              );
     }
@@ -252,7 +349,7 @@ class CreateStep3 extends Component {
                                     </div>
                                     
                                 </div>
-                                {this.state.total_steps===2 && <div className="float-right"><button className="create-delete-step" onClick={(e) => this.handleRemove(e)}><i className="fa fa-trash" /></button></div>}
+                                {this.state.total_steps===2 && <div className="create-delete-btn"><button className="create-delete-step" onClick={(e) => this.handleRemove(e)}><i className="fas fa-trash-alt" /></button></div>}
                             </div>
                         }
                         {
@@ -269,7 +366,7 @@ class CreateStep3 extends Component {
                                         {imagestep3}
                                     </div>
                                 </div>
-                                {this.state.total_steps===3 && <div className="float-right"><button className="create-delete-step" onClick={(e) => this.handleRemove(e)}><i className="fa fa-trash" /></button></div>}
+                                {this.state.total_steps===3 && <div className="create-delete-btn"><button className="create-delete-step" onClick={(e) => this.handleRemove(e)}><i className="fas fa-trash-alt" /></button></div>}
                             </div>
                         }
                         {
@@ -286,7 +383,7 @@ class CreateStep3 extends Component {
                                         {imagestep4}
                                     </div>
                                 </div>
-                                {this.state.total_steps===4 && <div className="float-right"><button className="create-delete-step" onClick={(e) => this.handleRemove(e)}><i className="fa fa-trash" /></button></div>}
+                                {this.state.total_steps===4 && <div className="create-delete-btn"><button className="create-delete-step" onClick={(e) => this.handleRemove(e)}><i className="fas fa-trash-alt" /></button></div>}
                             </div>
                         }
                         {
@@ -303,14 +400,15 @@ class CreateStep3 extends Component {
                                         {imagestep5}
                                     </div>
                                 </div>
-                                {this.state.total_steps===5 && <div className="float-right"><button className="create-delete-step" onClick={(e) => this.handleRemove(e)}><i className="fa fa-trash" /></button></div>}
+                                {this.state.total_steps===5 && <div className="create-delete-btn"><button className="create-delete-step" onClick={(e) => this.handleRemove(e)}><i className="fas fa-trash-alt" /></button></div>}
                             </div>
                         }
                         <div className="create-add-btn-container"><button className="create-add-ingre" onClick={(e) => this.addStep(e)}><i className="fa fa-plus" /></button></div>
                         {!isEmpty(this.state.errors) && <div className="alert alert-danger">{this.state.errors.message}</div>}
                         <div className="create-button-container">
                             <button className="btn btn-gray" onClick={(e) => this.cancelSubmit(e)}>Hủy</button>
-                            <button type="submit" class="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Tạo</button>
+                            {!this.state.buttonLoading &&<button type="submit" class="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Đăng</button>}
+                            {this.state.buttonLoading && <button type="submit" className="btn btn-pink"><i class="fa fa-spinner fa-spin"></i></button>}
                             <button type="submit" class="btn btn-pink create-mr" onClick={(e) => this.handleBack(e)}>Trở lại</button>
                         </div>
                     </form>

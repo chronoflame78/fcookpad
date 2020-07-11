@@ -87,7 +87,7 @@ class Post extends Component {
             <Col sm="3">
               <div className="post-avatar">
                 <NavLink to={"/userprofile/"+ post.author._id}>
-                <Avatar className="post-avatar-cover" signature="author" image={post.author.avatar} size={64} name={post.author.name} tooltip={true} />
+                <Avatar className="post-avatar-cover" signature="author" image={post.author.avatar} size={64} name={post.author.fullName} tooltip={true} />
                 </NavLink>
               </div>
               <div className="post-author-name">{post.author.name}</div>

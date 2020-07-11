@@ -18,6 +18,7 @@ class Home extends Component {
   
     componentDidMount() {
       localStorage.removeItem("create_id");
+      localStorage.removeItem("action");
       this.mounted = true;
       axios.all([axios.get("http://178.128.83.129:3000/api/home/category"), axios.get("http://178.128.83.129:3000/api/home/post_trending"),
       axios.get("http://178.128.83.129:3000/api/home/post_new")])

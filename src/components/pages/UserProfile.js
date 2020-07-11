@@ -16,7 +16,8 @@ class UserProfile extends Component {
             posts: [],
             top: [],
             nextPage: 2,
-            loading: true
+            loading: true,
+            buttonLoadMore: false
         };
         this.showMore = this.showMore.bind(this);
     }
@@ -34,17 +35,24 @@ class UserProfile extends Component {
     }
 
     showMore(nextPage) {
+        this.setState({
+            buttonLoadMore: true
+        })
         axios.get("http://178.128.83.129:3000/api/users/" + this.props.match.params.id + "/posts?page=" + nextPage)
             .then(res => {
                 const arr = this.state.posts;
                 arr.push(...res.data.allPosts);
                 this.setState({
                     nextPage: this.state.nextPage + 1,
-                    posts: arr
+                    posts: arr,
+                    buttonLoadMore: false
                 })
                 console.log(this.state.posts)
             }).catch(err => {
                 console.log(err)
+                this.setState({
+                    buttonLoadMore: false
+                })
             })
     }
 
@@ -104,6 +112,7 @@ class UserProfile extends Component {
                 <div className="container container-max-custom">
                     <div className="row section-title2">BÀI ĐĂNG</div>
                     <div className="row">
+                        {isEmpty(this.state.posts)&&<div style={{height:'100px', paddingLeft:'15px', paddingTop:'15px'}}>Bạn chưa có bài đăng nào</div>}
                         {!isEmpty(this.state.posts) && this.state.posts.map((x, index) => (
                             <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">
                                 <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>
@@ -114,7 +123,7 @@ class UserProfile extends Component {
                                     </div>
                                 </NavLink>
                                 <div className="section-item-title">{x.title}</div>
-                                <div className="section-author-name">{x.author.name}</div>
+                                <div className="section-author-name">{x.author.fullName}</div>
                                 <div className="section-rating-date"><i className="fa fa-star" />
                                     <i className="fa fa-star" />
                                     <i className="fa fa-star" />
@@ -126,9 +135,10 @@ class UserProfile extends Component {
                         ))}
                     </div>
                     {(this.state.posts.length < this.state.userInfo.posts) &&
-                        <div className="row section-see-more" style={{ marginLeft: '0px', marginRight: '0px' }} onClick={() => this.showMore(this.state.nextPage)} >
-                            XEM THÊM
-            </div>}
+                        <div className="row userp-see-more" style={{ marginLeft: '0px', marginRight: '0px' }} onClick={() => this.showMore(this.state.nextPage)} >
+                            {!this.state.buttonLoadMore && <button type="submit" className="btn btn-more">XEM THÊM</button>}
+                            {this.state.buttonLoadMore && <button type="submit" className="btn btn-more"><i class="fa fa-spinner fa-spin"></i></button>}
+                        </div>}
 
                 </div>
 

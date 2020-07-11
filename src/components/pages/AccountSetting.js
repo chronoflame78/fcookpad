@@ -38,6 +38,7 @@ class AccountSetting extends Component {
             loading: false,
             errors: {},
             buttonLoading: false,
+            buttonLoadMore: false,
             file: '',
             imagePreviewUrl: '',
             tab: 1
@@ -91,6 +92,35 @@ class AccountSetting extends Component {
         this.setState({
             tab: index
         })
+    }
+
+    handleEditClick = (e, postId) => {
+        localStorage.setItem("create_id", postId);
+        localStorage.setItem("action", "update");
+        this.props.history.push("/create");  
+    }
+
+    handleDeleteClick = (e, postId) => {
+        axios
+            .delete("http://178.128.83.129:3000/api/posts/" + postId)
+            .then(res => {
+                toast.success('Delete successfully!', { position: toast.POSITION.TOP_RIGHT });
+                axios.all([axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id),
+                axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id + "/posts?page=1&limit=3")])
+                     .then(axios.spread((...resp) => {
+                         this.setState({
+                            userInfo: resp[0].data.user,
+                            posts: resp[1].data.allPosts                            
+                         })
+                     })).catch(errs =>
+                         console.log(errs)
+                     );
+            })
+            .catch(err => {
+                console.log(err);
+                toast.err(err, { position: toast.POSITION.TOP_RIGHT });
+            }
+            );
     }
 
     handleImageChange(e) {
@@ -159,22 +189,34 @@ class AccountSetting extends Component {
     }
 
     showMore(nextPage) {
-        axios.get("http://178.128.83.129:3000/api/users/" + this.props.match.params.id + "/posts?page=" + nextPage+"&limit=3")
+        this.setState({
+            buttonLoadMore: true
+        })
+        axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id + "/posts?page=" + nextPage+"&limit=3")
             .then(res => {
                 const arr = this.state.posts;
                 arr.push(...res.data.allPosts);
                 this.setState({
                     nextPage: this.state.nextPage + 1,
-                    posts: arr
+                    posts: arr,
+                    buttonLoadMore: false
                 })
                 console.log(this.state.posts)
             }).catch(err => {
-                console.log(err)
+                this.setState({
+                    errors: err,
+                    buttonLoadMore: false
+                })
             })
     }
 
     componentDidMount() {
         this.mounted = true;
+        localStorage.removeItem("action");
+        localStorage.removeItem("create_id");
+        this.setState({
+            loading: true
+        })
         console.log(this.props.auth.user.id)
         axios.all([axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id),
         axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id + "/posts?page=1&limit=3")])
@@ -190,8 +232,24 @@ class AccountSetting extends Component {
                 }
             }))
             .catch(err =>
-                console.log(err)
+                this.setState({
+                    errors: err,
+                    loading: false
+                })
             );
+            if(this.props.location.state){
+                var {editSuccess, postTab} = this.props.location.state;               
+                console.log(editSuccess);
+                if(editSuccess === true){
+                  toast.success('Edit successfully!', {position: toast.POSITION.TOP_RIGHT});
+                  if(postTab){
+                    this.setState({
+                        tab: postTab
+                    })
+                }
+                  this.props.history.replace('/accountsetting', null);
+                }
+              }  
     }
 
     componentWillUnmount() {
@@ -298,24 +356,29 @@ class AccountSetting extends Component {
                             <div className="asetting-title-tab2">
                                 Công thức của tôi
                             </div>
-                            <div className="row">
+                            <div className="row" style={{padding:'0 15px'}}>
+                            {isEmpty(this.state.posts) && <div style={{height:'100px', paddingLeft:'15px', paddingTop:'15px'}}>Bạn chưa có bài đăng nào</div>}
                                 {!isEmpty(this.state.posts) && this.state.posts.map((x, index) => (
                                     <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-4 py-4">
-                                        <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>
+                                        
                                             <div className="asetting-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
-                                                <div className="item-cover" >
-                                                    <span className="section-item-view">{x.views} <i className="fa fa-eye" /></span>
+                                                <div className="item-cover">
+                                                    <span className="asetting-icon-edit" onClick={(e) => this.handleEditClick(e, x._id)}><i className="far fa-edit" /></span>
+                                                    <span className="asetting-icon-line"></span>
+                                                    <span className="asetting-icon-delete" onClick={(e) => this.handleDeleteClick(e, x._id)}><i className="fas fa-trash-alt" /></span>
                                                 </div>
                                             </div>
-                                        </NavLink>
-                                        <div className="asetting-item-title">{x.title}</div> 
-                                        <div className="asetting-status-container"><div className="asetting-label">Trạng thái:</div><div className="asetting-status">{x.status}</div></div>                                        
+                                        
+                                        <div className="asetting-item-title"><NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>{x.title}</NavLink></div> 
+                                        <div className="asetting-status-container"><div className="asetting-label">Trạng thái:</div><div className="asetting-status">{x.status}</div></div>
+                                        <div className="asetting-view-container"><div className="asetting-label">Lượt xem:</div><div className="asetting-view">{x.views}</div></div>                                         
                                     </div>
                                 ))}
                             </div>
                             {(this.state.posts.length < this.state.userInfo.posts) &&
-                                <div className="row section-see-more" style={{ marginLeft: '0px', marginRight: '0px' }} onClick={() => this.showMore(this.state.nextPage)} >
-                                    XEM THÊM
+                                <div className="row asetting-see-more" style={{ marginLeft: '0px', marginRight: '0px' }} onClick={() => this.showMore(this.state.nextPage)} >
+                                    {!this.state.buttonLoadMore && <button type="submit" className="btn btn-more">XEM THÊM</button>}
+                                    {this.state.buttonLoadMore && <button type="submit" className="btn btn-more"><i class="fa fa-spinner fa-spin"></i></button>}
                                 </div>}
                         </div>}
                     </div>

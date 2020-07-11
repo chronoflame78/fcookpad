@@ -82,3 +82,27 @@
     position: relative;
     top:-3px;
 }
+
+.userp-see-more{
+    justify-content: center;
+    font-weight: bold;
+    padding-bottom: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.btn-more{  
+    width: 120px;
+    float: right;
+    background-color: #FF5F6D;
+    font-weight: bold!important;
+    font-size: 12px!important;
+    color: #ffffff;
+    border:1px solid #FF5F6D!important;
+    border-radius: 20px!important;
+}
+
+.btn-more:hover{
+    background-color: #ffffff;
+    color: #FF5F6D;
+}
