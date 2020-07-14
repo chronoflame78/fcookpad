@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { verifyAccount } from "../../actions/authActions";
 import Page404 from '../pages/Page404';
+import { Link } from 'react-router-dom';
 
 const isEmpty = require("is-empty");
 
@@ -21,16 +22,17 @@ class VerifyAccount extends Component {
 
   componentDidMount() {
     // If logged in and user navigates to Login page, should redirect them to dashboard
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/");
-    }
+    // if (this.props.auth.isAuthenticated) {
+    //   this.props.history.push("/");
+    // }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-       this.setState({
-         verify: true
-       })
+      this.setState({
+        verify: true,
+        errors: {}
+      })
     }
     if (nextProps.errors) {
       this.setState({
@@ -43,25 +45,25 @@ class VerifyAccount extends Component {
     console.log(this.props.match.params.token);
     console.log(this.state.errors);
     console.log(this.props);
-    if(!isEmpty(this.state.errors)){
-      return(<div><Page404/></div>);
-      
+    if (!isEmpty(this.state.errors)) {
+      return (<div><Page404 /></div>);
+
     }
-    if(this.state.verify === false){
+    if (this.state.verify === false) {
       const verifyToken = {
         token: this.props.match.params.token
       };
       this.props.verifyAccount(verifyToken);
-      return(<div></div>);
-    }   
+      return (<div></div>);
+    }
     return (
       <div className="parent-content">
         <div className="verify-content-wrapper">
           <div className="form-wrapper">
             <div className="back-container">
-              <a href="/">
+              <Link to="/">
                 <img src="/images/back-arrow.png" alt="Back" width="16.91" height="12.3" />
-              </a>
+              </Link>
             </div>
             <div className="justify-content">
               <div className="main-content">
@@ -74,7 +76,7 @@ class VerifyAccount extends Component {
                 <div className="text-container">
                   <label>You’re officially one of us now. Start sharing your brilliant recipes to others.
                             </label>
-                </div>               
+                </div>
                 <div className="resend-btn-container">
                   <a href="/">
                     <img className="resend-btn" src="/images/go-to-home.png" alt="Go to home" />

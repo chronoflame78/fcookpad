@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import axios from "axios";
 import Footer from '../layout/Footer';
-import SectionTop from '../common/SectionTop';
 import '../../css/AccountSetting.css';
-import Avatar from '../common/Avatar';
 import { NavLink } from "react-router-dom";
 import '../../css/Section.css';
 import Loader from '../common/LoaderVer2';
-import ButtonLoader from '../common/Loader';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import DatePicker from 'react-datepicker';
@@ -168,11 +165,12 @@ class AccountSetting extends Component {
                 toast.success('Save successfully!', { position: toast.POSITION.TOP_RIGHT });
                 axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id)
                     .then(resp => {
+                        localStorage.setItem("userAvatar", resp.data.user.avatar);
                         this.setState({
                             userInfo: resp.data.user,
                             errors: {},
                             buttonLoading: false
-                        })
+                        })                                              
                     }).catch(errs =>
                         console.log(errs)
                     );

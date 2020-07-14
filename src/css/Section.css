@@ -113,14 +113,14 @@
 
 .fa-star{
     color: #FF5B1B;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .section-item-title{
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 5px;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .section-item-title a{
@@ -137,7 +137,6 @@
 }
 
 .section-author-name a{
-    font-size: 18px;
     color: #212529;
 }
 
@@ -152,7 +151,7 @@
 
 
 .section-item-date{
-    font-size: 16px;
+    font-size: 14px;
     float: right;
     padding-right: 10px;
     line-height: 24px;

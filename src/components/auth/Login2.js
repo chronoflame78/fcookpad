@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
+import { Link } from 'react-router-dom';
 import '../../css/Login.css';
 import { toast } from 'react-toastify';
 class Login extends Component {
@@ -24,7 +25,8 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       // this.props.history.push("/dashboard"); // push user to dashboard when they login
-      this.props.history.goBack();      
+      toast.success('Login successfully!', { position: toast.POSITION.TOP_RIGHT });
+      this.props.history.goBack();
     }
     if (nextProps.errors) {
       this.setState({
@@ -50,9 +52,9 @@ class Login extends Component {
         <div className="login-content-wrapper">
           <div className="login-form-wrapper">
             <div className="login-back-container">
-              <a href="/">
+              <Link to="/">
                 <img src="/images/back-arrow.png" alt="Back" width="16.91" height="12.3" />
-              </a>
+              </Link>
             </div>
             <div className="login-logo-container">
               <img src="/images/Logo.png" alt="Back" width={122} height={100} />
@@ -74,31 +76,31 @@ class Login extends Component {
                   error={errors.password}
                   id="password"
                   type="password" placeholder="Password" />
-                <input type="submit" style={{display: 'none'}}/>
+                <input type="submit" style={{ display: 'none' }} />
                 <div className="register-error">{errors && errors.message}</div>
                 <a className="login-forgot-link" href="/">Forgot Username / Password?</a>
-                <div className="login-btn-container">                 
-                    <img onClick={this.onSubmit} className="login-btn" src="/images/log-in.png" alt="Log In" />                 
+                <div className="login-btn-container">
+                  <img onClick={this.onSubmit} className="login-btn" src="/images/log-in.png" alt="Log In" />
                 </div>
               </form>
             </div>
 
             <div className="login-or-div">OR</div>
             <div className="login-gg-cont">
-              <a href="/">
+              <Link to="/">
                 <img className="login-btn" src="/images/log-in-google.png" alt="Log In" />
-              </a>
+              </Link>
             </div>
             <div className="login-fb-cont">
-              <a href="/">
+              <Link to="/">
                 <img className="login-btn" src="/images/log-in-fb.png" alt="Log In" />
-              </a>
+              </Link>
             </div>
             <div className="login-quest-text">Not on MlemMlem yet?</div>
             <div className="login-signup-btn">
-              <a href="/register">
+              <Link to="/register">
                 <img className="login-btn" src="/images/sign-up-button.png" alt="Log In" />
-              </a>
+              </Link>
             </div>
           </div>
           <div className="login-form-image">

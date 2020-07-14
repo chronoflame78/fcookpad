@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
+import { Link } from 'react-router-dom';
 import '../../css/Login.css';
 const isEmpty = require("is-empty");
 class Register extends Component {
@@ -36,46 +37,46 @@ class Register extends Component {
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
-    onAgree(){
+    onAgree() {
         this.setState({
             agree: !this.state.agree
         })
     }
     onSubmit = e => {
         e.preventDefault();
-        if(isEmpty(this.state.email)){
+        if (isEmpty(this.state.email)) {
             this.setState({
-                errors:{
+                errors: {
                     status: 'fail',
                     message: 'Email không được để trống'
                 }
             })
         }
-        else if(isEmpty(this.state.password)){
+        else if (isEmpty(this.state.password)) {
             this.setState({
-                errors:{
+                errors: {
                     status: 'fail',
                     message: 'Password không được để trống'
                 }
             })
         }
-        else if(this.state.password !== this.state.passwordConfirm){
+        else if (this.state.password !== this.state.passwordConfirm) {
             this.setState({
-                errors:{
+                errors: {
                     status: 'fail',
                     message: 'Passwood nhập lại không khớp'
                 }
             })
         }
-        else if(this.state.agree === false){
+        else if (this.state.agree === false) {
             this.setState({
-                errors:{
+                errors: {
                     status: 'fail',
                     message: 'Please read our terms of service and tick the checkbox'
                 }
             });
         }
-        else{
+        else {
             const newUser = {
                 //   name: this.state.name,
                 email: this.state.email,
@@ -85,7 +86,7 @@ class Register extends Component {
             this.props.registerUser(newUser, this.props.history);
         }
 
-        
+
     };
     render() {
         const { errors } = this.state;
@@ -94,9 +95,9 @@ class Register extends Component {
                 <div className="login-content-wrapper">
                     <div className="login-form-wrapper">
                         <div className="login-back-container">
-                            <a href="/">
+                            <Link to="/">
                                 <img src="/images/back-arrow.png" alt="Back" width="16.91" height="12.3" />
-                            </a>
+                            </Link>
                         </div>
                         <div className="login-logo-container">
                             <img src="/images/Logo.png" alt="Back" width={122} height={100} />
@@ -123,8 +124,8 @@ class Register extends Component {
                                     value={this.state.passwordConfirm}
                                     maxLength="30"
                                     id="passwordConfirm"
-                                    type="password" placeholder="Confirm Password" /> 
-                                <input type="submit" style={{display: 'none'}}/>                               
+                                    type="password" placeholder="Confirm Password" />
+                                <input type="submit" style={{ display: 'none' }} />
                                 <div className="register-policy-part">
                                     <input onClick={this.onAgree} type="checkbox" />
                                     <label className="register-pol-text">By continuing, you agree to MlemMlem's
@@ -140,14 +141,14 @@ class Register extends Component {
 
                         <div className="login-or-div">OR</div>
                         <div className="login-gg-cont">
-                            <a href="/">
+                            <Link to="/">
                                 <img className="login-btn" src="/images/log-in-google.png" alt="Log In" />
-                            </a>
+                            </Link>
                         </div>
                         <div className="login-fb-cont">
-                            <a href="/">
+                            <Link to="/">
                                 <img className="login-btn" src="/images/log-in-fb.png" alt="Log In" />
-                            </a>
+                            </Link>
                         </div>
                     </div>
                     <div className="login-form-image">

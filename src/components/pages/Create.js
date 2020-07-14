@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from "axios";
-import Picture from '../common/Picture';
 import '../../css/Create.css';
 import Footer from '../layout/Footer';
 const isEmpty = require("is-empty");

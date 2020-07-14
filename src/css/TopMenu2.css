@@ -170,6 +170,18 @@
     cursor: pointer;
 }
 
+.topmenu-abs-div a{
+    color: black;
+    text-decoration: none;
+    
+}
+
+.topmenu-abs-div a:hover{
+    color: black;
+    text-decoration: none;
+    
+}
+
 .topmenu-link:hover{
     display: block;
     color: black;

@@ -6,7 +6,6 @@ class DemoCarousel extends Component {
 
     render() {
         var images = this.props.items;
-        console.log(images);
         return (
             <Carousel showThumbs={false} autoPlay={true} infiniteLoop={true}>
                 {images && images.map((x, index) => (

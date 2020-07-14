@@ -90,11 +90,11 @@ class UserProfile extends Component {
                         <div className="col-md-4 userp-info-container">
                             <Avatar className="userp-avatar" image={this.state.userInfo.avatar} size={140} tooltip={false} />
                             <div className="userp-name">{this.state.userInfo.fullName}</div>
-                            <div className="userp-smalltext"><i class="fas fa-venus-mars"></i> Giới tính: {this.state.userInfo.gender}</div>
-                            <div className="userp-smalltext"><i class="far fa-calendar-alt"></i> Ngày sinh: {this.getFormattedDate(this.state.userInfo.birthday)}</div>
-                            <div className="userp-num"><div className="userp-left"><img className="userp-icon" width={20} src="/images/post.png" /> &nbsp;Bài viết:</div><div className="userp-right">{this.state.userInfo.posts}</div></div>
-                            <div className="userp-views"><div className="userp-left"><img className="userp-icon" width={20} src="/images/eye.png" /> &nbsp;Lượt xem:</div> <div className="userp-right">{this.state.userInfo.views}</div></div>
-                            <div className="userp-likes"><div className="userp-left"><img className="userp-icon" width={20} src="/images/like.png" /> &nbsp;Lượt thích:</div> <div className="userp-right">{this.state.userInfo.likes}</div></div>
+                            <div className="userp-smalltext"><i className="fas fa-venus-mars"></i> Giới tính: {this.state.userInfo.gender}</div>
+                            <div className="userp-smalltext"><i className="far fa-calendar-alt"></i> Ngày sinh: {this.getFormattedDate(this.state.userInfo.birthday)}</div>
+                            <div className="userp-num"><div className="userp-left"><img className="userp-icon" width={20} src="/images/post.png" alt="" /> &nbsp;Bài viết:</div><div className="userp-right">{this.state.userInfo.posts}</div></div>
+                            <div className="userp-views"><div className="userp-left"><img className="userp-icon" width={20} src="/images/eye.png" alt="" /> &nbsp;Lượt xem:</div> <div className="userp-right">{this.state.userInfo.views}</div></div>
+                            <div className="userp-likes"><div className="userp-left"><img className="userp-icon" width={20} src="/images/like.png" alt="" /> &nbsp;Lượt thích:</div> <div className="userp-right">{this.state.userInfo.likes}</div></div>
                             <div className="userp-smalltext-end">Gia nhập kể từ ngày: {this.getFormattedDate(this.state.userInfo.createAt)}</div>
                         </div>
                         <div className="col-md-8">

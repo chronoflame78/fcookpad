@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import '../../css/Confirm.css';
 import queryString from 'query-string';
 import axios from "axios";
+import {Link} from 'react-router-dom';
 
 class ConfirmEmail extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class ConfirmEmail extends Component {
       .post("http://178.128.83.129:3000/api/auth/resendEmail", data)
       .then(res => this.setState({
         sent: true
-      })) 
+      }))
       .catch(err =>
         console.log(err)
       );
@@ -34,15 +35,15 @@ class ConfirmEmail extends Component {
         <div className="resend-btn-container">
           <button className="resend-btn" onClick={this.resendEmail}>Resend mail</button>
         </div>;
-    } else {     
+    } else {
       button =
         <div>
-        <div className="resend-btn-container">
-          <button className="resend-btn-inactive" disabled>Email sent</button>       
+          <div className="resend-btn-container">
+            <button className="resend-btn-inactive" disabled>Email sent</button>
+          </div>
+          {/* <span className="confirm-alert">Email sent! Please wait <span><Countdown timer={20}/></span>  seconds before try again</span> */}
         </div>
-        {/* <span className="confirm-alert">Email sent! Please wait <span><Countdown timer={20}/></span>  seconds before try again</span> */}
-        </div>
-        
+
     }
 
     return (
@@ -50,9 +51,9 @@ class ConfirmEmail extends Component {
         <div className="content-wrapper">
           <div className="form-wrapper">
             <div className="back-container">
-              <a href="/">
+              <Link to="/">
                 <img src="/images/back-arrow.png" alt="Back" width="16.91" height="12.3" />
-              </a>
+              </Link>
             </div>
             <div className="justify-content">
               <div className="main-content">
@@ -74,7 +75,7 @@ class ConfirmEmail extends Component {
                     Click button below to resend other mail.
                             </label>
                 </div>
-              {button}
+                {button}
 
               </div>
             </div>

@@ -32,6 +32,7 @@ export const loginUser = (userData, history) => dispatch => {
       setAuthToken(token);
       // Decode token to get user data
       const decoded = jwt_decode(token);
+      localStorage.setItem("userAvatar", decoded.user_avatar);
       // Set current user
       dispatch(setCurrentUser(decoded));
     })
@@ -66,6 +67,7 @@ export const verifyAccount = verifyToken => dispatch => {
       setAuthToken(token);
       // Decode token to get user data
       const decoded = jwt_decode(token);
+      localStorage.setItem("userAvatar", decoded.user_avatar);     
       // Set current user
       dispatch(setCurrentUser(decoded));
     })
@@ -76,6 +78,7 @@ export const verifyAccount = verifyToken => dispatch => {
       })
     );
 };
+
 
 // Set logged in user
 export const setCurrentUser = decoded => {

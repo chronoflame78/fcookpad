@@ -6,12 +6,15 @@ import { logoutUser } from "../../actions/authActions";
 import isEmpty from "is-empty";
 import Avatar from "../common/Avatar";
 import {Link} from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 class TopMenu extends React.Component {
 
     constructor(props) {
         super(props);
-
+        this.state={
+            pathName: window.location.pathname
+        }
         this.wrapperRef = React.createRef();
         this.avatarRef = React.createRef();
         this.handleClickOutside = this.handleClickOutside.bind(this);
@@ -44,16 +47,12 @@ class TopMenu extends React.Component {
         this.setState({
             isOpen: false
         })
-        window.location.href = "/";
+        toast.success('Logout successfully!', { position: toast.POSITION.TOP_RIGHT });
+        // window.location.href = "/";
     };
     toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
     render() {
-        if (window.location.pathname === '/login' ||
-            window.location.pathname === '/register' ||
-            window.location.pathname === '/confirm' ||
-            window.location.pathname.indexOf('/verify') !== -1) {
-            return (<div></div>);
-        }
+        const user_avatar = localStorage.getItem("userAvatar");
         const { user } = this.props.auth;
         let fixedDiv, avatar;
         if (isEmpty(user)) {
@@ -61,30 +60,23 @@ class TopMenu extends React.Component {
 
             if (this.state.isOpen) {
                 fixedDiv = <div ref={this.wrapperRef} className="topmenu-abs-div">
-                    <div><a className="topmenu-link" href="/login">Login</a></div>
-                    <div><a className="topmenu-link" href="/register">Register</a></div>
+                    <Link to="/login"><div className="topmenu-link">Login</div></Link>
+                    <Link to="/register"><div className="topmenu-link">Register</div></Link>
                 </div>
             } else {
-                fixedDiv = <div ref={this.wrapperRef} className="topmenu-abs-div">
-                    <div><a className="topmenu-hidden-link" href="/login">Login</a></div>
-                    <div><a className="topmenu-hidden-link" href="/register">Register</a></div>
-                </div>
+                fixedDiv = <div ref={this.wrapperRef} className="topmenu-abs-div"></div>
             }
         } else {
-            avatar = <Avatar className="topmenu-margin-auto" signature="nav_avatar" image={user.user_avatar} size={50} tooltip={false} />
+            avatar = <Avatar className="topmenu-margin-auto" signature="nav_avatar" image={user_avatar} size={50} tooltip={false} />
 
             if (this.state.isOpen) {
                 fixedDiv = <div ref={this.wrapperRef} className="topmenu-abs-div">
-                    <div><a className="topmenu-link" onClick={this.onLogoutClick}>Logout</a></div>
-                    <div><a className="topmenu-link" href={"/userprofile/"+this.props.auth.user.id}>User Profile</a></div>
-                    <div><a className="topmenu-link" href="/accountsetting">Account Setting</a></div>                
+                    <div className="topmenu-link" onClick={this.onLogoutClick}>Logout</div>        
+                    <Link to={"/userprofile/"+this.props.auth.user.id}><div className="topmenu-link">User Profile</div> </Link> 
+                    <Link to="/accountsetting"><div className="topmenu-link">Account Setting</div></Link>           
                 </div>
             } else {
-                fixedDiv = <div ref={this.wrapperRef} className="topmenu-abs-div">
-                    <div><a className="topmenu-hidden-link" onClick={this.onLogoutClick}>Logout</a></div>
-                    <div><a className="topmenu-hidden-link" href={"/userprofile/"+this.props.auth.user.id}>User Profile</a></div>
-                    <div><a className="topmenu-hidden-link" href="/accountsetting">Account Setting</a></div>
-                </div>
+                fixedDiv = <div ref={this.wrapperRef} className="topmenu-abs-div"></div>
             }
         }
         return (

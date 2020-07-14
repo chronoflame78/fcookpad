@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Container, Row, Col} from "reactstrap";
-import {NavLink} from 'react-router-dom';
+import { Container, Row, Col } from "reactstrap";
+import { NavLink, Link } from 'react-router-dom';
 import Step from '../common/Step';
 import Avatar from '../common/Avatar';
 import '../../css/Post.css';
@@ -18,29 +18,25 @@ const isEmpty = require("is-empty");
 class Post extends Component {
 
   constructor(props) {
-    console.log("post constructor");
     super(props);
     this.state = {
       post: {},
-      loading: true
+      loading: true,
+      comment: ''
     };
 
   }
 
   componentDidMount() {
-    console.log("post did mount");
     this.mounted = true;
     axios.get("http://178.128.83.129:3000/api/posts/" + this.props.match.params.id).then(res => {
       if (this.mounted) {
-        console.log(res.data);
-        console.log(res.data.post);
         this.setState({
           post: res.data.post,
           loading: false
         });
       }
     }).catch(error => {
-      console.log(error);
       this.setState({
         loading: false
       });
@@ -50,14 +46,39 @@ class Post extends Component {
 
   componentWillUnmount() {
     this.mounted = false;
-    console.log("post will mount");
+  }
+
+  onChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const data = {
+      content: this.state.comment
+    }
+    this.setState({
+      comment:''
+    })
+    axios.post("http://178.128.83.129:3000/api/posts/"+ this.props.match.params.id +"/comment", data)
+      .then(res => {
+        axios.get("http://178.128.83.129:3000/api/posts/" + this.props.match.params.id).then(resp => {
+          if (this.mounted) {
+            this.setState({
+              post: resp.data.post
+            });
+          }
+        }).catch(error => {
+          console.log(error);
+        });
+      }).catch(err => {
+        console.log(err);
+      })
   }
 
   render() {
-    console.log("post render");
     if (this.state.loading) return <Loader />;
     var post = this.state.post;
-    console.log(post);
     var images = [];
     if (this.state.post.images) {
       images = this.state.post.images;
@@ -75,10 +96,10 @@ class Post extends Component {
       steps = this.state.post.steps;
     };
     if (Object.keys(post).length === 0 && post.constructor === Object) {
-      return (<Page404/>);
+      return (<Page404 />);
     }
     const { user } = this.props.auth;
-    console.log(user);
+    const user_avatar = localStorage.getItem('userAvatar');
     return (
       <div className="post-container">
         <Container>
@@ -86,8 +107,8 @@ class Post extends Component {
             <Col sm="9"><h1 className="post-title">{post.title}</h1></Col>
             <Col sm="3">
               <div className="post-avatar">
-                <NavLink to={"/userprofile/"+ post.author._id}>
-                <Avatar className="post-avatar-cover" signature="author" image={post.author.avatar} size={64} name={post.author.fullName} tooltip={true} />
+                <NavLink to={"/userprofile/" + post.author._id}>
+                  <Avatar className="post-avatar-cover" signature="author" image={post.author.avatar} size={64} name={post.author.fullName} tooltip={true} />
                 </NavLink>
               </div>
               <div className="post-author-name">{post.author.name}</div>
@@ -99,8 +120,8 @@ class Post extends Component {
               <div className="post-info">
                 <div className="d-flex flex-column flex-md-row align-items-center">
                   <div className="post-carousel-box">
-                  <CustomCarousel items={items} />
-                  </div>                  
+                    <CustomCarousel items={items} />
+                  </div>
                   <div className="post-ingredients">
                     {post.ingredients && post.ingredients.map((x, index) => (
                       <p key={index}><i className="fa fa-arrow-right" /> {x}</p>
@@ -122,14 +143,14 @@ class Post extends Component {
             <Col>
               <div className="post-line"></div>
               {post.video !== 'chua co video' &&
-              <div className="post-youtube-video">
-              <iframe title="video" width="100%" height="400px"
-                src={post.video}
-                frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen></iframe>
-            </div>
+                <div className="post-youtube-video">
+                  <iframe title="video" width="100%" height="400px"
+                    src={post.video}
+                    frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen></iframe>
+                </div>
               }
-              
+
             </Col>
           </Row>
           <Row>
@@ -149,12 +170,17 @@ class Post extends Component {
                   </div>
 
                 ))}
-                {isEmpty(user) && <a href="/login"><div className="post-add-comment">Đăng nhập để bình luận</div></a>}
+                {isEmpty(user) && <Link to="/login"><div className="post-add-comment">Đăng nhập để bình luận</div></Link>}
                 {!isEmpty(user) &&
                   <div className="post-comment-item-login d-flex align-items-center">
-                    <Avatar signature="main-user" image={user.user_avatar} size={64} name={user.user_name} tooltip={true} />
+                    <Avatar signature="main-user" image={user_avatar} size={64} name={user.user_name} tooltip={true} />
                     <div className="post-add-comment-login">
-                      <input placeholder="Viết bình luận.." className="post-input-comment" type="text" name="name" />
+                      <form className="post-form-comment" onSubmit={(e) => this.handleSubmit(e)}>
+                        <div className="post-input-container">
+                          <input onChange={this.onChange} id="comment" value={this.state.comment} autoComplete="off" maxLength="100" placeholder="Viết bình luận.." className="post-input-comment" type="text" />
+                        </div>
+                        <div className="post-comment-icon" onClick={(e) => this.handleSubmit(e)}><i class="fas fa-paper-plane"></i></div>
+                      </form>
                     </div>
                   </div>
                 }
@@ -163,7 +189,7 @@ class Post extends Component {
             </Col>
           </Row>
         </Container>
-        <Footer/>
+        <Footer />
       </div>
     );
   }

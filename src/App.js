@@ -42,7 +42,7 @@ if (localStorage.jwtToken) {
   const decoded = jwt_decode(token);
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
-// Check for expired token
+  // Check for expired token
   const currentTime = Date.now() / 1000; // to get in milliseconds
   if (decoded.exp < currentTime) {
     // Logout user
@@ -52,34 +52,44 @@ if (localStorage.jwtToken) {
   }
 }
 
+const DefaultContainer = () => (
+  <div>
+    <TopMenu />
+    <Switch>
+    <Route path="/" exact component={Home} />
+    <Route path="/posts/:id" component={Post} />
+    <Route path="/userprofile/:id" component={UserProfile} />
+    <PrivateRoute path="/create" component={Create} />
+    <PrivateRoute path="/step2" component={CreateStep2} />
+    <PrivateRoute path="/step3" component={CreateStep3} />
+    <PrivateRoute exact path="/dashboard" component={Dashboard} />
+    <PrivateRoute path="/accountsetting" component={AccountSetting} /> 
+    <Route path="*" component={Page404} />
+    </Switch>
+  </div>
+)
+
 toast.configure()
 function App() {
   return (
     <Provider store={store}>
-     <Router>
-      <div className="App">
-        <TopMenu />
-        <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/login" exact component={Login} />      
-        <Route path="/register" exact component={Register} />    
-        <Route path="/posts/:id" component={Post}/>
-        <Route path="/confirm" component={ConfirmEmail} />        
-        <Route path="/register/verify/:token" exact component={VerifyAccount} /> 
-        <Route path="/userprofile/:id" component={UserProfile} /> 
-        <PrivateRoute path="/create" component={Create} /> 
-        <PrivateRoute path="/step2" component={CreateStep2} /> 
-        <PrivateRoute path="/step3" component={CreateStep3} />
-        <PrivateRoute exact path="/dashboard" component={Dashboard} />
-        <PrivateRoute path="/accountsetting" component={AccountSetting} /> 
-        <Route path="*"><Page404/></Route>
-        </Switch>
-        
-      </div>
-    </Router>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route path="/login" exact component={Login} />
+            <Route path="/register" exact component={Register} />
+            <Route path="/confirm" component={ConfirmEmail} />
+            <Route path="/register/verify/:token" exact component={VerifyAccount} />      
+            <Route component={DefaultContainer} />           
+          </Switch>
+
+        </div>
+      </Router>
     </Provider>
   );
 }
+
+
 
 export default App;
 const rootElement = document.getElementById("root");
