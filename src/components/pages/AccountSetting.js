@@ -245,7 +245,7 @@ class AccountSetting extends Component {
                         tab: postTab
                     })
                 }
-                  this.props.history.replace('/accountsetting', null);
+                  this.props.history.replace('/account_settings', null);
                 }
               }  
     }

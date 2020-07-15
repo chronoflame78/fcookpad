@@ -85,7 +85,12 @@
 }
 
 .post-comment-txt{
-    padding-left: 22px;
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+.post-comment-container{
+    padding-left: 20px;
 }
 
 .post-comment-item{
@@ -93,10 +98,11 @@
 }
 
 .post-comment-content{
-    padding: 20px;
+    padding: 10px;
     margin-left: 20px;
     background-color: #ffffff;
     border-radius: 10px;
+    font-size: 14px;
 }
 
 .post-add-comment{

@@ -1,16 +1,50 @@
 import React, { Component } from "react";
-import '../../css/Section.css';
+import Section from '../common/Section';
+import Footer from "../layout/Footer";
+import Loader from '../common/LoaderVer2';
+import axios from "axios";
+import queryString from 'query-string';
+import '../../css/SearchResult.css';
 import { NavLink } from "react-router-dom";
 
-class Section extends Component {
+class SearchResult extends Component {
+
     constructor(props) {
-        super(props);
-        this.state = {
-            posts: [],
-            itemsToShow: 4,
-            loading: true
-        }
-        this.showMore = this.showMore.bind(this);
+      super(props);
+      this.state = {
+        posts: [],
+        loading: true
+      };     
+    }
+  
+    componentDidMount() {
+      localStorage.removeItem("create_id");
+      localStorage.removeItem("action");
+      let params = queryString.parse(this.props.location.search);
+      let data = {
+        key: params.key,
+        category: params.category
+      }
+      this.mounted = true;
+      axios.get("http://178.128.83.129:3000/api/home/post_new")
+            .then(res => {
+                if (this.mounted) {
+                    this.setState({
+                        posts: res.data.posts,
+                        loading: false
+                    });
+                }
+            }).catch(error => {
+                console.log(error)
+                this.setState({
+                    loading: false
+                })
+            });
+     
+    }
+
+    componentWillUnmount() {
+      this.mounted = false;
     }
 
     getFormattedDate(date) {
@@ -26,26 +60,19 @@ class Section extends Component {
     }
 
     showMore() {
-        this.state.itemsToShow === 4 ? (
-            this.setState({ itemsToShow: 8 })
-        ) : (
-                this.setState({ itemsToShow: 4 })
-            )
+        
     }
-
+    
     render() {
-        var topFourPosts = [];
-        if (this.props.posts.length < 4) {
-            topFourPosts = this.props.posts;
-        }
-        else {
-            topFourPosts = this.props.posts.slice(0, this.state.itemsToShow);
-        }
-        return (
-            <div className="container container-max-custom">
-                <div className="row section-title">{this.props.sectionName}</div>
+      let params = queryString.parse(this.props.location.search);
+      if(this.state.loading === true) return(<Loader/>)
+      return(
+      <div className="search-container">
+        <div className="container container-max-custom">
+                {params.category && <div className="row section-title">CATEGORY NAME</div>}
+                {params.key && <div className="row section-title">kết quả cho</div>}
                 <div className="row">
-                    {topFourPosts && topFourPosts.map((x, index) => (
+                    {this.state.posts && this.state.posts.map((x, index) => (
                         <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">
                             <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>
                                 <div className="section-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
@@ -71,9 +98,9 @@ class Section extends Component {
                     {this.state.itemsToShow !== 4 && <button className="btn btn-more">THU GỌN</button>}
                 </div>
             </div>
-
-        );
+        <Footer/>
+      </div>);
     }
-}
+  }
 
-export default Section;
+export default SearchResult;

@@ -13,6 +13,7 @@ import CreateStep2 from "./components/pages/CreateStep2";
 import CreateStep3 from "./components/pages/CreateStep3";
 import UserProfile from "./components/pages/UserProfile";
 import AccountSetting from "./components/pages/AccountSetting";
+import SearchResult from "./components/pages/SearchResult";
 import TopMenu from "./components/layout/TopMenu2";
 import Page404 from './components/pages/Page404';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -58,12 +59,13 @@ const DefaultContainer = () => (
     <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/posts/:id" component={Post} />
-    <Route path="/userprofile/:id" component={UserProfile} />
+    <Route path="/user_profile/:id" component={UserProfile} />
     <PrivateRoute path="/create" component={Create} />
     <PrivateRoute path="/step2" component={CreateStep2} />
     <PrivateRoute path="/step3" component={CreateStep3} />
     <PrivateRoute exact path="/dashboard" component={Dashboard} />
-    <PrivateRoute path="/accountsetting" component={AccountSetting} /> 
+    <PrivateRoute path="/account_settings" component={AccountSetting} /> 
+    <PrivateRoute path="/search" component={SearchResult} /> 
     <Route path="*" component={Page404} />
     </Switch>
   </div>

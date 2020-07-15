@@ -72,8 +72,8 @@ class TopMenu extends React.Component {
             if (this.state.isOpen) {
                 fixedDiv = <div ref={this.wrapperRef} className="topmenu-abs-div">
                     <div className="topmenu-link" onClick={this.onLogoutClick}>Logout</div>        
-                    <Link to={"/userprofile/"+this.props.auth.user.id}><div className="topmenu-link">User Profile</div> </Link> 
-                    <Link to="/accountsetting"><div className="topmenu-link">Account Setting</div></Link>           
+                    <Link to={"/user_profile/"+this.props.auth.user.id}><div className="topmenu-link">User Profile</div> </Link> 
+                    <Link to="/account_settings"><div className="topmenu-link">Account Setting</div></Link>           
                 </div>
             } else {
                 fixedDiv = <div ref={this.wrapperRef} className="topmenu-abs-div"></div>
@@ -81,6 +81,7 @@ class TopMenu extends React.Component {
         }
         return (
             <nav className="head-navbar">
+                <div className="container topmenu-container">
                 <div className="topmenu-logo-container">
                     <Link to="/">
                         <img width={64} height={50} src="/images/Logo.png" alt="" />
@@ -108,6 +109,8 @@ class TopMenu extends React.Component {
                     {avatar}
                     {fixedDiv}
                 </div>
+                </div>
+                
 
 
             </nav>

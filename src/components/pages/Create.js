@@ -178,7 +178,7 @@ class Create extends Component {
             style={{width:'100%', height:'400px', backgroundImage: "url("+imagePreviewUrl+")"}}></div>             
              </div>);
         } else {
-            $imagePreview = (<div className="previewText" onClick={() => console.log(this.inputImage.current.click())}>
+            $imagePreview = (<div className="previewText" onClick={() => this.inputImage.current.click()}>
                 <img className="create-step1-image" alt="" src="/images/photo_icon.png" />
                 <div className="create-txt-field1">Hôm nay có món gì vậy bếp trưởng?</div>
                 <div className="create-txt-field2">Hãy chia sẻ hình ảnh để mọi người chiêm ngưỡng</div>

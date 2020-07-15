@@ -1,6 +1,5 @@
 .head-navbar {
-    display: flex;
-    align-items: center;
+    
     padding: 6px 0;
     background: -webkit-linear-gradient(left,#ff5f6d, #fcb69f);
     position: fixed;
@@ -35,7 +34,7 @@
 
 .topmenu-logo-container {
     flex-grow: 1;
-    text-align: center;
+    text-align: left;
 }
 
 .topmenu-add-container{
@@ -45,6 +44,13 @@
 
 .topmenu-avatar{
     flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.topmenu-container{
+    display: flex;
+    align-items: center;
 }
 
 .nav-add-without-txt {
@@ -137,7 +143,7 @@
 }
 
 .topmenu-margin-auto{
-    margin: 0 auto;
+    /* margin: 0 auto; */
 }
 
 .topmenu-hidden-link{

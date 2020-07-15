@@ -22,7 +22,8 @@ class Post extends Component {
     this.state = {
       post: {},
       loading: true,
-      comment: ''
+      comment: '',
+      isOpen: false
     };
 
   }
@@ -52,15 +53,19 @@ class Post extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
 
+  openComment = e =>{
+    this.setState({isOpen: true})
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const data = {
       content: this.state.comment
     }
     this.setState({
-      comment:''
+      comment: ''
     })
-    axios.post("http://178.128.83.129:3000/api/posts/"+ this.props.match.params.id +"/comment", data)
+    axios.post("http://178.128.83.129:3000/api/posts/" + this.props.match.params.id + "/comment", data)
       .then(res => {
         axios.get("http://178.128.83.129:3000/api/posts/" + this.props.match.params.id).then(resp => {
           if (this.mounted) {
@@ -88,9 +93,23 @@ class Post extends Component {
       items = images.map(x => ({ src: x }));
     }
     var comments = [];
+    var topComments = [];
     if (this.state.post.comments) {
       comments = this.state.post.comments;
+      if(comments.length > 3){
+        topComments = this.state.post.comments.slice(-3, this.state.post.comments.length);
+      }else{
+        topComments = comments;
+      }
+      
     };
+
+    if(this.state.post.comments && this.state.isOpen === true){
+        topComments = comments;
+    }
+
+    console.log(topComments);
+    
     var steps = [];
     if (this.state.post.steps) {
       steps = this.state.post.steps;
@@ -107,7 +126,7 @@ class Post extends Component {
             <Col sm="9"><h1 className="post-title">{post.title}</h1></Col>
             <Col sm="3">
               <div className="post-avatar">
-                <NavLink to={"/userprofile/" + post.author._id}>
+                <NavLink to={"/user_profile/" + post.author._id}>
                   <Avatar className="post-avatar-cover" signature="author" image={post.author.avatar} size={64} name={post.author.fullName} tooltip={true} />
                 </NavLink>
               </div>
@@ -156,20 +175,22 @@ class Post extends Component {
           <Row>
             <Col>
               <div className="post-comment-div">
-                <div className="post-des-title-2">Bình luận</div>
-                <div className="post-comment-txt">Xem tất cả bình luận</div>
+                <div className="post-des-title-2">Bình luận</div>              
+                <div className="post-comment-container">
+                {comments.length > 3 && !this.state.isOpen && <div className="post-comment-txt" onClick={() => this.openComment()}>Xem tất cả bình luận</div>}
+                {comments.length === 0 && <div className="post-comment-txt">Chưa có bình luận nào</div>}
+                  {topComments && topComments.map((x, index) => (
+                    <div key={index} className="post-comment-item d-flex align-items-center">
+                      <Avatar signature={index} image={x.user.avatar} name={x.user.fullName} size={40} tooltip={true} />
+                      <div className="post-comment-content">
+                        <div className="post-user-name-comment">{x.user_name}</div>
+                        <div>{x.content}</div>
 
-                {comments && comments.map((x, index) => (
-                  <div key={index} className="post-comment-item d-flex align-items-center">
-                    <Avatar signature={index} image={x.user.avatar} name={x.user.name} size={64} tooltip={true} />
-                    <div className="post-comment-content">
-                      <div className="post-user-name-comment">{x.user_name}</div>
-                      <div>{x.content}</div>
-
+                      </div>
                     </div>
-                  </div>
 
-                ))}
+                  ))}
+                </div>
                 {isEmpty(user) && <Link to="/login"><div className="post-add-comment">Đăng nhập để bình luận</div></Link>}
                 {!isEmpty(user) &&
                   <div className="post-comment-item-login d-flex align-items-center">
@@ -179,7 +200,7 @@ class Post extends Component {
                         <div className="post-input-container">
                           <input onChange={this.onChange} id="comment" value={this.state.comment} autoComplete="off" maxLength="100" placeholder="Viết bình luận.." className="post-input-comment" type="text" />
                         </div>
-                        <div className="post-comment-icon" onClick={(e) => this.handleSubmit(e)}><i class="fas fa-paper-plane"></i></div>
+                        <div className="post-comment-icon" onClick={(e) => this.handleSubmit(e)}><i className="fas fa-paper-plane"></i></div>
                       </form>
                     </div>
                   </div>

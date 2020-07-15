@@ -239,7 +239,7 @@ class CreateStep3 extends Component {
              .then(res => {
                 if(action === 'update'){
                     this.props.history.push({
-                        pathname: '/accountsetting',
+                        pathname: '/account_settings',
                         state: { 
                             editSuccess: true,
                             postTab: 2
