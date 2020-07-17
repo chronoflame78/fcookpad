@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Footer from "../layout/Footer";
 import Page404 from '../pages/Page404';
+import Emoji from "react-emoji-render";
 
 const isEmpty = require("is-empty");
 
@@ -23,7 +24,9 @@ class Post extends Component {
       post: {},
       loading: true,
       comment: '',
-      isOpen: false
+      isOpen: false,
+      buttonLoading: false,
+      comments: []
     };
 
   }
@@ -34,7 +37,8 @@ class Post extends Component {
       if (this.mounted) {
         this.setState({
           post: res.data.post,
-          loading: false
+          loading: false,
+          comments: res.data.post.comments
         });
       }
     }).catch(error => {
@@ -63,19 +67,15 @@ class Post extends Component {
       content: this.state.comment
     }
     this.setState({
-      comment: ''
+      comment: '',
+      buttonLoading: true
     })
     axios.post("http://178.128.83.129:3000/api/posts/" + this.props.match.params.id + "/comment", data)
       .then(res => {
-        axios.get("http://178.128.83.129:3000/api/posts/" + this.props.match.params.id).then(resp => {
-          if (this.mounted) {
-            this.setState({
-              post: resp.data.post
-            });
-          }
-        }).catch(error => {
-          console.log(error);
-        });
+        this.setState({
+          comments: res.data.comments,
+          buttonLoading: false
+        })
       }).catch(err => {
         console.log(err);
       })
@@ -94,21 +94,19 @@ class Post extends Component {
     }
     var comments = [];
     var topComments = [];
-    if (this.state.post.comments) {
-      comments = this.state.post.comments;
+    if (this.state.comments) {
+      comments = this.state.comments;
       if(comments.length > 3){
-        topComments = this.state.post.comments.slice(-3, this.state.post.comments.length);
+        topComments = this.state.comments.slice(-3, this.state.comments.length);
       }else{
         topComments = comments;
       }
       
     };
 
-    if(this.state.post.comments && this.state.isOpen === true){
+    if(this.state.comments && this.state.isOpen === true){
         topComments = comments;
     }
-
-    console.log(topComments);
     
     var steps = [];
     if (this.state.post.steps) {
@@ -184,12 +182,14 @@ class Post extends Component {
                       <Avatar signature={index} image={x.user.avatar} name={x.user.fullName} size={40} tooltip={true} />
                       <div className="post-comment-content">
                         <div className="post-user-name-comment">{x.user_name}</div>
-                        <div>{x.content}</div>
+                        <div><Emoji text={x.content}/></div>
 
                       </div>
+                      
                     </div>
 
                   ))}
+                  {this.state.buttonLoading && <div className="post-loading-icon"><i class="fa fa-spinner fa-spin"></i></div>}
                 </div>
                 {isEmpty(user) && <Link to="/login"><div className="post-add-comment">Đăng nhập để bình luận</div></Link>}
                 {!isEmpty(user) &&

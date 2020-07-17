@@ -78,9 +78,9 @@ class VerifyAccount extends Component {
                             </label>
                 </div>
                 <div className="resend-btn-container">
-                  <a href="/">
-                    <img className="resend-btn" src="/images/go-to-home.png" alt="Go to home" />
-                  </a>
+                  <Link to="/">
+                    <button className="resend-btn">Go to home</button>
+                  </Link>
                 </div>
               </div>
             </div>

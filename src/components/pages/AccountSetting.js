@@ -255,6 +255,7 @@ class AccountSetting extends Component {
     }
 
     render() {
+        console.log(this.state.userInfoUpdate)
         if (this.state.loading) return <Loader />;
         var tab1 = 'asetting-tab-active';
         var tab2 = 'asetting-tab';

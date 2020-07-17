@@ -182,3 +182,8 @@ textarea:focus, input:focus{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
+
+.post-loading-icon{
+    text-align: center;
+    color: #ff5f6d;
+}
