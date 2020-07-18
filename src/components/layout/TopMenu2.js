@@ -8,7 +8,7 @@ import Avatar from "../common/Avatar";
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from "axios";
-
+import { withRouter } from "react-router";
 class TopMenu extends React.Component {
 
     constructor(props) {
@@ -19,7 +19,8 @@ class TopMenu extends React.Component {
             isMenuOpen: false,
             categories: [],
             categoryId: '',
-            categoryName: ''
+            categoryName: '',
+            searchText: ''
         }
         this.wrapperRef = React.createRef();
         this.avatarRef = React.createRef();
@@ -65,6 +66,38 @@ class TopMenu extends React.Component {
             categoryName: name,
             isMenuOpen: false
         })
+    }
+
+    onAllClick = e => {
+        this.setState({
+            categoryId: '',
+            categoryName: 'Tất cả',
+            isMenuOpen: false
+        })
+    }
+
+    onChange = e => {
+        e.preventDefault();
+        this.setState({ [e.target.id]: e.target.value });
+    };
+
+
+    handleSubmit = e =>{
+        e.preventDefault();
+        let link = "/search";
+        if(this.state.categoryId){
+            link = link.concat("?categoryid=" + this.state.categoryId)
+        } 
+        if(this.state.searchText){
+            if(this.state.categoryId){
+                link = link.concat("&content=" + this.state.searchText)
+            }
+            else{
+                link = link.concat("?content=" + this.state.searchText)
+            }
+            
+        }
+        this.props.history.push(link, {categoryName: this.state.categoryName});
     }
 
     onLogoutClick = e => {
@@ -115,10 +148,12 @@ class TopMenu extends React.Component {
         }
         if (this.state.isMenuOpen) {
             categoryDiv = <div ref={this.categoryRef} className="topmenu-category-abs container">
-                <div class="arrow-up"></div>
+                <div className="arrow-up"></div>
                 <div className="row">
-                    {
-                        this.state.categories.map((x, index) => (
+                        <div onClick={(e) => this.onAllClick(e)} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 top-cate-item">
+                            Tất cả
+                        </div>
+                        { this.state.categories.map((x, index) => (
                             <div key={index} onClick={(e) => this.onCategoryClick(e, x._id, x.title)} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 top-cate-item">
                                 {x.title}
                             </div>
@@ -139,14 +174,14 @@ class TopMenu extends React.Component {
                         </Link>
                     </div>
                     <div className="form-search-container">
-                        <form className="form-inline">
+                        <form className="form-inline" onSubmit={(e) => this.handleSubmit(e)}>
                             <div className="input-group topmenu-category-dropdown">
                                 <div className="input-group-prepend" onClick={() => this.toggleMenuOpen()}>
                                     {!this.state.isMenuOpen && <span className="input-group-category">{dropdownText}&nbsp;<i className="fas fa-chevron-down"></i></span>}
                                     {this.state.isMenuOpen && <span className="input-group-category">{dropdownText}&nbsp;<i className="fas fa-chevron-up"></i></span>}
                                 </div>
-                                <input className="form-control topmenu-placeholder" type="text" placeholder="Tìm kiếm" />
-                                <div className="input-group-prepend">
+                                <input autoComplete="off" className="form-control topmenu-placeholder" type="text" placeholder="Tìm kiếm"  onChange={this.onChange} id="searchText" value={this.state.searchText} />
+                                <div className="input-group-prepend" onClick={(e) => this.handleSubmit(e)}>
                                     <span className="input-group-text"><i className="fa fa-search" /></span>
                                 </div>
                             </div>
@@ -181,7 +216,7 @@ TopMenu.propTypes = {
 const mapStateToProps = state => ({
     auth: state.auth
 });
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
-    { logoutUser }
-)(TopMenu);
+    { logoutUser },    
+)(TopMenu));

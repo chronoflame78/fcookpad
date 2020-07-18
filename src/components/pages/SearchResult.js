@@ -10,28 +10,46 @@ import { NavLink } from "react-router-dom";
 class SearchResult extends Component {
 
     constructor(props) {
-      super(props);
-      this.state = {
-        posts: [],
-        loading: true
-      };     
+        super(props);
+        this.state = {
+            posts: [],
+            loading: true,
+            nextPage: 3,
+            buttonLoadMore: false,
+            totalRecord: 0,
+            categoryName: ''
+        };
     }
-  
+
     componentDidMount() {
-      localStorage.removeItem("create_id");
-      localStorage.removeItem("action");
-      let params = queryString.parse(this.props.location.search);
-      let data = {
-        key: params.key,
-        category: params.category
-      }
-      this.mounted = true;
-      axios.get("http://178.128.83.129:3000/api/home/post_new")
+        localStorage.removeItem("create_id");
+        localStorage.removeItem("action");
+        let cateName = '';
+        if(this.props.location.state.categoryName){
+            cateName = this.props.location.state.categoryName;
+        }
+        let params = queryString.parse(this.props.location.search);
+        let data = {
+            content: params.content,
+            categoryid: params.categoryid
+        }
+        let apiLink = "http://178.128.83.129:3000/api/search?page=1&limit=8";
+        if(data.content){
+            apiLink = apiLink.concat("&content="+data.content);
+        }
+        if(data.categoryid){
+            apiLink = apiLink.concat("&categoryid="+data.categoryid);
+        }
+        this.mounted = true;
+        axios.get(apiLink)
             .then(res => {
+                console.log(res);
                 if (this.mounted) {
                     this.setState({
                         posts: res.data.posts,
-                        loading: false
+                        loading: false,
+                        totalRecord: res.data.total,
+                        categoryName: cateName
                     });
                 }
             }).catch(error => {
@@ -40,11 +58,49 @@ class SearchResult extends Component {
                     loading: false
                 })
             });
-     
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if(prevProps !== this.props){
+            let params = queryString.parse(this.props.location.search);
+        let data = {
+            content: params.content,
+            categoryid: params.categoryid
+        }
+        let cateName = '';
+        if(this.props.location.state.categoryName){
+            cateName = this.props.location.state.categoryName;
+        }
+        let apiLink = "http://178.128.83.129:3000/api/search?page=1&limit=8";
+        if(data.content){
+            apiLink = apiLink.concat("&content="+data.content);
+        }
+        if(data.categoryid){
+            apiLink = apiLink.concat("&categoryid="+data.categoryid);
+        }
+        this.mounted = true;
+        axios.get(apiLink)
+            .then(res => {
+                if (this.mounted) {
+                    this.setState({
+                        posts: res.data.posts,
+                        loading: false,
+                        totalRecord: res.total,
+                        categoryName: cateName
+                    });
+                }
+            }).catch(error => {
+                console.log(error)
+                this.setState({
+                    loading: false
+                })
+            });
+        }
+        
     }
 
     componentWillUnmount() {
-      this.mounted = false;
+        this.mounted = false;
     }
 
     getFormattedDate(date) {
@@ -59,48 +115,80 @@ class SearchResult extends Component {
         return today.getDate() + "/" + month + "/" + today.getFullYear();
     }
 
-    showMore() {
-        
+    showMore(nextPage) {
+        this.setState({
+            buttonLoadMore: true
+        })
+        let params = queryString.parse(this.props.location.search);
+        let data = {
+            content: params.content,
+            categoryid: params.categoryid
+        }
+        let apiLink = "http://178.128.83.129:3000/api/search?page="+nextPage+"&limit=4";
+        if(data.content){
+            apiLink = apiLink.concat("&content="+data.content);
+        }
+        if(data.categoryid){
+            apiLink = apiLink.concat("&categoryid="+data.categoryid);
+        }
+        axios.get(apiLink)
+            .then(res => {
+                const arr = this.state.posts;
+                arr.push(...res.data.posts);
+                this.setState({
+                    nextPage: this.state.nextPage + 1,
+                    posts: arr,
+                    buttonLoadMore: false
+                })          
+            }).catch(err => {
+                this.setState({
+                    errors: err,
+                    buttonLoadMore: false
+                })
+            })
     }
-    
-    render() {
-      let params = queryString.parse(this.props.location.search);
-      if(this.state.loading === true) return(<Loader/>)
-      return(
-      <div className="search-container">
-        <div className="container container-max-custom">
-                {params.category && <div className="row section-title">CATEGORY NAME</div>}
-                {params.key && <div className="row section-title">kết quả cho</div>}
-                <div className="row">
-                    {this.state.posts && this.state.posts.map((x, index) => (
-                        <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">
-                            <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>
-                                <div className="section-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
-                                    <div className="item-cover" >
-                                        <span className="section-item-view">{x.views} <i className="fa fa-eye" /></span>
+
+    render() {   
+        console.log(this.props)
+        let params = queryString.parse(this.props.location.search);
+        if (this.state.loading === true) return (<Loader />)
+        return (
+            <div className="search-container">
+                <div className="container container-max-custom">
+                    {this.state.categoryName && <div className="row section-title">{this.state.categoryName}</div>}
+                    {params.content && <div className="row section-title">kết quả cho {params.content}</div>}
+                    <div className="row">
+                        {this.state.posts && this.state.posts.map((x, index) => (
+                            <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">
+                                <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>
+                                    <div className="section-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
+                                        <div className="item-cover" >
+                                            <span className="section-item-view">{x.views} <i className="fa fa-eye" /></span>
+                                        </div>
                                     </div>
+                                </NavLink>
+                                <div className="section-item-title"><NavLink to={"/posts/" + x._id}>{x.title}</NavLink></div>
+                                <div className="section-author-name"><NavLink to={"/user_profile/" + x.author._id}>{x.author.fullName}</NavLink></div>
+                                <div className="section-rating-date"><i className="fa fa-star" />
+                                    <i className="fa fa-star" />
+                                    <i className="fa fa-star" />
+                                    <i className="fa fa-star" />
+                                    <i className="fa fa-star" />
+                                    <span className="section-item-date" style={{ paddingTop: '2px' }}> {this.getFormattedDate(x.datetime)}</span>
                                 </div>
-                            </NavLink>
-                            <div className="section-item-title"><NavLink to={"/posts/" + x._id}>{x.title}</NavLink></div>
-                            <div className="section-author-name"><NavLink to={"/user_profile/"+x.author._id}>{x.author.fullName}</NavLink></div>
-                            <div className="section-rating-date"><i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                                <span className="section-item-date" style={{paddingTop: '2px'}}> {this.getFormattedDate(x.datetime)}</span>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                        {/* {this.state.posts.length === 0 && <div>Không tìm thấy kết quả</div>} */}
+                    </div>
+                    {(this.state.posts.length < this.state.totalRecord) &&
+                    <div className="row section-see-more" style={{ marginLeft: '0px', marginRight: '0px' }} onClick={() => this.showMore(this.state.nextPage)}>
+                        {!this.state.buttonLoadMore && <button type="submit" className="btn btn-more">XEM THÊM</button>}
+                        {this.state.buttonLoadMore && <button type="submit" className="btn btn-more"><i class="fa fa-spinner fa-spin"></i></button>}
+                    </div>}
                 </div>
-                <div className="row section-see-more" style={{ marginLeft: '0px', marginRight: '0px' }} onClick={this.showMore} >
-                    {this.state.itemsToShow === 4 && <button className="btn btn-more">XEM THÊM</button>}
-                    {this.state.itemsToShow !== 4 && <button className="btn btn-more">THU GỌN</button>}
-                </div>
-            </div>
-        <Footer/>
-      </div>);
+                <Footer />
+            </div>);
     }
-  }
+}
 
 export default SearchResult;
