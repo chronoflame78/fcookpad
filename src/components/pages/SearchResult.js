@@ -62,6 +62,9 @@ class SearchResult extends Component {
 
     componentDidUpdate(prevProps, prevState){
         if(prevProps !== this.props){
+            this.setState({
+                loading: true
+            })
             let params = queryString.parse(this.props.location.search);
         let data = {
             content: params.content,
@@ -85,7 +88,7 @@ class SearchResult extends Component {
                     this.setState({
                         posts: res.data.posts,
                         loading: false,
-                        totalRecord: res.total,
+                        totalRecord: res.data.total,
                         categoryName: cateName
                     });
                 }
@@ -149,15 +152,15 @@ class SearchResult extends Component {
     }
 
     render() {   
-        console.log(this.props)
+        console.log(this.state.totalRecord)
         let params = queryString.parse(this.props.location.search);
         if (this.state.loading === true) return (<Loader />)
         return (
             <div className="search-container">
-                <div className="container container-max-custom">
-                    {this.state.categoryName && <div className="row section-title">{this.state.categoryName}</div>}
-                    {params.content && <div className="row section-title">kết quả cho {params.content}</div>}
-                    <div className="row">
+                <div className="container search-container-child">
+                    {this.state.categoryName && <div className="row search-section-title">{this.state.categoryName.toUpperCase()}</div>}
+                    {params.content && <div className="row search-section-result">{this.state.totalRecord} kết quả cho &nbsp;<span className="search-pink-text">{params.content}</span></div>}
+                    <div className="row search-row">
                         {this.state.posts && this.state.posts.map((x, index) => (
                             <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">
                                 <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>

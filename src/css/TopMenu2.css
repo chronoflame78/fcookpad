@@ -205,12 +205,12 @@
     position: absolute;
     padding-top: 5px;
     padding-bottom: 5px;
-    top: 62px;
+    top: 55px;
     background-color: #ffffff;
     border: 1px solid #ff5f6d;
     z-index: 9999;
     max-width: 600px!important;
-    left: 20%;
+    left: 320px;
     border-radius: 10px;
 }
 
