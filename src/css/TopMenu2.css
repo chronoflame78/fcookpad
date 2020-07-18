@@ -187,7 +187,8 @@
 }
 
 .top-cate-item{
-    padding: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     color: #ff5f6d;
     cursor: pointer;
 }
@@ -202,7 +203,8 @@
 
 .topmenu-category-abs{
     position: absolute;
-    padding: 5px 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
     top: 62px;
     background-color: #ffffff;
     border: 1px solid #ff5f6d;
