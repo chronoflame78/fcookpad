@@ -67,7 +67,7 @@ const DefaultContainer = () => (
     <PrivateRoute path="/step3" component={CreateStep3} />
     <PrivateRoute exact path="/dashboard" component={Dashboard} />
     <PrivateRoute path="/account_settings" component={AccountSetting} /> 
-    <PrivateRoute path="/search" component={SearchResult} /> 
+    <Route path="/search" component={SearchResult} /> 
     <Route path="*" component={Page404} />
     </Switch>
   </div>
