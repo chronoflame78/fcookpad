@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Slider from "react-slick";
 import '../../css/Category.css';
-
+import { Link } from 'react-router-dom';
 
 class Category extends Component {
     constructor(props) {
@@ -62,11 +62,13 @@ class Category extends Component {
                             <Slider {...this.settings}>
                                 {this.props.suggestions.map(current => (
                                     <div className="out" key={current._id}>
+                                        <Link to={"/search?categoryid="+current._id}>
                                         <div className="category-cover" style={{ backgroundImage: "url(" + current.image + ")" }}>
                                             <div className="overlay">
                                                 {current.title.toUpperCase()}
                                             </div>
                                         </div>
+                                        </Link>
                                     </div>
                                 ))}
 

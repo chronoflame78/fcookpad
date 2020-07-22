@@ -30,7 +30,7 @@
 }
 
 .login-content-wrapper {
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 30px;
     box-shadow: 0 0 15px rgba(50, 50, 50, 0.7);
     height: auto;
     width: 55%;
@@ -60,6 +60,8 @@
 .login-back-container {
     width: 16.91px;
     height:12.3px;
+    margin-top: 5px;
+    margin-left: 5px;
 }
 
 .login-logo-container {
@@ -73,37 +75,42 @@
 .login-form-container form input[type=email]{
     width: 65%;
     margin: 5px;
-    border-radius: 3px;
+    border-radius: 5px;
     border: solid #ff5b1b 1px;
     height: 2.5rem;
     min-height: 1.5rem;
     padding-left: 8px;
+    
 }
 
 .login-form-container form input[type=email]:focus {
-    border: solid #ff5b1b 2px;
+    border: solid #FF5F6D 1.5px;
     outline: none;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.25);
 }
 
 .login-form-container form input[type=password]{
     width: 65%;
     margin: 5px;
-    border-radius: 3px;
-    border: solid #ff5b1b 1px;
+    border-radius: 5px;
+    border: solid #FF5F6D 1px;
     height: 2.5rem;
     min-height: 1.5rem;
     padding-left: 8px;
+    
 }
 
 .login-form-container form input[type=password]:focus {
-    border: solid #ff5b1b 2px;
+    border: solid #FF5F6D 2px;
     outline: none;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.25);
 }
 
-.login-forgot-link {
+.login-forgot-link a {
     font-size: 10px;
-    color: #ff5b1b;
-    position: relative;
+    color: #FF5F6D;
+    display: block;
+    margin-top: 5px;
 }
 
 .login-h4 {
@@ -157,6 +164,10 @@
 .login-quest-text {
     font-size: 12px;
     color: #ff5b1b;
+    margin-top: 10px;
+}
+
+.login-wel-title{
     margin-top: 10px;
 }
 
@@ -222,6 +233,7 @@
 .register-error{
     width: 65%;
     margin: 0 auto;
+    font-size: 12px;
 }
 
 .register-pol-text {

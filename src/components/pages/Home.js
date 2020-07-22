@@ -5,6 +5,7 @@ import Footer from "../layout/Footer";
 import { toast } from 'react-toastify';
 import Loader from '../common/LoaderVer2';
 import axios from "axios";
+
 // import PropTypes from "prop-types";
 // import { connect } from "react-redux";
 class Home extends Component {

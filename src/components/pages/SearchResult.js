@@ -25,7 +25,7 @@ class SearchResult extends Component {
         localStorage.removeItem("create_id");
         localStorage.removeItem("action");
         let cateName = '';
-        if(this.props.location.state.categoryName){
+        if(this.props.location.state){
             cateName = this.props.location.state.categoryName;
         }
         let params = queryString.parse(this.props.location.search);
@@ -71,7 +71,7 @@ class SearchResult extends Component {
             categoryid: params.categoryid
         }
         let cateName = '';
-        if(this.props.location.state.categoryName){
+        if(this.props.location.state){
             cateName = this.props.location.state.categoryName;
         }
         let apiLink = "http://178.128.83.129:3000/api/search?page=1&limit=8";

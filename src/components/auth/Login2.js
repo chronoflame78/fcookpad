@@ -5,6 +5,7 @@ import { loginUser } from "../../actions/authActions";
 import { Link } from 'react-router-dom';
 import '../../css/Login.css';
 import { toast } from 'react-toastify';
+const isEmpty = require("is-empty");
 class Login extends Component {
   constructor() {
     super();
@@ -57,7 +58,7 @@ class Login extends Component {
               </Link>
             </div>
             <div className="login-logo-container">
-              <img src="/images/Logo.png" alt="Back" width={122} height={100} />
+              <img src="/images/NewLogo.png" alt="Back" width={122} height={100} />
             </div>
             <div className="login-wel-title">
               <h4 className="login-h4">Welcome back, chief!</h4>
@@ -77,8 +78,8 @@ class Login extends Component {
                   id="password"
                   type="password" placeholder="Password" />
                 <input type="submit" style={{ display: 'none' }} />
-                <div className="register-error">{errors && errors.message}</div>
-                <a className="login-forgot-link" href="/">Forgot Username / Password?</a>
+                {!isEmpty(errors) && <div className="register-error alert alert-danger">{errors.message}</div>}
+                <div className="login-forgot-link"><Link to="/forgot_password">Forgot Username / Password?</Link></div>
                 <div className="login-btn-container">
                   <img onClick={this.onSubmit} className="login-btn" src="/images/log-in.png" alt="Log In" />
                 </div>

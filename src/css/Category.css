@@ -71,3 +71,7 @@
     background:  rgba(0,0,0,0.5);
     cursor: pointer;
 }
+
+.out:hover a{
+    text-decoration: none;
+}

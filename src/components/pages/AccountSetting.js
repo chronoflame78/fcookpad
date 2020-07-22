@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from 'react-toastify';
+import swal from 'sweetalert';
 const isEmpty = require("is-empty");
 class AccountSetting extends Component {
     constructor(props) {
@@ -38,7 +39,10 @@ class AccountSetting extends Component {
             buttonLoadMore: false,
             file: '',
             imagePreviewUrl: '',
-            tab: 1
+            tab: 1,
+            currentPassword:'',
+            newPassword:'',
+            confirmPassword: ''
         };
         this.showMore = this.showMore.bind(this);
     }
@@ -94,30 +98,51 @@ class AccountSetting extends Component {
     handleEditClick = (e, postId) => {
         localStorage.setItem("create_id", postId);
         localStorage.setItem("action", "update");
-        this.props.history.push("/create");  
+        this.props.history.push("/create");
     }
 
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+      };
+
     handleDeleteClick = (e, postId) => {
-        axios
-            .delete("http://178.128.83.129:3000/api/posts/" + postId)
-            .then(res => {
-                toast.success('Delete successfully!', { position: toast.POSITION.TOP_RIGHT });
-                axios.all([axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id),
-                axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id + "/posts?page=1&limit=3")])
-                     .then(axios.spread((...resp) => {
-                         this.setState({
-                            userInfo: resp[0].data.user,
-                            posts: resp[1].data.allPosts                            
-                         })
-                     })).catch(errs =>
-                         console.log(errs)
-                     );
-            })
-            .catch(err => {
-                console.log(err);
-                toast.err(err, { position: toast.POSITION.TOP_RIGHT });
-            }
-            );
+        swal({
+            title: "Do you really want to delete post?",
+            text: "Once deleted, you will not be able to recover this post!",
+            icon: "warning",
+            buttons: ["Cancel", "Delete"],
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    axios
+                        .delete("http://178.128.83.129:3000/api/posts/" + postId)
+                        .then(res => {
+                            toast.success('Delete successfully!', { position: toast.POSITION.TOP_RIGHT });
+                            axios.all([axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id),
+                            axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id + "/posts?page=1&limit=3")])
+                                .then(axios.spread((...resp) => {
+                                    this.setState({
+                                        userInfo: resp[0].data.user,
+                                        posts: resp[1].data.allPosts
+                                    })
+                                })).catch(errs =>
+                                    console.log(errs)
+                                );
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            toast.err(err, { position: toast.POSITION.TOP_RIGHT });
+                        }
+                        );
+                    // swal("Poof! Your post has been deleted!", {
+                    //     icon: "success",
+                    // });
+                } else {
+                    // swal("Your imaginary file is safe!");
+                }
+            });
+
     }
 
     handleImageChange(e) {
@@ -170,7 +195,7 @@ class AccountSetting extends Component {
                             userInfo: resp.data.user,
                             errors: {},
                             buttonLoading: false
-                        })                                              
+                        })
                     }).catch(errs =>
                         console.log(errs)
                     );
@@ -186,11 +211,39 @@ class AccountSetting extends Component {
             );
     }
 
+    changePassword = e =>{
+        e.preventDefault();
+        this.setState({
+            buttonLoading: true
+        })
+        let data = {
+            passwordCurrent: this.state.currentPassword,
+            password: this.state.newPassword,
+            passwordConfirm: this.state.confirmPassword
+        }
+        axios
+            .post("http://178.128.83.129:3000/api/users/update_password", data)
+            .then(res => {
+                toast.success('Thay đổi mật khẩu thành công!', { position: toast.POSITION.TOP_RIGHT });
+                this.setState({
+                    errors: {},
+                    buttonLoading: false
+                })
+            })
+            .catch(err => {
+                this.setState({
+                    errors: err.response.data,
+                    buttonLoading: false
+                })
+            }
+            );
+    }
+
     showMore(nextPage) {
         this.setState({
             buttonLoadMore: true
         })
-        axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id + "/posts?page=" + nextPage+"&limit=3")
+        axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id + "/posts?page=" + nextPage + "&limit=3")
             .then(res => {
                 const arr = this.state.posts;
                 arr.push(...res.data.allPosts);
@@ -235,19 +288,19 @@ class AccountSetting extends Component {
                     loading: false
                 })
             );
-            if(this.props.location.state){
-                var {editSuccess, postTab} = this.props.location.state;               
-                console.log(editSuccess);
-                if(editSuccess === true){
-                  toast.success('Edit successfully!', {position: toast.POSITION.TOP_RIGHT});
-                  if(postTab){
+        if (this.props.location.state) {
+            var { editSuccess, postTab } = this.props.location.state;
+            console.log(editSuccess);
+            if (editSuccess === true) {
+                toast.success('Edit successfully!', { position: toast.POSITION.TOP_RIGHT });
+                if (postTab) {
                     this.setState({
                         tab: postTab
                     })
                 }
-                  this.props.history.replace('/account_settings', null);
-                }
-              }  
+                this.props.history.replace('/account_settings', null);
+            }
+        }
     }
 
     componentWillUnmount() {
@@ -259,13 +312,21 @@ class AccountSetting extends Component {
         if (this.state.loading) return <Loader />;
         var tab1 = 'asetting-tab-active';
         var tab2 = 'asetting-tab';
-        if(this.state.tab === 1){
+        var tab3 = 'asetting-tab';
+        if (this.state.tab === 1) {
             tab1 = 'asetting-tab-active';
             tab2 = 'asetting-tab';
+            tab3 = 'asetting-tab';
         }
-        else if(this.state.tab === 2){
+        else if (this.state.tab === 2) {
             tab1 = 'asetting-tab';
             tab2 = 'asetting-tab-active';
+            tab3 = 'asetting-tab';
+        }
+        else if (this.state.tab === 3) {
+            tab1 = 'asetting-tab';
+            tab2 = 'asetting-tab';
+            tab3 = 'asetting-tab-active';
         }
         return (
             <div className="asetting-container">
@@ -288,6 +349,7 @@ class AccountSetting extends Component {
                             <div className="asetting-line"></div>
                             <div className={tab1} onClick={(e, index) => this.changeTab(e, 1)}>Thông tin tài khoản</div>
                             <div className={tab2} onClick={(e, index) => this.changeTab(e, 2)}>Công thức của tôi</div>
+                            <div className={tab3} onClick={(e, index) => this.changeTab(e, 3)}>Thay đổi mật khẩu</div>
                             {/* <div className="asetting-tab">Danh mục yêu thích</div>
                             <div className="asetting-tab">Công thức yêu thích</div>
                             <div className="asetting-tab">Công thức gần đây</div>
@@ -355,22 +417,22 @@ class AccountSetting extends Component {
                             <div className="asetting-title-tab2">
                                 Công thức của tôi
                             </div>
-                            <div className="row" style={{padding:'0 15px'}}>
-                            {isEmpty(this.state.posts) && <div style={{height:'100px', paddingLeft:'15px', paddingTop:'15px'}}>Bạn chưa có bài đăng nào</div>}
+                            <div className="row" style={{ padding: '0 15px' }}>
+                                {isEmpty(this.state.posts) && <div style={{ height: '100px', paddingLeft: '15px', paddingTop: '15px' }}>Bạn chưa có bài đăng nào</div>}
                                 {!isEmpty(this.state.posts) && this.state.posts.map((x, index) => (
                                     <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-4 py-4">
-                                        
-                                            <div className="asetting-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
-                                                <div className="item-cover">
-                                                    <span className="asetting-icon-edit" onClick={(e) => this.handleEditClick(e, x._id)}><i className="far fa-edit" /></span>
-                                                    <span className="asetting-icon-line"></span>
-                                                    <span className="asetting-icon-delete" onClick={(e) => this.handleDeleteClick(e, x._id)}><i className="fas fa-trash-alt" /></span>
-                                                </div>
+
+                                        <div className="asetting-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
+                                            <div className="item-cover">
+                                                <span className="asetting-icon-edit" onClick={(e) => this.handleEditClick(e, x._id)}><i className="far fa-edit" /></span>
+                                                <span className="asetting-icon-line"></span>
+                                                <span className="asetting-icon-delete" onClick={(e) => this.handleDeleteClick(e, x._id)}><i className="fas fa-trash-alt" /></span>
                                             </div>
-                                        
-                                        <div className="asetting-item-title"><NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>{x.title}</NavLink></div> 
+                                        </div>
+
+                                        <div className="asetting-item-title"><NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>{x.title}</NavLink></div>
                                         <div className="asetting-status-container"><div className="asetting-label">Trạng thái:</div><div className="asetting-status">{x.status}</div></div>
-                                        <div className="asetting-view-container"><div className="asetting-label">Lượt xem:</div><div className="asetting-view">{x.views}</div></div>                                         
+                                        <div className="asetting-view-container"><div className="asetting-label">Lượt xem:</div><div className="asetting-view">{x.views}</div></div>
                                     </div>
                                 ))}
                             </div>
@@ -379,6 +441,30 @@ class AccountSetting extends Component {
                                     {!this.state.buttonLoadMore && <button type="submit" className="btn btn-more">XEM THÊM</button>}
                                     {this.state.buttonLoadMore && <button type="submit" className="btn btn-more"><i class="fa fa-spinner fa-spin"></i></button>}
                                 </div>}
+                        </div>}
+                        {this.state.tab === 3 && <div className="col-md-8 asetting-form-container">
+                            <div className="asetting-title">
+                                Thay đổi mật khẩu
+                            </div>
+                            <form className="asetting-form" onSubmit={(e) => this.changePassword(e)}>
+                                <div className="form-group asetting-form-group">
+                                    <input autoComplete="off" maxLength="100" onChange={this.onChange} id="currentPassword" value={this.state.currentPassword} type="password" className="form-control asetting-input-email" placeholder=" " />
+                                    <label className="asetting-label-email" htmlFor="currentPassword">Mật khẩu hiện tại</label>
+                                </div>
+                                <div className="form-group asetting-form-group">
+                                    <input autoComplete="off" maxLength="100" onChange={this.onChange}  id="newPassword" value={this.state.newPassword} type="password" className="form-control asetting-input-email" placeholder=" " />
+                                    <label className="asetting-label-email" htmlFor="newPassword">Mật khẩu mới</label>
+                                </div>
+                                <div className="form-group asetting-form-group">
+                                    <input autoComplete="off" maxLength="100" onChange={this.onChange}  id="confirmPassword" value={this.state.confirmPassword} type="password" className="form-control asetting-input-email" placeholder=" " />
+                                    <label className="asetting-label-email" htmlFor="confirmPassword">Xác nhận mật khẩu mới</label>
+                                </div>
+                                {!isEmpty(this.state.errors) && <div className="alert alert-danger">{this.state.errors.message}</div>}
+                                <div className="asetting-button-container">
+                                    {!this.state.buttonLoading && <button type="submit" className="btn btn-pink" onClick={(e) => this.changePassword(e)}>Lưu</button>}
+                                    {this.state.buttonLoading && <button type="submit" className="btn btn-pink"><i class="fa fa-spinner fa-spin"></i></button>}
+                                </div>
+                            </form>
                         </div>}
                     </div>
 

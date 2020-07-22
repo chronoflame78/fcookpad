@@ -187,6 +187,7 @@ class TopMenu extends React.Component {
                             </div>
 
                         </form>
+                        {categoryDiv}
                     </div>
                     <div className="topmenu-add-container">
                         <Link className="nav-button-container" to="/create">
@@ -198,7 +199,7 @@ class TopMenu extends React.Component {
                         {avatar}
                         {fixedDiv}
                     </div>
-                    {categoryDiv}
+                    
                 </div>
 
 

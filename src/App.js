@@ -22,6 +22,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Login from "./components/auth/Login2";
 import Register from "./components/auth/Register2";
 import ConfirmEmail from "./components/auth/ConfirmEmail";
+import ForgotPassword from "./components/auth/ForgotPassword";
 import { Provider } from "react-redux";
 import store from "./store";
 import PrivateRoute from "./components/private-route/PrivateRoute";
@@ -33,6 +34,7 @@ import VerifyAccount from './components/auth/VerifyAccount';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ResetPassword from './components/auth/ResetPassword';
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -81,7 +83,9 @@ function App() {
             <Route path="/login" exact component={Login} />
             <Route path="/register" exact component={Register} />
             <Route path="/confirm" component={ConfirmEmail} />
-            <Route path="/register/verify/:token" exact component={VerifyAccount} />      
+            <Route path="/register/verify/:token" exact component={VerifyAccount} />
+            <Route path="/forgot_password" component={ForgotPassword} />   
+            <Route path="/reset_password/:token" component={ResetPassword} />    
             <Route component={DefaultContainer} />           
           </Switch>
 
