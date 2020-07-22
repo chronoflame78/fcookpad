@@ -24,10 +24,6 @@ class SearchResult extends Component {
     componentDidMount() {
         localStorage.removeItem("create_id");
         localStorage.removeItem("action");
-        let cateName = '';
-        if(this.props.location.state){
-            cateName = this.props.location.state.categoryName;
-        }
         let params = queryString.parse(this.props.location.search);
         let data = {
             content: params.content,
@@ -49,7 +45,7 @@ class SearchResult extends Component {
                         posts: res.data.posts,
                         loading: false,
                         totalRecord: res.data.total,
-                        categoryName: cateName
+                        categoryName: res.data.category
                     });
                 }
             }).catch(error => {
@@ -70,10 +66,6 @@ class SearchResult extends Component {
             content: params.content,
             categoryid: params.categoryid
         }
-        let cateName = '';
-        if(this.props.location.state){
-            cateName = this.props.location.state.categoryName;
-        }
         let apiLink = "http://178.128.83.129:3000/api/search?page=1&limit=8";
         if(data.content){
             apiLink = apiLink.concat("&content="+data.content);
@@ -89,7 +81,7 @@ class SearchResult extends Component {
                         posts: res.data.posts,
                         loading: false,
                         totalRecord: res.data.total,
-                        categoryName: cateName
+                        categoryName: res.data.category
                     });
                 }
             }).catch(error => {

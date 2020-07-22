@@ -97,7 +97,7 @@ class TopMenu extends React.Component {
             }
             
         }
-        this.props.history.push(link, {categoryName: this.state.categoryName});
+        this.props.history.push(link);
     }
 
     onLogoutClick = e => {

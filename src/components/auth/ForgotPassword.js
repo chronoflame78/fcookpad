@@ -32,7 +32,7 @@ class ForgotPassword extends Component {
                     buttonLoading: false,
                     errors: {}
                 })
-                swal("Email sent!", "Một email đã được gửi đến hòm thư của bạn!", "success");
+                swal("Email đã gửi!", "Một email đã được gửi đến hòm thư của bạn!", "success");
             })
             .catch(err =>{
                 this.setState({
@@ -61,14 +61,14 @@ class ForgotPassword extends Component {
             }else{
                 button =
                 <div className="resend-btn-container">
-                    <button className="resend-btn" onClick={this.sendEmail}>Send email</button>
+                    <button className="resend-btn" onClick={this.sendEmail}>Gửi email</button>
                 </div>;
             }     
         } else {
             button =
                 <div>
                     <div className="resend-btn-container">
-                        <button className="resend-btn-inactive" disabled>Email sent</button>
+                        <button className="resend-btn-inactive" disabled>Đã gửi</button>
                     </div>
                     {/* <span className="confirm-alert">Email sent! Please wait <span><Countdown timer={20}/></span>  seconds before try again</span> */}
                 </div>
