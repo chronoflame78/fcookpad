@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import '../../css/Section.css';
-import { NavLink } from "react-router-dom";
-
+import { NavLink, Link } from "react-router-dom";
+import axios from "axios";
 class Section extends Component {
     constructor(props) {
         super(props);
@@ -33,34 +33,43 @@ class Section extends Component {
             )
     }
 
+    likePost = (e,id) =>{
+        e.preventDefault();
+        axios.post(`http://178.128.83.129:3000/api/posts/${id}/like`)
+        .then(res => {
+            console.log(res.data)
+        }).catch(err =>{
+            console.log(err)
+        })
+    }
+
     render() {
-        var topFourPosts = [];
+        let posts = [];
         if (this.props.posts.length < 4) {
-            topFourPosts = this.props.posts;
+            posts = this.props.posts;
         }
         else {
-            topFourPosts = this.props.posts.slice(0, this.state.itemsToShow);
+            posts = this.props.posts.slice(0, this.state.itemsToShow);
         }
         return (
             <div className="container container-max-custom">
-                <div className="row section-title">{this.props.sectionName}</div>
+                <div className="row section-title"><Link to={"/view_all/" + this.props.sectionName}>{this.props.sectionName.toUpperCase()}</Link></div>
                 <div className="row">
-                    {topFourPosts && topFourPosts.map((x, index) => (
+                    {posts && posts.map((x, index) => (
                         <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">
                             <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>
                                 <div className="section-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
+                                    {/* <div className="section-image-holder"></div> */}
                                     <div className="item-cover" >
-                                        <span className="section-item-view">{x.views} <i className="fa fa-eye" /></span>
+                                        {!x.isLiked && <span className="section-item-view">{x.likes.length} <i className="far fa-heart" onClick={(e) => this.likePost(e, x._id)} /></span>}
+                                        {x.isLiked && <span className="section-item-view">{x.likes.length} <i className="fas fa-heart" onClick={(e) => this.likePost(e, x._id)} /></span>}
                                     </div>
                                 </div>
                             </NavLink>
                             <div className="section-item-title"><NavLink to={"/posts/" + x._id}>{x.title}</NavLink></div>
                             <div className="section-author-name"><NavLink to={"/user_profile/"+x.author._id}>{x.author.fullName}</NavLink></div>
-                            <div className="section-rating-date"><i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
-                                <i className="fa fa-star" />
+                            <div className="section-rating-date">
+                                <i className="far fa-eye" /> {x.views} 
                                 <span className="section-item-date" style={{paddingTop: '2px'}}> {this.getFormattedDate(x.datetime)}</span>
                             </div>
                         </div>

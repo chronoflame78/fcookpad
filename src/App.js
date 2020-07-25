@@ -14,6 +14,7 @@ import CreateStep3 from "./components/pages/CreateStep3";
 import UserProfile from "./components/pages/UserProfile";
 import AccountSetting from "./components/pages/AccountSetting";
 import SearchResult from "./components/pages/SearchResult";
+import ViewAll from "./components/pages/ViewAll";
 import TopMenu from "./components/layout/TopMenu2";
 import Page404 from './components/pages/Page404';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -67,7 +68,8 @@ const DefaultContainer = () => (
     <PrivateRoute path="/step3" component={CreateStep3} />
     <PrivateRoute exact path="/dashboard" component={Dashboard} />
     <PrivateRoute path="/account_settings" component={AccountSetting} /> 
-    <Route path="/search" component={SearchResult} /> 
+    <Route path="/search" component={SearchResult} />
+    <Route path="/view_all/:name" component={ViewAll} />  
     <Route path="*" component={Page404} />
     </Switch>
   </div>

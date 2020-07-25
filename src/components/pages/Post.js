@@ -128,7 +128,7 @@ class Post extends Component {
                   <Avatar className="post-avatar-cover" signature="author" image={post.author.avatar} size={64} name={post.author.fullName} tooltip={true} />
                 </NavLink>
               </div>
-              <div className="post-author-name">{post.author.name}</div>
+              <div className="post-author-name">{post.author.fullName}</div>
             </Col>
           </Row>
           <Row>
