@@ -94,16 +94,20 @@ class Home extends Component {
         let post = res.data.post;
         let newArr = this.state.post_trending;
         let newArr2 = this.state.post_new;
-        for(let x of newArr){
-          if(x._id === id){
-            Object.assign(x, post);
-          }
-        }
-        for(let y of newArr2){
-          if(y._id === id){
-            Object.assign(y, post);
-          }
-        }
+        let x = newArr.findIndex(a => a._id === id);
+        if(x !== -1) newArr[x] = post;
+        let y = newArr2.findIndex(b => b._id === id);
+        if(y !== -1) newArr2[y] = post;
+        // for(let x of newArr){
+        //   if(x._id === id){
+        //     Object.assign(x, post);
+        //   }
+        // }
+        // for(let y of newArr2){
+        //   if(y._id === id){
+        //     Object.assign(y, post);
+        //   }
+        // }
         this.setState({
           post_trending: newArr,
           post_new: newArr2
