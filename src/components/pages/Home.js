@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import Loader from '../common/LoaderVer2';
 import axios from "axios";
 import { NavLink, Link } from "react-router-dom";
+import swal from 'sweetalert';
 // import PropTypes from "prop-types";
 // import { connect } from "react-redux";
 class Home extends Component {
@@ -109,6 +110,9 @@ class Home extends Component {
         })
       }).catch(err => {
         console.log(err)
+        if(err.response.status === 401){
+          swal("Please login to like the post!");
+        }
       })
   }
 
