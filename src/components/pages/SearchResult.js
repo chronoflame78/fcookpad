@@ -163,7 +163,6 @@ class SearchResult extends Component {
     }
 
     render() {
-        console.log(this.state.totalRecord)
         let params = queryString.parse(this.props.location.search);
         if (this.state.loading === true) return (<Loader />)
         return (

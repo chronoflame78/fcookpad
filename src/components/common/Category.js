@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Slider from "react-slick";
 import '../../css/Category.css';
 import { Link } from 'react-router-dom';
-
+var dragging;
 class Category extends Component {
     constructor(props) {
         super(props);
@@ -15,10 +15,13 @@ class Category extends Component {
 
     settings = {
         infinite: false,
-        speed: 1000,
+        speed: 500,
         arrows: true,
         slidesToShow: 6,
-        slidesToScroll: 1,
+        slidesToScroll: 2,
+        swipeToSlide: true,
+        beforeChange: () => dragging = true,
+        afterChange: () => dragging = false,
 
         responsive: [
             {
@@ -62,7 +65,7 @@ class Category extends Component {
                             <Slider {...this.settings}>
                                 {this.props.suggestions.map(current => (
                                     <div className="out" key={current._id}>
-                                        <Link to={"/search?categoryid="+current._id}>
+                                        <Link to={"/search?categoryid="+current._id} onClick={(e)=> dragging && e.preventDefault()}>
                                         <div className="category-cover" style={{ backgroundImage: "url(" + current.image + ")" }}>
                                             <div className="overlay">
                                                 {current.title.toUpperCase()}

@@ -9,12 +9,12 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from "axios";
 import { withRouter } from "react-router";
+import queryString from 'query-string';
 class TopMenu extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            pathName: window.location.pathname,
             isOpen: false,
             isMenuOpen: false,
             categories: [],
@@ -66,6 +66,8 @@ class TopMenu extends React.Component {
             categoryName: name,
             isMenuOpen: false
         })
+        let path = 'search?categoryid=' + id;
+        this.props.history.push(path);
     }
 
     onAllClick = e => {
@@ -74,6 +76,7 @@ class TopMenu extends React.Component {
             categoryName: 'Tất cả',
             isMenuOpen: false
         })
+        this.props.history.push('/search');
     }
 
     onChange = e => {
@@ -81,21 +84,38 @@ class TopMenu extends React.Component {
         this.setState({ [e.target.id]: e.target.value });
     };
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps !== this.props) {
+            let params = queryString.parse(this.props.location.search);
+            if (params.categoryid) {
+                let cate = this.state.categories.find(x => x._id === params.categoryid);
+                if (cate) {
+                    this.setState({
+                        categoryName: cate.title,
+                        categoryId: cate._id
+                    })
+                }
 
-    handleSubmit = e =>{
+            }
+        }
+
+    }
+
+
+    handleSubmit = e => {
         e.preventDefault();
         let link = "/search";
-        if(this.state.categoryId){
+        if (this.state.categoryId) {
             link = link.concat("?categoryid=" + this.state.categoryId)
-        } 
-        if(this.state.searchText){
-            if(this.state.categoryId){
+        }
+        if (this.state.searchText) {
+            if (this.state.categoryId) {
                 link = link.concat("&content=" + this.state.searchText)
             }
-            else{
+            else {
                 link = link.concat("?content=" + this.state.searchText)
             }
-            
+
         }
         this.props.history.push(link);
     }
@@ -150,14 +170,14 @@ class TopMenu extends React.Component {
             categoryDiv = <div ref={this.categoryRef} className="topmenu-category-abs container">
                 <div className="arrow-up"></div>
                 <div className="row">
-                        <div onClick={(e) => this.onAllClick(e)} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 top-cate-item">
-                            Tất cả
+                    <div onClick={(e) => this.onAllClick(e)} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 top-cate-item">
+                        Tất cả
                         </div>
-                        { this.state.categories.map((x, index) => (
-                            <div key={index} onClick={(e) => this.onCategoryClick(e, x._id, x.title)} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 top-cate-item">
-                                {x.title}
-                            </div>
-                        ))
+                    {this.state.categories.map((x, index) => (
+                        <div key={index} onClick={(e) => this.onCategoryClick(e, x._id, x.title)} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 top-cate-item">
+                            {x.title}
+                        </div>
+                    ))
 
                     }
                 </div>
@@ -180,7 +200,7 @@ class TopMenu extends React.Component {
                                     {!this.state.isMenuOpen && <span className="input-group-category">{dropdownText}&nbsp;<i className="fas fa-chevron-down"></i></span>}
                                     {this.state.isMenuOpen && <span className="input-group-category">{dropdownText}&nbsp;<i className="fas fa-chevron-up"></i></span>}
                                 </div>
-                                <input autoComplete="off" className="form-control topmenu-placeholder" type="text" placeholder="Tìm kiếm"  onChange={this.onChange} id="searchText" value={this.state.searchText} />
+                                <input autoComplete="off" className="form-control topmenu-placeholder" type="text" placeholder="Tìm kiếm" onChange={this.onChange} id="searchText" value={this.state.searchText} />
                                 <div className="input-group-prepend" onClick={(e) => this.handleSubmit(e)}>
                                     <span className="input-group-text"><i className="fa fa-search" /></span>
                                 </div>
@@ -199,7 +219,7 @@ class TopMenu extends React.Component {
                         {avatar}
                         {fixedDiv}
                     </div>
-                    
+
                 </div>
 
 
@@ -219,5 +239,5 @@ const mapStateToProps = state => ({
 });
 export default withRouter(connect(
     mapStateToProps,
-    { logoutUser },    
+    { logoutUser },
 )(TopMenu));

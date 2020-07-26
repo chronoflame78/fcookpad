@@ -95,7 +95,7 @@ class Register extends Component {
                 <div className="login-content-wrapper">
                     <div className="login-form-wrapper">
                         <div className="login-back-container">
-                            <Link to="/">
+                            <Link to="/login">
                                 <img src="/images/back-arrow.png" alt="Back" width="16.91" height="12.3" />
                             </Link>
                         </div>

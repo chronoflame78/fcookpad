@@ -86,7 +86,7 @@ class Login extends Component {
               </form>
             </div>
 
-            <div className="login-or-div">OR</div>
+            {/* <div className="login-or-div">OR</div>
             <div className="login-gg-cont">
               <Link to="/">
                 <img className="login-btn" src="/images/log-in-google.png" alt="Log In" />
@@ -96,7 +96,7 @@ class Login extends Component {
               <Link to="/">
                 <img className="login-btn" src="/images/log-in-fb.png" alt="Log In" />
               </Link>
-            </div>
+            </div> */}
             <div className="login-quest-text">Not on MlemMlem yet?</div>
             <div className="login-signup-btn">
               <Link to="/register">

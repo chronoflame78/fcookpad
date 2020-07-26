@@ -167,7 +167,7 @@ class Home extends Component {
                 </div>
             </div>
             <div className="container container-max-custom">
-                <div className="row section-title"><Link to="/view_all/trending">NEW</Link></div>
+                <div className="row section-title"><Link to="/view_all/new">NEW</Link></div>
                 <div className="row">
                     {newPosts && newPosts.map((x, index) => (
                         <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">
