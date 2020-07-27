@@ -190,6 +190,10 @@
     font-size: 12px;
 }
 
+.form-group textarea + label{
+    transition-duration: 0.5s;
+}
+
  .form-group textarea:not(:placeholder-shown) + label {
     top:-106px;
     font-size: 12px;
