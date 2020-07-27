@@ -22,7 +22,7 @@ class Section extends Component {
         else {
             month = today.getMonth() + 1
         }
-        return today.getDate() + "/" + month + "/" + today.getFullYear();
+        return today.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2}) + "/" + month + "/" + today.getFullYear();
     }
 
     showMore() {

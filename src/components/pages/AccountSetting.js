@@ -56,7 +56,7 @@ class AccountSetting extends Component {
         else {
             month = today.getMonth() + 1
         }
-        return today.getDate() + "/" + month + "/" + today.getFullYear();
+        return today.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2}) + "/" + month + "/" + today.getFullYear();
     }
 
     onDateChange = date => {
@@ -345,7 +345,7 @@ class AccountSetting extends Component {
                             <div className="asetting-num"><div className="asetting-left"><i className="far fa-file-alt asetting-icon"></i>Bài viết:</div><div className="asetting-right">{this.state.userInfo.posts}</div></div>
                             <div className="asetting-views"><div className="asetting-left"><i className="far fa-eye asetting-icon"></i>Lượt xem:</div> <div className="asetting-right">{this.state.userInfo.views}</div></div>
                             <div className="asetting-likes"><div className="asetting-left"><i className="far fa-heart asetting-icon"></i>Lượt thích:</div> <div className="asetting-right">{this.state.userInfo.likes}</div></div>
-                            <div className="asetting-smalltext-end">Gia nhập kể từ ngày: 01/07/2020</div>
+                            <div className="asetting-smalltext-end">Gia nhập kể từ ngày: {this.getFormattedDate(this.state.userInfo.createAt)}</div>
                             <div className="asetting-line"></div>
                             <div className={tab1} onClick={(e, index) => this.changeTab(e, 1)}>Thông tin tài khoản</div>
                             <div className={tab2} onClick={(e, index) => this.changeTab(e, 2)}>Công thức của tôi</div>

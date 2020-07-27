@@ -113,7 +113,9 @@ class Create extends Component {
         formData.append('description', this.state.description);
         formData.append('step', 1);
         formData.append('imageCover', this.state.file);
-        formData.append('category', this.state.dropdown_value);
+        // if(this.state.dropdown_value)
+         formData.append('category', this.state.dropdown_value);
+         if(this.state.video)
         formData.append('video', "https://www.youtube.com/embed/" + this.state.video.slice(32));
         console.log(formData)
         if(!create_id){      
@@ -218,7 +220,7 @@ class Create extends Component {
                         </div>
                         <div className="form-group create-form-group">
                             <textarea spellCheck="false" maxLength="1000" onChange={this.onChange} id="description" style={{ resize: 'none' }} value={this.state.description}
-                                className="form-control create-input-description" rows="1" placeholder=" "></textarea>
+                                className="form-control create-input-description" rows="3" placeholder=" "></textarea>
                             <label className="create-label-name" for="description">Mô tả món ăn *</label>
                         </div>
 
