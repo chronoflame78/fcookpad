@@ -119,6 +119,19 @@
     transition: 1s;
 }
 
+.search-section-title a{
+    font-size: 24px;
+    font-weight: bold;
+    color: #FF606D;
+}
+
+.search-section-title:hover a{
+    text-decoration: none;
+    color: #FF606D;
+    transform: translateY(-3px);
+    transition: 1s;
+}
+
 .section-title2{
     padding-left: 1rem;
     margin-top: 24px;
@@ -134,9 +147,8 @@
 .section-see-more{
     justify-content: center;
     font-weight: bold;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     cursor: pointer;
-    margin-bottom: 20px;
 }
 
 .fa-star{
@@ -251,4 +263,13 @@
 
 .fas.fa-heart{
     color: #fe3747;
+}
+
+.home-container-child{
+    background-color: #ffffff;
+    padding-top: 20px;
+}
+
+.home-container{
+    
 }

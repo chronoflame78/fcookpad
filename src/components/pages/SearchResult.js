@@ -126,7 +126,7 @@ class SearchResult extends Component {
         else {
             month = today.getMonth() + 1
         }
-        return today.getDate() + "/" + month + "/" + today.getFullYear();
+        return today.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2}) + "/" + month + "/" + today.getFullYear();
     }
 
     showMore(nextPage) {
@@ -169,6 +169,7 @@ class SearchResult extends Component {
             <div className="search-container">
                 <div className="container search-container-child">
                     {this.state.categoryName && <div className="row search-section-title">{this.state.categoryName.toUpperCase()}</div>}
+                    {!params.categoryid && <div className="row search-section-title">TẤT CẢ</div>}
                     {params.content && <div className="row search-section-result">{this.state.totalRecord} kết quả cho &nbsp;<span className="search-pink-text">{params.content}</span></div>}
                     <div className="row search-row">
                         {this.state.posts && this.state.posts.map((x, index) => (

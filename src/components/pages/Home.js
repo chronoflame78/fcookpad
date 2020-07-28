@@ -67,7 +67,7 @@ class Home extends Component {
     else {
       month = today.getMonth() + 1
     }
-    return today.getDate() + "/" + month + "/" + today.getFullYear();
+    return today.getDate().toLocaleString('en-US', {minimumIntegerDigits: 2}) + "/" + month + "/" + today.getFullYear();
   }
 
   showMoreTrending() {
@@ -115,7 +115,23 @@ class Home extends Component {
       }).catch(err => {
         console.log(err)
         if(err.response.status === 401){
-          swal("Please login to like the post!");
+          swal("Bạn cần đăng nhập để like bài post này!", {
+            buttons: {
+              cancel: "Đóng",
+              login: {
+                text: "Đăng nhập ngay",
+                value: "login",
+              },
+            }
+          }).then((value) => {
+            switch (value) {
+              case "login":
+                this.props.history.push('/login');
+                break;
+              default:
+                break;
+            }
+          });;
         }
       })
   }
@@ -138,9 +154,9 @@ class Home extends Component {
     if (this.state.loading === true) return (<Loader />)
     return (<div>
       <Category suggestions={this.state.category} />
-      <div className="container container-max-custom">
-                <div className="row section-title"><Link to="/view_all/trending">TRENDING</Link></div>
-                <div className="row">
+      <div className="container home-container-child">
+                <div className="row search-section-title"><Link to="/view_all/trending">TRENDING</Link></div>
+                <div className="row search-row">
                     {trendingPosts && trendingPosts.map((x, index) => (
                         <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">
                             <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>
@@ -161,14 +177,12 @@ class Home extends Component {
                         </div>
                     ))}
                 </div>
-                <div className="row section-see-more" style={{ marginLeft: '0px', marginRight: '0px' }} onClick={this.showMoreTrending} >
+                <div className="row section-see-more" style={{ marginLeft: '15px', marginRight: '15px' ,borderBottom: '1px solid #ff5f6d'}} onClick={this.showMoreTrending} >
                     {this.state.itemsToShowTrending === 4 && <button className="btn btn-more">XEM THÊM</button>}
                     {this.state.itemsToShowTrending !== 4 && <button className="btn btn-more">THU GỌN</button>}
                 </div>
-            </div>
-            <div className="container container-max-custom">
-                <div className="row section-title"><Link to="/view_all/new">NEW</Link></div>
-                <div className="row">
+                <div className="row search-section-title" style={{paddingTop: '20px'}}><Link to="/view_all/new">NEW</Link></div>
+                <div className="row search-row">
                     {newPosts && newPosts.map((x, index) => (
                         <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">
                             <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>

@@ -191,6 +191,13 @@
     padding-bottom: 5px;
     color: #ff5f6d;
     cursor: pointer;
+    text-align: center;
+}
+
+.top-cate-item:hover{
+    background-color: #ff5f6d;
+    color: #ffffff;
+
 }
 
 .topmenu-abs-div{
@@ -250,4 +257,8 @@
 
 .topmenu-li:focus{
     outline: none!important;
+}
+
+.cate-item-border{
+    border-right: 1px solid #FCBFAE;
 }
