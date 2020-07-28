@@ -67,6 +67,7 @@ class TopMenu extends React.Component {
             isMenuOpen: false
         })
         let path = 'search?categoryid=' + id;
+        if(this.state.searchText) path = path.concat('&content='+this.state.searchText);
         this.props.history.push(path);
     }
 
@@ -76,7 +77,9 @@ class TopMenu extends React.Component {
             categoryName: 'Tất cả',
             isMenuOpen: false
         })
-        this.props.history.push('/search');
+        let path = 'search';
+        if(this.state.searchText) path = path.concat('?content='+this.state.searchText);
+        this.props.history.push(path);
     }
 
     onChange = e => {
@@ -96,6 +99,13 @@ class TopMenu extends React.Component {
                     })
                 }
 
+            }else{
+                console.log(this.props)
+                if(this.props.location.pathname !== '/search')
+                this.setState({
+                    categoryName: 'Danh mục',
+                    categoryId: ''
+                })
             }
         }
 
@@ -169,11 +179,15 @@ class TopMenu extends React.Component {
         if (this.state.isMenuOpen) {
             categoryDiv = <div ref={this.categoryRef} className="topmenu-category-abs container">
                 <div className="arrow-up"></div>
-                <div className="row">
-                    <div onClick={(e) => this.onAllClick(e)} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 top-cate-item">
+                <div className="row" style={{paddingBottom: '5px'}}>
+                    <div onClick={(e) => this.onAllClick(e)} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 top-cate-item cate-item-border">
                         Tất cả
                         </div>
-                    {this.state.categories.map((x, index) => (
+                    {this.state.categories.map((x, index) => ((index+2)%4 !== 0)?(
+                        <div key={index} onClick={(e) => this.onCategoryClick(e, x._id, x.title)} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 top-cate-item cate-item-border">
+                            {x.title}
+                        </div>
+                    ):(
                         <div key={index} onClick={(e) => this.onCategoryClick(e, x._id, x.title)} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 top-cate-item">
                             {x.title}
                         </div>
