@@ -4,7 +4,9 @@
 }
 
 .post-title{
-    font-size: 80px;
+    font-size: 40px;
+    font-weight: 800;
+    color: #191919;
 }
 
 .post-author-name{
@@ -61,7 +63,7 @@
 
 .post-youtube-video{
     text-align: center;
-    padding: 20px;
+    padding: 20px 20px 20px 35px;
 }
 
 .post-comment-div{
@@ -94,12 +96,12 @@
 }
 
 .post-comment-item{
-    padding: 20px;
+    padding-left: 20px;
 }
 
 .post-comment-content{
-    padding: 10px;
-    margin-left: 20px;
+    padding: 10px 10px 10px 0;
+    margin: 10px;
     background-color: #ffffff;
     border-radius: 10px;
     font-size: 14px;
@@ -116,8 +118,6 @@
     margin-left: 20px;
     margin-right: 20px;
 }
-
-
 
 
 textarea:focus, input:focus{
@@ -186,4 +186,230 @@ textarea:focus, input:focus{
 .post-loading-icon{
     text-align: center;
     color: #ff5f6d;
+}
+
+/*=======================================================*/
+/* UPDATE POST DETAIL CSS */
+.post-tit-ava-ingre {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 7px darkgray;
+}
+
+.post-tit-ava {
+    width: 100%;
+}
+
+.ingredients {
+    margin-top: 35px;
+}
+
+.post-description {
+    font-size: 15px;
+}
+
+.post-comment-section {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 7px darkgray;
+}
+
+.post-step-title {
+    font-size: 30px;
+    padding-left: 35px;
+    padding-top: 20px;
+    font-weight: 600;
+    color: #191919;
+}
+
+.step-detail {
+    border-radius: 20px;
+    box-shadow: 0px 0px 7px darkgray;
+}
+
+.post-update-add-comment {
+    height: 40px;
+    background-color: #ff5f6d;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #ffffff;
+    line-height: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.youtube-video{
+    border-radius: 20px;
+    box-shadow: 0px 0px 7px darkgray;
+}
+
+.fa-paper-plane {
+    color: #ff5f6d !important;
+}
+
+.comment-input {
+    border: 0!important;
+    border-bottom: 1px solid #e5e5e5!important;
+    outline: none;
+    border-radius: 0px!important;
+    color: rgba(0, 0, 0, 0.6)!important;
+}
+
+.comment-input:focus{
+    border: 0!important;
+    border-bottom: 1px solid #FF5F6D!important;
+    outline: none!important;
+    box-shadow: none!important;
+    border-radius: 0px;
+    color: #FF5F6D!important;
+    
+}
+
+.create-label-name {
+    position: relative;
+    top: -28px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.post-comment-icon-update {
+    cursor: pointer;
+    float: right;
+    height: 0px;
+    width: 20px;
+}
+
+.post-comment-icon-update i {
+    position: relative;
+    padding-right: 10px;
+}
+
+.insde-comment-input {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-group input:focus + .insde-comment-input label{
+    top:-60px;
+    transition-duration: 0.5s;
+    color: #FF5F6D;
+    font-size: 12px;
+}
+
+ .form-group input:not(:placeholder-shown) + label {
+    top:-52px;
+    font-size: 12px;
+} 
+
+.post-avatar a:hover {
+    text-decoration: none;
+}
+
+.post-likes {
+    display: flex;
+}
+
+.post-views {
+    display: flex;
+    font-size: 15px;
+    margin-left: 15px;
+}
+
+.view-icon {
+    width: 20px;
+    max-height: 16px;
+}
+
+.view-number {
+    margin-left: 5px;
+    font-size: 15px;
+}
+
+.like-number {
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.post-share {
+    margin-left: 15px;
+}
+
+.post-title-icon {
+    display: flex;
+}
+
+.tit-desc-container {
+    padding-left: 55px !important;
+}
+
+.slide-container {
+    padding-left: 45px;
+    padding-bottom: 45px;
+    border-radius: 20px;
+}
+
+.post-carousel-box-updt {
+    flex-grow: 1;
+    flex-basis: 0;
+    border-radius: 20px;
+}
+
+.ingredents-title {
+    top: -25px;
+    padding-left: 50px;
+    padding-bottom: 25px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.slider-ingre {
+    width: 100%;
+}
+
+.ingredient-icon {
+    vertical-align: baseline;
+    margin-right: 10px;
+}
+
+.youtube-icon {
+    margin-bottom: 5px;
+    margin-right: 10px;
+}
+
+.post-user-name-comment-updt {
+    display: flex;   
+}
+
+.username-in-comment {
+    font-size: 18px;
+    font-weight: 800;
+    color: #ff5f6d;
+}
+
+.time-diff-in-comment {
+    font-size: 16px;
+    font-weight: 100;
+    color: #191919;
+    opacity: 50%;
+    padding-left: 15px;
+    padding-top: 2px;
+}
+
+.user-link:hover {
+    text-decoration: none;
+}
+
+.username-in-comment:hover {
+    text-decoration: underline;
+    color: #191919;
+}
+
+.author-name:hover {
+    text-decoration: underline;
+    color: #ff5f6d;
+}
+
+.post-video-title {
+    font-size: 30px;
+    padding-left: 35px;
+    font-weight: 600;
+    color: #191919;
 }

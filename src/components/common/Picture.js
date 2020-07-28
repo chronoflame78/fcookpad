@@ -4,7 +4,7 @@ import '../../css/Picture.css';
 class Picture extends Component{
     render(){
         return(
-            <div className="picture-cover" 
+            <div className="step-picture" 
             style={{width:this.props.width, height:this.props.height, backgroundImage: "url("+this.props.src+")"}}>
                 
             </div>   

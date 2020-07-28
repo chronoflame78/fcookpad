@@ -5,3 +5,23 @@
     cursor: pointer;
 }
 
+.author-name {
+    color: #191919;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.author-name:hover {
+    text-decoration: none;
+    color: #ff5f6d;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.post-author:hover {
+    text-decoration: none;
+}
+
+.avatar-cover:hover {
+    text-decoration: none;
+}
