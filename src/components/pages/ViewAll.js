@@ -4,6 +4,9 @@ import Loader from '../common/LoaderVer2';
 import axios from "axios";
 import { NavLink } from 'react-router-dom';
 import Page404 from '../pages/Page404';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import swal from 'sweetalert';
 
 class ViewAll extends Component {
 
@@ -56,6 +59,29 @@ class ViewAll extends Component {
 
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.auth !== this.props.auth) {
+            let name;
+        if (this.props.match.params) {
+            name = this.props.match.params.name
+            if (name === 'trending' || name === 'new') {
+                axios.get("http://178.128.83.129:3000/api/home/post_" + name + "?limit=8&page=1")
+                    .then(res => {
+                        if (this.mounted) {
+                            this.setState({
+                                posts: res.data.posts,
+                                totalRecord: res.data.total
+                            })
+                        }
+                    }).catch(err => {
+                        console.log(err)
+                    })
+            }
+        }
+        }
+
+    }
+
     componentWillUnmount() {
         this.mounted = false;
     }
@@ -77,7 +103,26 @@ class ViewAll extends Component {
                 })
             }).catch(err => {
                 console.log(err)
-            })
+                if(err.response.status === 401){
+                  swal("Bạn cần đăng nhập để like bài post này!", {
+                    buttons: {
+                      cancel: "Đóng",
+                      login: {
+                        text: "Đăng nhập ngay",
+                        value: "login",
+                      },
+                    }
+                  }).then((value) => {
+                    switch (value) {
+                      case "login":
+                        this.props.history.push('/login');
+                        break;
+                      default:
+                        break;
+                    }
+                  });;
+                }
+              })
     }
 
     showMore(nextPage) {
@@ -147,4 +192,13 @@ class ViewAll extends Component {
     }
 }
 
-export default ViewAll;
+ViewAll.propTypes = {
+    auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(
+  mapStateToProps
+)(ViewAll);

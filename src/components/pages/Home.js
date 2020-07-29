@@ -6,8 +6,8 @@ import Loader from '../common/LoaderVer2';
 import axios from "axios";
 import { NavLink, Link } from "react-router-dom";
 import swal from 'sweetalert';
-// import PropTypes from "prop-types";
-// import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 class Home extends Component {
 
   constructor(props) {
@@ -17,12 +17,30 @@ class Home extends Component {
       post_new: [],
       post_trending: [],
       itemsToShowTrending: 4,
-      itemsToShowNew: 4
+      itemsToShowNew: 4,
+      auth: false
     };
     this.showMoreTrending = this.showMoreTrending.bind(this);
     this.showMoreNew = this.showMoreNew.bind(this);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.auth !== this.props.auth) {
+      axios.all([axios.get("http://178.128.83.129:3000/api/home/post_trending?page=1&limit=8"),
+      axios.get("http://178.128.83.129:3000/api/home/post_new?page=1&limit=8")])
+        .then(axios.spread((...res) => {
+          if (this.mounted) {
+            this.setState({
+              post_trending: res[0].data.posts,
+              post_new: res[1].data.posts
+            });
+          }
+        })).catch(error => {
+          console.log(error)
+        });
+    }
+
+}
   componentDidMount() {
     localStorage.removeItem("create_id");
     localStorage.removeItem("action");
@@ -30,7 +48,6 @@ class Home extends Component {
     axios.all([axios.get("http://178.128.83.129:3000/api/home/category"), axios.get("http://178.128.83.129:3000/api/home/post_trending?page=1&limit=8"),
     axios.get("http://178.128.83.129:3000/api/home/post_new?page=1&limit=8")])
       .then(axios.spread((...res) => {
-        console.log(...res)
         if (this.mounted) {
           this.setState({
             category: res[0].data.data.categorys,
@@ -137,6 +154,7 @@ class Home extends Component {
   }
 
   render() {
+    console.log(this.props.auth)
     let trendingPosts = [];
     if (this.state.post_trending < 4) {
       trendingPosts = this.state.post_trending;
@@ -213,15 +231,15 @@ class Home extends Component {
   }
 }
 
-//   Home.propTypes = {
-//     auth: PropTypes.object.isRequired
-// };
-// const mapStateToProps = state => ({
-//     auth: state.auth
-// });
+  Home.propTypes = {
+    auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+    auth: state.auth
+});
 
-// export default connect(
-//   mapStateToProps
-// )(Home);
+export default connect(
+  mapStateToProps
+)(Home);
 
-export default Home;
+// export default Home;

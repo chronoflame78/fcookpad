@@ -100,7 +100,6 @@ class TopMenu extends React.Component {
                 }
 
             }else{
-                console.log(this.props)
                 if(this.props.location.pathname !== '/search')
                 this.setState({
                     categoryName: 'Danh mục',
@@ -135,9 +134,9 @@ class TopMenu extends React.Component {
         this.props.logoutUser();
         this.setState({
             isOpen: false
-        })
-        toast.success('Logout successfully!', { position: toast.POSITION.TOP_RIGHT });
+        })       
         // window.location.href = "/";
+        toast.success('Logout successfully!', { position: toast.POSITION.TOP_RIGHT });
     };
     toggleOpen = () => this.setState({ isOpen: !this.state.isOpen });
     toggleMenuOpen = () => this.setState({ isMenuOpen: !this.state.isMenuOpen });

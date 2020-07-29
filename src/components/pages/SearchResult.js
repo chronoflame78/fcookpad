@@ -5,6 +5,9 @@ import axios from "axios";
 import queryString from 'query-string';
 import '../../css/SearchResult.css';
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import swal from 'sweetalert';
 
 class SearchResult extends Component {
 
@@ -110,7 +113,26 @@ class SearchResult extends Component {
                 })
             }).catch(err => {
                 console.log(err)
-            })
+                if(err.response.status === 401){
+                  swal("Bạn cần đăng nhập để like bài post này!", {
+                    buttons: {
+                      cancel: "Đóng",
+                      login: {
+                        text: "Đăng nhập ngay",
+                        value: "login",
+                      },
+                    }
+                  }).then((value) => {
+                    switch (value) {
+                      case "login":
+                        this.props.history.push('/login');
+                        break;
+                      default:
+                        break;
+                    }
+                  });;
+                }
+              })
     }
 
     componentWillUnmount() {
@@ -204,4 +226,13 @@ class SearchResult extends Component {
     }
 }
 
-export default SearchResult;
+SearchResult.propTypes = {
+    auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(
+  mapStateToProps
+)(SearchResult);
