@@ -66,7 +66,7 @@ class TopMenu extends React.Component {
             categoryName: name,
             isMenuOpen: false
         })
-        let path = 'search?categoryid=' + id;
+        let path = '/search?categoryid=' + id;
         if(this.state.searchText) path = path.concat('&content='+this.state.searchText);
         this.props.history.push(path);
     }
@@ -77,7 +77,7 @@ class TopMenu extends React.Component {
             categoryName: 'Tất cả',
             isMenuOpen: false
         })
-        let path = 'search';
+        let path = '/search';
         if(this.state.searchText) path = path.concat('?content='+this.state.searchText);
         this.props.history.push(path);
     }
