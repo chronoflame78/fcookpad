@@ -371,3 +371,7 @@ input:-internal-autofill-selected{
     height: 10px;
     text-align: right;
 }
+
+.empty-block {
+    height: 50px;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Tooltip } from "reactstrap";
 import "../../css/Avatar.css";
-class Avatar extends Component {
+class CommentAvatar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,7 +38,7 @@ class Avatar extends Component {
               {this.props.name}
             </Tooltip>
           </div>
-          <div class="author-name">{this.props.name}</div>
+          {/* <div class="author-name">{this.props.name}</div> */}
         </div>
       );
     } else {
@@ -57,4 +57,4 @@ class Avatar extends Component {
   }
 }
 
-export default Avatar;
+export default CommentAvatar;

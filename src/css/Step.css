@@ -6,6 +6,7 @@
 
 .step-txt-description{
     font-size: 20px;
+    display: flex;
 }
 
 .step-padding-custom{
@@ -13,10 +14,24 @@
     padding-right: 0px;
 }
 
-.step-line-bottom{
+.step-line-bottom {
     border-bottom: 1px solid #c0c2c3;
     margin-left: 15px;
     margin-right: 15px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.step-title {
+    background-color: #ff5f6d;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+}
+
+.step-content {
+    margin-left: 15px;
 }
