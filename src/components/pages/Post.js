@@ -367,11 +367,13 @@ class Post extends Component {
                   )}
                 </div>
                 {isEmpty(user) && (
+                  <div className="post-link-container">
                   <Link to="/login">
                     <div className="post-update-add-comment">
                       Đăng nhập để bình luận
                     </div>
                   </Link>
+                  </div>
                 )}
                 {!isEmpty(user) && (
                   <div className="post-comment-item-login d-flex align-items-center">

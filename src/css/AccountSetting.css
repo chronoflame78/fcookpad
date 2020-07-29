@@ -424,6 +424,32 @@
     color: #FF5F6D;
 }
 
+.btn-more-pink{  
+    width: 120px;
+    float: right;
+    background-color: #ffffff;
+    font-weight: bold!important;
+    font-size: 12px!important;
+    color: #FF5F6D;
+    border:1px solid #FF5F6D!important;
+    border-radius: 20px!important;
+}
+
+.btn-more-pink:hover{
+    background-color: #FF5F6D;
+    color: #ffffff;
+}
+
+.swal-button--login{
+    color: #FF5F6D!important;
+    background-color: #ffffff!important;
+    border:1px solid #FF5F6D!important;
+}
+
+.swal-button--login:hover{
+    color: #ffffff!important;
+    background-color: #FF5F6D!important;
+}
 
 .asetting-icon-edit{
     padding-right: 10px;

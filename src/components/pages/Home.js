@@ -200,8 +200,8 @@ class Home extends Component {
                     ))}
                 </div>
                 <div className="row section-see-more" style={{ marginLeft: '15px', marginRight: '15px' ,borderBottom: '1px solid #ff5f6d'}} onClick={this.showMoreTrending} >
-                    {this.state.itemsToShowTrending === 4 && <button className="btn btn-more">XEM THÊM</button>}
-                    {this.state.itemsToShowTrending !== 4 && <button className="btn btn-more">THU GỌN</button>}
+                    {this.state.itemsToShowTrending === 4 && <button className="btn btn-more-pink">XEM THÊM</button>}
+                    {this.state.itemsToShowTrending !== 4 && <button className="btn btn-more-pink">THU GỌN</button>}
                 </div>
                 <div className="row search-section-title" style={{paddingTop: '20px'}}><Link to="/view_all/new">NEW</Link></div>
                 <div className="row search-row">
@@ -226,8 +226,8 @@ class Home extends Component {
                     ))}
                 </div>
                 <div className="row section-see-more" style={{ marginLeft: '0px', marginRight: '0px' }} onClick={this.showMoreNew} >
-                    {this.state.itemsToShowNew === 4 && <button className="btn btn-more">XEM THÊM</button>}
-                    {this.state.itemsToShowNew !== 4 && <button className="btn btn-more">THU GỌN</button>}
+                    {this.state.itemsToShowNew === 4 && <button className="btn btn-more-pink">XEM THÊM</button>}
+                    {this.state.itemsToShowNew !== 4 && <button className="btn btn-more-pink">THU GỌN</button>}
                 </div>
             </div>
       <Footer />
