@@ -26,13 +26,17 @@ class Home extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.auth !== this.props.auth) {
+      this.setState({
+        loading: true
+      })
       axios.all([axios.get("http://178.128.83.129:3000/api/home/post_trending?page=1&limit=8"),
       axios.get("http://178.128.83.129:3000/api/home/post_new?page=1&limit=8")])
         .then(axios.spread((...res) => {
           if (this.mounted) {
             this.setState({
               post_trending: res[0].data.posts,
-              post_new: res[1].data.posts
+              post_new: res[1].data.posts,
+              loading: false
             });
           }
         })).catch(error => {
@@ -137,7 +141,7 @@ class Home extends Component {
               cancel: "Đóng",
               login: {
                 text: "Đăng nhập ngay",
-                value: "login",
+                value: "login"
               },
             }
           }).then((value) => {
