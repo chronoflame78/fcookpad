@@ -267,13 +267,18 @@ class TopMenu extends React.Component {
                 >
                   {!this.state.isMenuOpen && (
                     <span className="input-group-category">
-                      {dropdownText}&nbsp;
+                      <span className="topmenu-dropdown-txt">
+                        {dropdownText}&nbsp;
+                      </span>
                       <i className="fas fa-chevron-down"></i>
                     </span>
                   )}
                   {this.state.isMenuOpen && (
                     <span className="input-group-category">
-                      {dropdownText}&nbsp;<i className="fas fa-chevron-up"></i>
+                      <span className="topmenu-dropdown-txt">
+                        {dropdownText}&nbsp;
+                      </span>
+                      <i className="fas fa-chevron-up"></i>
                     </span>
                   )}
                 </div>

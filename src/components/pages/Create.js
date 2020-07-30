@@ -197,7 +197,7 @@ class Create extends Component {
 
         return (          
             <div>
-                <div className="container create-bg-white" style={{ paddingTop: '60px' }}>
+                <div className="container create-bg-white" >
                     <div className="timeline">
                         <div className="timeline-progress" style={{ width: '15%' }}></div>
                         <div className="timeline-items">

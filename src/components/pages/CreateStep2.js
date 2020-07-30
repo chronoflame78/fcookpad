@@ -122,7 +122,7 @@ class CreateStep2 extends Component {
         if(!create_id) return(<Page404/>);
         return (
             <div>
-                <div className="container create-bg-white" style={{ paddingTop: '64px' }}>
+                <div className="container create-bg-white">
                     <div className="timeline">
                         <div className="timeline-progress" style={{ width: '50%' }}></div>
                         <div className="timeline-items">
