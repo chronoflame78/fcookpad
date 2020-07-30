@@ -342,17 +342,28 @@ class Post extends Component {
                         key={index}
                         className="post-comment-item d-flex align-items-center"
                       >
-                        <CommentAvatar
-                          signature={index}
-                          image={x.user.avatar}
-                          name={x.user.fullName}
-                          size={40}
-                          tooltip={true}
-                        />
+                        <NavLink to={"/user_profile/" + x.user._id}>
+                          <CommentAvatar
+                            signature={index}
+                            image={x.user.avatar}
+                            name={x.user.fullName}
+                            size={40}
+                            tooltip={true}
+                          />
+                        </NavLink>
                         <div className="post-comment-content">
                           <div className="post-user-name-comment-updt">
-                            <Link to={"/user_profile/" + x.user._id} className="user-link"><div className="username-in-comment">{x.user.fullName}</div></Link> 
-                            <div className="time-diff-in-comment">{x.timeDiff}</div>
+                            <Link
+                              to={"/user_profile/" + x.user._id}
+                              className="user-link"
+                            >
+                              <div className="username-in-comment">
+                                {x.user.fullName}
+                              </div>
+                            </Link>
+                            <div className="time-diff-in-comment">
+                              {x.timeDiff}
+                            </div>
                           </div>
                           <div>
                             <Emoji text={x.content} />
@@ -377,13 +388,17 @@ class Post extends Component {
                 )}
                 {!isEmpty(user) && (
                   <div className="post-comment-item-login d-flex align-items-center">
-                    <CommentAvatar
-                      signature="main-user"
-                      image={user_avatar}
-                      size={64}
-                      name={user.user_name}
-                      tooltip={true}
-                    />
+                    {console.log(user)}
+                    <NavLink to={"/user_profile/" + user.id}>
+                      <CommentAvatar
+                        signature="main-user"
+                        image={user_avatar}
+                        size={64}
+                        name={user.user_name}
+                        tooltip={true}
+                      />
+                    </NavLink>
+
                     <div className="post-add-comment-login">
                       <form onSubmit={(e) => this.handleSubmit(e)}>
                         <div className="form-group">

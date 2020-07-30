@@ -34,6 +34,7 @@
     box-shadow: 0 0 15px rgba(50, 50, 50, 0.7);
     height: auto;
     width: 55%;
+    max-width: 900px;
     overflow: auto;
     background-color: white !important;
     display: inline-flex;
@@ -69,14 +70,15 @@
 }
 
 .login-form-container form {
-    display: block;
+    display: flex;
+    justify-content: center;
 }
 
 .login-form-container form input[type=email]{
-    width: 65%;
+    width: 100%;
     margin: 5px;
     border-radius: 5px;
-    border: solid #ff5b1b 1px;
+    border: solid #FF5F6D 1px;
     height: 2.5rem;
     min-height: 1.5rem;
     padding-left: 8px;
@@ -90,7 +92,7 @@
 }
 
 .login-form-container form input[type=password]{
-    width: 65%;
+    width: 100%;
     margin: 5px;
     border-radius: 5px;
     border: solid #FF5F6D 1px;
@@ -107,9 +109,10 @@
 }
 
 .login-forgot-link a {
-    font-size: 10px;
+    font-size: 12px;
     color: #FF5F6D;
-    display: block;
+    display: flex;
+    justify-content: center;
     margin-top: 5px;
 }
 
@@ -118,7 +121,7 @@
 }
 
 .login-btn-container {
-    width: 60%;
+    width: 100%;
     height: auto;
     max-width: 239px;
     max-height: 42px;
@@ -163,7 +166,7 @@
 
 .login-quest-text {
     font-size: 12px;
-    color: #ff5b1b;
+    color: #FF5F6D;
     margin-top: 10px;
 }
 
@@ -237,6 +240,64 @@
 }
 
 .register-pol-text {
-    color: #ff5b1b;
+    color: #FF5F6D;
     font-size: 10px;
+}
+
+/* UPDATE ISSUE */
+.log-in-form-wrapper {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+}
+
+.login-forgot-link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.input-container-register {
+    display: flex;
+    justify-content: center;
+}
+
+.input-register {
+    width: 70%;
+}
+
+.forgot-form-container form input[type=email]{
+    width: 100%;
+    margin: 5px;
+    border-radius: 5px;
+    border: solid #FF5F6D 1px;
+    height: 2.5rem;
+    min-height: 1.5rem;
+    padding-left: 8px;
+    
+}
+
+.forgot-form-container form input[type=email]:focus {
+    border: solid #FF5F6D 1.5px;
+    outline: none;
+    box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.25);
+}
+
+.input-container input:focus + .input-register-placeholder label{
+    top:-52px;
+    transition-duration: 0.5s;
+    color: #FF5F6D;
+    font-size: 12px;
+}
+
+ .input-container input:not(:placeholder-shown) + label {
+    top:-52px;
+    font-size: 12px;
+} 
+
+.input-register-placeholder {
+    float: left;
+    padding-left: 5px;
+    height: 15px;
 }

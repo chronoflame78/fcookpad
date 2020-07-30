@@ -106,3 +106,16 @@
     background-color: #ffffff;
     color: #FF5F6D;
 }
+
+/* UPDATE ISSUE */
+.userp-info-container-updt {
+    
+    text-align: center;
+    padding-top: 20px;
+}
+
+.userp-row-updt {
+    padding: 0 15px 20px  15px;
+    background-color: #ffffff;
+    box-shadow: 0 0 7px darkgray;
+}

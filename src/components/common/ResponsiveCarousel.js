@@ -31,9 +31,6 @@ class DemoCarousel extends Component {
         showThumbs={false}
         autoPlay={true}
         infiniteLoop={true}
-        statusFormatter={(current, total) =>
-          `Current slide: ${current} / Total: ${total}`
-        }
         renderArrowPrev={(onClickHandler, hasPrev, label) =>
           hasPrev && (
             <i style={{ ...arrowStyles, left: 15 }} onClick={onClickHandler} class="fas fa-chevron-left"></i>

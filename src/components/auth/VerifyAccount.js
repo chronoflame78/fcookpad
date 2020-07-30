@@ -71,15 +71,15 @@ class VerifyAccount extends Component {
                   <img src="/images/Logo.png" alt="Back" width="122" height="100" />
                 </div>
                 <div className="oms-title">
-                  <h1><b>Be like home, chief!</b></h1>
+                  <h1><b>Cứ tự nhiên nhé bếp trưởng!</b></h1>
                 </div>
                 <div className="text-container">
-                  <label>You’re officially one of us now. Start sharing your brilliant recipes to others.
+                  <label>Bạn đã đăng ký thành công, bắt đầu chia sẻ công thức của mình nào.
                             </label>
                 </div>
                 <div className="resend-btn-container">
                   <Link to="/">
-                    <button className="resend-btn">Go to home</button>
+                    <button className="resend-btn">Quay về trang chủ</button>
                   </Link>
                 </div>
               </div>

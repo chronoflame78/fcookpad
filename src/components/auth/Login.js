@@ -49,15 +49,14 @@ return (
         <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2">
             <Link to="/" className="btn-flat waves-effect">
-              <i className="material-icons left"></i> Back to
-              home
+              <i className="material-icons left"></i> Quay về trang chủ
             </Link>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
                 <b>Login</b> below
               </h4>
               <p className="grey-text text-darken-1">
-                Don't have an account? <Link to="/register">Register</Link>
+                Don't have an account? <Link to="/register">Đăng ký</Link>
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
@@ -80,7 +79,7 @@ return (
                   id="password"
                   type="password"                 
                 />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Mật khẩu</label>
                 
               </div>
               <div>{errors && errors.message}</div>
