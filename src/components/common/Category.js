@@ -17,7 +17,7 @@ class Category extends Component {
         infinite: false,
         speed: 500,
         arrows: true,
-        slidesToShow: 6,
+        slidesToShow: 7,
         slidesToScroll: 2,
         swipeToSlide: true,
         beforeChange: () => dragging = true,

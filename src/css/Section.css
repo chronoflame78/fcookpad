@@ -268,6 +268,7 @@
     background-color: #ffffff;
     padding-top: 20px;
     box-shadow: 0px 0px 7px darkgrey;
+    padding-bottom: 20px;
 }
 
 @media only screen and (max-width: 576px) {

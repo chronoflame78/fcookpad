@@ -108,8 +108,9 @@ class TopMenu extends React.Component {
       } else {
         if (this.props.location.pathname !== "/search")
           this.setState({
-            categoryName: "Danh mục",
-            categoryId: "",
+            categoryName: 'Danh mục',
+            categoryId: '',
+            searchText: ''
           });
       }
     }
