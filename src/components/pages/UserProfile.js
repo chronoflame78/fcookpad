@@ -86,8 +86,8 @@ class UserProfile extends Component {
         return (
             <div className="userp-container">
                 <div className="container">
-                    <div className="row userp-row">
-                        <div className="col-md-4 userp-info-container">
+                    <div className="row userp-row-updt cold-lg-12">
+                        <div className="col-md-4 userp-info-container-updt">
                             <Avatar className="userp-avatar" image={this.state.userInfo.avatar} size={140} tooltip={false} />
                             <div className="userp-name">{this.state.userInfo.fullName}</div>
                             <div className="userp-smalltext"><i className="fas fa-venus-mars"></i> Giới tính: {this.state.userInfo.gender}</div>
@@ -96,6 +96,7 @@ class UserProfile extends Component {
                             <div className="userp-views"><div className="userp-left"><img className="userp-icon" width={20} src="/images/eye.png" alt="" /> &nbsp;Lượt xem:</div> <div className="userp-right">{this.state.userInfo.views}</div></div>
                             <div className="userp-likes"><div className="userp-left"><img className="userp-icon" width={20} src="/images/like.png" alt="" /> &nbsp;Lượt thích:</div> <div className="userp-right">{this.state.userInfo.likes}</div></div>
                             <div className="userp-smalltext-end">Gia nhập kể từ ngày: {this.getFormattedDate(this.state.userInfo.createAt)}</div>
+                        
                         </div>
                         <div className="col-md-8">
                             <div className="userp-title">

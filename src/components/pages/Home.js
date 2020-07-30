@@ -177,7 +177,7 @@ class Home extends Component {
     return (<div>
       <Category suggestions={this.state.category} />
       <div className="container home-container-child">
-                <div className="row search-section-title"><Link to="/view_all/trending">TRENDING</Link></div>
+                <div className="row search-section-title"><Link to="/view_all/trending">NỔI BẬT</Link></div>
                 <div className="row search-row">
                     {trendingPosts && trendingPosts.map((x, index) => (
                         <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">
@@ -203,7 +203,7 @@ class Home extends Component {
                     {this.state.itemsToShowTrending === 4 && <button className="btn btn-more-pink">XEM THÊM</button>}
                     {this.state.itemsToShowTrending !== 4 && <button className="btn btn-more-pink">THU GỌN</button>}
                 </div>
-                <div className="row search-section-title" style={{paddingTop: '20px'}}><Link to="/view_all/new">NEW</Link></div>
+                <div className="row search-section-title" style={{paddingTop: '20px'}}><Link to="/view_all/new">MỚI NHẤT</Link></div>
                 <div className="row search-row">
                     {newPosts && newPosts.map((x, index) => (
                         <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">

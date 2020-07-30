@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-import { Link } from 'react-router-dom';
-import '../../css/Login.css';
-import { toast } from 'react-toastify';
+import { Link } from "react-router-dom";
+import "../../css/Login.css";
+import { toast } from "react-toastify";
 const isEmpty = require("is-empty");
 class Login extends Component {
   constructor() {
@@ -12,7 +12,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      errors: {}
+      errors: {},
     };
   }
 
@@ -26,23 +26,25 @@ class Login extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       // this.props.history.push("/dashboard"); // push user to dashboard when they login
-      toast.success('Login successfully!', { position: toast.POSITION.TOP_RIGHT });
+      toast.success("Login successfully!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       this.props.history.goBack();
     }
     if (nextProps.errors) {
       this.setState({
-        errors: nextProps.errors
+        errors: nextProps.errors,
       });
     }
   }
-  onChange = e => {
+  onChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
   };
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
     const userData = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     };
     this.props.loginUser(userData, this.props.history); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
   };
@@ -54,59 +56,97 @@ class Login extends Component {
           <div className="login-form-wrapper">
             <div className="login-back-container">
               <Link to="/">
-                <img src="/images/back-arrow.png" alt="Back" width="16.91" height="12.3" />
+                <img
+                  src="/images/back-arrow.png"
+                  alt="Back"
+                  width="16.91"
+                  height="12.3"
+                />
               </Link>
             </div>
             <div className="login-logo-container">
-              <img src="/images/NewLogo.png" alt="Back" width={122} height={100} />
+              <img
+                src="/images/NewLogo.png"
+                alt="Back"
+                width={122}
+                height={100}
+              />
             </div>
             <div className="login-wel-title">
-              <h4 className="login-h4">Welcome back, chief!</h4>
+              <h4 className="login-h4">Đăng nhập</h4>
             </div>
             <div className="login-form-container">
               <form className="log-in-form" noValidate onSubmit={this.onSubmit}>
-                <input onChange={this.onChange}
-                  className="login-uap-input"
-                  value={this.state.email}
-                  error={errors.email}
-                  id="email"
-                  type="email" placeholder="Email" />
-                <input onChange={this.onChange}
-                  className="login-uap-input"
-                  value={this.state.password}
-                  error={errors.password}
-                  id="password"
-                  type="password" placeholder="Password" />
-                <input type="submit" style={{ display: 'none' }} />
-                {!isEmpty(errors) && <div className="register-error alert alert-danger">{errors.message}</div>}
-                <div className="login-forgot-link"><Link to="/forgot_password">Forgot Username / Password?</Link></div>
-                <div className="login-btn-container">
-                  <img onClick={this.onSubmit} className="login-btn" src="/images/log-in.png" alt="Log In" />
+                <div className="log-in-form-wrapper">
+                  <div className="input-container input-container-login">
+                    <input
+                      onChange={this.onChange}
+                      id="email"
+                      value={this.state.email}
+                      error={errors.email}
+                      autoComplete="off"
+                      maxLength="100"
+                      placeholder=" "
+                      className="form-control login-uap-input"
+                      id="email"
+                      type="email"
+                    />
+                    <div className="forgot-email-input">
+                      <label className="create-label-name">Email</label>
+                    </div>
+                  </div>
+                  <div className="input-container input-container-login">
+                    <input
+                      onChange={this.onChange}
+                      id="email"
+                      value={this.state.password}
+                      error={errors.password}
+                      autoComplete="off"
+                      maxLength="100"
+                      placeholder=" "
+                      className="form-control login-uap-input"
+                      id="password"
+                      type="password"
+                    />
+                    <div className="forgot-email-input">
+                      <label className="create-label-name">Mật khẩu</label>
+                    </div>
+                  </div>
+
+                  <input type="submit" style={{ display: "none" }} />
+                  {!isEmpty(errors) && (
+                    <div className="register-error alert alert-danger">
+                      {errors.message}
+                    </div>
+                  )}
+                  <div className="login-forgot-link">
+                    <Link to="/forgot_password">Tìm lại mật khẩu</Link>
+                  </div>
+                  <div className="login-btn-container">
+                    <img
+                      onClick={this.onSubmit}
+                      className="login-btn"
+                      src="/images/log-in.png"
+                      alt="Log In"
+                    />
+                  </div>
                 </div>
               </form>
             </div>
-
-            {/* <div className="login-or-div">OR</div>
-            <div className="login-gg-cont">
-              <Link to="/">
-                <img className="login-btn" src="/images/log-in-google.png" alt="Log In" />
-              </Link>
+            <div className="login-quest-text">
+              Bạn chưa có tài khoản của MlemMlem?
             </div>
-            <div className="login-fb-cont">
-              <Link to="/">
-                <img className="login-btn" src="/images/log-in-fb.png" alt="Log In" />
-              </Link>
-            </div> */}
-            <div className="login-quest-text">Not on MlemMlem yet?</div>
             <div className="login-signup-btn">
               <Link to="/register">
-                <img className="login-btn" src="/images/sign-up-button.png" alt="Log In" />
+                <img
+                  className="login-btn"
+                  src="/images/sign-up-button.png"
+                  alt="Log In"
+                />
               </Link>
             </div>
           </div>
-          <div className="login-form-image">
-
-          </div>
+          <div className="login-form-image"></div>
         </div>
       </div>
     );
@@ -115,13 +155,10 @@ class Login extends Component {
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
 });
-export default connect(
-  mapStateToProps,
-  { loginUser }
-)(Login);
+export default connect(mapStateToProps, { loginUser })(Login);

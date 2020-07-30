@@ -55,7 +55,7 @@
     height: 100%;
     overflow: auto;
     text-align: center;
-    padding: 5px 15px 15px 15px;
+    padding: 5px 15px 0 15px;
 }
 
 .back-container {
@@ -108,8 +108,8 @@
 }
 
 .quest-text {
-    font-size: 12px;
-    color: #ff5b1b;
+    font-size: 15px;
+    color: #464646;
     margin-top: 10px;
 }
 .main-content{
@@ -168,7 +168,6 @@
 }
 
 .forgot-btn-container{
-    margin-top: 20px;
     margin-bottom: 30px;
 }
 
@@ -188,3 +187,65 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+/*ISSUE FIX*/
+.login-uap-input {
+    border: 0!important;
+    border-bottom: 1px solid #e5e5e5!important;
+    outline: none;
+    border-radius: 0px!important;
+    color: rgba(0, 0, 0, 0.6)!important;
+}
+
+.login-uap-input:focus{
+    border: 0!important;
+    border-bottom: 1px solid #FF5F6D!important;
+    outline: none!important;
+    box-shadow: none!important;
+    border-radius: 0px;
+    color: #FF5F6D!important;
+    
+}
+
+.create-label-name {
+    position: relative;
+    top: -28px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.input-container input:focus + .forgot-email-input label{
+    top:-60px;
+    transition-duration: 0.5s;
+    color: #FF5F6D;
+    font-size: 12px;
+}
+
+ .input-container input:not(:placeholder-shown) + label {
+    top:-52px;
+    font-size: 12px;
+} 
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.input-container {
+    width: 70%;
+}
+
+.input-container-login {
+    width: 100% !important;
+}
+
+.forgot-email-input {
+    float: left;
+    padding-left: 5px;
+    height: 15px;
+}
+
+.input-rs-pwd {
+    width: 100%;
+}
+
+
