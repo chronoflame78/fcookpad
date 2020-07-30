@@ -158,7 +158,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.props.auth)
     let trendingPosts = [];
     if (this.state.post_trending < 4) {
       trendingPosts = this.state.post_trending;
@@ -225,7 +224,7 @@ class Home extends Component {
                         </div>
                     ))}
                 </div>
-                <div className="row section-see-more" style={{ marginLeft: '0px', marginRight: '0px' }} onClick={this.showMoreNew} >
+                <div className="row section-see-more" style={{ marginLeft: '0px', marginRight: '0px' ,borderBottom: '1px solid #ff5f6d'}} onClick={this.showMoreNew} >
                     {this.state.itemsToShowNew === 4 && <button className="btn btn-more-pink">XEM THÊM</button>}
                     {this.state.itemsToShowNew !== 4 && <button className="btn btn-more-pink">THU GỌN</button>}
                 </div>
