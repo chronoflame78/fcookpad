@@ -267,8 +267,5 @@
 .home-container-child{
     background-color: #ffffff;
     padding-top: 20px;
-}
-
-.home-container{
-    
+    box-shadow: 0px 0px 7px darkgrey;
 }

@@ -7,7 +7,12 @@
 }
 
 .asetting-container{
-    padding-top: 60px;
+    padding-top: 74px;
+}
+
+.asetting-container-child{
+    box-shadow: 0px 0px 7px darkgrey;
+    background-color: #ffffff;
 }
 
 .asetting-row{

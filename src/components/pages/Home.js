@@ -180,7 +180,7 @@ class Home extends Component {
                 <div className="row search-section-title"><Link to="/view_all/trending">TRENDING</Link></div>
                 <div className="row search-row">
                     {trendingPosts && trendingPosts.map((x, index) => (
-                        <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">
+                        <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 py-4">
                             <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>
                                 <div className="section-image-container" >
                                     <div className="section-image-holder" style={{ backgroundImage: "url(" + x.images[0] + ")" }}></div>

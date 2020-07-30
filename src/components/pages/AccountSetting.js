@@ -330,7 +330,7 @@ class AccountSetting extends Component {
         }
         return (
             <div className="asetting-container">
-                <div className="container">
+                <div className="container asetting-container-child">
                     <div className="row asetting-row">
                         <div className="col-md-4 asetting-info-container">
                             {!this.state.imagePreviewUrl && <div className="asetting-avatar-cover asetting-avatar"
