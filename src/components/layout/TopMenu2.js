@@ -210,8 +210,8 @@ class TopMenu extends React.Component {
                         <form className="form-inline" onSubmit={(e) => this.handleSubmit(e)}>
                             <div className="input-group topmenu-category-dropdown">
                                 <div className="input-group-prepend" onClick={() => this.toggleMenuOpen()}>
-                                    {!this.state.isMenuOpen && <span className="input-group-category">{dropdownText}&nbsp;<i className="fas fa-chevron-down"></i></span>}
-                                    {this.state.isMenuOpen && <span className="input-group-category">{dropdownText}&nbsp;<i className="fas fa-chevron-up"></i></span>}
+                                    {!this.state.isMenuOpen && <span className="input-group-category"><span className="topmenu-dropdown-txt">{dropdownText}&nbsp;</span><i className="fas fa-chevron-down"></i></span>}
+                                    {this.state.isMenuOpen && <span className="input-group-category"><span className="topmenu-dropdown-txt">{dropdownText}&nbsp;</span><i className="fas fa-chevron-up"></i></span>}
                                 </div>
                                 <input autoComplete="off" className="form-control topmenu-placeholder" type="text" placeholder="Tìm kiếm" onChange={this.onChange} id="searchText" value={this.state.searchText} />
                                 <div className="input-group-prepend" onClick={(e) => this.handleSubmit(e)}>

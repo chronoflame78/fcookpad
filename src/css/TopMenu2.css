@@ -262,3 +262,27 @@
 .cate-item-border{
     border-right: 1px solid #FCBFAE;
 }
+
+@media only screen and (max-width: 576px) {
+    .topmenu-dropdown-txt{
+        display: none;
+    }
+    .topmenu-logo-container img{
+        width: 50px!important;
+        height: 40px!important;
+    }
+    .topmenu-avatar .avatar-cover{
+        width: 40px!important;
+        height: 40px!important;
+    }
+    .topmenu-category-dropdown{
+        width: 90%!important;
+        margin: 0 auto;
+    }
+    .topmenu-add-container{
+        padding-right: 10px;
+    }
+    .head-navbar{
+        padding: 17px 0;
+    }
+}
