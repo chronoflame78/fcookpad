@@ -263,6 +263,46 @@
     border-right: 1px solid #FCBFAE;
 }
 
+@media only screen and (max-width: 350px) {
+
+    .cate-item-border {
+        border-right: none;
+        
+    }
+
+    .topmenu-category-abs {
+        position: absolute;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        top: 55px;
+        background-color: #ffffff;
+        border: 1px solid #ff5f6d;
+        z-index: 9999;
+        max-width: 150px !important;
+        border-radius: 10px;
+        margin-left: 0px !important;
+    }
+}
+
+@media only screen and (min-width: 351px) {
+    .topmenu-category-abs {
+        max-width: 250px !important;
+
+    }
+}
+
+@media only screen and (min-width: 601px) {
+    .topmenu-category-abs {
+        max-width: 450px !important;
+    }
+}
+
+@media only screen and (min-width: 901px) {
+    .topmenu-category-abs {
+        max-width: 600px !important;
+    }
+}
+
 @media only screen and (max-width: 576px) {
     .topmenu-dropdown-txt{
         display: none;

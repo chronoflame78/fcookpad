@@ -96,18 +96,18 @@ class Login extends Component {
                     </div>
                   </div>
                   <div className="input-container input-container-login">
-                    <input
-                      onChange={this.onChange}
-                      id="email"
-                      value={this.state.password}
-                      error={errors.password}
-                      autoComplete="off"
-                      maxLength="100"
-                      placeholder=" "
-                      className="form-control login-uap-input"
-                      id="password"
-                      type="password"
-                    />
+                      <input
+                        onChange={this.onChange}
+                        id="email"
+                        value={this.state.password}
+                        error={errors.password}
+                        autoComplete="off"
+                        maxLength="100"
+                        placeholder=" "
+                        className="form-control login-uap-input"
+                        id="password"
+                        type="password"
+                      />
                     <div className="forgot-email-input">
                       <label className="create-label-name">Mật khẩu</label>
                     </div>
