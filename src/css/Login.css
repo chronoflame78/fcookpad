@@ -34,6 +34,7 @@
     box-shadow: 0 0 15px rgba(50, 50, 50, 0.7);
     height: auto;
     width: 55%;
+    max-width: 900px;
     overflow: auto;
     background-color: white !important;
     display: inline-flex;
