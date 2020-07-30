@@ -76,7 +76,7 @@
 
 .login-form-container form input[type=email]{
     width: 100%;
-    margin: 5px;
+    /* margin: 5px; */
     border-radius: 5px;
     border: solid #FF5F6D 1px;
     height: 2.5rem;
@@ -93,7 +93,7 @@
 
 .login-form-container form input[type=password]{
     width: 100%;
-    margin: 5px;
+    /* margin: 5px; */
     border-radius: 5px;
     border: solid #FF5F6D 1px;
     height: 2.5rem;
@@ -184,10 +184,6 @@
         width: 70%;
     }
 
-    .login-uap-input {
-        width: 75% !important;
-    }
-
     .login-wel-title h4{
         font-size: 1rem;
     }
@@ -204,11 +200,11 @@
     .login-content-wrapper {
         width: 90%;
     }
-    .login-uap-input {
-        width: 65% !important;
-    }
     .login-wel-title h4{
         font-size: 1.5rem;
+    }
+    .input-container {
+        width: 100% !important;
     }
 }
 
@@ -225,6 +221,13 @@
     }
     .login-wel-title h4{
         font-size: 0.95rem;
+    }
+
+}
+
+@media only screen and (min-width: 301px) {
+    .input-container {
+        width: 100% !important;
     }
 }
 
@@ -269,7 +272,7 @@
 
 .forgot-form-container form input[type=email]{
     width: 100%;
-    margin: 5px;
+    /* margin: 5px; */
     border-radius: 5px;
     border: solid #FF5F6D 1px;
     height: 2.5rem;
@@ -300,4 +303,16 @@
     float: left;
     padding-left: 5px;
     height: 15px;
+}
+
+@media only screen and (min-height: 400px) {
+    .login-body-wrapper {
+        height:130vh;
+    }
+}
+
+@media only screen and (min-height: 500px) {
+    .login-body-wrapper {
+        height:100vh !important;
+    }
 }
