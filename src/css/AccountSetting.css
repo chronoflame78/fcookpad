@@ -456,6 +456,10 @@
     background-color: #FF5F6D!important;
 }
 
+.swal-button:focus {
+    box-shadow: none!important;
+}
+
 .asetting-icon-edit{
     padding-right: 10px;
     padding-bottom: 5px;
