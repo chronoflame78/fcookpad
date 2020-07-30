@@ -263,7 +263,7 @@ class CreateStep3 extends Component {
 
     render() {
         let create_id = localStorage.getItem("create_id");
-        if(!create_id) return(<Page404/>);
+        if(!create_id) return(<Page404/>);        
         let { imagePreviewUrl1, imagePreviewUrl2, imagePreviewUrl3, imagePreviewUrl4, imagePreviewUrl5 } = this.state;
         let imagestep1, imagestep2, imagestep3, imagestep4, imagestep5 = null;
         if (imagePreviewUrl1) {
