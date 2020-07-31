@@ -170,10 +170,10 @@ class TopMenu extends React.Component {
         fixedDiv = (
           <div ref={this.wrapperRef} className="topmenu-abs-div">
             <Link to="/login">
-              <div className="topmenu-link">Login</div>
+              <div className="topmenu-link">Đăng nhập</div>
             </Link>
             <Link to="/register">
-              <div className="topmenu-link">Register</div>
+              <div className="topmenu-link">Đăng ký</div>
             </Link>
           </div>
         );
@@ -197,13 +197,13 @@ class TopMenu extends React.Component {
         fixedDiv = (
           <div ref={this.wrapperRef} className="topmenu-abs-div">
             <div className="topmenu-link" onClick={this.onLogoutClick}>
-              Logout
+              Đăng xuất
             </div>
             <Link to={"/user_profile/" + this.props.auth.user.id}>
-              <div className="topmenu-link">User Profile</div>{" "}
+              <div className="topmenu-link">Thông tin đầu bếp</div>{" "}
             </Link>
             <Link to="/account_settings">
-              <div className="topmenu-link">Account Setting</div>
+              <div className="topmenu-link">Tùy chỉnh tài khoản</div>
             </Link>
           </div>
         );

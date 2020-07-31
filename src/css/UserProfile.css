@@ -58,7 +58,7 @@
     margin-top: 30px;
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0 15px;
 }
 
 .userp-views{
@@ -67,7 +67,7 @@
     margin: 10px 0;
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0 15px;
 }
 
 .userp-likes{
@@ -75,7 +75,7 @@
     font-weight: bold;
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0 15px;
 }
 
 .userp-icon{
@@ -109,13 +109,22 @@
 
 /* UPDATE ISSUE */
 .userp-info-container-updt {
-    
     text-align: center;
-    padding-top: 20px;
+    margin-top: 15px;
+    border-right: 1px solid rgba(255, 95, 109, 0.4);
 }
 
 .userp-row-updt {
-    padding: 0 15px 20px  15px;
+    padding: 0 0 15px 0;
     background-color: #ffffff;
     box-shadow: 0 0 7px darkgray;
 }
+
+@media only screen and (max-width: 576px) {
+
+    .user-profile-post {
+        padding-left: 45px;
+        padding-right: 45px;
+    }
+}
+

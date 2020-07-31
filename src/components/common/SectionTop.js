@@ -40,7 +40,7 @@ class SectionTop extends Component {
                 <div className="row">
                     {isEmpty(this.props.posts) && <div style={{height:'100px', paddingLeft:'15px', paddingTop:'15px'}}>Bạn chưa có bài đăng nào</div>}
                     {topFourPosts && topFourPosts.map((x, index) => (
-                        <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-4">
+                        <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-4 col-12 food-item">
                             <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>
                                 <div className="section-image-container3" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
                                     <div className="item-cover" >

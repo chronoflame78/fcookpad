@@ -243,18 +243,6 @@
 .btn-gray:hover{
     background-color: #8F8E8E;
 }
-/* 
-.create-dropdown{
-    overflow-y: scroll;
-} */
-
-/* select.create-form-group option:hover {
-    box-shadow: 0 0 10px 100px #FF5F6D inset!important;
-} */
-/* 
-input:-internal-autofill-selected{
-    background-color: #ffffff!important;
-} */
 
 .create-txt-field4{
     color: #331919;
@@ -263,10 +251,6 @@ input:-internal-autofill-selected{
     font-weight: 600;
 }
 
-/* .fa-plus{
-    color: #FF5F6D;
-    font-size: 22px;
-} */
 
 .create-add-ingre{
     border-radius: 50%;
@@ -377,3 +361,4 @@ input:-internal-autofill-selected{
 .empty-block {
     height: 50px;
 }
+

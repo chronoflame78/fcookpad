@@ -49,21 +49,21 @@
 @media only screen and (max-width: 576px) {
     .section-image-container{
         /* width: 220px; */
-        height: 220px; 
+        height: 350px; 
     }
 }
 
 @media only screen and (max-width: 470px) {
     .section-image-container{
         /* width: 210px; */
-        height: 210px; 
+        height: 300px; 
     }
 }
 
 @media only screen and (max-width: 450px) {
     .section-image-container{
         /* width: 200px; */
-        height: 200px; 
+        height: 250px; 
     }
 }
 
@@ -274,5 +274,10 @@
 @media only screen and (max-width: 576px) {
     .home-container-child{
         padding-top: 94px;
+    }
+
+    .food-item {
+        padding-left: 45px !important;
+        padding-right: 45px !important;
     }
 }

@@ -57,7 +57,7 @@ class ForgotPassword extends Component {
       if (this.state.buttonLoading) {
         button = (
           <div className="resend-btn-container">
-            <button className="resend-btn">
+            <button className="btn btn-pink-disabled btn-login">
               <i className="fa fa-spinner fa-spin"></i>
             </button>
           </div>
@@ -65,9 +65,14 @@ class ForgotPassword extends Component {
       } else {
         button = (
           <div className="resend-btn-container">
-            <button className="resend-btn" onClick={this.sendEmail}>
-              Gửi email
-            </button>
+            <Link to="/">
+              <button
+                className="btn btn-pink btn-login"
+                onClick={this.sendEmail}
+              >
+                Gửi email
+              </button>
+            </Link>
           </div>
         );
       }
@@ -75,7 +80,7 @@ class ForgotPassword extends Component {
       button = (
         <div>
           <div className="resend-btn-container">
-            <button className="resend-btn-inactive" disabled>
+            <button className="btn btn-pink-disabled btn-login" disabled>
               Đã gửi
             </button>
           </div>
@@ -122,20 +127,20 @@ class ForgotPassword extends Component {
                 </div>
                 <div className="forgot-text">Nhập email để tiếp tục.</div>
                 <div className="form-group form-wrapper">
-                    <div className="input-container">
-                      <input
-                        onChange={this.onChange}
-                        id="email"
-                        value={this.state.email}
-                        autoComplete="off"
-                        maxLength="100"
-                        placeholder=" "
-                        className="form-control login-uap-input"
-                        type="email"
-                      />
-                      <div className="forgot-email-input">
-                        <label className="create-label-name">Email</label>
-                      </div>
+                  <div className="input-container">
+                    <input
+                      onChange={this.onChange}
+                      id="email"
+                      value={this.state.email}
+                      autoComplete="off"
+                      maxLength="100"
+                      placeholder=" "
+                      className="form-control login-uap-input"
+                      type="email"
+                    />
+                    <div className="forgot-email-input">
+                      <label className="create-label-name">Email</label>
+                    </div>
                   </div>
                 </div>
                 {!isEmpty(this.state.errors) && (

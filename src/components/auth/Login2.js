@@ -96,18 +96,18 @@ class Login extends Component {
                     </div>
                   </div>
                   <div className="input-container input-container-login">
-                      <input
-                        onChange={this.onChange}
-                        id="email"
-                        value={this.state.password}
-                        error={errors.password}
-                        autoComplete="off"
-                        maxLength="100"
-                        placeholder=" "
-                        className="form-control login-uap-input"
-                        id="password"
-                        type="password"
-                      />
+                    <input
+                      onChange={this.onChange}
+                      id="email"
+                      value={this.state.password}
+                      error={errors.password}
+                      autoComplete="off"
+                      maxLength="100"
+                      placeholder=" "
+                      className="form-control login-uap-input"
+                      id="password"
+                      type="password"
+                    />
                     <div className="forgot-email-input">
                       <label className="create-label-name">Mật khẩu</label>
                     </div>
@@ -123,12 +123,13 @@ class Login extends Component {
                     <Link to="/forgot_password">Tìm lại mật khẩu</Link>
                   </div>
                   <div className="login-btn-container">
-                    <img
+                    <button
+                      type="submit"
+                      className="btn btn-pink btn-login"
                       onClick={this.onSubmit}
-                      className="login-btn"
-                      src="/images/log-in.png"
-                      alt="Log In"
-                    />
+                    >
+                      Đăng nhập
+                    </button>
                   </div>
                 </div>
               </form>
@@ -138,11 +139,12 @@ class Login extends Component {
             </div>
             <div className="login-signup-btn">
               <Link to="/register">
-                <img
-                  className="login-btn"
-                  src="/images/sign-up-button.png"
-                  alt="Log In"
-                />
+                <button
+                  // type="submit"
+                  className="btn btn-pink"
+                >
+                  Đăng ký
+                </button>
               </Link>
             </div>
           </div>
