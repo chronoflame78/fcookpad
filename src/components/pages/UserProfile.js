@@ -112,10 +112,10 @@ class UserProfile extends Component {
                 </div>
                 <div className="container container-max-custom">
                     <div className="row section-title2">BÀI ĐĂNG</div>
-                    <div className="row">
+                    <div className="row user-profile-post">
                         {isEmpty(this.state.posts)&&<div style={{height:'100px', paddingLeft:'15px', paddingTop:'15px'}}>Bạn chưa có bài đăng nào</div>}
                         {!isEmpty(this.state.posts) && this.state.posts.map((x, index) => (
-                            <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">
+                            <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 col-lg-4 col-12 py-4">
                                 <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>
                                     <div className="section-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
                                         <div className="item-cover" >

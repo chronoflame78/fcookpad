@@ -99,70 +99,81 @@ class Register extends Component {
               </Link>
             </div>
             <div className="login-logo-container">
-              <img src="/images/NewLogo.png" alt="Back" width={122} height={100} />
+              <img
+                src="/images/NewLogo.png"
+                alt="Back"
+                width={122}
+                height={100}
+              />
             </div>
             <div className="login-wel-title">
               <h4 className="login-h4">Chào mừng bếp trưởng</h4>
             </div>
             <div className="register-form-container">
-              <form className="register-form" noValidate onSubmit={this.onSubmit}>
-                <div className="register-text-input-container">
-                  <div className="input-container-register">
-                    <div className="input-container input-register">
-                      <input
-                        onChange={this.onChange}
-                        id="email"
-                        value={this.state.email}
-                        error={errors.email}
-                        autoComplete="off"
-                        maxLength="100"
-                        placeholder=" "
-                        className="form-control login-uap-input"
-                        id="email"
-                        type="email"
-                      />
-                      <div className="input-register-placeholder">
-                        <label className="create-label-name">Email</label>
+              <form
+                className="register-form"
+                noValidate
+                onSubmit={this.onSubmit}
+              >
+                <div className="register-form-wrapper">
+                  <div className="register-text-input-container">
+                    <div className="input-container-register">
+                      <div className="input-container input-register">
+                        <input
+                          onChange={this.onChange}
+                          id="email"
+                          value={this.state.email}
+                          error={errors.email}
+                          autoComplete="off"
+                          maxLength="100"
+                          placeholder=" "
+                          className="form-control login-uap-input"
+                          id="email"
+                          type="email"
+                        />
+                        <div className="input-register-placeholder">
+                          <label className="create-label-name">Email</label>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="input-container-register">
-                    <div className="input-container input-register">
-                      <input
-                        onChange={this.onChange}
-                        id="email"
-                        value={this.state.password}
-                        error={errors.password}
-                        autoComplete="off"
-                        maxLength="100"
-                        placeholder=" "
-                        className="form-control login-uap-input"
-                        id="password"
-                        type="password"
-                      />
-                      <div className="input-register-placeholder">
-                        <label className="create-label-name">Mật khẩu</label>
+                    <div className="input-container-register">
+                      <div className="input-container input-register">
+                        <input
+                          onChange={this.onChange}
+                          id="email"
+                          value={this.state.password}
+                          error={errors.password}
+                          autoComplete="off"
+                          maxLength="100"
+                          placeholder=" "
+                          className="form-control login-uap-input"
+                          id="password"
+                          type="password"
+                        />
+                        <div className="input-register-placeholder">
+                          <label className="create-label-name">Mật khẩu</label>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="input-container-register">
-                    <div className="input-container input-register">
-                      <input
-                        onChange={this.onChange}
-                        id="email"
-                        value={this.state.passwordConfirm}
-                        error={errors.passwordConfirm}
-                        autoComplete="off"
-                        maxLength="100"
-                        placeholder=" "
-                        className="form-control login-uap-input"
-                        id="passwordConfirm"
-                        type="password"
-                      />
-                      <div className="input-register-placeholder">
-                        <label className="create-label-name">
-                          Nhập lại mật khẩu
-                        </label>
+                    <div className="input-container-register">
+                      <div className="input-container input-register">
+                        <input
+                          onChange={this.onChange}
+                          id="email"
+                          value={this.state.passwordConfirm}
+                          error={errors.passwordConfirm}
+                          autoComplete="off"
+                          maxLength="100"
+                          placeholder=" "
+                          className="form-control login-uap-input"
+                          id="passwordConfirm"
+                          type="password"
+                        />
+                        <div className="input-register-placeholder">
+                          <label className="create-label-name">
+                            Nhập lại mật khẩu
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -178,12 +189,13 @@ class Register extends Component {
                 </div>
                 <div className="register-error">{errors && errors.message}</div>
                 <div className="login-btn-container">
-                  <img
+                  <button
+                    type="submit"
+                    className="btn btn-pink btn-login"
                     onClick={this.onSubmit}
-                    className="login-btn"
-                    src="/images/create-account.png"
-                    alt="create account"
-                  />
+                  >
+                    Tạo tài khoản
+                  </button>
                 </div>
               </form>
             </div>

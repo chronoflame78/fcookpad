@@ -58,6 +58,7 @@ class Post extends Component {
   }
 
   onChange = (e) => {
+    e.preventDefault();
     this.setState({ [e.target.id]: e.target.value });
   };
 

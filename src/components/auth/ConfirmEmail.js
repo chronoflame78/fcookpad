@@ -32,7 +32,7 @@ class ConfirmEmail extends Component {
     if (this.state.sent === false) {
       button = (
         <div className="resend-btn-container">
-          <button className="resend-btn" onClick={this.resendEmail}>
+          <button className="btn btn-pink btn-login" onClick={this.resendEmail}>
             Gửi lại
           </button>
         </div>
@@ -41,7 +41,7 @@ class ConfirmEmail extends Component {
       button = (
         <div>
           <div className="resend-btn-container">
-            <button className="resend-btn-inactive" disabled>
+            <button className="btn btn-pink-disabled btn-login" disabled>
               Đã gửi
             </button>
           </div>
@@ -68,7 +68,7 @@ class ConfirmEmail extends Component {
               <div className="main-content">
                 <div className="logo-container">
                   <img
-                    src="/images/Logo.png"
+                    src="/images/NewLogo.png"
                     alt="Back"
                     width="122"
                     height="100"

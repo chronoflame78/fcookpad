@@ -68,7 +68,7 @@ class VerifyAccount extends Component {
             <div className="justify-content">
               <div className="main-content">
                 <div className="logo-container">
-                  <img src="/images/Logo.png" alt="Back" width="122" height="100" />
+                  <img src="/images/NewLogo.png" alt="Back" width="122" height="100" />
                 </div>
                 <div className="oms-title">
                   <h1><b>Cứ tự nhiên nhé bếp trưởng!</b></h1>
@@ -79,7 +79,7 @@ class VerifyAccount extends Component {
                 </div>
                 <div className="resend-btn-container">
                   <Link to="/">
-                    <button className="resend-btn">Quay về trang chủ</button>
+                    <button className="btn btn-pink btn-login">Quay về trang chủ</button>
                   </Link>
                 </div>
               </div>

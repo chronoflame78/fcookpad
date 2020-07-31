@@ -127,6 +127,8 @@
     max-height: 42px;
     margin: 5px auto 10px auto;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
 
 .login-or-div {
@@ -225,12 +227,6 @@
 
 }
 
-@media only screen and (min-width: 301px) {
-    .input-container {
-        width: 100% !important;
-    }
-}
-
 .register-policy-part {
     width: 65%;
     display: inline-flex;
@@ -267,12 +263,11 @@
 }
 
 .input-register {
-    width: 70%;
+    width: 100% !important;
 }
 
 .forgot-form-container form input[type=email]{
     width: 100%;
-    /* margin: 5px; */
     border-radius: 5px;
     border: solid #FF5F6D 1px;
     height: 2.5rem;
@@ -294,7 +289,7 @@
     font-size: 12px;
 }
 
- .input-container input:not(:placeholder-shown) + label {
+ .input-container input:not(:placeholder-shown) + .input-register-placeholder label {
     top:-52px;
     font-size: 12px;
 } 
@@ -305,14 +300,35 @@
     height: 15px;
 }
 
+.register-form-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.register-text-input-container {
+    width: 100%;
+    max-width: 300px;
+}
+
 @media only screen and (min-height: 400px) {
     .login-body-wrapper {
-        height:130vh;
+        height:105vh;
     }
 }
 
-@media only screen and (min-height: 500px) {
+@media only screen and (min-height: 700px) {
     .login-body-wrapper {
         height:100vh !important;
     }
+}
+
+.btn-login {
+    width: 200px !important;
+    height: 50px !important;
+    font-size: 20px;
+}
+
+.btn-login:focus {
+    outline: none;
 }

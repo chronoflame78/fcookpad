@@ -248,18 +248,6 @@ textarea:focus, input:focus{
     box-shadow: 0px 0px 7px darkgray;
 }
 
-/* .post-update-add-comment {
-    height: 40px;
-    background-color: #ff5f6d;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    text-align: center;
-    color: #ffffff;
-    line-height: 40px;
-    margin-left: 20px;
-    margin-right: 20px;
-} */
-
 .youtube-video{
     border-radius: 20px;
     box-shadow: 0px 0px 7px darkgray;
@@ -316,8 +304,8 @@ textarea:focus, input:focus{
     font-size: 12px;
 }
 
- .form-group input:not(:placeholder-shown) + label {
-    top:-52px;
+ .form-group input:not(:placeholder-shown) + .insde-comment-input label {
+    top:-60px;
     font-size: 12px;
 } 
 

@@ -55,7 +55,7 @@
     height: 100%;
     overflow: auto;
     text-align: center;
-    padding: 5px 15px 0 15px;
+    padding: 15px 30px 20px 15px;
 }
 
 .back-container {
@@ -72,6 +72,8 @@
     max-width: 239px;
     max-height: 42px;
     margin: 5px auto 10px auto;
+    display: flex;
+    justify-content: center;
 }
 
 .resend-btn {
@@ -154,6 +156,7 @@
 
 .justify-content {
     margin: 0 auto;
+    padding-top: 15px;
 }
 
 .confirm-alert{
@@ -214,13 +217,13 @@
 }
 
 .input-container input:focus + .forgot-email-input label{
-    top:-60px;
+    top:-52px;
     transition-duration: 0.5s;
     color: #FF5F6D;
     font-size: 12px;
 }
 
- .input-container input:not(:placeholder-shown) + label {
+ .input-container input:not(:placeholder-shown) + .forgot-email-input label {
     top:-52px;
     font-size: 12px;
 } 
@@ -246,6 +249,22 @@
 
 .input-rs-pwd {
     width: 100%;
+}
+
+.btn-pink-disabled {
+    width: 100px;
+    float: right;
+    color: #ffffff;
+    background-color: #FF5F6D;
+}
+
+.succeed-changed {
+    width: 239px !important;
+    font-size: 17px;
+}
+
+.oms-title {
+    padding-top: 15px;
 }
 
 

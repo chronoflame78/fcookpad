@@ -62,7 +62,7 @@ class ResetPassword extends Component {
       if (this.state.buttonLoading) {
         button = (
           <div className="resend-btn-container">
-            <button className="resend-btn">
+            <button className="btn btn-pink-disabled btn-login">
               <i className="fa fa-spinner fa-spin"></i>
             </button>
           </div>
@@ -70,9 +70,14 @@ class ResetPassword extends Component {
       } else {
         button = (
           <div className="resend-btn-container">
-            <button className="resend-btn" onClick={this.resetPassword}>
-              Xác nhận
-            </button>
+            <Link to="/home">
+              <button
+                className="btn btn-pink btn-login"
+                onClick={this.resetPassword}
+              >
+                Xác nhận
+              </button>
+            </Link>
           </div>
         );
       }
@@ -80,8 +85,11 @@ class ResetPassword extends Component {
       button = (
         <div>
           <div className="resend-btn-container">
-            <button className="resend-btn-inactive" disabled>
-              Xác nhận
+            <button
+              className="btn btn-pink-disabled btn-login succeed-changed"
+              disabled
+            >
+              Đổi mật khẩu thành công!
             </button>
           </div>
           {/* <span className="confirm-alert">Email sent! Please wait <span><Countdown timer={20}/></span>  seconds before try again</span> */}
