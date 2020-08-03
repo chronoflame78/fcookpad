@@ -198,9 +198,9 @@ class Home extends Component {
                         </div>
                     ))}
                 </div>
-                <div className="row section-see-more" style={{ marginLeft: '15px', marginRight: '15px' ,borderBottom: '1px solid #ff5f6d'}} onClick={this.showMoreTrending} >
-                    {this.state.itemsToShowTrending === 4 && <button className="btn btn-more-pink">XEM THÊM</button>}
-                    {this.state.itemsToShowTrending !== 4 && <button className="btn btn-more-pink">THU GỌN</button>}
+                <div className="row section-see-more" style={{ marginLeft: '15px', marginRight: '15px' ,borderBottom: '1px solid #ff5f6d'}}  >
+                    {this.state.itemsToShowTrending === 4 && <button onClick={this.showMoreTrending} className="btn btn-more-pink">XEM THÊM</button>}
+                    {this.state.itemsToShowTrending !== 4 && <button onClick={this.showMoreTrending} className="btn btn-more-pink">THU GỌN</button>}
                 </div>
                 <div className="row search-section-title" style={{paddingTop: '20px'}}><Link to="/view_all/new">MỚI NHẤT</Link></div>
                 <div className="row search-row">
@@ -224,9 +224,9 @@ class Home extends Component {
                         </div>
                     ))}
                 </div>
-                <div className="row section-see-more" style={{ marginLeft: '0px', marginRight: '0px' ,borderBottom: '1px solid #ff5f6d'}} onClick={this.showMoreNew} >
-                    {this.state.itemsToShowNew === 4 && <button className="btn btn-more-pink">XEM THÊM</button>}
-                    {this.state.itemsToShowNew !== 4 && <button className="btn btn-more-pink">THU GỌN</button>}
+                <div className="row section-see-more" style={{ marginLeft: '0px', marginRight: '0px' ,borderBottom: '1px solid #ff5f6d'}}  >
+                    {this.state.itemsToShowNew === 4 && <button onClick={this.showMoreNew} className="btn btn-more-pink">XEM THÊM</button>}
+                    {this.state.itemsToShowNew !== 4 && <button onClick={this.showMoreNew} className="btn btn-more-pink">THU GỌN</button>}
                 </div>
             </div>
       <Footer />

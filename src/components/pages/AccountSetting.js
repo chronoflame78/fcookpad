@@ -437,9 +437,9 @@ class AccountSetting extends Component {
                                 ))}
                             </div>
                             {(this.state.posts.length < this.state.userInfo.posts) &&
-                                <div className="row asetting-see-more" style={{ marginLeft: '0px', marginRight: '0px' }} onClick={() => this.showMore(this.state.nextPage)} >
-                                    {!this.state.buttonLoadMore && <button type="submit" className="btn btn-more">XEM THÊM</button>}
-                                    {this.state.buttonLoadMore && <button type="submit" className="btn btn-more"><i class="fa fa-spinner fa-spin"></i></button>}
+                                <div className="row asetting-see-more" style={{ marginLeft: '0px', marginRight: '0px' }}  >
+                                    {!this.state.buttonLoadMore && <button onClick={() => this.showMore(this.state.nextPage)} type="submit" className="btn btn-more-pink">XEM THÊM</button>}
+                                    {this.state.buttonLoadMore && <button type="submit" className="btn btn-more-pink"><i class="fa fa-spinner fa-spin"></i></button>}
                                 </div>}
                         </div>}
                         {this.state.tab === 3 && <div className="col-md-8 asetting-form-container">

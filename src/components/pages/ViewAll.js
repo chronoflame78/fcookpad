@@ -254,15 +254,16 @@ class ViewAll extends Component {
             <div
               className="row section-see-more"
               style={{ marginLeft: "0px", marginRight: "0px" }}
-              onClick={() => this.showMore(this.state.nextPage)}
+              
             >
               {!this.state.buttonLoadMore && (
-                <button type="submit" className="btn btn-more">
+                <button type="submit" className="btn btn-more-pink"
+                onClick={() => this.showMore(this.state.nextPage)}>
                   XEM THÊM
                 </button>
               )}
               {this.state.buttonLoadMore && (
-                <button type="submit" className="btn btn-more">
+                <button type="submit" className="btn btn-more-pink">
                   <i className="fa fa-spinner fa-spin"></i>
                 </button>
               )}

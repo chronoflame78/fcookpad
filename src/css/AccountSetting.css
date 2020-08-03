@@ -437,7 +437,7 @@
     font-size: 12px!important;
     color: #FF5F6D;
     border:1px solid #FF5F6D!important;
-    border-radius: 20px!important;
+    /* border-radius: 20px!important; */
 }
 
 .btn-more-pink:hover{
