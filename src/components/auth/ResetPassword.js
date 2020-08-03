@@ -40,7 +40,9 @@ class ResetPassword extends Component {
           "Thành công!",
           "Mật khẩu của bạn đã được đổi thành công!",
           "success"
-        );
+        ).then(function () {
+          window.location = "/";
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -70,14 +72,12 @@ class ResetPassword extends Component {
       } else {
         button = (
           <div className="resend-btn-container">
-            <Link to="/home">
-              <button
-                className="btn btn-pink btn-login"
-                onClick={this.resetPassword}
-              >
-                Xác nhận
-              </button>
-            </Link>
+            <button
+              className="btn btn-pink btn-login"
+              onClick={this.resetPassword}
+            >
+              Xác nhận
+            </button>
           </div>
         );
       }
