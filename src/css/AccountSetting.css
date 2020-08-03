@@ -433,8 +433,8 @@
     width: 120px;
     float: right;
     background-color: #ffffff;
-    font-weight: bold!important;
-    font-size: 12px!important;
+    /* font-weight: bold!important; */
+    font-size: 14px!important;
     color: #FF5F6D;
     border:1px solid #FF5F6D!important;
     /* border-radius: 20px!important; */
