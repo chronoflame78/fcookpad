@@ -200,7 +200,7 @@ class Register extends Component {
               </form>
             </div>
 
-            <div className="login-or-div">OR</div>
+            {/* <div className="login-or-div">OR</div>
             <div className="login-gg-cont">
               <Link to="/">
                 <img
@@ -218,7 +218,7 @@ class Register extends Component {
                   alt="Log In"
                 />
               </Link>
-            </div>
+            </div> */}
           </div>
           <div className="login-form-image"></div>
         </div>
