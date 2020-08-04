@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Footer from "../layout/Footer";
 import Page404 from "../pages/Page404";
+import Page500 from "../pages/Page500";
 import Emoji from "react-emoji-render";
 
 const isEmpty = require("is-empty");
@@ -28,6 +29,7 @@ class Post extends Component {
       buttonLoading: false,
       comments: [],
       likes: [],
+      error500: false
     };
   }
 
@@ -47,9 +49,17 @@ class Post extends Component {
         }
       })
       .catch((error) => {
-        this.setState({
-          loading: false,
-        });
+        if(error.response.status === 500){
+          this.setState({
+            loading: false,
+            error500: true
+          });
+        }else{
+          this.setState({
+            loading: false,
+          });
+        }
+        
       });
   }
 
@@ -95,6 +105,7 @@ class Post extends Component {
 
   render() {
     if (this.state.loading) return <Loader />;
+    if (this.state.error500) return <Page500 />;
     var post = this.state.post;
     var images = [];
     if (this.state.post.images) {
