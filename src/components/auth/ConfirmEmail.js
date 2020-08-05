@@ -3,6 +3,7 @@ import "../../css/Confirm.css";
 import queryString from "query-string";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Timer from "../common/Timer";
 
 class ConfirmEmail extends Component {
   constructor(props) {
@@ -23,8 +24,14 @@ class ConfirmEmail extends Component {
         this.setState({
           sent: true,
         })
+      ).catch((err) => console.log(err));
+      setTimeout(
+        () =>
+          this.setState({
+            sent: false,
+          }),
+        60000
       )
-      .catch((err) => console.log(err));
   };
 
   render() {
@@ -42,7 +49,10 @@ class ConfirmEmail extends Component {
         <div>
           <div className="resend-btn-container">
             <button className="btn btn-pink-disabled btn-login" disabled>
-              Đã gửi
+              <div class="inside-disabled-btn">
+                <div>Đã gửi, thử lại sau</div>
+                <Timer />
+              </div>
             </button>
           </div>
           {/* <span className="confirm-alert">Email sent! Please wait <span><Countdown timer={20}/></span>  seconds before try again</span> */}
@@ -87,7 +97,8 @@ class ConfirmEmail extends Component {
                 </div>
                 <div className="quest-part">
                   <label className="quest-text">
-                    Nếu chưa nhận được mail xác nhận, hãy bấm nút bên dưới để gửi lại một email khác.
+                    Nếu chưa nhận được mail xác nhận, hãy bấm nút bên dưới để
+                    gửi lại một email khác.
                   </label>
                 </div>
                 {button}
