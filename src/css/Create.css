@@ -362,3 +362,6 @@
     height: 50px;
 }
 
+label, input {
+    transition: 0.5s;
+}
