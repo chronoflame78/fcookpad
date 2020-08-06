@@ -40,7 +40,9 @@ class ResetPassword extends Component {
           "Thành công!",
           "Mật khẩu của bạn đã được đổi thành công!",
           "success"
-        ).then(function () {
+        ).then(() => {
+          let jwtToken = res.data.token;
+          localStorage.setItem("jwtToken", jwtToken);
           window.location = "/";
         });
       })
@@ -58,7 +60,6 @@ class ResetPassword extends Component {
   };
 
   render() {
-    console.log(this.props.match.params.token);
     let button;
     if (this.state.sent === false) {
       if (this.state.buttonLoading) {
@@ -134,7 +135,6 @@ class ResetPassword extends Component {
                     <div className="input-container input-rs-pwd">
                       <input
                         onChange={this.onChange}
-                        id="email"
                         value={this.state.password}
                         autoComplete="off"
                         maxLength="100"
@@ -152,7 +152,6 @@ class ResetPassword extends Component {
                     <div className="input-container input-rs-pwd">
                       <input
                         onChange={this.onChange}
-                        id="email"
                         value={this.state.passwordConfirm}
                         style={{ marginTop: "10px" }}
                         autoComplete="off"

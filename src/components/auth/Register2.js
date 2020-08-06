@@ -128,7 +128,6 @@ class Register extends Component {
                           maxLength="100"
                           placeholder=" "
                           className="form-control login-uap-input"
-                          id="email"
                           type="email"
                         />
                         <div className="input-register-placeholder">
@@ -140,7 +139,6 @@ class Register extends Component {
                       <div className="input-container input-register">
                         <input
                           onChange={this.onChange}
-                          id="email"
                           value={this.state.password}
                           error={errors.password}
                           autoComplete="off"
@@ -159,7 +157,6 @@ class Register extends Component {
                       <div className="input-container input-register">
                         <input
                           onChange={this.onChange}
-                          id="email"
                           value={this.state.passwordConfirm}
                           error={errors.passwordConfirm}
                           autoComplete="off"
@@ -200,7 +197,7 @@ class Register extends Component {
               </form>
             </div>
 
-            <div className="login-or-div">OR</div>
+            {/* <div className="login-or-div">OR</div>
             <div className="login-gg-cont">
               <Link to="/">
                 <img
@@ -218,7 +215,7 @@ class Register extends Component {
                   alt="Log In"
                 />
               </Link>
-            </div>
+            </div> */}
           </div>
           <div className="login-form-image"></div>
         </div>

@@ -201,8 +201,6 @@ class AccountSetting extends Component {
                     );
             })
             .catch(err => {
-                console.log(err);
-                console.log(err.response.data);
                 this.setState({
                     errors: err.response.data,
                     buttonLoading: false
@@ -252,7 +250,6 @@ class AccountSetting extends Component {
                     posts: arr,
                     buttonLoadMore: false
                 })
-                console.log(this.state.posts)
             }).catch(err => {
                 this.setState({
                     errors: err,
@@ -268,11 +265,9 @@ class AccountSetting extends Component {
         this.setState({
             loading: true
         })
-        console.log(this.props.auth.user.id)
         axios.all([axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id),
         axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id + "/posts?page=1&limit=3")])
             .then(axios.spread((...res) => {
-                console.log(...res)
                 if (this.mounted) {
                     this.setState({
                         userInfo: res[0].data.user,
@@ -290,7 +285,6 @@ class AccountSetting extends Component {
             );
         if (this.props.location.state) {
             var { editSuccess, postTab } = this.props.location.state;
-            console.log(editSuccess);
             if (editSuccess === true) {
                 toast.success('Edit successfully!', { position: toast.POSITION.TOP_RIGHT });
                 if (postTab) {
@@ -308,7 +302,6 @@ class AccountSetting extends Component {
     }
 
     render() {
-        console.log(this.state.userInfoUpdate)
         if (this.state.loading) return <Loader />;
         var tab1 = 'asetting-tab-active';
         var tab2 = 'asetting-tab';
@@ -437,9 +430,9 @@ class AccountSetting extends Component {
                                 ))}
                             </div>
                             {(this.state.posts.length < this.state.userInfo.posts) &&
-                                <div className="row asetting-see-more" style={{ marginLeft: '0px', marginRight: '0px' }} onClick={() => this.showMore(this.state.nextPage)} >
-                                    {!this.state.buttonLoadMore && <button type="submit" className="btn btn-more">XEM THÊM</button>}
-                                    {this.state.buttonLoadMore && <button type="submit" className="btn btn-more"><i class="fa fa-spinner fa-spin"></i></button>}
+                                <div className="row asetting-see-more" style={{ marginLeft: '0px', marginRight: '0px' }}  >
+                                    {!this.state.buttonLoadMore && <button onClick={() => this.showMore(this.state.nextPage)} type="submit" className="btn btn-more-pink">XEM THÊM</button>}
+                                    {this.state.buttonLoadMore && <button type="submit" className="btn btn-more-pink"><i class="fa fa-spinner fa-spin"></i></button>}
                                 </div>}
                         </div>}
                         {this.state.tab === 3 && <div className="col-md-8 asetting-form-container">

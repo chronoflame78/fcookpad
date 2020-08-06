@@ -148,7 +148,6 @@
     justify-content: center;
     font-weight: bold;
     padding-bottom: 20px;
-    cursor: pointer;
 }
 
 .fa-star{
@@ -281,3 +280,12 @@
         padding-right: 45px !important;
     }
 }
+
+
+@media (min-width: 576px){
+    .container {
+        max-width: 1140px!important;
+    }
+}
+
+

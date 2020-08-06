@@ -81,7 +81,6 @@ class Login extends Component {
                   <div className="input-container input-container-login">
                     <input
                       onChange={this.onChange}
-                      id="email"
                       value={this.state.email}
                       error={errors.email}
                       autoComplete="off"
@@ -98,7 +97,6 @@ class Login extends Component {
                   <div className="input-container input-container-login">
                     <input
                       onChange={this.onChange}
-                      id="email"
                       value={this.state.password}
                       error={errors.password}
                       autoComplete="off"
