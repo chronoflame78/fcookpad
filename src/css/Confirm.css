@@ -252,10 +252,11 @@
 }
 
 .btn-pink-disabled {
-    width: 100px;
+    /* width: 200px !important; */
     float: right;
     color: #ffffff;
     background-color: #FF5F6D;
+    font-size: 15px;
 }
 
 .succeed-changed {
@@ -265,6 +266,10 @@
 
 .oms-title {
     padding-top: 15px;
+}
+
+.inside-disabled-btn {
+    display: flex;
 }
 
 
