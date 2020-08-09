@@ -24,14 +24,15 @@ class ConfirmEmail extends Component {
         this.setState({
           sent: true,
         })
-      ).catch((err) => console.log(err));
-      setTimeout(
-        () =>
-          this.setState({
-            sent: false,
-          }),
-        60000
-      )
+      ).then((res) {
+        setTimeout(
+          () =>
+            this.setState({
+              sent: false,
+            }),
+          60000
+        )
+      }).catch((err) => console.log(err));
   };
 
   render() {
