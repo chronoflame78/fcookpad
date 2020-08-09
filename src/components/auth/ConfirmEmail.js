@@ -24,7 +24,7 @@ class ConfirmEmail extends Component {
         this.setState({
           sent: true,
         })
-      ).then((res) {
+      ).then((res) => {
         setTimeout(
           () =>
             this.setState({
