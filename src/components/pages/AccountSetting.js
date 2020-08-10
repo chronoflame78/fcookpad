@@ -342,6 +342,7 @@ class AccountSetting extends Component {
                             <div className={tab1} onClick={(e, index) => this.changeTab(e, 1)}>Thông tin tài khoản</div>
                             <div className={tab2} onClick={(e, index) => this.changeTab(e, 2)}>Công thức của tôi</div>
                             <div className={tab3} onClick={(e, index) => this.changeTab(e, 3)}>Thay đổi mật khẩu</div>
+                            <div className="asetting-line-other"></div>
                             {/* <div className="asetting-tab">Danh mục yêu thích</div>
                             <div className="asetting-tab">Công thức yêu thích</div>
                             <div className="asetting-tab">Công thức gần đây</div>
