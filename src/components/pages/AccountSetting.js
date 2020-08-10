@@ -125,7 +125,8 @@ class AccountSetting extends Component {
                                 .then(axios.spread((...resp) => {
                                     this.setState({
                                         userInfo: resp[0].data.user,
-                                        posts: resp[1].data.allPosts
+                                        posts: resp[1].data.allPosts,
+                                        totalPost: res[1].data.total,
                                     })
                                 })).catch(errs =>
                                     console.log(errs)
