@@ -279,17 +279,21 @@
         z-index: 9999;
         max-width: 150px !important;
         border-radius: 10px;
-        margin-left: 0px !important;
+        /* margin-left: 0px !important; */
+        margin-left: -40px !important;
+        margin-top: 10px;
+
     }
 }
 
 @media only screen and (min-width: 351px) {
     .topmenu-category-abs {
+        margin-left: -38px !important;
         max-width: 250px !important;
+        margin-top: 3px;
 
     }
 }
-
 @media only screen and (min-width: 601px) {
     .topmenu-category-abs {
         max-width: 450px !important;
