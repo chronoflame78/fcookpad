@@ -42,7 +42,8 @@ class AccountSetting extends Component {
             tab: 1,
             currentPassword:'',
             newPassword:'',
-            confirmPassword: ''
+            confirmPassword: '',
+            totalPost: 0
         };
         this.showMore = this.showMore.bind(this);
     }
@@ -265,12 +266,12 @@ class AccountSetting extends Component {
         axios.all([axios.get("https://api.mlemmlem.site/api/users/" + this.props.auth.user.id),
         axios.get("https://api.mlemmlem.site/api/users/posts?page=1&limit=3")])
             .then(axios.spread((...res) => {
-                console.log(res[1]);
                 if (this.mounted) {
                     this.setState({
                         userInfo: res[0].data.user,
                         userInfoUpdate: res[0].data.user,
                         posts: res[1].data.allPosts,
+                        totalPost: res[1].data.total,
                         loading: false
                     });
                 }
@@ -427,7 +428,7 @@ class AccountSetting extends Component {
                                     </div>
                                 ))}
                             </div>
-                            {(this.state.posts.length < this.state.userInfo.posts) &&
+                            {(this.state.posts.length < this.state.totalPost) &&
                                 <div className="row asetting-see-more" style={{ marginLeft: '0px', marginRight: '0px' }}  >
                                     {!this.state.buttonLoadMore && <button onClick={() => this.showMore(this.state.nextPage)} type="submit" className="btn btn-more-pink">XEM THÊM</button>}
                                     {this.state.buttonLoadMore && <button type="submit" className="btn btn-more-pink"><i className="fa fa-spinner fa-spin"></i></button>}
