@@ -116,11 +116,11 @@ class AccountSetting extends Component {
             .then((willDelete) => {
                 if (willDelete) {
                     axios
-                        .delete("http://178.128.83.129:3000/api/posts/" + postId)
+                        .post("http://178.128.83.129:3000/api/users/posts/" + postId+"/destroy")
                         .then(res => {
                             toast.success('Delete successfully!', { position: toast.POSITION.TOP_RIGHT });
                             axios.all([axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id),
-                            axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id + "/posts?page=1&limit=3")])
+                            axios.get("http://178.128.83.129:3000/api/users/posts?page=1&limit=3")])
                                 .then(axios.spread((...resp) => {
                                     this.setState({
                                         userInfo: resp[0].data.user,
@@ -132,7 +132,7 @@ class AccountSetting extends Component {
                         })
                         .catch(err => {
                             console.log(err);
-                            toast.err(err, { position: toast.POSITION.TOP_RIGHT });
+                            toast.error(err.response.data.message, { position: toast.POSITION.TOP_RIGHT });
                         }
                         );
                     // swal("Poof! Your post has been deleted!", {
@@ -147,7 +147,6 @@ class AccountSetting extends Component {
 
     handleImageChange(e) {
         e.preventDefault();
-
         let reader = new FileReader();
         let file = e.target.files[0];
         if (file) {
@@ -157,7 +156,6 @@ class AccountSetting extends Component {
                     imagePreviewUrl: reader.result
                 });
             }
-
             reader.readAsDataURL(file)
         }
         else {
@@ -169,7 +167,7 @@ class AccountSetting extends Component {
 
     }
 
-    handleSubmit = e => {
+    handleSubmit = e => {     
         e.preventDefault();
         this.setState({
             buttonLoading: true
@@ -190,7 +188,6 @@ class AccountSetting extends Component {
                 toast.success('Save successfully!', { position: toast.POSITION.TOP_RIGHT });
                 axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id)
                     .then(resp => {
-                        localStorage.setItem("userAvatar", resp.data.user.avatar);
                         this.setState({
                             userInfo: resp.data.user,
                             errors: {},
@@ -241,7 +238,7 @@ class AccountSetting extends Component {
         this.setState({
             buttonLoadMore: true
         })
-        axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id + "/posts?page=" + nextPage + "&limit=3")
+        axios.get("http://178.128.83.129:3000/api/users/posts?page=" + nextPage + "&limit=3")
             .then(res => {
                 const arr = this.state.posts;
                 arr.push(...res.data.allPosts);
@@ -266,7 +263,7 @@ class AccountSetting extends Component {
             loading: true
         })
         axios.all([axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id),
-        axios.get("http://178.128.83.129:3000/api/users/" + this.props.auth.user.id + "/posts?page=1&limit=3")])
+        axios.get("http://178.128.83.129:3000/api/users/posts?page=1&limit=3")])
             .then(axios.spread((...res) => {
                 if (this.mounted) {
                     this.setState({
@@ -402,7 +399,7 @@ class AccountSetting extends Component {
                                 {!isEmpty(this.state.errors) && <div className="alert alert-danger">{this.state.errors.message}</div>}
                                 <div className="asetting-button-container">
                                     {!this.state.buttonLoading && <button type="submit" className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Lưu</button>}
-                                    {this.state.buttonLoading && <button type="submit" className="btn btn-pink"><i class="fa fa-spinner fa-spin"></i></button>}
+                                    {this.state.buttonLoading && <button type="submit" className="btn btn-pink"><i className="fa fa-spinner fa-spin"></i></button>}
                                 </div>
                             </form>
                         </div>}
@@ -432,7 +429,7 @@ class AccountSetting extends Component {
                             {(this.state.posts.length < this.state.userInfo.posts) &&
                                 <div className="row asetting-see-more" style={{ marginLeft: '0px', marginRight: '0px' }}  >
                                     {!this.state.buttonLoadMore && <button onClick={() => this.showMore(this.state.nextPage)} type="submit" className="btn btn-more-pink">XEM THÊM</button>}
-                                    {this.state.buttonLoadMore && <button type="submit" className="btn btn-more-pink"><i class="fa fa-spinner fa-spin"></i></button>}
+                                    {this.state.buttonLoadMore && <button type="submit" className="btn btn-more-pink"><i className="fa fa-spinner fa-spin"></i></button>}
                                 </div>}
                         </div>}
                         {this.state.tab === 3 && <div className="col-md-8 asetting-form-container">

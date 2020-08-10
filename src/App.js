@@ -15,7 +15,7 @@ import UserProfile from "./components/pages/UserProfile";
 import AccountSetting from "./components/pages/AccountSetting";
 import SearchResult from "./components/pages/SearchResult";
 import ViewAll from "./components/pages/ViewAll";
-import TopMenu from "./components/layout/TopMenu2";
+import TopMenu from "./components/layout/TopMenu";
 import Page404 from './components/pages/Page404';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "slick-carousel/slick/slick.css";
