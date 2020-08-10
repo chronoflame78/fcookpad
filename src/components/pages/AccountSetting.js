@@ -116,11 +116,11 @@ class AccountSetting extends Component {
             .then((willDelete) => {
                 if (willDelete) {
                     axios
-                        .post("http://api.mlemmlem.site/api/users/posts/" + postId+"/destroy")
+                        .post("https://api.mlemmlem.site/api/users/posts/" + postId+"/destroy")
                         .then(res => {
                             toast.success('Delete successfully!', { position: toast.POSITION.TOP_RIGHT });
-                            axios.all([axios.get("http://api.mlemmlem.site/api/users/" + this.props.auth.user.id),
-                            axios.get("http://api.mlemmlem.site/api/users/posts?page=1&limit=3")])
+                            axios.all([axios.get("https://api.mlemmlem.site/api/users/" + this.props.auth.user.id),
+                            axios.get("https://api.mlemmlem.site/api/users/posts?page=1&limit=3")])
                                 .then(axios.spread((...resp) => {
                                     this.setState({
                                         userInfo: resp[0].data.user,
@@ -183,10 +183,10 @@ class AccountSetting extends Component {
         }
 
         axios
-            .post("http://api.mlemmlem.site/api/users", formData)
+            .post("https://api.mlemmlem.site/api/users", formData)
             .then(res => {
                 toast.success('Save successfully!', { position: toast.POSITION.TOP_RIGHT });
-                axios.get("http://api.mlemmlem.site/api/users/" + this.props.auth.user.id)
+                axios.get("https://api.mlemmlem.site/api/users/" + this.props.auth.user.id)
                     .then(resp => {
                         this.setState({
                             userInfo: resp.data.user,
@@ -217,7 +217,7 @@ class AccountSetting extends Component {
             passwordConfirm: this.state.confirmPassword
         }
         axios
-            .post("http://api.mlemmlem.site/api/users/update_password", data)
+            .post("https://api.mlemmlem.site/api/users/update_password", data)
             .then(res => {
                 toast.success('Thay đổi mật khẩu thành công!', { position: toast.POSITION.TOP_RIGHT });
                 this.setState({
@@ -238,7 +238,7 @@ class AccountSetting extends Component {
         this.setState({
             buttonLoadMore: true
         })
-        axios.get("http://api.mlemmlem.site/api/users/posts?page=" + nextPage + "&limit=3")
+        axios.get("https://api.mlemmlem.site/api/users/posts?page=" + nextPage + "&limit=3")
             .then(res => {
                 const arr = this.state.posts;
                 arr.push(...res.data.allPosts);
@@ -262,8 +262,8 @@ class AccountSetting extends Component {
         this.setState({
             loading: true
         })
-        axios.all([axios.get("http://api.mlemmlem.site/api/users/" + this.props.auth.user.id),
-        axios.get("http://api.mlemmlem.site/api/users/posts?page=1&limit=3")])
+        axios.all([axios.get("https://api.mlemmlem.site/api/users/" + this.props.auth.user.id),
+        axios.get("https://api.mlemmlem.site/api/users/posts?page=1&limit=3")])
             .then(axios.spread((...res) => {
                 console.log(res[1]);
                 if (this.mounted) {

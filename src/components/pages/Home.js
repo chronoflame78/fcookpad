@@ -29,8 +29,8 @@ class Home extends Component {
       this.setState({
         loading: true
       })
-      axios.all([axios.get("http://api.mlemmlem.site/api/home/post_trending?page=1&limit=8"),
-      axios.get("http://api.mlemmlem.site/api/home/post_new?page=1&limit=8")])
+      axios.all([axios.get("https://api.mlemmlem.site/api/home/post_trending?page=1&limit=8"),
+      axios.get("https://api.mlemmlem.site/api/home/post_new?page=1&limit=8")])
         .then(axios.spread((...res) => {
           if (this.mounted) {
             this.setState({
@@ -49,8 +49,8 @@ class Home extends Component {
     localStorage.removeItem("create_id");
     localStorage.removeItem("action");
     this.mounted = true;
-    axios.all([axios.get("http://api.mlemmlem.site/api/home/category"), axios.get("http://api.mlemmlem.site/api/home/post_trending?page=1&limit=8"),
-    axios.get("http://api.mlemmlem.site/api/home/post_new?page=1&limit=8")])
+    axios.all([axios.get("https://api.mlemmlem.site/api/home/category"), axios.get("https://api.mlemmlem.site/api/home/post_trending?page=1&limit=8"),
+    axios.get("https://api.mlemmlem.site/api/home/post_new?page=1&limit=8")])
       .then(axios.spread((...res) => {
         if (this.mounted) {
           this.setState({
@@ -109,7 +109,7 @@ class Home extends Component {
 
   likePost = (e, id) => {
     e.preventDefault();
-    axios.post(`http://api.mlemmlem.site/api/posts/${id}/like`)
+    axios.post(`https://api.mlemmlem.site/api/posts/${id}/like`)
       .then(res => {
         console.log(res)
         let post = res.data.post;

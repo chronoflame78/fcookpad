@@ -247,6 +247,22 @@
     font-size: 11px
 }
 
+.topmenu-to-setting{
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.topmenu-btn{
+    background-color: #FF606E;
+    color: #ffffff;
+    border-radius: 10px!important;
+    width: 110px;
+}
+
+.topmenu-btn:hover{
+    background-color:#FCB59F;;
+}
+
 .topmenu-link{
     display: block;
     color: black;

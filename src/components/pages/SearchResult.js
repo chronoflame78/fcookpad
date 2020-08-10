@@ -31,7 +31,7 @@ class SearchResult extends Component {
             content: params.content,
             categoryid: params.categoryid
         }
-        let apiLink = "http://api.mlemmlem.site/api/search?page=1&limit=8";
+        let apiLink = "https://api.mlemmlem.site/api/search?page=1&limit=8";
         if (data.content) {
             apiLink = apiLink.concat("&content=" + data.content);
         }
@@ -68,7 +68,7 @@ class SearchResult extends Component {
                 content: params.content,
                 categoryid: params.categoryid
             }
-            let apiLink = "http://api.mlemmlem.site/api/search?page=1&limit=8";
+            let apiLink = "https://api.mlemmlem.site/api/search?page=1&limit=8";
             if (data.content) {
                 apiLink = apiLink.concat("&content=" + data.content);
             }
@@ -98,7 +98,7 @@ class SearchResult extends Component {
 
     likePost = (e, id) => {
         e.preventDefault();
-        axios.post(`http://api.mlemmlem.site/api/posts/${id}/like`)
+        axios.post(`https://api.mlemmlem.site/api/posts/${id}/like`)
             .then(res => {
                 console.log(res)
                 let post = res.data.post;
@@ -160,7 +160,7 @@ class SearchResult extends Component {
             content: params.content,
             categoryid: params.categoryid
         }
-        let apiLink = "http://api.mlemmlem.site/api/search?page=" + nextPage + "&limit=4";
+        let apiLink = "https://api.mlemmlem.site/api/search?page=" + nextPage + "&limit=4";
         if (data.content) {
             apiLink = apiLink.concat("&content=" + data.content);
         }

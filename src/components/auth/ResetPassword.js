@@ -29,7 +29,7 @@ class ResetPassword extends Component {
       passwordConfirm: this.state.passwordConfirm,
     };
     axios
-      .post("http://api.mlemmlem.site/api/auth/reset_password/verify", data)
+      .post("https://api.mlemmlem.site/api/auth/reset_password/verify", data)
       .then((res) => {
         this.setState({
           sent: true,

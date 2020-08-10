@@ -19,7 +19,7 @@ class ConfirmEmail extends Component {
       email: params.email,
     };
     axios
-      .post("http://api.mlemmlem.site/api/auth/resendEmail", data)
+      .post("https://api.mlemmlem.site/api/auth/resendEmail", data)
       .then((res) =>
         this.setState({
           sent: true,

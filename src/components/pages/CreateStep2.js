@@ -40,7 +40,7 @@ class CreateStep2 extends Component {
         this.mounted = true;
         let create_id = localStorage.getItem("create_id");
         if (create_id) {
-            axios.get("http://api.mlemmlem.site/api/posts/" + create_id).then(res => {
+            axios.get("https://api.mlemmlem.site/api/posts/" + create_id).then(res => {
                 if (this.mounted) {
                     console.log(res.data);
                     console.log(res.data.post);
@@ -109,7 +109,7 @@ class CreateStep2 extends Component {
         }
 
         axios
-            .post("http://api.mlemmlem.site/api/posts/" + localStorage.getItem("create_id") + "/update", data)
+            .post("https://api.mlemmlem.site/api/posts/" + localStorage.getItem("create_id") + "/update", data)
             .then(res => { 
                 this.props.history.push("/step3");                 
             })

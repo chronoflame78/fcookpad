@@ -38,7 +38,7 @@ class UserProfile extends Component {
         this.setState({
             buttonLoadMore: true
         })
-        axios.get("http://api.mlemmlem.site/api/users/" + this.props.match.params.id + "/posts?page=" + nextPage)
+        axios.get("https://api.mlemmlem.site/api/users/" + this.props.match.params.id + "/posts?page=" + nextPage)
             .then(res => {
                 const arr = this.state.posts;
                 arr.push(...res.data.allPosts);
@@ -58,9 +58,9 @@ class UserProfile extends Component {
 
     componentDidMount() {
         this.mounted = true;
-        axios.all([axios.get("http://api.mlemmlem.site/api/users/" + this.props.match.params.id),
-        axios.get("http://api.mlemmlem.site/api/users/" + this.props.match.params.id + "/posts?page=1"),
-        axios.get("http://api.mlemmlem.site/api/users/" + this.props.match.params.id + "/top")])
+        axios.all([axios.get("https://api.mlemmlem.site/api/users/" + this.props.match.params.id),
+        axios.get("https://api.mlemmlem.site/api/users/" + this.props.match.params.id + "/posts?page=1"),
+        axios.get("https://api.mlemmlem.site/api/users/" + this.props.match.params.id + "/top")])
             .then(axios.spread((...res) => {
                 console.log(...res)
                 if (this.mounted) {
