@@ -165,7 +165,7 @@ class CreateStep2 extends Component {
                         {!isEmpty(this.state.errors) && <div className="alert alert-danger">{this.state.errors.message}</div>}
                         <div className="create-button-container">
                             <button className="btn btn-gray" onClick={(e) => this.cancelSubmit(e)}>Hủy</button>
-                            {!this.state.buttonLoading &&<button className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Tiếp</button>}
+                            {!this.state.buttonLoading &&<button className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Lưu</button>}
                             {this.state.buttonLoading && <button type="submit" className="btn btn-pink"><i class="fa fa-spinner fa-spin"></i></button>}
                             <button className="btn btn-pink create-mr" onClick={(e) => this.handleBack(e)}>Trở lại</button>
                         </div>
