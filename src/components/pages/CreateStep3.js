@@ -3,6 +3,7 @@ import axios from "axios";
 import Picture from '../common/Picture';
 import Footer from '../layout/Footer';
 import Page404 from '../pages/Page404';
+import { SAVE, POST } from "../../actions/AllConstants";
 const isEmpty = require("is-empty");
 
 const items = [
@@ -22,6 +23,7 @@ const items = [
         active: true,
     }
 ]
+let buttonVal = "";
 
 class CreateStep3 extends Component {
 
@@ -61,6 +63,7 @@ class CreateStep3 extends Component {
         if (action === 'update') {
             axios.get("http://178.128.83.129:3000/api/posts/" + create_id).then(res => {
                 if (this.mounted) {
+                    buttonVal = SAVE;
                     console.log(res.data);
                     console.log(res.data.post);
                     if(res.data.post.steps.length === 1){
@@ -119,6 +122,7 @@ class CreateStep3 extends Component {
                     }
                     
                 }
+                buttonVal = POST;
             }).catch(error => {
                 this.setState({
                     errors: error.response.data
@@ -407,7 +411,7 @@ class CreateStep3 extends Component {
                         {!isEmpty(this.state.errors) && <div className="alert alert-danger">{this.state.errors.message}</div>}
                         <div className="create-button-container">
                             <button className="btn btn-gray" onClick={(e) => this.cancelSubmit(e)}>Hủy</button>
-                            {!this.state.buttonLoading &&<button type="submit" class="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Đăng</button>}
+                    {!this.state.buttonLoading &&<button type="submit" class="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>{buttonVal}</button>}
                             {this.state.buttonLoading && <button type="submit" className="btn btn-pink"><i class="fa fa-spinner fa-spin"></i></button>}
                             <button type="submit" class="btn btn-pink create-mr" onClick={(e) => this.handleBack(e)}>Trở lại</button>
                         </div>
