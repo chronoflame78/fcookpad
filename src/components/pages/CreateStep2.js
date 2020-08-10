@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import axios from "axios";
 import Footer from '../layout/Footer';
 import Page404 from '../pages/Page404';
+import { SAVE, NEXT } from "../../actions/AllConstants";
 const isEmpty = require("is-empty");
+
 
 const items = [
     {
@@ -21,6 +23,7 @@ const items = [
         active: false,
     }
 ]
+let buttonVal = "";
 
 class CreateStep2 extends Component {
 
@@ -41,6 +44,7 @@ class CreateStep2 extends Component {
                 if (this.mounted) {
                     console.log(res.data);
                     console.log(res.data.post);
+                    buttonVal = SAVE;
                     if(res.data.post.ingredients.length > 0){
                         this.setState({
                             ingredients: res.data.post.ingredients,
@@ -48,6 +52,7 @@ class CreateStep2 extends Component {
                     }
                     
                 }
+                buttonVal = NEXT;
             }).catch(error => {
                 this.setState({
                     errors: error.response.data
@@ -165,7 +170,7 @@ class CreateStep2 extends Component {
                         {!isEmpty(this.state.errors) && <div className="alert alert-danger">{this.state.errors.message}</div>}
                         <div className="create-button-container">
                             <button className="btn btn-gray" onClick={(e) => this.cancelSubmit(e)}>Hủy</button>
-                            {!this.state.buttonLoading &&<button className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>Tiếp</button>}
+                    {!this.state.buttonLoading &&<button className="btn btn-pink" onClick={(e) => this.handleSubmit(e)}>{buttonVal}</button>}
                             {this.state.buttonLoading && <button type="submit" className="btn btn-pink"><i class="fa fa-spinner fa-spin"></i></button>}
                             <button className="btn btn-pink create-mr" onClick={(e) => this.handleBack(e)}>Trở lại</button>
                         </div>

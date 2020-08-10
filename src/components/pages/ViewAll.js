@@ -7,7 +7,7 @@ import Page404 from "../pages/Page404";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import swal from "sweetalert";
-import { TRENDING, NEW } from "../../actions/ViewAllConstants";
+import { TRENDING, NEW } from "../../actions/AllConstants";
 
 class ViewAll extends Component {
   constructor(props) {
