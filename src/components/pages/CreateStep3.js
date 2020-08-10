@@ -61,7 +61,7 @@ class CreateStep3 extends Component {
         let create_id = localStorage.getItem("create_id");
         let action = localStorage.getItem("action")
         if (action === 'update') {
-            axios.get("http://178.128.83.129:3000/api/posts/" + create_id).then(res => {
+            axios.get("http://api.mlemmlem.site/api/posts/" + create_id).then(res => {
                 if (this.mounted) {
                     buttonVal = SAVE;
                     console.log(res.data);
@@ -239,7 +239,7 @@ class CreateStep3 extends Component {
         formData.append('step', 3);
         console.log(formData);
         axios
-             .post("http://178.128.83.129:3000/api/posts/"+localStorage.getItem("create_id")+"/update", formData)
+             .post("http://api.mlemmlem.site/api/posts/"+localStorage.getItem("create_id")+"/update", formData)
              .then(res => {
                 if(action === 'update'){
                     this.props.history.push({

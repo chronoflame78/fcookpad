@@ -20,7 +20,9 @@ class TopMenu extends React.Component {
       categoryId: "",
       categoryName: "",
       searchText: "",
-      avatar: ""
+      avatar: "",
+      email: "",
+      fullName: "",
     };
     this.wrapperRef = React.createRef();
     this.avatarRef = React.createRef();
@@ -32,29 +34,37 @@ class TopMenu extends React.Component {
     document.addEventListener("mousedown", this.handleClickOutside);
     const { user } = this.props.auth;
     if (isEmpty(user)) {
-      axios.get("http://178.128.83.129:3000/api/home/category")
-        .then(res => {
+      axios
+        .get("http://api.mlemmlem.site/api/home/category")
+        .then((res) => {
           this.setState({
             categories: res.data.data.categorys,
           });
-        }).catch(err => {
-          console.log(err)
         })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
-      axios.all([axios.get("http://178.128.83.129:3000/api/users"), axios.get("http://178.128.83.129:3000/api/home/category")])
-        .then(axios.spread((...res) => {
-          console.log(res[0])
-          this.setState({
-            avatar: res[0].data.freshUser.avatar,
-            categories: res[1].data.data.categorys,
-          });
-        }))
-        .catch(err => {
+      axios
+        .all([
+          axios.get("http://api.mlemmlem.site/api/users"),
+          axios.get("http://api.mlemmlem.site/api/home/category"),
+        ])
+        .then(
+          axios.spread((...res) => {
+            console.log(res[0]);
+            this.setState({
+              avatar: res[0].data.freshUser.avatar,
+              email: res[0].data.freshUser.email,
+              fullName: res[0].data.freshUser.fullName,
+              categories: res[1].data.data.categorys,
+            });
+          })
+        )
+        .catch((err) => {
           console.log(err);
         });
     }
-
-
   }
 
   componentWillUnmount() {
@@ -126,26 +136,28 @@ class TopMenu extends React.Component {
       } else {
         if (this.props.location.pathname !== "/search")
           this.setState({
-            categoryName: 'Danh mục',
-            categoryId: '',
-            searchText: ''
+            categoryName: "Danh mục",
+            categoryId: "",
+            searchText: "",
           });
       }
     } else {
       const { user } = this.props.auth;
       if (!isEmpty(user)) {
-        if(this.props.location.pathname === "/account_settings"){
-          axios.get("http://178.128.83.129:3000/api/users")
-          .then(res => {
-            if (prevState.avatar !== res.data.freshUser.avatar) {
-              this.setState({
-                avatar: res.data.freshUser.avatar,
-              });
-            }
-          }).catch(err => {
-            console.log(err)
-          })
-        }    
+        if (this.props.location.pathname === "/account_settings") {
+          axios
+            .get("http://api.mlemmlem.site/api/users")
+            .then((res) => {
+              if (prevState.avatar !== res.data.freshUser.avatar) {
+                this.setState({
+                  avatar: res.data.freshUser.avatar,
+                });
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
       }
     }
   }
@@ -181,7 +193,6 @@ class TopMenu extends React.Component {
   toggleMenuOpen = () => this.setState({ isMenuOpen: !this.state.isMenuOpen });
 
   render() {
-    console.log(this.props);
     const user_avatar = this.state.avatar;
     const { user } = this.props.auth;
     let fixedDiv, avatar, categoryDiv, dropdownText;
@@ -231,15 +242,30 @@ class TopMenu extends React.Component {
       if (this.state.isOpen) {
         fixedDiv = (
           <div ref={this.wrapperRef} className="topmenu-abs-div">
-            <div className="topmenu-link" onClick={this.onLogoutClick}>
-              Đăng xuất
-            </div>
+            <div className="topmenu-abs-con">
             <Link to={"/user_profile/" + this.props.auth.user.id}>
-              <div className="topmenu-link">Thông tin đầu bếp</div>{" "}
+              <div className="topmenu-userp-link">
+                <Avatar
+                  className="topmenu-abs-ava"
+                  signature="nav_avatar"
+                  image={user_avatar}
+                  size={60}
+                  tooltip={false}
+                />
+                <div className="topmenu-abs-text">
+                  <div className="topmenu-abs-fullname">{this.state.fullName}</div>
+                  <div className="topmenu-abs-email">{this.state.email}</div>
+                </div>
+              </div>
             </Link>
             <Link to="/account_settings">
               <div className="topmenu-link">Tùy chỉnh tài khoản</div>
             </Link>
+            </div>
+            
+            <div className="topmenu-link" onClick={this.onLogoutClick}>
+              Đăng xuất
+            </div>
           </div>
         );
       } else {
@@ -269,14 +295,14 @@ class TopMenu extends React.Component {
                   {x.title}
                 </div>
               ) : (
-                  <div
-                    key={index}
-                    onClick={(e) => this.onCategoryClick(e, x._id, x.title)}
-                    className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 col-12 top-cate-item"
-                  >
-                    {x.title}
-                  </div>
-                )
+                <div
+                  key={index}
+                  onClick={(e) => this.onCategoryClick(e, x._id, x.title)}
+                  className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 col-12 top-cate-item"
+                >
+                  {x.title}
+                </div>
+              )
             )}
           </div>
         </div>

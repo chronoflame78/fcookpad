@@ -27,7 +27,7 @@ class ForgotPassword extends Component {
       email: this.state.email,
     };
     axios
-      .post("http://178.128.83.129:3000/api/auth/reset_password", data)
+      .post("http://api.mlemmlem.site/api/auth/reset_password", data)
       .then((res) => {
         this.setState({
           sent: true,

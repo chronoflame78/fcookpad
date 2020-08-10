@@ -201,7 +201,7 @@
 
 .topmenu-abs-div{
     position: absolute;
-    width: 150px;
+    /* width: 200px; */
     top: 74px;
     background-color: #ffffff;
     z-index: 9999;
@@ -217,6 +217,34 @@
     z-index: 9999;
     max-width: 600px!important;
     border-radius: 10px;
+}
+
+.topmenu-abs-con{
+    border-bottom: 1px solid rgba(25, 25, 25, 0.3);
+    margin: 0px 15px;
+}
+
+.topmenu-userp-link{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.topmenu-abs-ava{
+
+}
+
+.topmenu-abs-text{
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+.topmenu-abs-fullname{
+    font-weight: bold;
+}
+
+.topmenu-abs-email{
+    font-size: 11px
 }
 
 .topmenu-link{
