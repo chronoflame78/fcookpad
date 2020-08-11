@@ -204,8 +204,8 @@ class TopMenu extends React.Component {
     if (isEmpty(user)) {
       avatar = (
         <div>
-          <Link to="/login"><div className="btn btn-topmenu-login">Đăng nhập</div></Link>
           <Link to="/register"><div className="btn btn-topmenu-register">Đăng kí</div></Link>
+          <Link to="/login"><div className="btn btn-topmenu-login">Đăng nhập</div></Link>         
           {/* <Avatar
           className="topmenu-margin-auto topmenu-bg topmenu-unauth-ava"
           signature="nav_avatar"
@@ -265,7 +265,7 @@ class TopMenu extends React.Component {
 
               <div className="topmenu-to-setting">
                 <Link to="/account_settings">
-                  <div onClick={this.toggleOpen} className="btn topmenu-btn">Chỉnh sửa</div>
+                  <div onClick={this.toggleOpen} className="btn topmenu-btn">Trang cá nhân</div>
                 </Link>
               </div>
             </div>

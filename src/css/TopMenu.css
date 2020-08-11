@@ -257,7 +257,7 @@
     padding-bottom: 10px;
 }
 
-.btn-topmenu-login{
+.btn-topmenu-register{
     background-color: transparent;
     color: #ffffff;
     border-radius: 8px!important;
@@ -265,12 +265,12 @@
     width: 120px;
 }
 
-.btn-topmenu-login:hover{
+.btn-topmenu-register:hover{
     background-color: #ffffff;
     color: #FCB69F;
 }
 
-.btn-topmenu-register{
+.btn-topmenu-login{
     background-color: #FF606E;
     color: #ffffff;
     border-radius: 8px!important;
@@ -279,13 +279,13 @@
     margin-left: 10px;
 }
 
-.btn-topmenu-register:hover{
+.btn-topmenu-login:hover{
     background-color: #ffffff;
     color: #FCB69F;
     border: 1px solid #ffffff!important;
 }
 
-.btn-abs-login{
+.btn-abs-register{
     background-color: #FCB69F;
     color: #ffffff;
     border-radius: 8px!important;
@@ -297,7 +297,7 @@
     cursor: pointer;
 }
 
-.btn-abs-register{
+.btn-abs-login{
     background-color: #FF606E;
     color: #ffffff;
     border-radius: 8px!important;
@@ -335,7 +335,7 @@
     background-color: #FF606E;
     color: #ffffff;
     border-radius: 10px!important;
-    width: 110px;
+    width: 100%;
 }
 
 .topmenu-btn:hover{
