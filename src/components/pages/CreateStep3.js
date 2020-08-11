@@ -153,6 +153,16 @@ class CreateStep3 extends Component {
     window.open("/", "_self");
   }
 
+  onStepClick = (e, index) => {
+    console.log(index);
+    e.preventDefault();
+    if (index === "1") {
+      this.props.history.push("/create");
+    } else if (index === "2") {
+        this.props.history.push("/step2");
+    }
+  };
+
   handleImageChange(e) {
     e.preventDefault();
 
@@ -396,6 +406,7 @@ class CreateStep3 extends Component {
             <div className="timeline-items">
               {items.map((item, i) => (
                 <div
+                  onClick={(e) => this.onStepClick(e, item.number)}
                   key={i}
                   className={"timeline-item" + (item.active ? " active" : "")}
                 >
