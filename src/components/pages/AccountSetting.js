@@ -397,7 +397,7 @@ class AccountSetting extends Component {
                                 </div>
                                 <div className="form-group asetting-form-group">
                                     <label className="asetting-label-description" htmlFor="upload_image">Thay đổi ảnh đại diện</label>
-                                    <input className="asetting-image-upload upload_image" accept="image/*" type="file" onChange={(e) => this.handleImageChange(e)} />
+                                    <input className="asetting-image-upload" accept="image/*" id="upload_image" type="file" onChange={(e) => this.handleImageChange(e)} />
                                 </div>
 
                                 {!isEmpty(this.state.errors) && <div className="alert alert-danger">{this.state.errors.message}</div>}
