@@ -48,6 +48,14 @@ class Create extends Component {
     window.open("/", "_self");
   };
 
+  onStepClick = (e, index) =>{
+    console.log(index)
+    e.preventDefault();
+    if(index !== '1'){
+      this.handleSubmit(e, index);
+    }
+  }
+
   componentDidMount() {
     this.mounted = true;
     let create_id = localStorage.getItem("create_id");
@@ -103,7 +111,8 @@ class Create extends Component {
     this.mounted = false;
   }
 
-  handleSubmit(e) {
+  handleSubmit(e, index) {
+    console.log(index);
     e.preventDefault();
     let create_id = localStorage.getItem("create_id");
     if (
@@ -136,7 +145,13 @@ class Create extends Component {
           console.log(res);
           const { id } = res.data;
           localStorage.setItem("create_id", id);
-          this.props.history.push("/step2");
+          if(index === '3'){
+            this.props.history.push('/step3');
+          }
+          else{
+            this.props.history.push('/step2');
+          }
+          
         })
         .catch((err) => {
           console.log(err);
@@ -155,7 +170,12 @@ class Create extends Component {
           formData
         )
         .then((res) => {
-          this.props.history.push("/step2");
+          if(index === '3'){
+            this.props.history.push('/step3');
+          }
+          else{
+            this.props.history.push('/step2');
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -249,6 +269,7 @@ class Create extends Component {
             <div className="timeline-items">
               {items.map((item, i) => (
                 <div
+                  onClick={(e) => this.onStepClick(e, item.number)}
                   key={i}
                   className={"timeline-item" + (item.active ? " active" : "")}
                 >
@@ -259,7 +280,7 @@ class Create extends Component {
             </div>
           </div>
           <div className="imgPreview">{$imagePreview}</div>
-          <form className="create-form" onSubmit={(e) => this.handleSubmit(e)}>
+          <form className="create-form" onSubmit={(e) => this.handleSubmit(e, 2)}>
             <div className="form-group create-form-group">
               <input
                 autoComplete="off"

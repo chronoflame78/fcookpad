@@ -74,6 +74,16 @@ class CreateStep2 extends Component {
     window.open("/", "_self");
   }
 
+  onStepClick = (e, index) => {
+    console.log(index);
+    e.preventDefault();
+    if (index === "1") {
+      this.props.history.push("/create");
+    } else if (index === "3") {
+      this.handleSubmit(e);
+    }
+  };
+
   addIngredient(e) {
     e.preventDefault();
     if (this.state.ingredients.length < 10) {
@@ -128,6 +138,7 @@ class CreateStep2 extends Component {
             <div className="timeline-items">
               {items.map((item, i) => (
                 <div
+                  onClick={(e) => this.onStepClick(e, item.number)}
                   key={i}
                   className={"timeline-item" + (item.active ? " active" : "")}
                 >
