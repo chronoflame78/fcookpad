@@ -243,28 +243,33 @@ class TopMenu extends React.Component {
         fixedDiv = (
           <div ref={this.wrapperRef} className="topmenu-abs-div">
             <div className="topmenu-abs-con">
-            <Link to={"/user_profile/" + this.props.auth.user.id}>
-              <div className="topmenu-userp-link">
-                <Avatar
-                  className="topmenu-abs-ava"
-                  signature="nav_avatar"
-                  image={user_avatar}
-                  size={60}
-                  tooltip={false}
-                />
-                <div className="topmenu-abs-text">
-                  <div className="topmenu-abs-fullname">{this.state.fullName}</div>
-                  <div className="topmenu-abs-email">{this.state.email}</div>
+              <Link to={"/user_profile/" + this.props.auth.user.id}>
+                <div className="topmenu-userp-link" onClick={this.toggleOpen}>
+                  <Avatar
+                    className="topmenu-abs-ava"
+                    signature="nav_avatar"
+                    image={user_avatar}
+                    size={60}
+                    tooltip={false}
+                  />
+                  <div className="topmenu-abs-text">
+                    <div className="topmenu-abs-fullname">
+                      {this.state.fullName}
+                    </div>
+                    <div className="topmenu-abs-email">{this.state.email}</div>
+                  </div>
                 </div>
+              </Link>
+
+              <div className="topmenu-to-setting">
+                <Link to="/account_settings">
+                  <div onClick={this.toggleOpen} className="btn topmenu-btn">Chỉnh sửa</div>
+                </Link>
               </div>
-            </Link>
-            <Link to="/account_settings">
-              <div className="topmenu-to-setting"><div className="btn topmenu-btn">Chỉnh sửa</div></div>
-            </Link>
             </div>
-            
-            <div className="topmenu-link" onClick={this.onLogoutClick}>
-              Đăng xuất
+
+            <div className="topmenu-logout-link" onClick={this.onLogoutClick}>
+              <i className="fas fa-power-off"></i>&nbsp;&nbsp;Đăng xuất
             </div>
           </div>
         );
@@ -382,12 +387,9 @@ class TopMenu extends React.Component {
               />
             </Link>
           </div>
-          <div
-            className="topmenu-avatar"
-            ref={this.avatarRef}
-            onClick={this.toggleOpen}
-          >
-            {avatar}
+          <div className="topmenu-avatar">
+            <div ref={this.avatarRef}
+            onClick={this.toggleOpen}>{avatar}</div>
             {fixedDiv}
           </div>
         </div>
