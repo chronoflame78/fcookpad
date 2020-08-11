@@ -184,7 +184,7 @@ class Create extends Component {
     if (imagePreviewUrl) {
       $imagePreview = (
         <div
-          style={{ padding: "0 100px" }}
+          className="img-preview"
           onClick={() => console.log(this.inputImage.current.click())}
         >
           <div
@@ -223,6 +223,7 @@ class Create extends Component {
       youtube_video = (
         <iframe
           title="video"
+          style={{margin: "0 0 30px 0"}}
           width="100%"
           height="250px"
           src={embed_video}

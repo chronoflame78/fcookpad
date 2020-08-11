@@ -425,7 +425,7 @@ class CreateStep3 extends Component {
           <form className="create-form" onSubmit={(e) => this.handleSubmit(e)}>
             <div className="create-step-title">Step 1</div>
             <div className="row form-group">
-              <div className="col">
+              <div className="col col-md-6 col-12">
                 <textarea
                   spellCheck="false"
                   className="create-steps-textarea"
@@ -436,7 +436,7 @@ class CreateStep3 extends Component {
                   onChange={(e) => this.handleChange(e)}
                 />
               </div>
-              <div className="col">
+              <div className="col col-md-6 col-12">
                 <input
                   style={{ display: "none" }}
                   type="file"
@@ -451,7 +451,7 @@ class CreateStep3 extends Component {
               <div>
                 <div className="create-step-title">Step 2</div>
                 <div className="row form-group">
-                  <div className="col">
+                  <div className="col col-md-6 col-12">
                     <textarea
                       spellCheck="false"
                       className="create-steps-textarea"
@@ -462,7 +462,7 @@ class CreateStep3 extends Component {
                       onChange={(e) => this.handleChange(e)}
                     />
                   </div>
-                  <div className="col">
+                  <div className="col col-md-6 col-12">
                     <input
                       style={{ display: "none" }}
                       type="file"
@@ -489,7 +489,7 @@ class CreateStep3 extends Component {
               <div>
                 <div className="create-step-title">Step 3</div>
                 <div className="row form-group">
-                  <div className="col">
+                  <div className="col col-md-6 col-12">
                     <textarea
                       spellCheck="false"
                       className="create-steps-textarea"
@@ -500,7 +500,7 @@ class CreateStep3 extends Component {
                       onChange={(e) => this.handleChange(e)}
                     />
                   </div>
-                  <div className="col">
+                  <div className="col col-md-6 col-12">
                     <input
                       style={{ display: "none" }}
                       type="file"
@@ -527,7 +527,7 @@ class CreateStep3 extends Component {
               <div>
                 <div className="create-step-title">Step 4</div>
                 <div className="row form-group">
-                  <div className="col">
+                  <div className="col col-md-6 col-12">
                     <textarea
                       spellCheck="false"
                       className="create-steps-textarea"
@@ -538,7 +538,7 @@ class CreateStep3 extends Component {
                       onChange={(e) => this.handleChange(e)}
                     />
                   </div>
-                  <div className="col">
+                  <div className="col col-md-6 col-12">
                     <input
                       style={{ display: "none" }}
                       type="file"
@@ -565,7 +565,7 @@ class CreateStep3 extends Component {
               <div>
                 <div className="create-step-title">Step 5</div>
                 <div className="row form-group">
-                  <div className="col">
+                  <div className="col col-md-6 col-12">
                     <textarea
                       spellCheck="false"
                       className="create-steps-textarea"
@@ -576,7 +576,7 @@ class CreateStep3 extends Component {
                       onChange={(e) => this.handleChange(e)}
                     />
                   </div>
-                  <div className="col">
+                  <div className="col col-md-6 col-12">
                     <input
                       style={{ display: "none" }}
                       type="file"
@@ -612,6 +612,33 @@ class CreateStep3 extends Component {
                 {this.state.errors.message}
               </div>
             )}
+                        <div className="create-button-container-phone">
+              <button
+                className="btn btn-gray"
+                onClick={(e) => this.cancelSubmit(e)}
+              >
+                Hủy
+              </button>
+              <div
+                className="back-arrow create-mr"
+                onClick={(e) => this.handleBack(e)}
+              >
+                <i class="fas fa-chevron-left"></i>
+              </div>
+              {!this.state.buttonLoading && (
+                <div
+                  className="next-arrow"
+                  onClick={(e) => this.handleSubmit(e)}
+                >
+                  <i class="fas fa-check"></i>
+                </div>
+              )}
+              {this.state.buttonLoading && (
+                <div type="submit" className="">
+                  <i class="fa fa-spinner fa-spin"></i>
+                </div>
+              )}
+            </div>
             <div className="create-button-container">
               <button
                 className="btn btn-gray"

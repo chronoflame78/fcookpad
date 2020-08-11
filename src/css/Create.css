@@ -124,8 +124,8 @@
       background-color:#EFEFEF;
   }
   .create-step1-image{
-    width: 150px;
-    margin-top: 30px;
+    width: 250px;
+    /* margin-top: 30px; */
   }
   
   .create-txt-field1{
@@ -286,6 +286,8 @@
     color: #FF5F6D;
     font-size: 28px;
     cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 .create-add-btn-container{
@@ -324,11 +326,6 @@
  
 }
 
-/* .create-dropdown-color:focus{
-    color: #FF5F6D!important;
- 
-} */
-
 .create-mr{
     margin-right: 10px;
 }
@@ -346,6 +343,8 @@
     background-color: #EFEFEF;
     text-align: center;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
 
 .create-steps-textarea{
@@ -427,7 +426,9 @@ select option:hover {
     }
 
     .create-step1-image {
-        width: 100px;
+        max-width: 150px !important;
+        height: 150px !important;
+        margin-top: 50px !important;
     }
 
     .create-form {
@@ -467,9 +468,18 @@ select option:hover {
 
 @media only screen and (min-width: 351px) {
 
-
     .create-form {
         padding: 5px 30px 0 30px !important;
+    }
+
+    .create-step1-image {
+        max-width: 150px !important;
+        height: 150px;
+        margin-top: 40px;
+    }
+
+    .img-preview {
+        padding: 0 30px !important;
     }
 
     .previewText {
@@ -482,10 +492,6 @@ select option:hover {
 
     .create-txt-field1 {
         font-size: 30px;
-    }
-
-    .create-step1-image {
-        width: 100px;
     }
 
     .create-input-yt {
@@ -603,9 +609,29 @@ select option:hover {
         margin-right: -50px;
     }
 
+    .post-check {
+        color: green !important;
+    }
+
+}
+
+@media only screen and (min-width: 768px) {
+    .create-form {
+        padding:0 100px !important;
+    }
+
+    .img-preview {
+        padding: 0 100px !important;
+    }
 }
 
 .alert-position {
     margin-top: 1rem;
 }
+
+.img-preview {
+    padding: 0 100px;
+}
+
+
 
