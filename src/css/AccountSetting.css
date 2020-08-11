@@ -102,20 +102,13 @@
     min-height: 800px!important;
 }
 
-.asetting-line{
-    margin: 0 10px;
+.asetting-line {
+    margin: 0;
     border-bottom: 2px solid #D3D3D3;
     margin-top: 10px;
-    margin-bottom: 20px;
-    
 }
 
-.asetting-line-other {
-    margin: 0 10px;
-    border-bottom: 2px solid #D3D3D3;
-    margin-top: 10px;
-    /* margin-bottom: 20px; */
-    width: 280px;
+.asetting-line-display {
     display: none;
 }
 
@@ -148,7 +141,7 @@
 }
 
 .asetting-form-group{
-    margin-top: 30px;
+    margin-top: 0;
 }
 
 .asetting-input-name{
@@ -220,7 +213,7 @@
 
 .asetting-button-container{
     height: 60px;
-    margin-top: 24px;
+    margin-top: -20px;
 }
 
 .btn-pink{
@@ -499,9 +492,8 @@
         border-right: none;
     }
 
-    .asetting-line-other {
-        display: inline-flex;
-        
+    .asetting-line-display {
+        display: block;
     }
 
     .asetting-title {
@@ -509,6 +501,11 @@
     }
 
     .asetting-form {
-        padding: 0 20px;
+        padding: 0;
     }
+
+}
+
+.asetting-form-position {
+    max-height: 50px;
 }

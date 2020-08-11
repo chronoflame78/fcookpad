@@ -343,7 +343,7 @@ class AccountSetting extends Component {
                             <div className={tab1} onClick={(e, index) => this.changeTab(e, 1)}>Thông tin tài khoản</div>
                             <div className={tab2} onClick={(e, index) => this.changeTab(e, 2)}>Công thức của tôi</div>
                             <div className={tab3} onClick={(e, index) => this.changeTab(e, 3)}>Thay đổi mật khẩu</div>
-                            <div className="asetting-line-other"></div>
+                            <div className="asetting-line asetting-line-display"></div>
                             {/* <div className="asetting-tab">Danh mục yêu thích</div>
                             <div className="asetting-tab">Công thức yêu thích</div>
                             <div className="asetting-tab">Công thức gần đây</div>
@@ -354,15 +354,15 @@ class AccountSetting extends Component {
                                 Thông tin tài khoản
                             </div>
                             <form className="asetting-form" onSubmit={(e) => this.handleSubmit(e)}>
-                                <div className="form-group asetting-form-group">
+                                <div className="form-group asetting-form-group asetting-form-position">
                                     <input readOnly autoComplete="off" maxLength="100" id="email" value={this.state.userInfoUpdate.email} type="text" className="form-control asetting-input-email" placeholder=" " />
                                     <label className="asetting-label-email" htmlFor="email">Email</label>
                                 </div>
-                                <div className="form-group asetting-form-group">
+                                <div className="form-group asetting-form-group asetting-form-position">
                                     <input autoComplete="off" maxLength="100" onChange={this.onFirstNameChange} id="firstName" value={this.state.userInfoUpdate.firstName} type="text" className="form-control asetting-input-name" placeholder=" " />
                                     <label className="asetting-label-name" htmlFor="firstName">Họ</label>
                                 </div>
-                                <div className="form-group asetting-form-group">
+                                <div className="form-group asetting-form-group asetting-form-position">
                                     <input autoComplete="off" maxLength="100" onChange={this.onLastNameChange} id="lastName" value={this.state.userInfoUpdate.lastName} type="text" className="form-control asetting-input-name" placeholder=" " />
                                     <label className="asetting-label-name" htmlFor="lastName">Tên</label>
                                 </div>
@@ -397,7 +397,7 @@ class AccountSetting extends Component {
                                 </div>
                                 <div className="form-group asetting-form-group">
                                     <label className="asetting-label-description" htmlFor="upload_image">Thay đổi ảnh đại diện</label>
-                                    <input className="asetting-image-upload" accept="image/*" type="file" id="upload_image" onChange={(e) => this.handleImageChange(e)} />
+                                    <input className="asetting-image-upload upload_image" accept="image/*" type="file" onChange={(e) => this.handleImageChange(e)} />
                                 </div>
 
                                 {!isEmpty(this.state.errors) && <div className="alert alert-danger">{this.state.errors.message}</div>}

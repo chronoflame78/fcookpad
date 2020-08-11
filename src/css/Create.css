@@ -388,3 +388,164 @@ select option:hover {
     box-shadow: 0 0 10px 100px #FF5F6D inset;
 }
 
+@media only screen and (max-width: 350px) {
+    .previewText {
+        height: 350px;
+    }
+
+    .create-txt-field2, .create-txt-field3 {
+        font-size: 18px;
+    }
+
+    .create-txt-field1 {
+        font-size: 30px;
+    }
+
+    .create-step1-image {
+        width: 100px;
+    }
+
+    .create-form {
+        padding: 30px 30px 0 30px !important;
+    }
+
+    .create-input-yt-label {
+        top: -72px !important;
+    }
+
+    .create-input-yt:not(:placeholder-shown) + .create-input-yt-label {
+        top:-70px !important;
+        font-size: 12px;
+    } 
+
+    .create-input-yt:focus + .create-input-yt-label {
+        top:-83px !important;
+        font-size: 12px;
+    }
+
+    .create-input-yt {
+        padding-top: 60px !important;
+    }
+
+    .create-input-yt:focus {
+        padding-bottom: 18px !important;
+    }
+
+    .create-input-yt:not(:placeholder-shown) {
+        padding-bottom: 18px !important;
+    }
+
+    input {
+        transition: 0.5s;
+    }
+}
+
+@media only screen and (min-width: 351px) {
+    .create-form {
+        padding: 30px 30px 0 30px !important;
+    }
+
+    .previewText {
+        height: 350px;
+    }
+
+    .create-txt-field2, .create-txt-field3 {
+        font-size: 18px;
+    }
+
+    .create-txt-field1 {
+        font-size: 30px;
+    }
+
+    .create-step1-image {
+        width: 100px;
+    }
+
+    .create-input-yt {
+        padding-top: 40px !important;
+    }
+
+    .create-input-yt-label {
+        top: -52px !important;
+    }
+
+    .create-input-yt:not(:placeholder-shown) + .create-input-yt-label {
+        top:-70px !important;
+        font-size: 12px;
+    } 
+
+    .create-input-yt:focus + .create-input-yt-label {
+        top:-70px !important;
+        font-size: 12px;
+    }
+
+    .create-input-yt:focus {
+        padding-bottom: 18px !important;
+    }
+
+    .create-input-yt:not(:placeholder-shown) {
+        padding-bottom: 18px !important;
+    }
+
+    input {
+        transition: 0.5s;
+    }
+}
+
+@media only screen and (min-width: 400px) {
+    .create-mini-text {
+        font-size: 8px;
+    }
+
+    .create-input-yt {
+        padding-top: 40px !important;
+    }
+
+    .create-input-yt:not(:placeholder-shown) + .create-input-yt-label {
+        top:-55px !important;
+        font-size: 12px;
+    } 
+
+    .create-input-yt-label {
+        top: -28px !important;
+    }
+
+    .create-input-yt:focus + .create-input-yt-label {
+        top:-55px !important;
+        font-size: 12px;
+    }
+
+    .create-input-yt:focus {
+        padding-bottom: 18px !important;
+    }
+
+    .create-input-yt:not(:placeholder-shown) {
+        padding-bottom: 18px !important;
+    }
+
+}
+
+@media only screen and (min-width: 768px) {
+    .create-input-yt:focus {
+        padding-bottom: 0 !important;
+    }
+
+    .create-input-yt:not(:placeholder-shown) {
+        padding-bottom: 0 !important;
+    }
+
+    .create-input-yt:focus + .create-input-yt-label {
+        top:-52px !important;
+        font-size: 12px;
+    }
+
+    .create-input-yt:not(:placeholder-shown) + .create-input-yt-label {
+        top:-52px !important;
+        font-size: 12px;
+    } 
+
+    .create-input-yt {
+        padding-top: 0 !important;
+    }
+}
+

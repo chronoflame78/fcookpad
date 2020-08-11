@@ -19,6 +19,7 @@ class SearchResult extends Component {
             nextPage: 3,
             buttonLoadMore: false,
             totalRecord: 0,
+            categoryId: '',
             categoryName: ''
         };
     }
@@ -31,6 +32,7 @@ class SearchResult extends Component {
             content: params.content,
             categoryid: params.categoryid
         }
+        console.log(data);
         let apiLink = "https://api.mlemmlem.site/api/search?page=1&limit=8";
         if (data.content) {
             apiLink = apiLink.concat("&content=" + data.content);

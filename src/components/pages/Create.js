@@ -262,7 +262,7 @@ class Create extends Component {
     }
 
     return (
-      <div>
+      <div className="outer-div">
         <div className="container create-bg-white">
           <div className="timeline">
             <div className="timeline-progress" style={{ width: "15%" }}></div>
@@ -338,19 +338,6 @@ class Create extends Component {
                         </option>
                       ))}
                   </select>
-                  {/* <p class="selecionado_opcion" onclick="open_select(this)"></p>
-                  <span onclick="open_select(this)" class="icon_select_mate">
-                    <svg
-                      fill="#000000"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z" />
-                      <path d="M0-.75h24v24H0z" fill="none" />
-                    </svg>
-                  </span> */}
                 </div>
               </div>
               <div className="col-md-6">
@@ -362,13 +349,13 @@ class Create extends Component {
                     id="video"
                     value={this.state.video}
                     type="text"
-                    className="form-control create-input-name"
+                    className="form-control create-input-name create-input-yt"
                     placeholder=" "
                   />
-                  <label className="create-label-name" for="video">
+                  <label className="create-label-name create-input-yt-label" for="video">
                     Link youtube video{" "}
                     <span className="create-mini-text">
-                      (Ex: https://www.youtube.com/watch?v=RBYDnaP3sto)
+                      (https://www.youtube.com/watch?v=RBYDnaP3sto)
                     </span>
                   </label>
                 </div>
