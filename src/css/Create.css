@@ -219,6 +219,10 @@
     height: 60px;
 }
 
+.create-button-container-step2{
+    height: 60px;
+}
+
 .btn-pink{
     width: 100px;
     float: right;
@@ -305,7 +309,7 @@
 } */
 
 .create-mr{
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .create-step-title{
@@ -406,7 +410,7 @@ select option:hover {
     }
 
     .create-form {
-        padding: 30px 30px 0 30px !important;
+        padding: 5px 30px 0 30px !important;
     }
 
     .create-input-yt-label {
@@ -414,7 +418,7 @@ select option:hover {
     }
 
     .create-input-yt:not(:placeholder-shown) + .create-input-yt-label {
-        top:-70px !important;
+        top:-83px !important;
         font-size: 12px;
     } 
 
@@ -444,7 +448,7 @@ select option:hover {
 
 
     .create-form {
-        padding: 30px 30px 0 30px !important;
+        padding: 5px 30px 0 30px !important;
     }
 
     .previewText {
@@ -549,5 +553,38 @@ select option:hover {
     .create-input-yt {
         padding-top: 0 !important;
     }
+}
+
+.back-btn {
+    cursor: pointer;
+    font-size: 30px;
+    color: #FF5F6D;
+}
+
+.create-button-container-phone {
+    display: none;
+}
+
+@media only screen and (max-width: 400px) {
+    .create-button-container {
+        display: none !important;
+    }
+
+    .create-button-container-phone {
+        display: flex !important;
+        justify-content: space-between;
+        font-size: 30px;
+        color: #FF5F6D;
+        padding-bottom: 30px;
+    }
+
+    .back-arrow {
+        margin-right: -50px;
+    }
+
+}
+
+.alert-position {
+    margin-top: 1rem;
 }
 

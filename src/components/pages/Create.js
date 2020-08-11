@@ -48,13 +48,13 @@ class Create extends Component {
     window.open("/", "_self");
   };
 
-  onStepClick = (e, index) =>{
-    console.log(index)
+  onStepClick = (e, index) => {
+    console.log(index);
     e.preventDefault();
-    if(index !== '1'){
+    if (index !== "1") {
       this.handleSubmit(e, index);
     }
-  }
+  };
 
   componentDidMount() {
     this.mounted = true;
@@ -145,13 +145,11 @@ class Create extends Component {
           console.log(res);
           const { id } = res.data;
           localStorage.setItem("create_id", id);
-          if(index === '3'){
-            this.props.history.push('/step3');
+          if (index === "3") {
+            this.props.history.push("/step3");
+          } else {
+            this.props.history.push("/step2");
           }
-          else{
-            this.props.history.push('/step2');
-          }
-          
         })
         .catch((err) => {
           console.log(err);
@@ -170,11 +168,10 @@ class Create extends Component {
           formData
         )
         .then((res) => {
-          if(index === '3'){
-            this.props.history.push('/step3');
-          }
-          else{
-            this.props.history.push('/step2');
+          if (index === "3") {
+            this.props.history.push("/step3");
+          } else {
+            this.props.history.push("/step2");
           }
         })
         .catch((err) => {
@@ -280,7 +277,10 @@ class Create extends Component {
             </div>
           </div>
           <div className="imgPreview">{$imagePreview}</div>
-          <form className="create-form" onSubmit={(e) => this.handleSubmit(e, 2)}>
+          <form
+            className="create-form"
+            onSubmit={(e) => this.handleSubmit(e, 2)}
+          >
             <div className="form-group create-form-group">
               <input
                 autoComplete="off"
@@ -352,7 +352,10 @@ class Create extends Component {
                     className="form-control create-input-name create-input-yt"
                     placeholder=" "
                   />
-                  <label className="create-label-name create-input-yt-label" for="video">
+                  <label
+                    className="create-label-name create-input-yt-label"
+                    for="video"
+                  >
                     Link youtube video{" "}
                     <span className="create-mini-text">
                       (https://www.youtube.com/watch?v=RBYDnaP3sto)
@@ -374,7 +377,7 @@ class Create extends Component {
               onChange={(e) => this.handleImageChange(e)}
             />
             {!isEmpty(this.state.errors) && (
-              <div className="alert alert-danger">
+              <div className="alert alert-danger alert-position">
                 {this.state.errors.message}
               </div>
             )}
@@ -400,6 +403,27 @@ class Create extends Component {
                 <button type="submit" className="btn btn-pink">
                   <i class="fa fa-spinner fa-spin"></i>
                 </button>
+              )}
+            </div>
+            <div className="create-button-container-phone">
+              <button
+                className="btn btn-gray"
+                onClick={(e) => this.cancelSubmit(e)}
+              >
+                Hủy
+              </button>
+              {!this.state.buttonLoading && (
+                <div
+                  className="next-arrow"
+                  onClick={(e) => this.handleSubmit(e)}
+                >
+                  <i class="fas fa-chevron-right"></i>
+                </div>
+              )}
+              {this.state.buttonLoading && (
+                <div type="submit" className="">
+                  <i class="fa fa-spinner fa-spin"></i>
+                </div>
               )}
             </div>
           </div>
