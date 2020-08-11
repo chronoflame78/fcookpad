@@ -3,23 +3,6 @@ import axios from "axios";
 import "../../css/Create.css";
 import Footer from "../layout/Footer";
 const isEmpty = require("is-empty");
-const items = [
-  {
-    number: "1",
-    name: "Món ăn mới",
-    active: true,
-  },
-  {
-    number: "2",
-    name: "Nguyên liệu",
-    active: false,
-  },
-  {
-    number: "3",
-    name: "Cách làm",
-    active: false,
-  },
-];
 
 class Create extends Component {
   constructor(props) {
@@ -34,6 +17,8 @@ class Create extends Component {
       category: [],
       dropdown_value: "",
       buttonLoading: false,
+      doneStep2: false,
+      doneStep3: false,
     };
     this.inputImage = React.createRef();
   }
@@ -49,10 +34,9 @@ class Create extends Component {
   };
 
   onStepClick = (e, index) => {
-    console.log(index);
     e.preventDefault();
-    if (index !== "1") {
-      this.handleSubmit(e, index);
+    if (this.state.doneStep2 === true && index === '2') {
+      this.props.history.push("/step2");
     }
   };
 
@@ -111,8 +95,7 @@ class Create extends Component {
     this.mounted = false;
   }
 
-  handleSubmit(e, index) {
-    console.log(index);
+  handleSubmit(e) {
     e.preventDefault();
     let create_id = localStorage.getItem("create_id");
     if (
@@ -145,11 +128,7 @@ class Create extends Component {
           console.log(res);
           const { id } = res.data;
           localStorage.setItem("create_id", id);
-          if (index === "3") {
-            this.props.history.push("/step3");
-          } else {
-            this.props.history.push("/step2");
-          }
+          this.props.history.push("/step2");
         })
         .catch((err) => {
           console.log(err);
@@ -168,11 +147,7 @@ class Create extends Component {
           formData
         )
         .then((res) => {
-          if (index === "3") {
-            this.props.history.push("/step3");
-          } else {
-            this.props.history.push("/step2");
-          }
+          this.props.history.push("/step2");
         })
         .catch((err) => {
           console.log(err);
@@ -258,6 +233,27 @@ class Create extends Component {
       );
     }
 
+    let items = [
+      {
+        number: "1",
+        name: "Món ăn mới",
+        active: true,
+        done: false,
+      },
+      {
+        number: "2",
+        name: "Nguyên liệu",
+        active: false,
+        done: this.state.doneStep2,
+      },
+      {
+        number: "3",
+        name: "Cách làm",
+        active: false,
+        done: false,
+      },
+    ];
+
     return (
       <div className="outer-div">
         <div className="container create-bg-white">
@@ -268,9 +264,17 @@ class Create extends Component {
                 <div
                   onClick={(e) => this.onStepClick(e, item.number)}
                   key={i}
-                  className={"timeline-item" + (item.active ? " active" : "")}
+                  className={
+                    "timeline-item" +
+                    (item.active ? " active" : "") +
+                    (item.done ? " done" : "")
+                  }
                 >
-                  <div className="timeline-number">{item.number}</div>
+                  <div
+                    className={"timeline-number" + (item.done ? " done" : "")}
+                  >
+                    {item.number}
+                  </div>
                   <div className="timeline-name">{item.name}</div>
                 </div>
               ))}
@@ -279,7 +283,7 @@ class Create extends Component {
           <div className="imgPreview">{$imagePreview}</div>
           <form
             className="create-form"
-            onSubmit={(e) => this.handleSubmit(e, 2)}
+            onSubmit={(e) => this.handleSubmit(e)}
           >
             <div className="form-group create-form-group">
               <input

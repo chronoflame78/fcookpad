@@ -4,24 +4,6 @@ import Footer from "../layout/Footer";
 import Page404 from "../pages/Page404";
 const isEmpty = require("is-empty");
 
-const items = [
-  {
-    number: "1",
-    name: "Món ăn mới",
-    active: true,
-  },
-  {
-    number: "2",
-    name: "Nguyên liệu",
-    active: true,
-  },
-  {
-    number: "3",
-    name: "Cách làm",
-    active: false,
-  },
-];
-
 class CreateStep2 extends Component {
   constructor(props) {
     super(props);
@@ -29,6 +11,7 @@ class CreateStep2 extends Component {
       ingredients: [""],
       errors: {},
       buttonLoading: false,
+      doneStep3: false
     };
   }
 
@@ -75,12 +58,9 @@ class CreateStep2 extends Component {
   }
 
   onStepClick = (e, index) => {
-    console.log(index);
     e.preventDefault();
     if (index === "1") {
       this.props.history.push("/create");
-    } else if (index === "3") {
-      this.handleSubmit(e);
     }
   };
 
@@ -130,6 +110,26 @@ class CreateStep2 extends Component {
   render() {
     let create_id = localStorage.getItem("create_id");
     if (!create_id) return <Page404 />;
+    let items = [
+        {
+          number: "1",
+          name: "Món ăn mới",
+          active: false,
+          done: true
+        },
+        {
+          number: "2",
+          name: "Nguyên liệu",
+          active: true,
+          done: false,
+        },
+        {
+          number: "3",
+          name: "Cách làm",
+          active: false,
+          done: false
+        },
+      ];
     return (
       <div>
         <div className="container create-bg-white">
@@ -140,9 +140,9 @@ class CreateStep2 extends Component {
                 <div
                   onClick={(e) => this.onStepClick(e, item.number)}
                   key={i}
-                  className={"timeline-item" + (item.active ? " active" : "")}
+                  className={"timeline-item" + (item.active ? " active" : "") + (item.done ? " done": "")}
                 >
-                  <div className="timeline-number">{item.number}</div>
+                  <div className={"timeline-number" + (item.done ? " done": "")}>{item.number}</div>
                   <div className="timeline-name">{item.name}</div>
                 </div>
               ))}

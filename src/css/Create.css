@@ -88,6 +88,27 @@
       background-color: #FF5F6D;
   }
 
+  .timeline-item.done::before {
+    background-color: #ffffff;
+    border: 1px solid #FF5F6D;
+}
+
+.timeline-item.done .timeline-content {
+    color: #FF5F6D;
+    background-color: #ffffff;
+}
+
+.timeline-item.done .timeline-content::before {
+    background-color: #ffffff;
+}
+
+.timeline-number.done{
+    color: #FF5F6D!important;
+}
+.timeline-item.done{
+    cursor: pointer;
+}
+
   .create-bg-white{
       background-color: #ffffff;
       padding-right: 0px!important;

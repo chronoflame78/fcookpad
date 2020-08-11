@@ -9,17 +9,20 @@ const items = [
   {
     number: "1",
     name: "Món ăn mới",
-    active: true,
+    active: false,
+    done: true
   },
   {
     number: "2",
     name: "Nguyên liệu",
-    active: true,
+    active: false,
+    done: true
   },
   {
     number: "3",
     name: "Cách làm",
     active: true,
+    done: false
   },
 ];
 
@@ -408,9 +411,9 @@ class CreateStep3 extends Component {
                 <div
                   onClick={(e) => this.onStepClick(e, item.number)}
                   key={i}
-                  className={"timeline-item" + (item.active ? " active" : "")}
+                  className={"timeline-item" + (item.active ? " active" : "") + (item.done ? " done": "")}
                 >
-                  <div className="timeline-number">{item.number}</div>
+                  <div className={"timeline-number" + (item.done ? " done": "")}>{item.number}</div>
                   <div className="timeline-name">{item.name}</div>
                 </div>
               ))}
