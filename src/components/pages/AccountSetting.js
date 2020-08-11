@@ -117,7 +117,7 @@ class AccountSetting extends Component {
             .then((willDelete) => {
                 if (willDelete) {
                     axios
-                        .post("https://api.mlemmlem.site/api/users/posts/" + postId+"/destroy")
+                        .post("https://api.mlemmlem.site/api/posts/" + postId+"/destroy")
                         .then(res => {
                             toast.success('Delete successfully!', { position: toast.POSITION.TOP_RIGHT });
                             axios.all([axios.get("https://api.mlemmlem.site/api/users/" + this.props.auth.user.id),
@@ -125,7 +125,8 @@ class AccountSetting extends Component {
                                 .then(axios.spread((...resp) => {
                                     this.setState({
                                         userInfo: resp[0].data.user,
-                                        posts: resp[1].data.allPosts
+                                        posts: resp[1].data.allPosts,
+                                        totalPost: resp[1].data.total,
                                     })
                                 })).catch(errs =>
                                     console.log(errs)

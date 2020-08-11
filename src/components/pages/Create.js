@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import "../../css/Create.css";
 import Footer from "../layout/Footer";
-import { SAVE, NEXT } from "../../actions/AllConstants";
-
 const isEmpty = require("is-empty");
 const items = [
   {
@@ -22,7 +20,7 @@ const items = [
     active: false,
   },
 ];
-let buttonVal = "";
+
 class Create extends Component {
   constructor(props) {
     super(props);
@@ -61,12 +59,12 @@ class Create extends Component {
         ])
         .then(
           axios.spread((...res) => {
+            console.log(res[1]);
             if (this.mounted) {
               let video_url = res[1].data.post.video.replace(
                 "embed/",
                 "watch?v="
               );
-              buttonVal = SAVE;
               this.setState({
                 category: res[0].data.data.categorys,
                 title: res[1].data.post.title,
@@ -88,8 +86,6 @@ class Create extends Component {
         .get("https://api.mlemmlem.site/api/home/category")
         .then((res) => {
           if (this.mounted) {
-            buttonVal = NEXT;
-            console.log(buttonVal);
             this.setState({
               category: res.data.data.categorys,
             });
@@ -118,10 +114,6 @@ class Create extends Component {
       this.setState({ errors: { message: "Incorrect youtube video url" } });
       return;
     }
-    // if(this.state.dropdown_value === ''){
-    //     this.setState({ errors: { message: "Xin hãy chọn 1 danh mục" } });
-    //     return;
-    // }
     this.setState({
       buttonLoading: true,
     });
@@ -130,7 +122,6 @@ class Create extends Component {
     formData.append("description", this.state.description);
     formData.append("step", 1);
     formData.append("imageCover", this.state.file);
-    // if(this.state.dropdown_value)
     formData.append("category", this.state.dropdown_value);
     if (this.state.video)
       formData.append(
@@ -142,6 +133,7 @@ class Create extends Component {
       axios
         .post("https://api.mlemmlem.site/api/posts/create", formData)
         .then((res) => {
+          console.log(res);
           const { id } = res.data;
           localStorage.setItem("create_id", id);
           this.props.history.push("/step2");
@@ -393,7 +385,7 @@ class Create extends Component {
                   className="btn btn-pink"
                   onClick={(e) => this.handleSubmit(e)}
                 >
-                  {buttonVal}
+                  Tiếp
                 </button>
               )}
               {this.state.buttonLoading && (
