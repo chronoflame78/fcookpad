@@ -203,24 +203,26 @@ class TopMenu extends React.Component {
     }
     if (isEmpty(user)) {
       avatar = (
-        <Avatar
-          className="topmenu-margin-auto topmenu-bg"
+        <div>
+          <Link to="/login"><div className="btn btn-topmenu-login">Đăng nhập</div></Link>
+          <Link to="/register"><div className="btn btn-topmenu-register">Đăng kí</div></Link>
+          {/* <Avatar
+          className="topmenu-margin-auto topmenu-bg topmenu-unauth-ava"
           signature="nav_avatar"
           image={"/images/user_white.png"}
           size={50}
           tooltip={false}
-        />
+        /> */}
+        <img className="topmenu-unauth-ava" width={33} height={50} src="/images/chef-icon-navbar.png"/>
+        </div>
+
       );
 
       if (this.state.isOpen) {
         fixedDiv = (
           <div ref={this.wrapperRef} className="topmenu-abs-div">
-            <Link to="/login">
-              <div className="topmenu-link">Đăng nhập</div>
-            </Link>
-            <Link to="/register">
-              <div className="topmenu-link">Đăng ký</div>
-            </Link>
+            <div className="topmenu-link-con"><Link to="/login"><div className="btn-abs-login">Đăng nhập</div></Link></div>
+            <div className="topmenu-link-con"><Link to="/register"><div className="btn-abs-register">Đăng kí</div></Link></div>
           </div>
         );
       } else {
