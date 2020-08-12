@@ -342,7 +342,6 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
-    border-radius: 20px;
 }
 
 .create-steps-textarea{
@@ -364,11 +363,11 @@
     background-color: #FCB49E;
     border: none;
     position: relative;
-    top: -266px;
+    top: -16px;
     cursor: pointer;
     width: 100px;
-    height: 250px;
-    right: -100px;
+    height: 35px;
+    right: 0px;
 }
 
 .create-delete-step:hover{
@@ -638,41 +637,17 @@ select option:hover {
         margin-top: 60px !important;
     }
 
-    .step-picture {
-        border-bottom-right-radius: 0px;
-    }
-
-    .create-image-placeholder2 {
-        border-top-right-radius: 0px;
-        border-bottom-right-radius: 0px;
-    }
-
-    .create-delete-step {
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
-    }
 }
 
 @media only screen and (max-width: 767px) {
     .create-image-placeholder2 {
         margin-top: 20px !important;
-        border-bottom-right-radius: 0px;
     }
 
     .create-delete-step {
-        position: relative;
-        top: -16px;
-        cursor: pointer;
-        width: 100px;
         height: 35px;
-        right: 0px;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
     }
     
-    .step-picture {
-        border-bottom-right-radius: 0px;
-    }
 }
 
 .alert-position {

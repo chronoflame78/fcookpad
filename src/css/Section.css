@@ -56,9 +56,13 @@
 .section-item-view{
     padding-right: 10px;
     padding-bottom: 5px;
+    font-size: 20px;
+    font-weight: 100;
 }
 
-
+.like-icon {
+    font-size: 24px;
+}
 
 .section-title a{
     padding-left: 1rem;

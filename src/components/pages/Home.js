@@ -9,6 +9,7 @@ import swal from 'sweetalert';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {apiURL} from "../../config/Constant";
+
 class Home extends Component {
 
   constructor(props) {
@@ -122,16 +123,6 @@ class Home extends Component {
         if(x !== -1) newArr[x] = post;
         let y = newArr2.findIndex(b => b._id === id);
         if(y !== -1) newArr2[y] = post;
-        // for(let x of newArr){
-        //   if(x._id === id){
-        //     Object.assign(x, post);
-        //   }
-        // }
-        // for(let y of newArr2){
-        //   if(y._id === id){
-        //     Object.assign(y, post);
-        //   }
-        // }
         this.setState({
           post_trending: newArr,
           post_new: newArr2
@@ -187,8 +178,8 @@ class Home extends Component {
                                 <div className="section-image-container" >
                                     <div className="section-image-holder" style={{ backgroundImage: "url(" + x.images[0] + ")" }}></div>
                                     <p className="item-cover" >
-                                        {!x.isLiked && <span className="section-item-view" onClick={(e) => this.likePost(e, x._id)} >{x.likes.length} <i className="far fa-heart" /></span>}
-                                        {x.isLiked && <span className="section-item-view" onClick={(e) => this.likePost(e, x._id)} >{x.likes.length} <i className="fas fa-heart" /></span>}
+                                        {!x.isLiked && <span className="section-item-view" onClick={(e) => this.likePost(e, x._id)} >{x.likes.length} <i className="far fa-heart like-icon" /></span>}
+                                        {x.isLiked && <span className="section-item-view" onClick={(e) => this.likePost(e, x._id)} >{x.likes.length} <i className="fas fa-heart like-icon" /></span>}
                                     </p>
                                 </div>
                             </NavLink>
@@ -248,4 +239,3 @@ export default connect(
   mapStateToProps
 )(Home);
 
-// export default Home;
