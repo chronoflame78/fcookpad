@@ -216,7 +216,7 @@ class Create extends Component {
             className="picture-cover"
             style={{
               width: "100%",
-              height: "400px",
+              height: "705px",
               backgroundImage: "url(" + imagePreviewUrl + ")",
             }}
           ></div>

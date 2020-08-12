@@ -1,7 +1,7 @@
 .timeline {
     margin: 90px 0px;
-    height: 4px;
-    /* background-color: #ccc; */
+    height: 1px;
+    background-color: #ccc;
   }
   
   .timeline-progress {
