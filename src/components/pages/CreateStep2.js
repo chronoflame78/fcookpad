@@ -162,7 +162,7 @@ class CreateStep2 extends Component {
             {this.state.ingredients.map((ingredient, index) => {
               if (index === 0) {
                 return (
-                  <div key={index} className="form-group create-form-group">
+                  <div key={index} className="form-group create-form-group-maining">
                     <input
                       autoComplete="off"
                       maxLength="100"
@@ -180,7 +180,7 @@ class CreateStep2 extends Component {
                 );
               } else {
                 return (
-                  <div key={index} className="form-group create-form-group">
+                  <div key={index} className="form-group create-form-group-ingre">
                     <input
                       autoComplete="off"
                       maxLength="100"

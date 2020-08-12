@@ -618,7 +618,7 @@ class CreateStep3 extends Component {
             )}
             <div className="create-add-btn-container">
               <button
-                className="create-add-ingre"
+                className="create-add-ingre-step3"
                 onClick={(e) => this.addStep(e)}
               >
                 <i className="fa fa-plus" />

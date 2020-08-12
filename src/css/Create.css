@@ -253,6 +253,16 @@
     height: 60px;
 }
 
+ .create-form-group-maining{
+     margin-top: 32px; 
+     margin-bottom: 0px!important;
+ }
+
+ .create-form-group-ingre{
+     margin-top: 10px;
+     margin-bottom: 0px!important;
+ }
+
 .btn-pink{
     width: 100px;
     float: right;
@@ -285,6 +295,9 @@
     font-weight: 600;
 }
 
+.create-add-btn-container{
+    text-align: center;
+}
 
 .create-add-ingre{
     border-radius: 50%;
@@ -295,12 +308,8 @@
     color: #FF5F6D;
     font-size: 28px;
     cursor: pointer;
-    margin-top: 20px;
-    margin-bottom: 30px;
-}
-
-.create-add-btn-container{
-    text-align: center;
+    margin-top: 4px;
+    margin-bottom: 36px;
 }
 
 .create-add-ingre:focus{
@@ -308,6 +317,29 @@
 }
 
 .create-add-ingre:hover{
+    outline: none!important;
+    background-color: #FF5F6D;
+    color: #ffffff;
+}
+
+.create-add-ingre-step3{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    border: 2px solid #FF5F6D;
+    color: #FF5F6D;
+    font-size: 28px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 36px;
+}
+
+.create-add-ingre-step3:focus{
+    outline: none!important;
+}
+
+.create-add-ingre-step3:hover{
     outline: none!important;
     background-color: #FF5F6D;
     color: #ffffff;
@@ -344,6 +376,7 @@
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
+    margin-top: 30px;
 }
 
 .create-image-placeholder, .create-image-placeholder2 {
