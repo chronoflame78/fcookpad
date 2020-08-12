@@ -324,7 +324,7 @@ class Create extends Component {
                 className="form-control create-input-name"
                 placeholder=" "
               />
-              <label className="create-label-name" for="title">
+              <label className="create-label-name" htmlFor="title">
                 Tên món ăn *
               </label>
             </div>

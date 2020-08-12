@@ -223,21 +223,26 @@ class CreateStep3 extends Component {
     const action = localStorage.getItem("action");
     let formData = new FormData();
     console.log(this.state);
+    if(this.state.step_image_1)
     formData.append("step1_image", this.state.step_image_1);
     formData.append("step1_content", this.state.step_content_1);
     if (this.state.total_steps > 1) {
+      if(this.state.step_image_2)
       formData.append("step2_image", this.state.step_image_2);
       formData.append("step2_content", this.state.step_content_2);
     }
     if (this.state.total_steps > 2) {
+      if(this.state.step_image_3)
       formData.append("step3_image", this.state.step_image_3);
       formData.append("step3_content", this.state.step_content_3);
     }
     if (this.state.total_steps > 3) {
+      if(this.state.step_image_4)
       formData.append("step4_image", this.state.step_image_4);
       formData.append("step4_content", this.state.step_content_4);
     }
     if (this.state.total_steps > 4) {
+      if(this.state.step_image_5)
       formData.append("step5_image", this.state.step_image_5);
       formData.append("step5_content", this.state.step_content_5);
     }
@@ -251,6 +256,7 @@ class CreateStep3 extends Component {
         formData
       )
       .then((res) => {
+        console.log(res);
         if (action === "update") {
           this.props.history.push({
             pathname: "/account_settings",
@@ -634,14 +640,14 @@ class CreateStep3 extends Component {
                 className="back-arrow create-mr"
                 onClick={(e) => this.handleBack(e)}
               >
-                <i class="fas fa-chevron-left"></i>
+                <i className="fas fa-chevron-left"></i>
               </div>
               {!this.state.buttonLoading && (
                 <div
                   className="post-check"
                   onClick={(e) => this.handleSubmit(e)}
                 >
-                  <i class="fas fa-check"></i>
+                  <i className="fas fa-check"></i>
                 </div>
               )}
               {this.state.buttonLoading && (
@@ -660,7 +666,7 @@ class CreateStep3 extends Component {
               {!this.state.buttonLoading && (
                 <button
                   type="submit"
-                  class="btn btn-pink"
+                  className="btn btn-pink"
                   onClick={(e) => this.handleSubmit(e)}
                 >
                   Đăng
@@ -673,7 +679,7 @@ class CreateStep3 extends Component {
               )}
               <button
                 type="submit"
-                class="btn btn-pink create-mr"
+                className="btn btn-pink create-mr"
                 onClick={(e) => this.handleBack(e)}
               >
                 Trở lại

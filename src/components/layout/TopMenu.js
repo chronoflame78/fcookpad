@@ -214,7 +214,7 @@ class TopMenu extends React.Component {
           size={50}
           tooltip={false}
         /> */}
-        <img className="topmenu-unauth-ava" width={33} height={50} src="/images/chef-icon-navbar.png"/>
+        <img className="topmenu-unauth-ava" width={33} height={50} alt="" src="/images/chef-icon-navbar.png"/>
         </div>
 
       );

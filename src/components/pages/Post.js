@@ -169,15 +169,15 @@ class Post extends Component {
       steps = this.state.post.steps;
     }
 
-    var likes = [];
-    if (this.state.post.likes) {
-      likes = this.state.post.likes;
-    }
+    // var likes = [];
+    // if (this.state.post.likes) {
+    //   likes = this.state.post.likes;
+    // }
 
-    var views = [];
-    if (this.state.post.views) {
-      views = this.state.post.views;
-    }
+    // var views = [];
+    // if (this.state.post.views) {
+    //   views = this.state.post.views;
+    // }
 
     if (Object.keys(post).length === 0 && post.constructor === Object) {
       return <Page404 />;
