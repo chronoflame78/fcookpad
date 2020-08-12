@@ -6,6 +6,5 @@
 .step-picture {
     background-size: cover;
     background-position: center;
-    border-radius: 20px;
     box-shadow: 0 0 7px darkgrey;
 }
