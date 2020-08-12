@@ -313,7 +313,7 @@ class Create extends Component {
             className="create-form"
             onSubmit={(e) => this.handleSubmit(e)}
           >
-            <div className="form-group create-form-group">
+            <div className="form-group create-form-group-name">
               <input
                 autoComplete="off"
                 maxLength="100"
@@ -328,7 +328,7 @@ class Create extends Component {
                 Tên món ăn *
               </label>
             </div>
-            <div className="form-group create-form-group">
+            <div className="form-group create-form-group-description">
               <textarea
                 spellCheck="false"
                 maxLength="1000"
@@ -373,7 +373,7 @@ class Create extends Component {
                 </div>
               </div>
               <div className="col-md-6">
-                <div className="form-group create-form-group">
+                <div className="form-group create-form-group create-form-group-youtube">
                   <input
                     autoComplete="off"
                     maxLength="100"

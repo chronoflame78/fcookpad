@@ -226,7 +226,19 @@
 }
 
 .create-form-group{
-    margin-top: 20px;
+    margin-top: 10px;
+}
+
+.create-form-group-name{
+    margin-top: 42px;
+}
+
+.create-form-group-description{
+    margin-bottom: 0px!important;
+}
+
+.create-form-group-youtube{
+    margin-bottom: 3px!important;
 }
 
 .create-mini-text{
@@ -234,7 +246,7 @@
 }
 
 .create-button-container{
-    height: 60px;
+    height: 72px;
 }
 
 .create-button-container-step2{
@@ -474,6 +486,25 @@ select option:hover {
     }
 }
 
+@media only screen and (max-width: 576px) {
+    .picture-cover{
+        height: 300px!important;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .picture-cover{
+        height: 250px!important;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .picture-cover{
+        height: 200px!important;
+    }
+}
+
+
 @media only screen and (min-width: 351px) {
 
     .create-form {
@@ -493,7 +524,7 @@ select option:hover {
     }
 
     .img-preview {
-        padding: 0 30px !important;
+        padding: 0 0px !important;
     }
 
     .create-txt-field2, .create-txt-field3 {
