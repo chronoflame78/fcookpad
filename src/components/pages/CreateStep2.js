@@ -235,7 +235,7 @@ class CreateStep2 extends Component {
               </div>
               {!this.state.buttonLoading && (
                 <div
-                  className="post-check"
+                  className="arrow-next"
                   onClick={(e) => this.handleSubmit(e)}
                 >
                   <i class="fas fa-chevron-right"></i>
