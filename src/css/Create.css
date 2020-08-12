@@ -468,6 +468,12 @@ select option:hover {
     }
 }
 
+@media only screen and (max-width: 351px) {
+    .img-preview {
+        padding: 0 0px !important;
+    }
+}
+
 @media only screen and (min-width: 351px) {
 
     .create-form {
