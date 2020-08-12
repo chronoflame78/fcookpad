@@ -35,7 +35,7 @@ class Section extends Component {
 
     likePost = (e,id) =>{
         e.preventDefault();
-        axios.post(`https://api.mlemmlem.site/api/posts/${id}/like`)
+        axios.post(`http://188.166.237.72:3000/api/posts/${id}/like`)
         .then(res => {
             console.log(res.data)
         }).catch(err =>{

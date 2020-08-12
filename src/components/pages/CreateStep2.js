@@ -20,7 +20,7 @@ class CreateStep2 extends Component {
     let create_id = localStorage.getItem("create_id");
     if (create_id) {
       axios
-        .get("https://api.mlemmlem.site/api/posts/" + create_id)
+        .get("http://188.166.237.72:3000/api/posts/" + create_id)
         .then((res) => {
           if (this.mounted) {
             console.log(res.data);
@@ -91,7 +91,7 @@ class CreateStep2 extends Component {
 
     axios
       .post(
-        "https://api.mlemmlem.site/api/posts/" +
+        "http://188.166.237.72:3000/api/posts/" +
           localStorage.getItem("create_id") +
           "/update",
         data

@@ -243,7 +243,6 @@
 
 .forgot-email-input {
     float: left;
-    padding-left: 5px;
     height: 15px;
 }
 
@@ -252,7 +251,6 @@
 }
 
 .btn-pink-disabled {
-    /* width: 200px !important; */
     float: right;
     color: #ffffff;
     background-color: #FF5F6D;
