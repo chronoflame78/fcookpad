@@ -229,7 +229,7 @@ class Create extends Component {
           onClick={() => this.inputImage.current.click()}
         >
           <img
-            className="create-step1-image"
+            className="create-post-image"
             alt=""
             src="/images/photo_icon.png"
           />

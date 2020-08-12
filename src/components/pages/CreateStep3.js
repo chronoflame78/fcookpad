@@ -12,19 +12,19 @@ const items = [
     number: "1",
     name: "Món ăn mới",
     active: false,
-    done: true
+    done: true,
   },
   {
     number: "2",
     name: "Nguyên liệu",
     active: false,
-    done: true
+    done: true,
   },
   {
     number: "3",
     name: "Cách làm",
     active: true,
-    done: false
+    done: false,
   },
 ];
 
@@ -164,7 +164,7 @@ class CreateStep3 extends Component {
     if (index === "1") {
       this.props.history.push("/create");
     } else if (index === "2") {
-        this.props.history.push("/step2");
+      this.props.history.push("/step2");
     }
   };
 
@@ -315,7 +315,7 @@ class CreateStep3 extends Component {
     if (imagePreviewUrl2) {
       imagestep2 = (
         <div
-          className="create-image-placeholder"
+          className="create-image-placeholder2"
           onClick={() => console.log(this.inputImage2.current.click())}
         >
           <Picture height="250px" src={imagePreviewUrl2} />
@@ -324,7 +324,7 @@ class CreateStep3 extends Component {
     } else {
       imagestep2 = (
         <div
-          className="create-image-placeholder"
+          className="create-image-placeholder2"
           onClick={() => console.log(this.inputImage2.current.click())}
         >
           <img
@@ -338,7 +338,7 @@ class CreateStep3 extends Component {
     if (imagePreviewUrl3) {
       imagestep3 = (
         <div
-          className="create-image-placeholder"
+          className="create-image-placeholder2"
           onClick={() => console.log(this.inputImage3.current.click())}
         >
           <Picture height="250px" src={imagePreviewUrl3} />
@@ -347,7 +347,7 @@ class CreateStep3 extends Component {
     } else {
       imagestep3 = (
         <div
-          className="create-image-placeholder"
+          className="create-image-placeholder2"
           onClick={() => console.log(this.inputImage3.current.click())}
         >
           <img
@@ -361,7 +361,7 @@ class CreateStep3 extends Component {
     if (imagePreviewUrl4) {
       imagestep4 = (
         <div
-          className="create-image-placeholder"
+          className="create-image-placeholder2"
           onClick={() => console.log(this.inputImage4.current.click())}
         >
           <Picture height="250px" src={imagePreviewUrl4} />
@@ -370,7 +370,7 @@ class CreateStep3 extends Component {
     } else {
       imagestep4 = (
         <div
-          className="create-image-placeholder"
+          className="create-image-placeholder2"
           onClick={() => console.log(this.inputImage4.current.click())}
         >
           <img
@@ -384,7 +384,7 @@ class CreateStep3 extends Component {
     if (imagePreviewUrl5) {
       imagestep5 = (
         <div
-          className="create-image-placeholder"
+          className="create-image-placeholder2"
           onClick={() => console.log(this.inputImage5.current.click())}
         >
           <Picture height="250px" src={imagePreviewUrl5} />
@@ -393,7 +393,7 @@ class CreateStep3 extends Component {
     } else {
       imagestep5 = (
         <div
-          className="create-image-placeholder"
+          className="create-image-placeholder2"
           onClick={() => console.log(this.inputImage5.current.click())}
         >
           <img
@@ -414,9 +414,17 @@ class CreateStep3 extends Component {
                 <div
                   onClick={(e) => this.onStepClick(e, item.number)}
                   key={i}
-                  className={"timeline-item" + (item.active ? " active" : "") + (item.done ? " done": "")}
+                  className={
+                    "timeline-item" +
+                    (item.active ? " active" : "") +
+                    (item.done ? " done" : "")
+                  }
                 >
-                  <div className={"timeline-number" + (item.done ? " done": "")}>{item.number}</div>
+                  <div
+                    className={"timeline-number" + (item.done ? " done" : "")}
+                  >
+                    {item.number}
+                  </div>
                   <div className="timeline-name">{item.name}</div>
                 </div>
               ))}
@@ -426,7 +434,7 @@ class CreateStep3 extends Component {
             Món này làm thế nào vậy bếp trưởng?
           </div>
           <form className="create-form" onSubmit={(e) => this.handleSubmit(e)}>
-            <div className="create-step-title">Step 1</div>
+            <div className="create-step-title">Bước 1</div>
             <div className="row form-group">
               <div className="col col-md-6 col-12">
                 <textarea
@@ -451,8 +459,8 @@ class CreateStep3 extends Component {
               </div>
             </div>
             {this.state.total_steps > 1 && (
-              <div>
-                <div className="create-step-title">Step 2</div>
+              <div className="create-step-wrapper">
+                <div className="create-step-title">Bước 2</div>
                 <div className="row form-group">
                   <div className="col col-md-6 col-12">
                     <textarea
@@ -490,7 +498,7 @@ class CreateStep3 extends Component {
             )}
             {this.state.total_steps > 2 && (
               <div>
-                <div className="create-step-title">Step 3</div>
+                <div className="create-step-title">Bước 3</div>
                 <div className="row form-group">
                   <div className="col col-md-6 col-12">
                     <textarea
@@ -528,7 +536,7 @@ class CreateStep3 extends Component {
             )}
             {this.state.total_steps > 3 && (
               <div>
-                <div className="create-step-title">Step 4</div>
+                <div className="create-step-title">Bước 4</div>
                 <div className="row form-group">
                   <div className="col col-md-6 col-12">
                     <textarea
@@ -566,7 +574,7 @@ class CreateStep3 extends Component {
             )}
             {this.state.total_steps > 4 && (
               <div>
-                <div className="create-step-title">Step 5</div>
+                <div className="create-step-title">Bước 5</div>
                 <div className="row form-group">
                   <div className="col col-md-6 col-12">
                     <textarea
@@ -615,7 +623,7 @@ class CreateStep3 extends Component {
                 {this.state.errors.message}
               </div>
             )}
-                        <div className="create-button-container-phone">
+            <div className="create-button-container-phone">
               <button
                 className="btn btn-gray"
                 onClick={(e) => this.cancelSubmit(e)}
@@ -630,7 +638,7 @@ class CreateStep3 extends Component {
               </div>
               {!this.state.buttonLoading && (
                 <div
-                  className="next-arrow"
+                  className="post-check"
                   onClick={(e) => this.handleSubmit(e)}
                 >
                   <i class="fas fa-check"></i>
