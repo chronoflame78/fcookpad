@@ -1,12 +1,13 @@
 .timeline {
     margin: 90px 0px;
     height: 4px;
-    background-color: #ccc;
+    /* background-color: #ccc; */
   }
   
   .timeline-progress {
       width: 0;
-      height: 100%;
+      /* height: 100%; */
+      height: 1px;
       background-color: #FF5F6D;
   }
   
@@ -91,6 +92,14 @@
   .timeline-item.done::before {
     background-color: #ffffff;
     border: 1px solid #FF5F6D;
+}
+
+.timeline-item.done:hover::before {
+    background-color: #FF5F6D;
+}
+
+.timeline-item.done:hover .timeline-number.done{
+    color: #ffffff!important;
 }
 
 .timeline-item.done .timeline-content {
