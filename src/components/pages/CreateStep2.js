@@ -23,8 +23,7 @@ class CreateStep2 extends Component {
       axios
         .get(`${apiURL}/users/recipe/${create_id}`)
         .then((res) => {
-          if (this.mounted) {
-            localStorage.setItem("doneStep2", true);
+          if (this.mounted) {          
             if (res.data.post.ingredients.length > 0) {
               this.setState({
                 ingredients: res.data.post.ingredients,
@@ -101,6 +100,7 @@ class CreateStep2 extends Component {
         data
       )
       .then((res) => {
+        localStorage.setItem("doneStep2", true);
         this.props.history.push("/step3");
       })
       .catch((err) =>

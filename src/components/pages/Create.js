@@ -51,7 +51,7 @@ class Create extends Component {
     if (create_id) {
       axios
         .all([
-          axios.get(`${apiURL}/home/category1`),
+          axios.get(`${apiURL}/home/category`),
           axios.get(`${apiURL}/users/recipe/${create_id}`),
         ])
         .then(
