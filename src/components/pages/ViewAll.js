@@ -7,8 +7,9 @@ import Page404 from "../pages/Page404";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import swal from "sweetalert";
-import { TRENDING, NEW } from "../../actions/AllConstants";
+import { TRENDING, NEW } from "../../config/Constant";
 import {apiURL} from "../../config/Constant";
+import { getFormattedViews } from "../../actions/GetFormattedViews";
 
 class ViewAll extends Component {
   constructor(props) {
@@ -241,7 +242,7 @@ class ViewAll extends Component {
                     </NavLink>
                   </div>
                   <div className="section-rating-date">
-                    <i className="far fa-eye" /> {x.views}
+                    <i className="far fa-eye" /> {getFormattedViews(x.views)}
                     <span
                       className="section-item-date"
                       style={{ paddingTop: "2px" }}

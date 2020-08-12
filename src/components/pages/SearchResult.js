@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
 import {apiURL} from "../../config/Constant";
+import { getFormattedViews } from "../../actions/GetFormattedViews";
 
 class SearchResult extends Component {
 
@@ -213,7 +214,7 @@ class SearchResult extends Component {
                                 <div className="section-item-title"><NavLink to={"/posts/" + x._id}>{x.title}</NavLink></div>
                                 <div className="section-author-name"><NavLink to={"/user_profile/" + x.author._id}>{x.author.fullName}</NavLink></div>
                                 <div className="section-rating-date">
-                                    <i className="far fa-eye" /> {x.views}
+                                    <i className="far fa-eye" /> {getFormattedViews(x.views)}
                                     <span className="section-item-date" style={{ paddingTop: '2px' }}> {this.getFormattedDate(x.datetime)}</span>
                                 </div>
                             </div>

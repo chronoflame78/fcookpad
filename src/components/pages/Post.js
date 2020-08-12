@@ -15,6 +15,7 @@ import Page404 from "../pages/Page404";
 import Page500 from "../pages/Page500";
 import Emoji from "react-emoji-render";
 import {apiURL} from "../../config/Constant";
+import { getFormattedViews } from "../../actions/GetFormattedViews";
 
 const isEmpty = require("is-empty");
 const timediff = require("timediff");
@@ -209,7 +210,7 @@ class Post extends Component {
                       src="/images/eye.png"
                       alt=""
                     />{" "}
-                    <div className="view-number">{this.state.post.views}</div>
+                    <div className="view-number">{getFormattedViews(this.state.post.views)}</div>
                   </div>
                   <div className="post-share">
                     <div className="share-icon">
