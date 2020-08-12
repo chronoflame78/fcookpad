@@ -14,6 +14,7 @@ import Footer from "../layout/Footer";
 import Page404 from "../pages/Page404";
 import Page500 from "../pages/Page500";
 import Emoji from "react-emoji-render";
+import {apiURL} from "../../config/Constant";
 
 const isEmpty = require("is-empty");
 const timediff = require("timediff");
@@ -36,7 +37,7 @@ class Post extends Component {
   componentDidMount() {
     this.mounted = true;
     axios
-      .get("http://188.166.237.72:3000/api/posts/" + this.props.match.params.id)
+      .get(`${apiURL}/posts/${this.props.match.params.id}`)
       .then((res) => {
         if (this.mounted) {
           this.setState({
@@ -87,7 +88,7 @@ class Post extends Component {
     });
     axios
       .post(
-        "http://188.166.237.72:3000/api/posts/" +
+        `${apiURL}/posts/` +
           this.props.match.params.id +
           "/comment",
         data

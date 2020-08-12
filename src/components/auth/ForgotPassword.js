@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import $ from "jquery";
-
+import {apiURL} from "../../config/Constant";
 const isEmpty = require("is-empty");
 
 class ForgotPassword extends Component {
@@ -27,7 +27,7 @@ class ForgotPassword extends Component {
       email: this.state.email,
     };
     axios
-      .post("http://188.166.237.72:3000/api/auth/reset_password", data)
+      .post(`${apiURL}/auth/reset_password`, data)
       .then((res) => {
         this.setState({
           sent: true,

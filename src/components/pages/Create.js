@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import "../../css/Create.css";
 import Footer from "../layout/Footer";
+import {apiURL} from "../../config/Constant";
 const isEmpty = require("is-empty");
+
 
 class Create extends Component {
   constructor(props) {
@@ -49,8 +51,8 @@ class Create extends Component {
     if (create_id) {
       axios
         .all([
-          axios.get("http://188.166.237.72:3000/api/home/category"),
-          axios.get("http://188.166.237.72:3000/api/users/recipe/" + create_id),
+          axios.get(`${apiURL}/home/category1`),
+          axios.get(`${apiURL}/users/recipe/${create_id}`),
         ])
         .then(
           axios.spread((...res) => {
@@ -93,7 +95,7 @@ class Create extends Component {
         });
     } else {
       axios
-        .get("http://188.166.237.72:3000/api/home/category")
+        .get(`${apiURL}/home/category`)
         .then((res) => {
           if (this.mounted) {
             this.setState({
@@ -141,7 +143,7 @@ class Create extends Component {
     console.log(formData);
     if (!create_id) {
       axios
-        .post("http://188.166.237.72:3000/api/posts/create", formData)
+        .post(`${apiURL}/posts/create`, formData)
         .then((res) => {
           console.log(res);
           const { id } = res.data;
@@ -160,7 +162,7 @@ class Create extends Component {
     } else {
       axios
         .post(
-          "http://188.166.237.72:3000/api/posts/" +
+          `${apiURL}/posts/` +
             localStorage.getItem("create_id") +
             "/update",
           formData

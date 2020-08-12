@@ -8,6 +8,7 @@ import { NavLink, Link } from "react-router-dom";
 import swal from 'sweetalert';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import {apiURL} from "../../config/Constant";
 class Home extends Component {
 
   constructor(props) {
@@ -29,8 +30,8 @@ class Home extends Component {
       this.setState({
         loading: true
       })
-      axios.all([axios.get("http://188.166.237.72:3000/api/home/post_trending?page=1&limit=8"),
-      axios.get("http://188.166.237.72:3000/api/home/post_new?page=1&limit=8")])
+      axios.all([axios.get(`${apiURL}/home/post_trending?page=1&limit=8`),
+      axios.get(`${apiURL}/home/post_new?page=1&limit=8`)])
         .then(axios.spread((...res) => {
           if (this.mounted) {
             this.setState({
@@ -51,8 +52,8 @@ class Home extends Component {
     localStorage.removeItem("doneStep1");
     localStorage.removeItem("doneStep2");
     this.mounted = true;
-    axios.all([axios.get("http://188.166.237.72:3000/api/home/category"), axios.get("http://188.166.237.72:3000/api/home/post_trending?page=1&limit=8"),
-    axios.get("http://188.166.237.72:3000/api/home/post_new?page=1&limit=8")])
+    axios.all([axios.get(`${apiURL}/home/category`), axios.get(`${apiURL}/home/post_trending?page=1&limit=8`),
+    axios.get(`${apiURL}/home/post_new?page=1&limit=8`)])
       .then(axios.spread((...res) => {
         if (this.mounted) {
           this.setState({
@@ -111,7 +112,7 @@ class Home extends Component {
 
   likePost = (e, id) => {
     e.preventDefault();
-    axios.post(`http://188.166.237.72:3000/api/posts/${id}/like`)
+    axios.post(`${apiURL}/posts/${id}/like`)
       .then(res => {
         console.log(res)
         let post = res.data.post;

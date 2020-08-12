@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import '../../css/Section.css';
 import { NavLink, Link } from "react-router-dom";
 import axios from "axios";
+import {apiURL} from "../../config/Constant";
 class Section extends Component {
     constructor(props) {
         super(props);
@@ -35,7 +36,7 @@ class Section extends Component {
 
     likePost = (e,id) =>{
         e.preventDefault();
-        axios.post(`http://188.166.237.72:3000/api/posts/${id}/like`)
+        axios.post(`${apiURL}/posts/${id}/like`)
         .then(res => {
             console.log(res.data)
         }).catch(err =>{

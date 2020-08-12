@@ -11,6 +11,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from 'react-toastify';
 import swal from 'sweetalert';
+import {apiURL} from '../../config/Constant';
 const isEmpty = require("is-empty");
 class AccountSetting extends Component {
     constructor(props) {
@@ -117,11 +118,11 @@ class AccountSetting extends Component {
             .then((willDelete) => {
                 if (willDelete) {
                     axios
-                        .post("http://188.166.237.72:3000/api/posts/" + postId+"/destroy")
+                        .post(`${apiURL}/posts/${postId}/destroy`)
                         .then(res => {
                             toast.success('Delete successfully!', { position: toast.POSITION.TOP_RIGHT });
-                            axios.all([axios.get("http://188.166.237.72:3000/api/users/" + this.props.auth.user.id),
-                            axios.get("http://188.166.237.72:3000/api/users/posts?page=1&limit=3")])
+                            axios.all([axios.get(`${apiURL}/users/${this.props.auth.user.id}`),
+                            axios.get(`${apiURL}/users/posts?page=1&limit=3`)])
                                 .then(axios.spread((...resp) => {
                                     this.setState({
                                         userInfo: resp[0].data.user,
@@ -185,10 +186,10 @@ class AccountSetting extends Component {
         }
 
         axios
-            .post("http://188.166.237.72:3000/api/users", formData)
+            .post(`${apiURL}/users`, formData)
             .then(res => {
                 toast.success('Save successfully!', { position: toast.POSITION.TOP_RIGHT });
-                axios.get("http://188.166.237.72:3000/api/users/" + this.props.auth.user.id)
+                axios.get(`${apiURL}/users/${this.props.auth.user.id}`)
                     .then(resp => {
                         this.setState({
                             userInfo: resp.data.user,
@@ -219,7 +220,7 @@ class AccountSetting extends Component {
             passwordConfirm: this.state.confirmPassword
         }
         axios
-            .post("http://188.166.237.72:3000/api/users/update_password", data)
+            .post(`${apiURL}/users/update_password`, data)
             .then(res => {
                 toast.success('Thay đổi mật khẩu thành công!', { position: toast.POSITION.TOP_RIGHT });
                 this.setState({
@@ -240,7 +241,7 @@ class AccountSetting extends Component {
         this.setState({
             buttonLoadMore: true
         })
-        axios.get("http://188.166.237.72:3000/api/users/posts?page=" + nextPage + "&limit=3")
+        axios.get(`${apiURL}/users/posts?page=${nextPage}&limit=3`)
             .then(res => {
                 const arr = this.state.posts;
                 arr.push(...res.data.allPosts);
@@ -261,11 +262,13 @@ class AccountSetting extends Component {
         this.mounted = true;
         localStorage.removeItem("action");
         localStorage.removeItem("create_id");
+        localStorage.removeItem("doneStep1");
+        localStorage.removeItem("doneStep2");
         this.setState({
             loading: true
         })
-        axios.all([axios.get("http://188.166.237.72:3000/api/users/" + this.props.auth.user.id),
-        axios.get("http://188.166.237.72:3000/api/users/posts?page=1&limit=3")])
+        axios.all([axios.get(`${apiURL}/users/${this.props.auth.user.id}`),
+        axios.get(`${apiURL}/users/posts?page=1&limit=3`)])
             .then(axios.spread((...res) => {
                 if (this.mounted) {
                     this.setState({

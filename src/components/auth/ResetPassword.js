@@ -3,7 +3,9 @@ import "../../css/Confirm.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
+import {apiURL} from "../../config/Constant";
 const isEmpty = require("is-empty");
+
 
 class ResetPassword extends Component {
   constructor(props) {
@@ -29,7 +31,7 @@ class ResetPassword extends Component {
       passwordConfirm: this.state.passwordConfirm,
     };
     axios
-      .post("http://188.166.237.72:3000/api/auth/reset_password/verify", data)
+      .post(`${apiURL}/auth/reset_password/verify`, data)
       .then((res) => {
         this.setState({
           sent: true,

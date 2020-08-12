@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import swal from "sweetalert";
 import { TRENDING, NEW } from "../../actions/AllConstants";
+import {apiURL} from "../../config/Constant";
 
 class ViewAll extends Component {
   constructor(props) {
@@ -41,6 +42,8 @@ class ViewAll extends Component {
   componentDidMount() {
     localStorage.removeItem("create_id");
     localStorage.removeItem("action");
+    localStorage.removeItem("doneStep1");
+    localStorage.removeItem("doneStep2");
     this.mounted = true;
     let name;
     if (this.props.match.params) {
@@ -48,7 +51,7 @@ class ViewAll extends Component {
       if (name === "trending" || name === "new") {
         axios
           .get(
-            "http://188.166.237.72:3000/api/home/post_" +
+            `${apiURL}/home/post_` +
               name +
               "?limit=8&page=1"
           )
@@ -76,7 +79,7 @@ class ViewAll extends Component {
         if (name === "trending" || name === "new") {
           axios
             .get(
-              "http://188.166.237.72:3000/api/home/post_" +
+              `${apiURL}/home/post_` +
                 name +
                 "?limit=8&page=1"
             )
@@ -103,7 +106,7 @@ class ViewAll extends Component {
   likePost = (e, id) => {
     e.preventDefault();
     axios
-      .post(`http://188.166.237.72:3000/api/posts/${id}/like`)
+      .post(`${apiURL}/posts/${id}/like`)
       .then((res) => {
         console.log(res);
         let post = res.data.post;
@@ -148,7 +151,7 @@ class ViewAll extends Component {
     let name = this.props.match.params.name;
     axios
       .get(
-        "http://188.166.237.72:3000/api/home/post_" +
+        `${apiURL}/home/post_` +
           name +
           "?limit=4&page=" +
           this.state.nextPage

@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import Footer from "../layout/Footer";
 import Page404 from "../pages/Page404";
+import {apiURL} from "../../config/Constant";
 const isEmpty = require("is-empty");
+
 
 class CreateStep2 extends Component {
   constructor(props) {
@@ -19,7 +21,7 @@ class CreateStep2 extends Component {
     let create_id = localStorage.getItem("create_id");
     if (create_id) {
       axios
-        .get("http://188.166.237.72:3000/api/users/recipe/" + create_id)
+        .get(`${apiURL}/users/recipe/${create_id}`)
         .then((res) => {
           if (this.mounted) {
             localStorage.setItem("doneStep2", true);
@@ -93,7 +95,7 @@ class CreateStep2 extends Component {
 
     axios
       .post(
-        "http://188.166.237.72:3000/api/posts/" +
+        `${apiURL}/posts/` +
           localStorage.getItem("create_id") +
           "/update",
         data

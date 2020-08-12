@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { withRouter } from "react-router";
 import queryString from "query-string";
+import {apiURL} from "../../config/Constant";
 class TopMenu extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +36,7 @@ class TopMenu extends React.Component {
     const { user } = this.props.auth;
     if (isEmpty(user)) {
       axios
-        .get("http://188.166.237.72:3000/api/home/category")
+        .get(`${apiURL}/home/category`)
         .then((res) => {
           this.setState({
             categories: res.data.data.categorys,
@@ -47,8 +48,8 @@ class TopMenu extends React.Component {
     } else {
       axios
         .all([
-          axios.get("http://188.166.237.72:3000/api/users"),
-          axios.get("http://188.166.237.72:3000/api/home/category"),
+          axios.get(`${apiURL}/users`),
+          axios.get(`${apiURL}/home/category`),
         ])
         .then(
           axios.spread((...res) => {
@@ -146,7 +147,7 @@ class TopMenu extends React.Component {
       if (!isEmpty(user)) {
         if (this.props.location.pathname === "/account_settings") {
           axios
-            .get("http://188.166.237.72:3000/api/users")
+            .get(`${apiURL}/users`)
             .then((res) => {
               if (prevState.avatar !== res.data.freshUser.avatar) {
                 this.setState({

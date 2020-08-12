@@ -3,7 +3,9 @@ import axios from "axios";
 import Picture from "../common/Picture";
 import Footer from "../layout/Footer";
 import Page404 from "../pages/Page404";
+import {apiURL} from "../../config/Constant";
 const isEmpty = require("is-empty");
+
 
 const items = [
   {
@@ -62,7 +64,7 @@ class CreateStep3 extends Component {
     let action = localStorage.getItem("action");
     if (action === "update") {
       axios
-        .get("http://188.166.237.72:3000/api/posts/" + create_id)
+        .get(`${apiURL}/posts/${create_id}`)
         .then((res) => {
           if (this.mounted) {
             console.log(res.data);
@@ -243,7 +245,7 @@ class CreateStep3 extends Component {
     console.log(formData);
     axios
       .post(
-        "http://188.166.237.72:3000/api/posts/" +
+        `${apiURL}/posts/` +
           localStorage.getItem("create_id") +
           "/update",
         formData

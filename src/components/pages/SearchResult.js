@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
+import {apiURL} from "../../config/Constant";
 
 class SearchResult extends Component {
 
@@ -27,13 +28,15 @@ class SearchResult extends Component {
     componentDidMount() {
         localStorage.removeItem("create_id");
         localStorage.removeItem("action");
+        localStorage.removeItem("doneStep1");
+        localStorage.removeItem("doneStep2");
         let params = queryString.parse(this.props.location.search);
         let data = {
             content: params.content,
             categoryid: params.categoryid
         }
         console.log(data);
-        let apiLink = "http://188.166.237.72:3000/api/search?page=1&limit=8";
+        let apiLink = `${apiURL}/search?page=1&limit=8`;
         if (data.content) {
             apiLink = apiLink.concat("&content=" + data.content);
         }
@@ -70,7 +73,7 @@ class SearchResult extends Component {
                 content: params.content,
                 categoryid: params.categoryid
             }
-            let apiLink = "http://188.166.237.72:3000/api/search?page=1&limit=8";
+            let apiLink = `${apiURL}/search?page=1&limit=8`;
             if (data.content) {
                 apiLink = apiLink.concat("&content=" + data.content);
             }
@@ -100,7 +103,7 @@ class SearchResult extends Component {
 
     likePost = (e, id) => {
         e.preventDefault();
-        axios.post(`http://188.166.237.72:3000/api/posts/${id}/like`)
+        axios.post(`${apiURL}/posts/${id}/like`)
             .then(res => {
                 console.log(res)
                 let post = res.data.post;
@@ -162,7 +165,7 @@ class SearchResult extends Component {
             content: params.content,
             categoryid: params.categoryid
         }
-        let apiLink = "http://188.166.237.72:3000/api/search?page=" + nextPage + "&limit=4";
+        let apiLink = `${apiURL}/search?page=${nextPage}&limit=4`;
         if (data.content) {
             apiLink = apiLink.concat("&content=" + data.content);
         }

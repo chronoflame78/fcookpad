@@ -4,7 +4,7 @@ import queryString from "query-string";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Timer from "../common/Timer";
-
+import {apiURL} from "../../config/Constant";
 class ConfirmEmail extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +19,7 @@ class ConfirmEmail extends Component {
       email: params.email,
     };
     axios
-      .post("http://188.166.237.72:3000/api/auth/resendEmail", data)
+      .post(`${apiURL}/auth/resendEmail`, data)
       .then((res) =>
         this.setState({
           sent: true,
