@@ -171,7 +171,8 @@ class CreateStep3 extends Component {
 
     let reader = new FileReader();
     let file = e.target.files[0];
-    console.log(e.target.id);
+    if(file){
+        console.log(e.target.id);
     if (e.target.id === "step_image_1") {
       reader.onloadend = () => {
         this.setState({
@@ -208,7 +209,7 @@ class CreateStep3 extends Component {
         });
       };
     }
-
+    }
     reader.readAsDataURL(file);
   }
 
@@ -405,7 +406,7 @@ class CreateStep3 extends Component {
       <div>
         <div className="container create-bg-white">
           <div className="timeline">
-            <div className="timeline-progress" style={{ width: "85%" }}></div>
+            <div className="timeline-progress" style={{ width: "100%" }}></div>
             <div className="timeline-items">
               {items.map((item, i) => (
                 <div

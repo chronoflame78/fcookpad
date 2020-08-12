@@ -16,9 +16,7 @@ class Create extends Component {
       errors: {},
       category: [],
       dropdown_value: "",
-      buttonLoading: false,
-      doneStep2: false,
-      doneStep3: false,
+      buttonLoading: false
     };
     this.inputImage = React.createRef();
   }
@@ -35,8 +33,13 @@ class Create extends Component {
 
   onStepClick = (e, index) => {
     e.preventDefault();
-    if (this.state.doneStep2 === true && index === '2') {
+    let doneStep1 = localStorage.getItem("doneStep1");
+    let doneStep2 = localStorage.getItem("doneStep2");
+    if (doneStep1 && index === '2') {
       this.props.history.push("/step2");
+    }
+    if (doneStep2 && index === '3') {
+      this.props.history.push("/step3");
     }
   };
 
@@ -47,12 +50,13 @@ class Create extends Component {
       axios
         .all([
           axios.get("http://188.166.237.72:3000/api/home/category"),
-          axios.get("http://188.166.237.72:3000/api/posts/" + create_id),
+          axios.get("http://188.166.237.72:3000/api/users/recipe/" + create_id),
         ])
         .then(
           axios.spread((...res) => {
             console.log(res[1]);
             if (this.mounted) {
+              if(res[1].data.post.video){
               let video_url = res[1].data.post.video.replace(
                 "embed/",
                 "watch?v="
@@ -64,14 +68,28 @@ class Create extends Component {
                 imagePreviewUrl: res[1].data.post.images[0],
                 video: video_url,
                 dropdown_value: res[1].data.post.category,
+                  })
+              }
+              else{
+                  this.setState({
+                    category: res[0].data.data.categorys,
+                    title: res[1].data.post.title,
+                    description: res[1].data.post.description,
+                    imagePreviewUrl: res[1].data.post.images[0],
+                    dropdown_value: res[1].data.post.category,
               });
+            }
             }
           })
         )
         .catch((error) => {
+          console.log(error)
+          if(error.response){
           this.setState({
             errors: error.response.data,
           });
+          }
+          
         });
     } else {
       axios
@@ -128,6 +146,7 @@ class Create extends Component {
           console.log(res);
           const { id } = res.data;
           localStorage.setItem("create_id", id);
+          localStorage.setItem("doneStep1", true);
           this.props.history.push("/step2");
         })
         .catch((err) => {
@@ -164,7 +183,7 @@ class Create extends Component {
 
     let reader = new FileReader();
     let file = e.target.files[0];
-
+    if (file) {
     reader.onloadend = () => {
       this.setState({
         file: file,
@@ -174,9 +193,13 @@ class Create extends Component {
 
     reader.readAsDataURL(file);
   }
+  }
 
   render() {
-    console.log(this.state.errors);
+    let doneStep1 = localStorage.getItem("doneStep1");
+    if(!doneStep1) doneStep1 = false;
+    let doneStep2 = localStorage.getItem("doneStep2");
+    if(!doneStep2) doneStep2 = false;
     let { imagePreviewUrl, video } = this.state;
     let $imagePreview = null;
     let youtube_video = null;
@@ -245,13 +268,13 @@ class Create extends Component {
         number: "2",
         name: "Nguyên liệu",
         active: false,
-        done: this.state.doneStep2,
+        done: doneStep1,
       },
       {
         number: "3",
         name: "Cách làm",
         active: false,
-        done: false,
+        done: doneStep2,
       },
     ];
 
@@ -259,7 +282,9 @@ class Create extends Component {
       <div className="outer-div">
         <div className="container create-bg-white">
           <div className="timeline">
-            <div className="timeline-progress" style={{ width: "15%" }}></div>
+            {!doneStep1 && !doneStep2 && <div className="timeline-progress" style={{ width: "33%" }}></div>}
+            {doneStep1 && !doneStep2 && <div className="timeline-progress" style={{ width: "67%" }}></div>}
+            {doneStep1 && doneStep2 && <div className="timeline-progress" style={{ width: "100%" }}></div>}
             <div className="timeline-items">
               {items.map((item, i) => (
                 <div

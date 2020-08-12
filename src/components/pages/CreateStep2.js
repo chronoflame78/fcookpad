@@ -10,8 +10,7 @@ class CreateStep2 extends Component {
     this.state = {
       ingredients: [""],
       errors: {},
-      buttonLoading: false,
-      doneStep3: false
+      buttonLoading: false
     };
   }
 
@@ -20,11 +19,10 @@ class CreateStep2 extends Component {
     let create_id = localStorage.getItem("create_id");
     if (create_id) {
       axios
-        .get("http://188.166.237.72:3000/api/posts/" + create_id)
+        .get("http://188.166.237.72:3000/api/users/recipe/" + create_id)
         .then((res) => {
           if (this.mounted) {
-            console.log(res.data);
-            console.log(res.data.post);
+            localStorage.setItem("doneStep2", true);
             if (res.data.post.ingredients.length > 0) {
               this.setState({
                 ingredients: res.data.post.ingredients,
@@ -59,9 +57,13 @@ class CreateStep2 extends Component {
 
   onStepClick = (e, index) => {
     e.preventDefault();
+    let doneStep2 = localStorage.getItem("doneStep2");
     if (index === "1") {
       this.props.history.push("/create");
     }
+    if (doneStep2 && index === "3") {
+        this.props.history.push("/step3");
+      }
   };
 
   addIngredient(e) {
@@ -110,6 +112,8 @@ class CreateStep2 extends Component {
   render() {
     let create_id = localStorage.getItem("create_id");
     if (!create_id) return <Page404 />;
+    let doneStep2 = localStorage.getItem("doneStep2");
+    if(!doneStep2) doneStep2 = false;
     let items = [
         {
           number: "1",
@@ -127,14 +131,15 @@ class CreateStep2 extends Component {
           number: "3",
           name: "Cách làm",
           active: false,
-          done: false
+          done: doneStep2
         },
       ];
     return (
       <div>
         <div className="container create-bg-white">
           <div className="timeline">
-            <div className="timeline-progress" style={{ width: "50%" }}></div>
+          {!doneStep2 && <div className="timeline-progress" style={{ width: "67%" }}></div>}
+          {doneStep2 && <div className="timeline-progress" style={{ width: "100%" }}></div>}
             <div className="timeline-items">
               {items.map((item, i) => (
                 <div

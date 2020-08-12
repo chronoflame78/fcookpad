@@ -48,6 +48,8 @@ class Home extends Component {
   componentDidMount() {
     localStorage.removeItem("create_id");
     localStorage.removeItem("action");
+    localStorage.removeItem("doneStep1");
+    localStorage.removeItem("doneStep2");
     this.mounted = true;
     axios.all([axios.get("http://188.166.237.72:3000/api/home/category"), axios.get("http://188.166.237.72:3000/api/home/post_trending?page=1&limit=8"),
     axios.get("http://188.166.237.72:3000/api/home/post_new?page=1&limit=8")])
