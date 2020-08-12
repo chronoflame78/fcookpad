@@ -46,8 +46,8 @@ class Create extends Component {
     if (create_id) {
       axios
         .all([
-          axios.get("https://api.mlemmlem.site/api/home/category"),
-          axios.get("https://api.mlemmlem.site/api/posts/" + create_id),
+          axios.get("http://188.166.237.72:3000/api/home/category"),
+          axios.get("http://188.166.237.72:3000/api/posts/" + create_id),
         ])
         .then(
           axios.spread((...res) => {
@@ -75,7 +75,7 @@ class Create extends Component {
         });
     } else {
       axios
-        .get("https://api.mlemmlem.site/api/home/category")
+        .get("http://188.166.237.72:3000/api/home/category")
         .then((res) => {
           if (this.mounted) {
             this.setState({
@@ -123,7 +123,7 @@ class Create extends Component {
     console.log(formData);
     if (!create_id) {
       axios
-        .post("https://api.mlemmlem.site/api/posts/create", formData)
+        .post("http://188.166.237.72:3000/api/posts/create", formData)
         .then((res) => {
           console.log(res);
           const { id } = res.data;
@@ -141,7 +141,7 @@ class Create extends Component {
     } else {
       axios
         .post(
-          "https://api.mlemmlem.site/api/posts/" +
+          "http://188.166.237.72:3000/api/posts/" +
             localStorage.getItem("create_id") +
             "/update",
           formData

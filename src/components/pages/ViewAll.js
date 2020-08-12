@@ -48,7 +48,7 @@ class ViewAll extends Component {
       if (name === "trending" || name === "new") {
         axios
           .get(
-            "https://api.mlemmlem.site/api/home/post_" +
+            "http://188.166.237.72:3000/api/home/post_" +
               name +
               "?limit=8&page=1"
           )
@@ -76,7 +76,7 @@ class ViewAll extends Component {
         if (name === "trending" || name === "new") {
           axios
             .get(
-              "https://api.mlemmlem.site/api/home/post_" +
+              "http://188.166.237.72:3000/api/home/post_" +
                 name +
                 "?limit=8&page=1"
             )
@@ -103,7 +103,7 @@ class ViewAll extends Component {
   likePost = (e, id) => {
     e.preventDefault();
     axios
-      .post(`https://api.mlemmlem.site/api/posts/${id}/like`)
+      .post(`http://188.166.237.72:3000/api/posts/${id}/like`)
       .then((res) => {
         console.log(res);
         let post = res.data.post;
@@ -148,7 +148,7 @@ class ViewAll extends Component {
     let name = this.props.match.params.name;
     axios
       .get(
-        "https://api.mlemmlem.site/api/home/post_" +
+        "http://188.166.237.72:3000/api/home/post_" +
           name +
           "?limit=4&page=" +
           this.state.nextPage

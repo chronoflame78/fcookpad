@@ -36,7 +36,7 @@ class Post extends Component {
   componentDidMount() {
     this.mounted = true;
     axios
-      .get("https://api.mlemmlem.site/api/posts/" + this.props.match.params.id)
+      .get("http://188.166.237.72:3000/api/posts/" + this.props.match.params.id)
       .then((res) => {
         if (this.mounted) {
           this.setState({
@@ -87,7 +87,7 @@ class Post extends Component {
     });
     axios
       .post(
-        "https://api.mlemmlem.site/api/posts/" +
+        "http://188.166.237.72:3000/api/posts/" +
           this.props.match.params.id +
           "/comment",
         data

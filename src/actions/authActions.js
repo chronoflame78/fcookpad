@@ -10,7 +10,7 @@ import {
 export const registerUser = (userData, history) => dispatch => {
   console.log(userData);
   axios
-    .post("https://api.mlemmlem.site/api/auth/signup", userData)
+    .post("http://188.166.237.72:3000/api/auth/signup", userData)
     .then(res => history.push("/confirm/?email="+userData.email)) // re-direct to confirm email on successful register
     .catch(err =>
       dispatch({
@@ -22,7 +22,7 @@ export const registerUser = (userData, history) => dispatch => {
 // Login - get user token
 export const loginUser = (userData, history) => dispatch => {
   axios
-    .post("https://api.mlemmlem.site/api/auth/login", userData)
+    .post("http://188.166.237.72:3000/api/auth/login", userData)
     .then(res => {
       // Save to localStorage
 // Set token to localStorage
@@ -56,7 +56,7 @@ export const loginUser = (userData, history) => dispatch => {
 // Login - get user token
 export const verifyAccount = verifyToken => dispatch => {
   axios
-    .post("https://api.mlemmlem.site/api/auth/verify", verifyToken)
+    .post("http://188.166.237.72:3000/api/auth/verify", verifyToken)
     .then(res => {
       // Save to localStorage
 // Set token to localStorage
