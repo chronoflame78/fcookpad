@@ -31,7 +31,7 @@ class Create extends Component {
 
   cancelSubmit = (e) => {
     e.preventDefault();
-    window.open("/", "_self");
+    this.props.history.push("/");
   };
 
   componentDidMount() {

@@ -31,7 +31,18 @@ class Edit extends Component {
 
   cancelSubmit = (e) => {
     e.preventDefault();
-    window.open("/", "_self");
+    let action = localStorage.getItem("action");
+    if(action === 'update'){
+      this.props.history.push({
+        pathname: "/account_settings",
+        state: {
+          postTab: 2,
+        },
+      });
+    }
+    else{
+      this.props.history.push("/");
+    }
   };
 
   onStepClick = (e, index) => {
@@ -277,7 +288,7 @@ class Edit extends Component {
               </div>
             </div>
             <div className="create-loading-container">
-              <i class="fa fa-spinner fa-spin"></i>
+              <i className="fa fa-spinner fa-spin"></i>
             </div>
           </div>
           <Footer />
@@ -347,7 +358,7 @@ class Edit extends Component {
                 rows="3"
                 placeholder=" "
               ></textarea>
-              <label className="create-label-name" for="description">
+              <label className="create-label-name" htmlFor="description">
                 Mô tả món ăn *
               </label>
             </div>
@@ -393,7 +404,7 @@ class Edit extends Component {
                   />
                   <label
                     className="create-label-name create-input-yt-label"
-                    for="video"
+                    htmlFor="video"
                   >
                     Link youtube video{" "}
                     <span className="create-mini-text">
@@ -465,12 +476,12 @@ class Edit extends Component {
                   className="next-arrow"
                   onClick={(e) => this.handleSubmit(e)}
                 >
-                  <i class="fas fa-chevron-right"></i>
+                  <i className="fas fa-chevron-right"></i>
                 </div>
               )}
               {this.state.buttonLoading && (
                 <div type="submit" className="">
-                  <i class="fa fa-spinner fa-spin"></i>
+                  <i className="fa fa-spinner fa-spin"></i>
                 </div>
               )}
             </div>

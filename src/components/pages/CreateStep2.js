@@ -68,7 +68,19 @@ class CreateStep2 extends Component {
   }
 
   cancelSubmit(e) {
-    window.open("/", "_self");
+    e.preventDefault();
+    let action = localStorage.getItem("action");
+    if(action === 'update'){
+      this.props.history.push({
+        pathname: "/account_settings",
+        state: {
+          postTab: 2,
+        },
+      });
+    }
+    else{
+      this.props.history.push("/");
+    }
   }
 
   onStepClick = (e, index) => {

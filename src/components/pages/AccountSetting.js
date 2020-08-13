@@ -98,10 +98,15 @@ class AccountSetting extends Component {
         })
     }
 
-    handleEditClick = (e, postId) => {
-        localStorage.setItem("action", "update");
-        localStorage.setItem("doneStep2", true);
-        this.props.history.push("/step1/" + postId);
+    handleEditClick = (e, postId, step) => {
+        localStorage.setItem("action", "update"); 
+        if(step === 1){
+            this.props.history.push('/step2/'+ postId);
+        }
+        else{
+            localStorage.setItem("doneStep2", true);
+            this.props.history.push("/step1/" + postId);
+        }
     }
 
     onChange = e => {
@@ -268,6 +273,7 @@ class AccountSetting extends Component {
         axios.all([axios.get(`${apiURL}/users/${this.props.auth.user.id}`),
         axios.get(`${apiURL}/users/posts?page=1&limit=3`)])
             .then(axios.spread((...res) => {
+                console.log(res[1]);
                 if (this.mounted) {
                     this.setState({
                         userInfo: res[0].data.user,
@@ -294,6 +300,12 @@ class AccountSetting extends Component {
                     })
                 }
                 this.props.history.replace('/account_settings', null);
+            }else{
+                if(postTab){
+                    this.setState({
+                        tab: postTab
+                    })
+                }
             }
         }
     }
@@ -419,7 +431,7 @@ class AccountSetting extends Component {
 
                                         <div className="asetting-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
                                             <div className="item-cover">
-                                                <span className="asetting-icon-edit" onClick={(e) => this.handleEditClick(e, x._id)}><i className="far fa-edit" /></span>
+                                                <span className="asetting-icon-edit" onClick={(e) => this.handleEditClick(e, x._id, x.step)}><i className="far fa-edit" /></span>
                                                 <span className="asetting-icon-line"></span>
                                                 <span className="asetting-icon-delete" onClick={(e) => this.handleDeleteClick(e, x._id)}><i className="fas fa-trash-alt" /></span>
                                             </div>
