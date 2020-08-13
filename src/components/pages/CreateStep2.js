@@ -158,7 +158,8 @@ class CreateStep2 extends Component {
           <div className="create-txt-field4">
             Món này cần những nguyên liệu gì thế bếp trưởng?
           </div>
-          <form className="create-form" onSubmit={(e) => this.handleSubmit(e)}>
+          <form className="create-form " onSubmit={(e) => this.handleSubmit(e)}>
+            <div className="create-form-ingre">
             {this.state.ingredients.map((ingredient, index) => {
               if (index === 0) {
                 return (
@@ -207,6 +208,7 @@ class CreateStep2 extends Component {
                 );
               }
             })}
+            </div>
             <div className="create-add-btn-container">
               <button
                 className="create-add-ingre"

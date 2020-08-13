@@ -735,4 +735,16 @@ select option:hover {
     width: 100%;
 }
 
+@media only screen and (max-width: 415px) {
+    .timeline-name{
+        left: -10px;
+    }
+    .timeline-items{
+        margin-left: 12px;
+        margin-right: -3px;
+    }
+}
 
+.create-form-ingre{
+    min-height: 170px;
+}
