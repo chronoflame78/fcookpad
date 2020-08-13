@@ -53,7 +53,6 @@ class TopMenu extends React.Component {
         ])
         .then(
           axios.spread((...res) => {
-            console.log(res[0]);
             this.setState({
               avatar: res[0].data.freshUser.avatar,
               email: res[0].data.freshUser.email,
@@ -410,14 +409,14 @@ class TopMenu extends React.Component {
                   <g id="Layer_2" data-name="Layer 2">
                     <g id="Layer_1-2" data-name="Layer 1">
                       <line
-                        class="cls-1"
+                        className="cls-1"
                         x1="121.21"
                         y1="15"
                         x2="121.21"
                         y2="227.43"
                       />
                       <line
-                        class="cls-1"
+                        className="cls-1"
                         x1="15"
                         y1="121.21"
                         x2="227.43"

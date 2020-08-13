@@ -50,6 +50,7 @@ class CreateStep3 extends Component {
       total_steps: 1,
       errors: {},
       buttonLoading: false,
+      loading: true,
     };
     this.inputImage = React.createRef();
     this.inputImage2 = React.createRef();
@@ -62,9 +63,9 @@ class CreateStep3 extends Component {
     this.mounted = true;
     let create_id = localStorage.getItem("create_id");
     let action = localStorage.getItem("action");
-    if (action === "update") {
+    if (create_id) {
       axios
-        .get(`${apiURL}/posts/${create_id}`)
+        .get(`${apiURL}/users/recipe/${create_id}`)
         .then((res) => {
           if (this.mounted) {
             console.log(res.data);
@@ -73,6 +74,7 @@ class CreateStep3 extends Component {
               this.setState({
                 imagePreviewUrl1: res.data.post.steps[0].image,
                 step_content_1: res.data.post.steps[0].content,
+                loading: false
               });
             } else if (res.data.post.steps.length === 2) {
               this.setState({
@@ -81,6 +83,7 @@ class CreateStep3 extends Component {
                 imagePreviewUrl2: res.data.post.steps[1].image,
                 step_content_2: res.data.post.steps[1].content,
                 total_steps: 2,
+                loading: false
               });
             } else if (res.data.post.steps.length === 3) {
               this.setState({
@@ -91,6 +94,7 @@ class CreateStep3 extends Component {
                 imagePreviewUrl3: res.data.post.steps[2].image,
                 step_content_3: res.data.post.steps[2].content,
                 total_steps: 3,
+                loading: false
               });
             } else if (res.data.post.steps.length === 4) {
               this.setState({
@@ -103,6 +107,7 @@ class CreateStep3 extends Component {
                 imagePreviewUrl4: res.data.post.steps[3].image,
                 step_content_4: res.data.post.steps[3].content,
                 total_steps: 4,
+                loading: false
               });
             } else if (res.data.post.steps.length === 5) {
               this.setState({
@@ -117,15 +122,26 @@ class CreateStep3 extends Component {
                 imagePreviewUrl5: res.data.post.steps[4].image,
                 step_content_5: res.data.post.steps[4].content,
                 total_steps: 5,
+                loading: false
               });
+            } else{
+              this.setState({
+                loading: false
+              })
             }
           }
         })
         .catch((error) => {
           this.setState({
             errors: error.response.data,
+            loading: false
           });
         });
+    }
+    else{
+      this.setState({
+        loading: false
+      })
     }
   }
 
@@ -410,6 +426,43 @@ class CreateStep3 extends Component {
         </div>
       );
     }
+    console.log(this.state.loading)
+    if (this.state.loading) {
+      return (
+        <div className="outer-div">
+          <div className="container create-bg-white">
+            <div className="timeline">
+            <div className="timeline-progress" style={{ width: "100%" }}></div>
+              <div className="timeline-items">
+                {items.map((item, i) => (
+                  <div
+                    onClick={(e) => this.onStepClick(e, item.number)}
+                    key={i}
+                    className={
+                      "timeline-item" +
+                      (item.active ? " active" : "") +
+                      (item.done ? " done" : "")
+                    }
+                  >
+                    <div
+                      className={"timeline-number" + (item.done ? " done" : "")}
+                    >
+                      {item.number}
+                    </div>
+                    <div className="timeline-name">{item.name}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="create-loading-container">
+                <i className="fa fa-spinner fa-spin"></i>
+              </div>
+          </div>
+          <Footer />
+        </div>
+      );
+    }
+
     return (
       <div>
         <div className="container create-bg-white">

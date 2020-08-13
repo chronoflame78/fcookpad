@@ -748,3 +748,11 @@ select option:hover {
 .create-form-ingre{
     min-height: 170px;
 }
+
+.create-loading-container{
+    text-align: center;
+    font-size: 80px;
+    padding-top: 90px;
+    padding-bottom: 210px;
+    color: #FF5F6D;
+}

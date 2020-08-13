@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import "../../css/Create.css";
 import Footer from "../layout/Footer";
-import {apiURL} from "../../config/Constant";
+import { apiURL } from "../../config/Constant";
 const isEmpty = require("is-empty");
-
 
 class Create extends Component {
   constructor(props) {
@@ -18,7 +17,8 @@ class Create extends Component {
       errors: {},
       category: [],
       dropdown_value: "",
-      buttonLoading: false
+      buttonLoading: false,
+      loading: true,
     };
     this.inputImage = React.createRef();
   }
@@ -37,10 +37,10 @@ class Create extends Component {
     e.preventDefault();
     let doneStep1 = localStorage.getItem("doneStep1");
     let doneStep2 = localStorage.getItem("doneStep2");
-    if (doneStep1 && index === '2') {
+    if (doneStep1 && index === "2") {
       this.props.history.push("/step2");
     }
-    if (doneStep2 && index === '3') {
+    if (doneStep2 && index === "3") {
       this.props.history.push("/step3");
     }
   };
@@ -58,40 +58,40 @@ class Create extends Component {
           axios.spread((...res) => {
             console.log(res[1]);
             if (this.mounted) {
-              if(res[1].data.post.video){
-              let video_url = res[1].data.post.video.replace(
-                "embed/",
-                "watch?v="
-              );
-              this.setState({
-                category: res[0].data.data.categorys,
-                title: res[1].data.post.title,
-                description: res[1].data.post.description,
-                imagePreviewUrl: res[1].data.post.images[0],
-                video: video_url,
-                dropdown_value: res[1].data.post.category,
-                  })
+              if (res[1].data.post.video) {
+                let video_url = res[1].data.post.video.replace(
+                  "embed/",
+                  "watch?v="
+                );
+                this.setState({
+                  category: res[0].data.data.categorys,
+                  title: res[1].data.post.title,
+                  description: res[1].data.post.description,
+                  imagePreviewUrl: res[1].data.post.images[0],
+                  video: video_url,
+                  dropdown_value: res[1].data.post.category,
+                  loading: false,
+                });
+              } else {
+                this.setState({
+                  category: res[0].data.data.categorys,
+                  title: res[1].data.post.title,
+                  description: res[1].data.post.description,
+                  imagePreviewUrl: res[1].data.post.images[0],
+                  dropdown_value: res[1].data.post.category,
+                  loading: false,
+                });
               }
-              else{
-                  this.setState({
-                    category: res[0].data.data.categorys,
-                    title: res[1].data.post.title,
-                    description: res[1].data.post.description,
-                    imagePreviewUrl: res[1].data.post.images[0],
-                    dropdown_value: res[1].data.post.category,
-              });
-            }
             }
           })
         )
         .catch((error) => {
-          console.log(error)
-          if(error.response){
-          this.setState({
-            errors: error.response.data,
-          });
+          console.log(error);
+          if (error.response) {
+            this.setState({
+              errors: error.response.data,
+            });
           }
-          
         });
     } else {
       axios
@@ -100,6 +100,7 @@ class Create extends Component {
           if (this.mounted) {
             this.setState({
               category: res.data.data.categorys,
+              loading: false,
             });
           }
         })
@@ -162,9 +163,7 @@ class Create extends Component {
     } else {
       axios
         .post(
-          `${apiURL}/posts/` +
-            localStorage.getItem("create_id") +
-            "/update",
+          `${apiURL}/posts/` + localStorage.getItem("create_id") + "/update",
           formData
         )
         .then((res) => {
@@ -186,22 +185,22 @@ class Create extends Component {
     let reader = new FileReader();
     let file = e.target.files[0];
     if (file) {
-    reader.onloadend = () => {
-      this.setState({
-        file: file,
-        imagePreviewUrl: reader.result,
-      });
-    };
+      reader.onloadend = () => {
+        this.setState({
+          file: file,
+          imagePreviewUrl: reader.result,
+        });
+      };
 
-    reader.readAsDataURL(file);
-  }
+      reader.readAsDataURL(file);
+    }
   }
 
   render() {
     let doneStep1 = localStorage.getItem("doneStep1");
-    if(!doneStep1) doneStep1 = false;
+    if (!doneStep1) doneStep1 = false;
     let doneStep2 = localStorage.getItem("doneStep2");
-    if(!doneStep2) doneStep2 = false;
+    if (!doneStep2) doneStep2 = false;
     let { imagePreviewUrl, video } = this.state;
     let $imagePreview = null;
     let youtube_video = null;
@@ -248,7 +247,7 @@ class Create extends Component {
       youtube_video = (
         <iframe
           title="video"
-          style={{margin: "0 0 30px 0"}}
+          style={{ margin: "0 0 30px 0" }}
           width="100%"
           height="250px"
           src={embed_video}
@@ -279,14 +278,76 @@ class Create extends Component {
         done: doneStep2,
       },
     ];
-
+    if (this.state.loading) {
+      return (
+        <div className="outer-div">
+          <div className="container create-bg-white">
+            <div className="timeline">
+              {!doneStep1 && !doneStep2 && (
+                <div
+                  className="timeline-progress"
+                  style={{ width: "33%" }}
+                ></div>
+              )}
+              {doneStep1 && !doneStep2 && (
+                <div
+                  className="timeline-progress"
+                  style={{ width: "67%" }}
+                ></div>
+              )}
+              {doneStep1 && doneStep2 && (
+                <div
+                  className="timeline-progress"
+                  style={{ width: "100%" }}
+                ></div>
+              )}
+              <div className="timeline-items">
+                {items.map((item, i) => (
+                  <div
+                    onClick={(e) => this.onStepClick(e, item.number)}
+                    key={i}
+                    className={
+                      "timeline-item" +
+                      (item.active ? " active" : "") +
+                      (item.done ? " done" : "")
+                    }
+                  >
+                    <div
+                      className={"timeline-number" + (item.done ? " done" : "")}
+                    >
+                      {item.number}
+                    </div>
+                    <div className="timeline-name">{item.name}</div>
+                  </div>
+                ))}
+              </div>
+              
+              
+            </div>
+            <div className="create-loading-container">
+                <i class="fa fa-spinner fa-spin"></i>
+              </div>
+          </div>
+          <Footer />
+        </div>
+      );
+    }
     return (
       <div className="outer-div">
         <div className="container create-bg-white">
           <div className="timeline">
-            {!doneStep1 && !doneStep2 && <div className="timeline-progress" style={{ width: "33%" }}></div>}
-            {doneStep1 && !doneStep2 && <div className="timeline-progress" style={{ width: "67%" }}></div>}
-            {doneStep1 && doneStep2 && <div className="timeline-progress" style={{ width: "100%" }}></div>}
+            {!doneStep1 && !doneStep2 && (
+              <div className="timeline-progress" style={{ width: "33%" }}></div>
+            )}
+            {doneStep1 && !doneStep2 && (
+              <div className="timeline-progress" style={{ width: "67%" }}></div>
+            )}
+            {doneStep1 && doneStep2 && (
+              <div
+                className="timeline-progress"
+                style={{ width: "100%" }}
+              ></div>
+            )}
             <div className="timeline-items">
               {items.map((item, i) => (
                 <div
@@ -309,10 +370,7 @@ class Create extends Component {
             </div>
           </div>
           <div className="imgPreview">{$imagePreview}</div>
-          <form
-            className="create-form"
-            onSubmit={(e) => this.handleSubmit(e)}
-          >
+          <form className="create-form" onSubmit={(e) => this.handleSubmit(e)}>
             <div className="form-group create-form-group-name">
               <input
                 autoComplete="off"
