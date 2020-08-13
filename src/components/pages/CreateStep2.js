@@ -12,44 +12,44 @@ class CreateStep2 extends Component {
       ingredients: [""],
       errors: {},
       buttonLoading: false,
-      loading: true
+      loading: true,
+      error404: false
     };
   }
 
   componentDidMount() {
     this.mounted = true;
-    let create_id = localStorage.getItem("create_id");
-    if (create_id) {
-      axios
-        .get(`${apiURL}/users/recipe/${create_id}`)
-        .then((res) => {
-          console.log(res);
-          if (this.mounted) {
-            if (res.data.post.ingredients.length > 0) {
-              this.setState({
-                ingredients: res.data.post.ingredients,
-                loading: false
-              });
-            }
-            else{
-              this.setState({
-                loading: false
-              })
-            }
+    let id = this.props.match.params.id;
+    axios
+      .get(`${apiURL}/users/recipe/${id}`)
+      .then((res) => {
+        if (this.mounted) {
+          if (res.data.post.ingredients.length > 0) {
+            this.setState({
+              ingredients: res.data.post.ingredients,
+              loading: false,
+            });
+          } else {
+            this.setState({
+              loading: false,
+            });
           }
-        })
-        .catch((error) => {
+        }
+      })
+      .catch((error) => {
+        if(error.response.status === 404){
+          this.setState({
+            error404: true,
+            loading: false
+          })
+        }else{
           this.setState({
             errors: error.response.data,
-            loading: false
+            loading: false,
           });
-        });
-    }
-    else{
-      this.setState({
-        loading: false
-      })
-    }
+        }
+        
+      });
   }
 
   componentWillUnmount() {
@@ -64,7 +64,7 @@ class CreateStep2 extends Component {
   }
 
   handleBack(e) {
-    this.props.history.push("/create");
+    this.props.history.push("/step1/" + this.props.match.params.id);
   }
 
   cancelSubmit(e) {
@@ -75,10 +75,10 @@ class CreateStep2 extends Component {
     e.preventDefault();
     let doneStep2 = localStorage.getItem("doneStep2");
     if (index === "1") {
-      this.props.history.push("/create");
+      this.props.history.push("/step1/"+this.props.match.params.id);
     }
     if (doneStep2 && index === "3") {
-      this.props.history.push("/step3");
+      this.props.history.push("/step3/"+this.props.match.params.id);
     }
   };
 
@@ -109,12 +109,12 @@ class CreateStep2 extends Component {
 
     axios
       .post(
-        `${apiURL}/posts/` + localStorage.getItem("create_id") + "/update",
+        `${apiURL}/posts/` + this.props.match.params.id + "/update",
         data
       )
       .then((res) => {
         localStorage.setItem("doneStep2", true);
-        this.props.history.push("/step3");
+        this.props.history.push("/step3/"+ this.props.match.params.id);
       })
       .catch((err) =>
         this.setState({
@@ -125,8 +125,8 @@ class CreateStep2 extends Component {
   }
 
   render() {
-    let create_id = localStorage.getItem("create_id");
-    if (!create_id) return <Page404 />;
+    if (this.state.error404) return <Page404 />;
+    let action = localStorage.getItem("action");
     let doneStep2 = localStorage.getItem("doneStep2");
     if (!doneStep2) doneStep2 = false;
     let items = [
@@ -155,15 +155,18 @@ class CreateStep2 extends Component {
         <div className="outer-div">
           <div className="container create-bg-white">
             <div className="timeline">
-            {!doneStep2 && (
-              <div className="timeline-progress" style={{ width: "67%" }}></div>
-            )}
-            {doneStep2 && (
-              <div
-                className="timeline-progress"
-                style={{ width: "100%" }}
-              ></div>
-            )}
+              {!doneStep2 && (
+                <div
+                  className="timeline-progress"
+                  style={{ width: "67%" }}
+                ></div>
+              )}
+              {doneStep2 && (
+                <div
+                  className="timeline-progress"
+                  style={{ width: "100%" }}
+                ></div>
+              )}
               <div className="timeline-items">
                 {items.map((item, i) => (
                   <div
@@ -334,7 +337,12 @@ class CreateStep2 extends Component {
               >
                 Hủy
               </button>
-              {!this.state.buttonLoading && (
+              {this.state.buttonLoading && (
+                <button type="submit" className="btn btn-pink">
+                  <i class="fa fa-spinner fa-spin"></i>
+                </button>
+              )}
+              {!this.state.buttonLoading && action !== 'update' && (
                 <button
                   className="btn btn-pink"
                   onClick={(e) => this.handleSubmit(e)}
@@ -342,11 +350,15 @@ class CreateStep2 extends Component {
                   Tiếp
                 </button>
               )}
-              {this.state.buttonLoading && (
-                <button type="submit" className="btn btn-pink">
-                  <i class="fa fa-spinner fa-spin"></i>
+              {!this.state.buttonLoading && action === 'update' && (
+                <button
+                  className="btn btn-pink"
+                  onClick={(e) => this.handleSubmit(e)}
+                >
+                  Lưu
                 </button>
               )}
+              
               <button
                 className="btn btn-pink create-mr"
                 onClick={(e) => this.handleBack(e)}

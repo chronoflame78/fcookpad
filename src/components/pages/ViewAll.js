@@ -10,6 +10,7 @@ import swal from "sweetalert";
 import { TRENDING, NEW } from "../../config/Constant";
 import {apiURL} from "../../config/Constant";
 import { getFormattedViews } from "../../actions/GetFormat";
+import {removeStorage} from "../../utils/removeStorage";
 
 class ViewAll extends Component {
   constructor(props) {
@@ -41,10 +42,7 @@ class ViewAll extends Component {
   }
 
   componentDidMount() {
-    localStorage.removeItem("create_id");
-    localStorage.removeItem("action");
-    localStorage.removeItem("doneStep1");
-    localStorage.removeItem("doneStep2");
+    removeStorage();
     this.mounted = true;
     let name;
     if (this.props.match.params) {

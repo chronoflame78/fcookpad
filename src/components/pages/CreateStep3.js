@@ -3,9 +3,8 @@ import axios from "axios";
 import Picture from "../common/Picture";
 import Footer from "../layout/Footer";
 import Page404 from "../pages/Page404";
-import {apiURL} from "../../config/Constant";
+import { apiURL } from "../../config/Constant";
 const isEmpty = require("is-empty");
-
 
 const items = [
   {
@@ -51,6 +50,7 @@ class CreateStep3 extends Component {
       errors: {},
       buttonLoading: false,
       loading: true,
+      error404: false
     };
     this.inputImage = React.createRef();
     this.inputImage2 = React.createRef();
@@ -61,88 +61,85 @@ class CreateStep3 extends Component {
 
   componentDidMount() {
     this.mounted = true;
-    let create_id = localStorage.getItem("create_id");
-    let action = localStorage.getItem("action");
-    if (create_id) {
-      axios
-        .get(`${apiURL}/users/recipe/${create_id}`)
-        .then((res) => {
-          if (this.mounted) {
-            console.log(res.data);
-            console.log(res.data.post);
-            if (res.data.post.steps.length === 1) {
-              this.setState({
-                imagePreviewUrl1: res.data.post.steps[0].image,
-                step_content_1: res.data.post.steps[0].content,
-                loading: false
-              });
-            } else if (res.data.post.steps.length === 2) {
-              this.setState({
-                imagePreviewUrl1: res.data.post.steps[0].image,
-                step_content_1: res.data.post.steps[0].content,
-                imagePreviewUrl2: res.data.post.steps[1].image,
-                step_content_2: res.data.post.steps[1].content,
-                total_steps: 2,
-                loading: false
-              });
-            } else if (res.data.post.steps.length === 3) {
-              this.setState({
-                imagePreviewUrl1: res.data.post.steps[0].image,
-                step_content_1: res.data.post.steps[0].content,
-                imagePreviewUrl2: res.data.post.steps[1].image,
-                step_content_2: res.data.post.steps[1].content,
-                imagePreviewUrl3: res.data.post.steps[2].image,
-                step_content_3: res.data.post.steps[2].content,
-                total_steps: 3,
-                loading: false
-              });
-            } else if (res.data.post.steps.length === 4) {
-              this.setState({
-                imagePreviewUrl1: res.data.post.steps[0].image,
-                step_content_1: res.data.post.steps[0].content,
-                imagePreviewUrl2: res.data.post.steps[1].image,
-                step_content_2: res.data.post.steps[1].content,
-                imagePreviewUrl3: res.data.post.steps[2].image,
-                step_content_3: res.data.post.steps[2].content,
-                imagePreviewUrl4: res.data.post.steps[3].image,
-                step_content_4: res.data.post.steps[3].content,
-                total_steps: 4,
-                loading: false
-              });
-            } else if (res.data.post.steps.length === 5) {
-              this.setState({
-                imagePreviewUrl1: res.data.post.steps[0].image,
-                step_content_1: res.data.post.steps[0].content,
-                imagePreviewUrl2: res.data.post.steps[1].image,
-                step_content_2: res.data.post.steps[1].content,
-                imagePreviewUrl3: res.data.post.steps[2].image,
-                step_content_3: res.data.post.steps[2].content,
-                imagePreviewUrl4: res.data.post.steps[3].image,
-                step_content_4: res.data.post.steps[3].content,
-                imagePreviewUrl5: res.data.post.steps[4].image,
-                step_content_5: res.data.post.steps[4].content,
-                total_steps: 5,
-                loading: false
-              });
-            } else{
-              this.setState({
-                loading: false
-              })
-            }
+    let id = this.props.match.params.id;
+    axios
+      .get(`${apiURL}/users/recipe/${id}`)
+      .then((res) => {
+        if (this.mounted) {
+          if (res.data.post.steps.length === 1) {
+            this.setState({
+              imagePreviewUrl1: res.data.post.steps[0].image,
+              step_content_1: res.data.post.steps[0].content,
+              loading: false,
+            });
+          } else if (res.data.post.steps.length === 2) {
+            this.setState({
+              imagePreviewUrl1: res.data.post.steps[0].image,
+              step_content_1: res.data.post.steps[0].content,
+              imagePreviewUrl2: res.data.post.steps[1].image,
+              step_content_2: res.data.post.steps[1].content,
+              total_steps: 2,
+              loading: false,
+            });
+          } else if (res.data.post.steps.length === 3) {
+            this.setState({
+              imagePreviewUrl1: res.data.post.steps[0].image,
+              step_content_1: res.data.post.steps[0].content,
+              imagePreviewUrl2: res.data.post.steps[1].image,
+              step_content_2: res.data.post.steps[1].content,
+              imagePreviewUrl3: res.data.post.steps[2].image,
+              step_content_3: res.data.post.steps[2].content,
+              total_steps: 3,
+              loading: false,
+            });
+          } else if (res.data.post.steps.length === 4) {
+            this.setState({
+              imagePreviewUrl1: res.data.post.steps[0].image,
+              step_content_1: res.data.post.steps[0].content,
+              imagePreviewUrl2: res.data.post.steps[1].image,
+              step_content_2: res.data.post.steps[1].content,
+              imagePreviewUrl3: res.data.post.steps[2].image,
+              step_content_3: res.data.post.steps[2].content,
+              imagePreviewUrl4: res.data.post.steps[3].image,
+              step_content_4: res.data.post.steps[3].content,
+              total_steps: 4,
+              loading: false,
+            });
+          } else if (res.data.post.steps.length === 5) {
+            this.setState({
+              imagePreviewUrl1: res.data.post.steps[0].image,
+              step_content_1: res.data.post.steps[0].content,
+              imagePreviewUrl2: res.data.post.steps[1].image,
+              step_content_2: res.data.post.steps[1].content,
+              imagePreviewUrl3: res.data.post.steps[2].image,
+              step_content_3: res.data.post.steps[2].content,
+              imagePreviewUrl4: res.data.post.steps[3].image,
+              step_content_4: res.data.post.steps[3].content,
+              imagePreviewUrl5: res.data.post.steps[4].image,
+              step_content_5: res.data.post.steps[4].content,
+              total_steps: 5,
+              loading: false,
+            });
+          } else {
+            this.setState({
+              loading: false,
+            });
           }
-        })
-        .catch((error) => {
+        }
+      })
+      .catch((error) => {
+        if(error.response.status === 404){
+          this.setState({
+            error404: true,
+            loading: false
+          })
+        }else{
           this.setState({
             errors: error.response.data,
-            loading: false
+            loading: false,
           });
-        });
-    }
-    else{
-      this.setState({
-        loading: false
-      })
-    }
+        }      
+      });
   }
 
   componentWillUnmount() {
@@ -167,7 +164,7 @@ class CreateStep3 extends Component {
   }
 
   handleBack(e) {
-    this.props.history.push("/step2");
+    this.props.history.push("/step2/" + this.props.match.params.id);
   }
 
   cancelSubmit(e) {
@@ -178,9 +175,9 @@ class CreateStep3 extends Component {
     console.log(index);
     e.preventDefault();
     if (index === "1") {
-      this.props.history.push("/create");
+      this.props.history.push("/step1/" + this.props.match.params.id);
     } else if (index === "2") {
-      this.props.history.push("/step2");
+      this.props.history.push("/step2/" + this.props.match.params.id);
     }
   };
 
@@ -189,44 +186,44 @@ class CreateStep3 extends Component {
 
     let reader = new FileReader();
     let file = e.target.files[0];
-    if(file){
-        console.log(e.target.id);
-    if (e.target.id === "step_image_1") {
-      reader.onloadend = () => {
-        this.setState({
-          step_image_1: file,
-          imagePreviewUrl1: reader.result,
-        });
-      };
-    } else if (e.target.id === "step_image_2") {
-      reader.onloadend = () => {
-        this.setState({
-          step_image_2: file,
-          imagePreviewUrl2: reader.result,
-        });
-      };
-    } else if (e.target.id === "step_image_3") {
-      reader.onloadend = () => {
-        this.setState({
-          step_image_3: file,
-          imagePreviewUrl3: reader.result,
-        });
-      };
-    } else if (e.target.id === "step_image_4") {
-      reader.onloadend = () => {
-        this.setState({
-          step_image_4: file,
-          imagePreviewUrl4: reader.result,
-        });
-      };
-    } else {
-      reader.onloadend = () => {
-        this.setState({
-          step_image_5: file,
-          imagePreviewUrl5: reader.result,
-        });
-      };
-    }
+    if (file) {
+      console.log(e.target.id);
+      if (e.target.id === "step_image_1") {
+        reader.onloadend = () => {
+          this.setState({
+            step_image_1: file,
+            imagePreviewUrl1: reader.result,
+          });
+        };
+      } else if (e.target.id === "step_image_2") {
+        reader.onloadend = () => {
+          this.setState({
+            step_image_2: file,
+            imagePreviewUrl2: reader.result,
+          });
+        };
+      } else if (e.target.id === "step_image_3") {
+        reader.onloadend = () => {
+          this.setState({
+            step_image_3: file,
+            imagePreviewUrl3: reader.result,
+          });
+        };
+      } else if (e.target.id === "step_image_4") {
+        reader.onloadend = () => {
+          this.setState({
+            step_image_4: file,
+            imagePreviewUrl4: reader.result,
+          });
+        };
+      } else {
+        reader.onloadend = () => {
+          this.setState({
+            step_image_5: file,
+            imagePreviewUrl5: reader.result,
+          });
+        };
+      }
     }
     reader.readAsDataURL(file);
   }
@@ -236,39 +233,36 @@ class CreateStep3 extends Component {
     this.setState({
       buttonLoading: true,
     });
-    const action = localStorage.getItem("action");
+    let action = localStorage.getItem("action");
     let formData = new FormData();
-    console.log(this.state);
-    if(this.state.step_image_1)
-    formData.append("step1_image", this.state.step_image_1);
+    if (this.state.step_image_1)
+      formData.append("step1_image", this.state.step_image_1);
     formData.append("step1_content", this.state.step_content_1);
     if (this.state.total_steps > 1) {
-      if(this.state.step_image_2)
-      formData.append("step2_image", this.state.step_image_2);
+      if (this.state.step_image_2)
+        formData.append("step2_image", this.state.step_image_2);
       formData.append("step2_content", this.state.step_content_2);
     }
     if (this.state.total_steps > 2) {
-      if(this.state.step_image_3)
-      formData.append("step3_image", this.state.step_image_3);
+      if (this.state.step_image_3)
+        formData.append("step3_image", this.state.step_image_3);
       formData.append("step3_content", this.state.step_content_3);
     }
     if (this.state.total_steps > 3) {
-      if(this.state.step_image_4)
-      formData.append("step4_image", this.state.step_image_4);
+      if (this.state.step_image_4)
+        formData.append("step4_image", this.state.step_image_4);
       formData.append("step4_content", this.state.step_content_4);
     }
     if (this.state.total_steps > 4) {
-      if(this.state.step_image_5)
-      formData.append("step5_image", this.state.step_image_5);
+      if (this.state.step_image_5)
+        formData.append("step5_image", this.state.step_image_5);
       formData.append("step5_content", this.state.step_content_5);
     }
     formData.append("step", 3);
     console.log(formData);
     axios
       .post(
-        `${apiURL}/posts/` +
-          localStorage.getItem("create_id") +
-          "/update",
+        `${apiURL}/posts/` + this.props.match.params.id + "/update",
         formData
       )
       .then((res) => {
@@ -296,9 +290,9 @@ class CreateStep3 extends Component {
       );
   }
 
-  render() {
-    let create_id = localStorage.getItem("create_id");
-    if (!create_id) return <Page404 />;
+  render() {   
+    if (this.state.error404) return <Page404 />;
+    let action = localStorage.getItem("action");
     let {
       imagePreviewUrl1,
       imagePreviewUrl2,
@@ -426,13 +420,16 @@ class CreateStep3 extends Component {
         </div>
       );
     }
-    console.log(this.state.loading)
+    console.log(this.state.loading);
     if (this.state.loading) {
       return (
         <div className="outer-div">
           <div className="container create-bg-white">
             <div className="timeline">
-            <div className="timeline-progress" style={{ width: "100%" }}></div>
+              <div
+                className="timeline-progress"
+                style={{ width: "100%" }}
+              ></div>
               <div className="timeline-items">
                 {items.map((item, i) => (
                   <div
@@ -455,8 +452,8 @@ class CreateStep3 extends Component {
               </div>
             </div>
             <div className="create-loading-container">
-                <i className="fa fa-spinner fa-spin"></i>
-              </div>
+              <i className="fa fa-spinner fa-spin"></i>
+            </div>
           </div>
           <Footer />
         </div>
@@ -715,8 +712,13 @@ class CreateStep3 extends Component {
                 onClick={(e) => this.cancelSubmit(e)}
               >
                 Hủy
-              </button>
-              {!this.state.buttonLoading && (
+              </button>             
+              {this.state.buttonLoading && (
+                <button type="submit" className="btn btn-pink">
+                  <i class="fa fa-spinner fa-spin"></i>
+                </button>
+              )}
+              {!this.state.buttonLoading && action !== 'update' &&(
                 <button
                   type="submit"
                   className="btn btn-pink"
@@ -725,9 +727,13 @@ class CreateStep3 extends Component {
                   Đăng
                 </button>
               )}
-              {this.state.buttonLoading && (
-                <button type="submit" className="btn btn-pink">
-                  <i class="fa fa-spinner fa-spin"></i>
+              {!this.state.buttonLoading && action === 'update' &&(
+                <button
+                  type="submit"
+                  className="btn btn-pink"
+                  onClick={(e) => this.handleSubmit(e)}
+                >
+                  Lưu
                 </button>
               )}
               <button

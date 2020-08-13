@@ -16,6 +16,7 @@ import Page500 from "../pages/Page500";
 import Emoji from "react-emoji-render";
 import { apiURL } from "../../config/Constant";
 import { getFormattedViews, getFormattedDate } from "../../actions/GetFormat";
+import {removeStorage} from "../../utils/removeStorage";
 
 const isEmpty = require("is-empty");
 const timediff = require("timediff");
@@ -37,6 +38,7 @@ class Post extends Component {
   }
 
   componentDidMount() {
+    removeStorage();
     this.mounted = true;
     axios
       .get(`${apiURL}/posts/${this.props.match.params.id}`)

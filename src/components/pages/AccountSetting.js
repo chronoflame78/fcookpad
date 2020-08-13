@@ -12,6 +12,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { toast } from 'react-toastify';
 import swal from 'sweetalert';
 import {apiURL} from '../../config/Constant';
+import {removeStorage} from "../../utils/removeStorage";
 const isEmpty = require("is-empty");
 class AccountSetting extends Component {
     constructor(props) {
@@ -98,9 +99,9 @@ class AccountSetting extends Component {
     }
 
     handleEditClick = (e, postId) => {
-        localStorage.setItem("create_id", postId);
         localStorage.setItem("action", "update");
-        this.props.history.push("/create");
+        localStorage.setItem("doneStep2", true);
+        this.props.history.push("/step1/" + postId);
     }
 
     onChange = e => {
@@ -260,10 +261,7 @@ class AccountSetting extends Component {
 
     componentDidMount() {
         this.mounted = true;
-        localStorage.removeItem("action");
-        localStorage.removeItem("create_id");
-        localStorage.removeItem("doneStep1");
-        localStorage.removeItem("doneStep2");
+        removeStorage();
         this.setState({
             loading: true
         })

@@ -11,6 +11,7 @@ import Home from "./components/pages/Home";
 import Create from "./components/pages/Create";
 import CreateStep2 from "./components/pages/CreateStep2";
 import CreateStep3 from "./components/pages/CreateStep3";
+import Edit from "./components/pages/Edit";
 import UserProfile from "./components/pages/UserProfile";
 import AccountSetting from "./components/pages/AccountSetting";
 import SearchResult from "./components/pages/SearchResult";
@@ -64,8 +65,9 @@ const DefaultContainer = () => (
     <Route path="/posts/:id" component={Post} />
     <Route path="/user_profile/:id" component={UserProfile} />
     <PrivateRoute path="/create" component={Create} />
-    <PrivateRoute path="/step2" component={CreateStep2} />
-    <PrivateRoute path="/step3" component={CreateStep3} />
+    <PrivateRoute path="/step2/:id" component={CreateStep2} />
+    <PrivateRoute path="/step3/:id" component={CreateStep3} />
+    <PrivateRoute path="/step1/:id" component={Edit} />
     <PrivateRoute exact path="/dashboard" component={Dashboard} />
     <PrivateRoute path="/account_settings" component={AccountSetting} /> 
     <Route path="/search" component={SearchResult} />

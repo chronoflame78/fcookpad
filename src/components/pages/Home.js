@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { apiURL } from "../../config/Constant";
 import { getFormattedViews, getFormattedDate } from "../../actions/GetFormat.js";
 import Section from "../../components/common/Section";
+import {removeStorage} from "../../utils/removeStorage";
 
 class Home extends Component {
   constructor(props) {
@@ -54,10 +55,7 @@ class Home extends Component {
     }
   }
   componentDidMount() {
-    localStorage.removeItem("create_id");
-    localStorage.removeItem("action");
-    localStorage.removeItem("doneStep1");
-    localStorage.removeItem("doneStep2");
+    removeStorage();
     this.mounted = true;
     axios
       .all([

@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import swal from 'sweetalert';
 import {apiURL} from "../../config/Constant";
 import { getFormattedViews } from "../../actions/GetFormat";
+import {removeStorage} from "../../utils/removeStorage";
 
 class SearchResult extends Component {
 
@@ -27,10 +28,7 @@ class SearchResult extends Component {
     }
 
     componentDidMount() {
-        localStorage.removeItem("create_id");
-        localStorage.removeItem("action");
-        localStorage.removeItem("doneStep1");
-        localStorage.removeItem("doneStep2");
+        removeStorage();
         let params = queryString.parse(this.props.location.search);
         let data = {
             content: params.content,

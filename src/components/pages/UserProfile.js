@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import '../../css/Section.css';
 import Loader from '../common/LoaderVer2';
 import {apiURL} from "../../config/Constant";
+import {removeStorage} from "../../utils/removeStorage";
 const isEmpty = require("is-empty");
 class UserProfile extends Component {
     constructor(props) {
@@ -58,10 +59,7 @@ class UserProfile extends Component {
     }
 
     componentDidMount() {
-        localStorage.removeItem("action");
-        localStorage.removeItem("create_id");
-        localStorage.removeItem("doneStep1");
-        localStorage.removeItem("doneStep2");
+        removeStorage();
         this.mounted = true;
         axios.all([axios.get(`${apiURL}/users/${this.props.match.params.id}`),
         axios.get(`${apiURL}/users/` + this.props.match.params.id + "/posts?page=1"),

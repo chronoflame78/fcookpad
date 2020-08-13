@@ -3,10 +3,9 @@ import axios from "axios";
 import "../../css/Create.css";
 import Footer from "../layout/Footer";
 import { apiURL } from "../../config/Constant";
-import {removeStorage} from "../../utils/removeStorage";
 const isEmpty = require("is-empty");
 
-class Create extends Component {
+class Edit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,6 +19,7 @@ class Create extends Component {
       dropdown_value: "",
       buttonLoading: false,
       loading: true,
+      error404: false,
     };
     this.inputImage = React.createRef();
   }
@@ -34,24 +34,68 @@ class Create extends Component {
     window.open("/", "_self");
   };
 
+  onStepClick = (e, index) => {
+    e.preventDefault();
+    let doneStep2 = localStorage.getItem("doneStep2");
+    if (index === "2") {
+      this.props.history.push("/step2/" + this.props.match.params.id);
+    }
+    if (doneStep2 && index === "3") {
+      this.props.history.push("/step3/" + this.props.match.params.id);
+    }
+  };
+
   componentDidMount() {
     this.mounted = true;
-    removeStorage();
+    let id = this.props.match.params.id;
     axios
-      .get(`${apiURL}/home/category`)
-      .then((res) => {
-        if (this.mounted) {
-          this.setState({
-            category: res.data.data.categorys,
-            loading: false,
-          });
-        }
-      })
+      .all([
+        axios.get(`${apiURL}/home/category`),
+        axios.get(`${apiURL}/users/recipe/${id}`),
+      ])
+      .then(
+        axios.spread((...res) => {
+          if (this.mounted) {
+            if (res[1].data.post.video) {
+              let video_url = res[1].data.post.video.replace(
+                "embed/",
+                "watch?v="
+              );
+              this.setState({
+                category: res[0].data.data.categorys,
+                title: res[1].data.post.title,
+                description: res[1].data.post.description,
+                imagePreviewUrl: res[1].data.post.images[0],
+                video: video_url,
+                dropdown_value: res[1].data.post.category,
+                loading: false,
+              });
+            } else {
+              this.setState({
+                category: res[0].data.data.categorys,
+                title: res[1].data.post.title,
+                description: res[1].data.post.description,
+                imagePreviewUrl: res[1].data.post.images[0],
+                dropdown_value: res[1].data.post.category,
+                loading: false,
+              });
+            }
+          }
+        })
+      )
       .catch((error) => {
-        this.setState({
-          errors: error.response.data,
-          loading: false,
-        });
+        if (error.response) {
+          if (error.response.status === 404) {
+            this.setState({
+              error404: true,
+              loading: false,
+            });
+          } else {
+            this.setState({
+              errors: error.response.data,
+            });
+          }
+        }
       });
   }
 
@@ -61,6 +105,7 @@ class Create extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    let id = this.props.match.params.id;
     if (
       this.state.video &&
       this.state.video.indexOf("https://www.youtube.com/watch?v=") !== -1 &&
@@ -84,18 +129,13 @@ class Create extends Component {
         "https://www.youtube.com/embed/" + this.state.video.slice(32)
       );
     axios
-      .post(`${apiURL}/posts/create`, formData)
+      .post(`${apiURL}/posts/` + id + "/update", formData)
       .then((res) => {
-        console.log(res);
-        const { id } = res.data;
         this.props.history.push("/step2/" + id);
       })
       .catch((err) => {
-        console.log(err);
-        console.log(err.response.data);
         this.setState({
           errors: err.response.data,
-          buttonLoading: false,
         });
       });
   }
@@ -118,6 +158,9 @@ class Create extends Component {
   }
 
   render() {
+    let action = localStorage.getItem("action");
+    let doneStep2 = localStorage.getItem("doneStep2");
+    if (!doneStep2) doneStep2 = false;
     let { imagePreviewUrl, video } = this.state;
     let $imagePreview = null;
     let youtube_video = null;
@@ -180,16 +223,19 @@ class Create extends Component {
         number: "1",
         name: "Món ăn mới",
         active: true,
+        done: false,
       },
       {
         number: "2",
         name: "Nguyên liệu",
         active: false,
+        done: true,
       },
       {
         number: "3",
         name: "Cách làm",
         active: false,
+        done: doneStep2,
       },
     ];
     if (this.state.loading) {
@@ -197,14 +243,34 @@ class Create extends Component {
         <div className="outer-div">
           <div className="container create-bg-white">
             <div className="timeline">
-              <div className="timeline-progress" style={{ width: "33%" }}></div>
+              {!doneStep2 && (
+                <div
+                  className="timeline-progress"
+                  style={{ width: "67%" }}
+                ></div>
+              )}
+              {doneStep2 && (
+                <div
+                  className="timeline-progress"
+                  style={{ width: "100%" }}
+                ></div>
+              )}
               <div className="timeline-items">
                 {items.map((item, i) => (
                   <div
+                    onClick={(e) => this.onStepClick(e, item.number)}
                     key={i}
-                    className={"timeline-item" + (item.active ? " active" : "")}
+                    className={
+                      "timeline-item" +
+                      (item.active ? " active" : "") +
+                      (item.done ? " done" : "")
+                    }
                   >
-                    <div className="timeline-number">{item.number}</div>
+                    <div
+                      className={"timeline-number" + (item.done ? " done" : "")}
+                    >
+                      {item.number}
+                    </div>
                     <div className="timeline-name">{item.name}</div>
                   </div>
                 ))}
@@ -222,14 +288,31 @@ class Create extends Component {
       <div className="outer-div">
         <div className="container create-bg-white">
           <div className="timeline">
-            <div className="timeline-progress" style={{ width: "33%" }}></div>
+            {!doneStep2 && (
+              <div className="timeline-progress" style={{ width: "67%" }}></div>
+            )}
+            {doneStep2 && (
+              <div
+                className="timeline-progress"
+                style={{ width: "100%" }}
+              ></div>
+            )}
             <div className="timeline-items">
               {items.map((item, i) => (
                 <div
+                  onClick={(e) => this.onStepClick(e, item.number)}
                   key={i}
-                  className={"timeline-item" + (item.active ? " active" : "")}
+                  className={
+                    "timeline-item" +
+                    (item.active ? " active" : "") +
+                    (item.done ? " done" : "")
+                  }
                 >
-                  <div className="timeline-number">{item.number}</div>
+                  <div
+                    className={"timeline-number" + (item.done ? " done" : "")}
+                  >
+                    {item.number}
+                  </div>
                   <div className="timeline-name">{item.name}</div>
                 </div>
               ))}
@@ -346,7 +429,12 @@ class Create extends Component {
               >
                 Hủy
               </button>
-              {!this.state.buttonLoading && (
+              {this.state.buttonLoading && (
+                <button type="submit" className="btn btn-pink">
+                  <i className="fa fa-spinner fa-spin"></i>
+                </button>
+              )}
+              {!this.state.buttonLoading && action !== 'update'&& (
                 <button
                   type="submit"
                   className="btn btn-pink"
@@ -355,9 +443,13 @@ class Create extends Component {
                   Tiếp
                 </button>
               )}
-              {this.state.buttonLoading && (
-                <button type="submit" className="btn btn-pink">
-                  <i class="fa fa-spinner fa-spin"></i>
+              {!this.state.buttonLoading && action === 'update'&& (
+                <button
+                  type="submit"
+                  className="btn btn-pink"
+                  onClick={(e) => this.handleSubmit(e)}
+                >
+                  Lưu
                 </button>
               )}
             </div>
@@ -370,7 +462,7 @@ class Create extends Component {
               </button>
               {!this.state.buttonLoading && (
                 <div
-                  className="arrow-next"
+                  className="next-arrow"
                   onClick={(e) => this.handleSubmit(e)}
                 >
                   <i class="fas fa-chevron-right"></i>
@@ -390,4 +482,4 @@ class Create extends Component {
   }
 }
 
-export default Create;
+export default Edit;
