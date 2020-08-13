@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { withRouter } from "react-router";
 import queryString from "query-string";
-import {apiURL} from "../../config/Constant";
+import { apiURL } from "../../config/Constant";
 class TopMenu extends React.Component {
   constructor(props) {
     super(props);
@@ -205,8 +205,12 @@ class TopMenu extends React.Component {
     if (isEmpty(user)) {
       avatar = (
         <div>
-          <Link to="/register"><div className="btn btn-topmenu-register">Đăng kí</div></Link>
-          <Link to="/login"><div className="btn btn-topmenu-login">Đăng nhập</div></Link>         
+          <Link to="/register">
+            <div className="btn btn-topmenu-register">Đăng kí</div>
+          </Link>
+          <Link to="/login">
+            <div className="btn btn-topmenu-login">Đăng nhập</div>
+          </Link>
           {/* <Avatar
           className="topmenu-margin-auto topmenu-bg topmenu-unauth-ava"
           signature="nav_avatar"
@@ -214,16 +218,29 @@ class TopMenu extends React.Component {
           size={50}
           tooltip={false}
         /> */}
-        <img className="topmenu-unauth-ava" width={33} height={50} alt="" src="/images/chef-icon-navbar.png"/>
+          <img
+            className="topmenu-unauth-ava"
+            width={33}
+            height={50}
+            alt=""
+            src="/images/chef-icon-navbar.png"
+          />
         </div>
-
       );
 
       if (this.state.isOpen) {
         fixedDiv = (
           <div ref={this.wrapperRef} className="topmenu-abs-div">
-            <div className="topmenu-link-con"><Link to="/login"><div className="btn-abs-login">Đăng nhập</div></Link></div>
-            <div className="topmenu-link-con"><Link to="/register"><div className="btn-abs-register">Đăng kí</div></Link></div>
+            <div className="topmenu-link-con">
+              <Link to="/login">
+                <div className="btn-abs-login">Đăng nhập</div>
+              </Link>
+            </div>
+            <div className="topmenu-link-con">
+              <Link to="/register">
+                <div className="btn-abs-register">Đăng kí</div>
+              </Link>
+            </div>
           </div>
         );
       } else {
@@ -266,7 +283,9 @@ class TopMenu extends React.Component {
 
               <div className="topmenu-to-setting">
                 <Link to="/account_settings">
-                  <div onClick={this.toggleOpen} className="btn topmenu-btn">Trang cá nhân</div>
+                  <div onClick={this.toggleOpen} className="btn topmenu-btn">
+                    Trang cá nhân
+                  </div>
                 </Link>
               </div>
             </div>
@@ -377,22 +396,70 @@ class TopMenu extends React.Component {
             <Link className="nav-button-container" to="/create">
               <button className="nav-add">
                 Thêm món mới
-                <img
+                {/* <img
                   className="topmenu-plus"
                   alt=""
                   src="/images/Plus_Icon.png"
-                />
+                /> */}
+                {/* <svg version="1.1" id="Capa_1" x="0px" y="0px"
+	 viewBox="0 0 512 512" className="topmenu-plus-icon">
+     <path d="M492,236H276V20c0-11.046-8.954-20-20-20c-11.046,0-20,8.954-20,20v216H20c-11.046,0-20,8.954-20,20s8.954,20,20,20h216
+			v216c0,11.046,8.954,20,20,20s20-8.954,20-20V276h216c11.046,0,20-8.954,20-20C512,244.954,503.046,236,492,236z"/>
+   </svg> */}
+                <svg className="topmenu-plus-icon" viewBox="0 0 242.43 242.43">
+                  <g id="Layer_2" data-name="Layer 2">
+                    <g id="Layer_1-2" data-name="Layer 1">
+                      <line
+                        class="cls-1"
+                        x1="121.21"
+                        y1="15"
+                        x2="121.21"
+                        y2="227.43"
+                      />
+                      <line
+                        class="cls-1"
+                        x1="15"
+                        y1="121.21"
+                        x2="227.43"
+                        y2="121.21"
+                      />
+                    </g>
+                  </g>
+                </svg>
               </button>
               <img
                 className="nav-add-without-txt"
                 src="/images/nav-bar-add.png"
                 alt=""
               />
+              {/* <div className="nav-add-without-txt">
+              <svg className="topmenu-plus-icon-responsive" viewBox="0 0 242.43 242.43">
+                  <g id="Layer_2" data-name="Layer 2">
+                    <g id="Layer_1-2" data-name="Layer 1">
+                      <line
+                        class="cls-1"
+                        x1="121.21"
+                        y1="15"
+                        x2="121.21"
+                        y2="227.43"
+                      />
+                      <line
+                        class="cls-1"
+                        x1="15"
+                        y1="121.21"
+                        x2="227.43"
+                        y2="121.21"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </div> */}
             </Link>
           </div>
           <div className="topmenu-avatar">
-            <div ref={this.avatarRef}
-            onClick={this.toggleOpen}>{avatar}</div>
+            <div ref={this.avatarRef} onClick={this.toggleOpen}>
+              {avatar}
+            </div>
             {fixedDiv}
           </div>
         </div>
