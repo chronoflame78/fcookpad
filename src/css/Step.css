@@ -6,7 +6,6 @@
 
 .step-txt-description{
     font-size: 20px;
-    display: flex;
 }
 
 .step-padding-custom{
@@ -24,14 +23,16 @@
 
 .step-title {
     background-color: #ff5f6d;
+    border-radius: 50%;
     width: 30px;
     height: 30px;
-    border-radius: 50px;
     display: flex;
     justify-content: center;
     color: #fff;
+    float: left;
 }
 
 .step-content {
-    margin-left: 15px;
+    width: 90%;
+    float: right;
 }

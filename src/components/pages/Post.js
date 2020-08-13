@@ -14,8 +14,8 @@ import Footer from "../layout/Footer";
 import Page404 from "../pages/Page404";
 import Page500 from "../pages/Page500";
 import Emoji from "react-emoji-render";
-import {apiURL} from "../../config/Constant";
-import { getFormattedViews } from "../../actions/GetFormattedViews";
+import { apiURL } from "../../config/Constant";
+import { getFormattedViews, getFormattedDate } from "../../actions/GetFormat";
 
 const isEmpty = require("is-empty");
 const timediff = require("timediff");
@@ -25,13 +25,14 @@ class Post extends Component {
     super(props);
     this.state = {
       post: {},
+      errors: {},
       loading: true,
       comment: "",
       isOpen: false,
       buttonLoading: false,
       comments: [],
       likes: [],
-      error500: false
+      error500: false,
     };
   }
 
@@ -51,17 +52,16 @@ class Post extends Component {
         }
       })
       .catch((error) => {
-        if(error.response.status === 500){
+        if (error.response.status === 500) {
           this.setState({
             loading: false,
-            error500: true
+            error500: true,
           });
-        }else{
+        } else {
           this.setState({
             loading: false,
           });
         }
-        
       });
   }
 
@@ -88,12 +88,7 @@ class Post extends Component {
       buttonLoading: true,
     });
     axios
-      .post(
-        `${apiURL}/posts/` +
-          this.props.match.params.id +
-          "/comment",
-        data
-      )
+      .post(`${apiURL}/posts/` + this.props.match.params.id + "/comment", data)
       .then((res) => {
         this.setState({
           comments: res.data.comments,
@@ -101,6 +96,10 @@ class Post extends Component {
         });
       })
       .catch((err) => {
+        this.setState({
+          errors: { message: "Hãy viết bình luận để gửi nhé" },
+          buttonLoading: false,
+        });
         console.log(err);
       });
   }
@@ -123,35 +122,8 @@ class Post extends Component {
       comments = this.state.comments;
 
       comments.forEach((element) => {
-        let currentTime = new Date();
-        let timeDiff = timediff(element.datetime, currentTime, "YMWDHmSs");
-        let flag = true;
-        switch (flag) {
-          case timeDiff.years:
-            element.timediff = timeDiff.years + " năm trước";
-            break;
-          case timeDiff.months > 0:
-            element.timediff = timeDiff.months + " tháng trước";
-            break;
-          case timeDiff.weeks > 0:
-            element.timeDiff = timeDiff.weeks + " tuần trước";
-            break;
-          case timeDiff.days > 0:
-            element.timeDiff = timeDiff.days + " ngày trước";
-            break;
-          case timeDiff.hours > 0:
-            element.timeDiff = timeDiff.hours + " giờ trước";
-            break;
-          case timeDiff.minutes > 0:
-            element.timeDiff = timeDiff.minutes + " phút trước";
-            break;
-          case timeDiff.seconds > 0:
-            element.timeDiff = timeDiff.seconds + " giây trước";
-            break;
-          default:
-            element.timeDiff = "Vừa xong";
-            break;
-        }
+        console.log(element.datetime);
+        element.timeDiff = getFormattedDate(element.datetime);
       });
 
       if (comments.length > 3) {
@@ -170,21 +142,11 @@ class Post extends Component {
       steps = this.state.post.steps;
     }
 
-    // var likes = [];
-    // if (this.state.post.likes) {
-    //   likes = this.state.post.likes;
-    // }
-
-    // var views = [];
-    // if (this.state.post.views) {
-    //   views = this.state.post.views;
-    // }
-
     if (Object.keys(post).length === 0 && post.constructor === Object) {
       return <Page404 />;
     }
     const { user } = this.props.auth;
-    const user_avatar = localStorage.getItem("userAvatar");
+    const user_avatar = user.user_avatar;
     return (
       <div className="post-container">
         <Container>
@@ -210,7 +172,9 @@ class Post extends Component {
                       src="/images/eye.png"
                       alt=""
                     />{" "}
-                    <div className="view-number">{getFormattedViews(this.state.post.views)}</div>
+                    <div className="view-number">
+                      {getFormattedViews(this.state.post.views)}
+                    </div>
                   </div>
                   <div className="post-share">
                     <div className="share-icon">
@@ -239,31 +203,33 @@ class Post extends Component {
               </Col>
             </Row>
             <div class="empty-block"></div>
-            <Row className="ingredients">
-              <Col sm="6">
+            <Row className="post-ingredients-and-images">
+              <Col sm="7 12">
                 <div className="d-flex flex-column flex-md-row align-items-center slide-container">
                   <div className="post-carousel-box-updt">
                     <CustomCarousel items={items} />
                   </div>
                 </div>
               </Col>
-              <Col sm="6">
-                <div className="ingredents-title">
-                  <img
-                    className="ingredient-icon"
-                    width={23}
-                    src="/images/ingredient.png"
-                    alt=""
-                  />
-                  Nguyên liệu
-                </div>
-                <div className="post-ingredients ">
-                  {post.ingredients &&
-                    post.ingredients.map((x, index) => (
-                      <p key={index}>
-                        <i class="fas fa-carrot" /> {x}
-                      </p>
-                    ))}
+              <Col sm="5 12">
+                <div className="post-ingredients-div">
+                  <div className="post-ingredients-title">
+                    <img
+                      className="post-ingredient-icon"
+                      width={23}
+                      src="/images/ingredient.png"
+                      alt=""
+                    />
+                    Nguyên liệu
+                  </div>
+                  <div className="post-ingredients">
+                    {post.ingredients &&
+                      post.ingredients.map((x, index) => (
+                        <p key={index}>
+                          <i class="fas fa-carrot" /> {x}
+                        </p>
+                      ))}
+                  </div>
                 </div>
               </Col>
             </Row>
@@ -274,7 +240,7 @@ class Post extends Component {
                 <div className="post-step-title">
                   {" "}
                   <img
-                    className="ingredient-icon"
+                    className="post-ingredient-icon"
                     width={20}
                     src="/images/step.png"
                     alt=""
@@ -295,7 +261,7 @@ class Post extends Component {
               </div>
             </Col>
           </Row>
-          <Row>
+          <Row className="post-video-wrapper">
             <Col>
               <div className="post-video-title">
                 {" "}
@@ -326,7 +292,7 @@ class Post extends Component {
           <Row className="post-comment-section">
             <Col>
               <div className="">
-                <div className="post-step-title">
+                <div className="post-step-title post-comment-title">
                   {" "}
                   <img
                     className="youtube-icon"
@@ -390,14 +356,19 @@ class Post extends Component {
                       <i class="fa fa-spinner fa-spin"></i>
                     </div>
                   )}
+                  {!isEmpty(this.state.errors) && (
+                    <div className="alert alert-danger alert-position">
+                      {this.state.errors.message}
+                    </div>
+                  )}
                 </div>
                 {isEmpty(user) && (
                   <div className="post-link-container">
-                  <Link to="/login">
-                    <div className="post-update-add-comment">
-                      Đăng nhập để bình luận
-                    </div>
-                  </Link>
+                    <Link to="/login">
+                      <div className="post-update-add-comment">
+                        Đăng nhập để bình luận
+                      </div>
+                    </Link>
                   </div>
                 )}
                 {!isEmpty(user) && (
@@ -433,7 +404,7 @@ class Post extends Component {
                             type="text"
                           />
                           <div className="insde-comment-input">
-                            <label className="create-label-name">
+                            <label className="post-write-cmt-label">
                               Viết bình luận..
                             </label>
                           </div>

@@ -19,7 +19,7 @@ class CommentAvatar extends Component {
   render() {
     if (this.props.tooltip === true) {
       return (
-        <div class="post-author">
+        <div class="post-author-wrapper">
           <div
             className={"avatar-cover " + this.props.className}
             style={{
@@ -38,7 +38,6 @@ class CommentAvatar extends Component {
               {this.props.name}
             </Tooltip>
           </div>
-          {/* <div class="author-name">{this.props.name}</div> */}
         </div>
       );
     } else {

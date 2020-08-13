@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../css/Step.css";
-import Picture from "../common/Picture";
+import PostStepPicture from "../common/PostStepPicture";
 
 class Step extends Component {
   componentDidMount() {}
@@ -14,7 +14,7 @@ class Step extends Component {
           <div className="container">
             <div className="row">
               <div className="col-lg-6 col-md-6">
-                <div className="mt-3 step-txt-description step-content">
+                <div className="mt-3 step-txt-description">
                   <div className="step-title">{this.props.title}</div>
                   {console.log(this.props.title)}
                   <div className="step-content">{this.props.description}</div>
@@ -22,7 +22,7 @@ class Step extends Component {
               </div>
               <div className="col-lg-6 col-md-6 step-padding-custom">
                 <div className="mt-3">
-                  <Picture width="100%" height="300px" src={this.props.image} />
+                  <PostStepPicture width="100%" height="300px" src={this.props.image} className="post-step-picture"/>
                 </div>
               </div>
             </div>
@@ -36,7 +36,7 @@ class Step extends Component {
             <div className="row">
               <div className="col-lg-6 col-md-6 step-padding-custom">
                 <div className="mt-3">
-                  <Picture width="100%" height="300px" src={this.props.image} />
+                  <PostStepPicture width="100%" height="300px" src={this.props.image} className="post-step-picture"/>
                 </div>
               </div>
               <div className="col-lg-6 col-md-6 ">
@@ -58,7 +58,7 @@ class Step extends Component {
             <div className="row">
               <div className="col-lg-6 col-md-6 step-padding-custom">
                 <div className="mt-3">
-                  <Picture width="100%" height="300px" src={this.props.image} />
+                  <PostStepPicture width="100%" height="300px" src={this.props.image} className="post-step-picture"/>
                 </div>
               </div>
               <div className="col-lg-6 col-md-6">

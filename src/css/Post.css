@@ -39,7 +39,7 @@
 }
 
 .post-ingredients p{
-    padding-left: 50px;
+    padding-left: 30px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -222,7 +222,7 @@ textarea:focus, input:focus{
     width: 100%;
 }
 
-.ingredients {
+.post-ingredients-and-images {
     margin-top: 35px;
 }
 
@@ -238,7 +238,7 @@ textarea:focus, input:focus{
 .post-step-title {
     font-size: 30px;
     padding-left: 35px;
-    padding-top: 20px;
+    padding-top: 45px;
     font-weight: 600;
     color: #191919;
 }
@@ -272,12 +272,6 @@ textarea:focus, input:focus{
     box-shadow: none!important;
     border-radius: 0px;
     color: #FF5F6D!important;
-}
-
-.create-label-name {
-    position: relative;
-    top: -28px;
-    color: rgba(0, 0, 0, 0.6);
 }
 
 .post-comment-icon-update {
@@ -362,9 +356,9 @@ textarea:focus, input:focus{
     border-radius: 20px;
 }
 
-.ingredents-title {
+.post-ingredients-title {
     top: -25px;
-    padding-left: 50px;
+    padding-left: 30px;
     padding-bottom: 25px;
     font-size: 30px;
     font-weight: 600;
@@ -374,7 +368,7 @@ textarea:focus, input:focus{
     width: 100%;
 }
 
-.ingredient-icon {
+.post-ingredient-icon {
     vertical-align: baseline;
     margin-right: 10px;
 }
@@ -423,3 +417,110 @@ textarea:focus, input:focus{
     font-weight: 600;
     color: #191919;
 }
+
+.carousel-slider {
+    border-radius: 20px;
+}
+
+.carousel {
+    height: 400px !important;
+}
+
+.carousel img {
+    height: 400px !important;
+}
+
+.carousel-status {
+    display: none !important;
+}
+
+.post-ingredients-div {
+    height: 90% !important;
+    border-left: 1px solid #ff5f6d;
+    padding-left: 15px;
+    margin-left: 15px;
+}
+
+.post-video-wrapper {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.post-comment-title {
+    padding-top: 20px !important;
+}
+
+.post-write-cmt-label {
+    position: relative;
+    top: -33px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+@media only screen and (max-width: 568px) {
+    .slide-container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    .post-ingredients-title {
+        padding-left: 0px;
+        padding-bottom: 0px;
+    }
+
+    .post-ingredients-div {
+        border-left: 0 !important;
+    }
+
+    .post-ingredients-div p {
+        padding-left: 20px;
+    }
+
+    .post-author {
+        position: absolute;
+        right: 10px;
+        top: -120px;
+    }
+
+    .author-name {
+        font-size: 13px;
+    }
+
+    .post-avatar-cover {
+        width: 48px !important;
+        height: 48px !important;
+    }
+
+    .post-title {
+        font-size: 25px;
+        padding-right: 60px;
+    }
+
+    .post-title-icon {
+        font-size: 15px;
+    }
+
+    .post-description {
+        padding-top: 30px;
+    }
+
+    .tit-desc-container {
+        padding-left: 38px !important;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .post-author {
+        position: absolute;
+        right: 10px;
+        top: -160px;
+    }
+
+    .carousel {
+        height: 250px !important;
+    }
+    
+    .carousel img {
+        height: 250px !important;
+    }
+}
+
