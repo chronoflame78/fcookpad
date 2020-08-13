@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
 import {apiURL} from "../../config/Constant";
-import { getFormattedViews } from "../../actions/GetFormattedViews";
+import { getFormattedViews } from "../../actions/GetFormat";
 
 class SearchResult extends Component {
 

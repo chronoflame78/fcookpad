@@ -9,7 +9,8 @@ import swal from "sweetalert";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { apiURL } from "../../config/Constant";
-import { getFormattedViews } from "../../actions/GetFormattedViews";
+import { getFormattedViews, getFormattedDate } from "../../actions/GetFormat.js";
+import Section from "../../components/common/Section";
 
 class Home extends Component {
   constructor(props) {
@@ -97,10 +98,6 @@ class Home extends Component {
   componentWillUnmount() {
     this.mounted = false;
   }
-
-  // getFormattedViews(views) {
-
-  // }
 
   getFormattedDate(date) {
     var today = new Date(date);
@@ -200,6 +197,17 @@ class Home extends Component {
           <div className="row search-row">
             {trendingPosts &&
               trendingPosts.map((x, index) => (
+                // <Section
+                //   index={index}
+                //   postId={x._id}
+                //   image={x.images[0]}
+                //   isLiked={x.isLiked}
+                //   likes={x.likes.length}
+                //   postTitle={x.title}
+                //   authorId={x.author._id}
+                //   authorFullname={x.author.fullName}
+                //   dateTime={x.datetime}
+                // />
                 <div
                   key={index}
                   className="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 py-4 col-12"
@@ -249,8 +257,7 @@ class Home extends Component {
                       className="section-item-date"
                       style={{ paddingTop: "2px" }}
                     >
-                      {" "}
-                      {this.getFormattedDate(x.datetime)}
+                      {getFormattedDate(x.datetime)}
                     </span>
                   </div>
                 </div>
@@ -339,8 +346,7 @@ class Home extends Component {
                       className="section-item-date"
                       style={{ paddingTop: "2px" }}
                     >
-                      {" "}
-                      {this.getFormattedDate(x.datetime)}
+                      {getFormattedDate(x.datetime)}
                     </span>
                   </div>
                 </div>

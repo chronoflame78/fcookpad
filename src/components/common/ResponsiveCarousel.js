@@ -12,6 +12,7 @@ class DemoCarousel extends Component {
       top: "calc(50% - 15px)",
       width: 30,
       height: 50,
+      fontSize: 50,
       cursor: "pointer",
       color: "#ffffff",
     };
@@ -38,7 +39,7 @@ class DemoCarousel extends Component {
         }
         renderArrowNext={(onClickHandler, hasNext, label) =>
           hasNext && (
-            <i  style={{ ...arrowStyles, right: -5 }} onClick={onClickHandler} class="fas fa-chevron-right"></i>
+            <i  style={{ ...arrowStyles, right: 15 }} onClick={onClickHandler} class="fas fa-chevron-right"></i>
           )
         }
         renderIndicator={(onClickHandler, isSelected, index, label) => {

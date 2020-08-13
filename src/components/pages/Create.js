@@ -504,7 +504,7 @@ class Create extends Component {
               </button>
               {!this.state.buttonLoading && (
                 <div
-                  className="next-arrow"
+                  className="arrow-next"
                   onClick={(e) => this.handleSubmit(e)}
                 >
                   <i class="fas fa-chevron-right"></i>

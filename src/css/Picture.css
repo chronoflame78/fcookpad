@@ -8,3 +8,10 @@
     background-position: center;
     box-shadow: 0 0 7px darkgrey;
 }
+
+
+.post-step-picture {
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+}
