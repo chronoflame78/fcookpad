@@ -60,7 +60,7 @@ class CreateStep2 extends Component {
     let ingredients = this.state.ingredients;
     ingredients[index] = e.target.value;
     // this.state.ingredients[index] = e.target.value;
-    this.setState({ ingredients: this.state.ingredients });
+    this.setState({ ingredients: ingredients });
   }
 
   handleBack(e) {
