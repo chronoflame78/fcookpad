@@ -456,7 +456,24 @@ textarea:focus, input:focus{
     color: rgba(0, 0, 0, 0.6);
 }
 
+@media only screen and (max-width: 900px) {
+    .post-youtube-video iframe {
+        height: 450px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .post-youtube-video iframe {
+        height: 350px;
+    }
+}
+
 @media only screen and (max-width: 568px) {
+
+    .post-youtube-video iframe {
+        height: 250px;
+    }
+    
     .slide-container {
         padding-left: 20px !important;
         padding-right: 20px !important;
@@ -492,7 +509,7 @@ textarea:focus, input:focus{
 
     .post-title {
         font-size: 25px;
-        padding-right: 60px;
+        padding-right: 55px;
     }
 
     .post-title-icon {
@@ -522,5 +539,14 @@ textarea:focus, input:focus{
     .carousel img {
         height: 250px !important;
     }
+
+    .post-youtube-video iframe {
+        height: 150px;
+    }
+}
+
+.slide div img {
+    overflow: hidden;
+    object-fit: cover !important;
 }
 

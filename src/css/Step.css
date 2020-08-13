@@ -36,3 +36,8 @@
     width: 90%;
     float: right;
 }
+
+.no-image-step {
+    width: 100%;
+    /* height: fit-content; */
+}

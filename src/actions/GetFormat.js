@@ -33,8 +33,6 @@ const getFormattedDate = (date) => {
   let timeVal = "";
   let timeDiff = timediff(date, today, "DHmS");
   let flag = true;
-  console.log(timeDiff);
-  console.log(postDay);
   if (postDay.getMonth() < 9) {
     month = "0" + (postDay.getMonth() + 1);
   } else {
