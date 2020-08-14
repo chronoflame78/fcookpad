@@ -89,7 +89,7 @@ class Register extends Component {
         <div className="login-content-wrapper">
           <div className="login-form-wrapper">
             <div className="login-back-container">
-              <Link to="/login">
+              <Link to="/">
                 <img
                   src="/images/back-arrow.png"
                   alt="Back"
@@ -195,6 +195,9 @@ class Register extends Component {
                   </button>
                 </div>
               </form>
+            </div>
+            <div className="login-quest-text">
+              Bạn chưa có tài khoản của MlemMlem? <Link to="/login">Đăng nhập</Link>
             </div>
 
             {/* <div className="login-or-div">OR</div>

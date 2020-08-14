@@ -133,9 +133,9 @@ class Login extends Component {
               </form>
             </div>
             <div className="login-quest-text">
-              Bạn chưa có tài khoản của MlemMlem?
+              Bạn chưa có tài khoản của MlemMlem? <Link to="/register">Đăng ký</Link>
             </div>
-            <div className="login-signup-btn">
+            {/* <div className="login-signup-btn">
               <Link to="/register">
                 <button
                   // type="submit"
@@ -144,7 +144,7 @@ class Login extends Component {
                   Đăng ký
                 </button>
               </Link>
-            </div>
+            </div> */}
           </div>
           <div className="login-form-image"></div>
         </div>
