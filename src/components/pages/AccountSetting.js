@@ -356,7 +356,7 @@ class AccountSetting extends Component {
                             <div className="asetting-name">{this.state.userInfo.fullName}</div>
                             <div className="asetting-smalltext"><i className="fas fa-venus-mars"></i> Giới tính: {this.state.userInfo.gender}</div>
                             <div className="asetting-smalltext"><i className="far fa-calendar-alt"></i> Ngày sinh: {this.getFormattedDate(this.state.userInfo.birthday)}</div>
-                            <div className="asetting-num"><div className="asetting-left"><i className="far fa-file-alt asetting-icon"></i>Bài viết:</div><div className="asetting-right">{this.state.userInfo.posts}</div></div>
+                            <div className="asetting-num"><div className="asetting-left"><i className="far fa-file-alt asetting-icon"></i>Bài viết:</div><div className="asetting-right">{this.state.userInfo.recipes}</div></div>
                             <div className="asetting-views"><div className="asetting-left"><i className="far fa-eye asetting-icon"></i>Lượt xem:</div> <div className="asetting-right">{this.state.userInfo.views}</div></div>
                             <div className="asetting-likes"><div className="asetting-left"><i className="far fa-heart asetting-icon"></i>Lượt thích:</div> <div className="asetting-right">{this.state.userInfo.likes}</div></div>
                             <div className="asetting-smalltext-end">Gia nhập kể từ ngày: {this.getFormattedDate(this.state.userInfo.createAt)}</div>
