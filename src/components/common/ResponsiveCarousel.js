@@ -69,10 +69,14 @@ class DemoCarousel extends Component {
       >
         {images &&
           images.map((x, index) => (
-            <div key={index}>
+            <div key={index} className="post-slide-image-container">
               <img width={500} height={300} src={x.src} alt="" />
             </div>
           ))}
+          {/* {!images.length !== 0 && (
+            <div className="no-image-container">
+            </div>
+          )} */}
       </Carousel>
     );
   }

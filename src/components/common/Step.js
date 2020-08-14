@@ -15,13 +15,13 @@ class Step extends Component {
           <div className="container">
             {this.props.image.length !== 26 && (
               <div className="row">
-                <div className="col-lg-6 col-md-6 col-12">
+                <div className="col-lg-6 col-12">
                   <div className="mt-3 step-txt-description">
                     <div className="step-title">{this.props.title}</div>
                     <div className="step-content">{this.props.description}</div>
                   </div>
                 </div>
-                <div className="col-lg-6 col-md-6 col-12 step-padding-custom">
+                <div className="col-lg-6 col-12 step-padding-custom">
                   <div className="mt-3">
                     <PostStepPicture
                       width="100%"
@@ -35,7 +35,7 @@ class Step extends Component {
             )}
             {this.props.image.length === 26 && (
               <div className="row no-image-step">
-                <div className="col-12">
+                <div className="col-lg-6">
                   <div className="mt-3 step-txt-description">
                     <div className="step-title">{this.props.title}</div>
                     <div className="step-content">{this.props.description}</div>
@@ -56,14 +56,14 @@ class Step extends Component {
           <div className="container">
             {this.props.image.length !== 26 && (
               <div className="row">
-                <div className="col-lg-6 col-md-6 col-12">
+                <div className="col-lg-6">
                   <div className="mt-3 step-txt-description">
                     <div class="step-title">{this.props.title}</div>
                     {console.log(this.props.title)}
                     <div className="step-content">{this.props.description}</div>
                   </div>
                 </div>
-                <div className="col-lg-6 col-md-6 col-12 step-padding-custom">
+                <div className="col-lg-6 step-padding-custom">
                   <div className="mt-3">
                     <PostStepPicture
                       width="100%"
@@ -77,7 +77,7 @@ class Step extends Component {
             )}
             {this.props.image.length === 26 && (
               <div className="row no-image-step">
-                <div className="col-12">
+                <div className="col-md-6">
                   <div className="mt-3 step-txt-description">
                     <div className="step-title">{this.props.title}</div>
                     <div className="step-content">{this.props.description}</div>
@@ -97,7 +97,15 @@ class Step extends Component {
           <div className="container">
             {this.props.image.length !== 26 && (
               <div className="row">
-                <div className="col-lg-6 col-md-6 col-12 step-padding-custom">
+                <div className="col-lg-6 order-lg-2">
+                  <div className="mt-3 step-txt-description">
+                    <div class="step-title">{this.props.title}</div>
+                    {console.log(this.props.title)}
+                    <div className="step-content">{this.props.description}</div>
+                  </div>
+                </div>
+
+                <div className="col-lg-6 order-lg-1">
                   <div className="mt-3">
                     <PostStepPicture
                       width="100%"
@@ -107,18 +115,11 @@ class Step extends Component {
                     />
                   </div>
                 </div>
-                <div className="col-lg-6 col-md-6 col-12">
-                  <div className="mt-3 step-txt-description">
-                    <div class="step-title">{this.props.title}</div>
-                    {console.log(this.props.title)}
-                    <div className="step-content">{this.props.description}</div>
-                  </div>
-                </div>
               </div>
             )}
             {this.props.image.length === 26 && (
               <div className="row no-image-step">
-                <div className="col-12">
+                <div className="col-md-6">
                   <div className="mt-3 step-txt-description">
                     <div className="step-title">{this.props.title}</div>
                     <div className="step-content">{this.props.description}</div>
