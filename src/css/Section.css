@@ -95,8 +95,8 @@
 .search-section-title:hover a{
     text-decoration: none;
     color: #FF606D;
-    transform: translateY(-3px);
-    transition: 1s;
+    /* transform: translateY(-3px);
+    transition: 1s; */
 }
 
 .section-title2{

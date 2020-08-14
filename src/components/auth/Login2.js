@@ -88,7 +88,7 @@ class Login extends Component {
                       onChange={this.onChange}
                       value={this.state.email}
                       error={errors.email}
-                      autoComplete="off"
+                      // autoComplete="off"
                       maxLength="100"
                       placeholder=" "
                       className="form-control login-uap-input"

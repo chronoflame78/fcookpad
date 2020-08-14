@@ -63,9 +63,9 @@ class CreateStep2 extends Component {
     this.setState({ ingredients: ingredients });
   }
 
-  handleBack(e) {
-    this.props.history.push("/step1/" + this.props.match.params.id);
-  }
+  // handleBack(e) {
+  //   this.props.history.push("/step1/" + this.props.match.params.id);
+  // }
 
   cancelSubmit(e) {
     e.preventDefault();
@@ -334,12 +334,12 @@ class CreateStep2 extends Component {
               >
                 Hủy
               </button>
-              <div
+              {/* <div
                 className="back-arrow create-mr"
                 onClick={(e) => this.handleBack(e)}
               >
                 <i class="fas fa-chevron-left"></i>
-              </div>
+              </div> */}
               {!this.state.buttonLoading && (
                 <div
                   className="arrow-next"
@@ -383,12 +383,12 @@ class CreateStep2 extends Component {
                 </button>
               )}
               
-              <button
+              {/* <button
                 className="btn btn-pink create-mr"
                 onClick={(e) => this.handleBack(e)}
               >
                 Trở lại
-              </button>
+              </button> */}
             </div>
           </form>
         </div>

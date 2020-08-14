@@ -34,7 +34,7 @@ class AccountSetting extends Component {
                 createAt: ''
             },
             posts: [],
-            nextPage: 2,
+            nextPage: 3,
             loading: false,
             errors: {},
             buttonLoading: false,
@@ -278,7 +278,7 @@ class AccountSetting extends Component {
             loading: true
         })
         axios.all([axios.get(`${apiURL}/users/${this.props.auth.user.id}`),
-        axios.get(`${apiURL}/users/posts?page=1&limit=3`)])
+        axios.get(`${apiURL}/users/posts?page=1&limit=6`)])
             .then(axios.spread((...res) => {
                 console.log(res[1]);
                 if (this.mounted) {
@@ -446,7 +446,10 @@ class AccountSetting extends Component {
                                         </div>
 
                                         <div className="asetting-item-title"><NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>{x.title}</NavLink></div>
-                                        <div className="asetting-status-container"><div className="asetting-label">Trạng thái:</div><div className="asetting-status">{x.status}</div></div>
+                                        {x.status === "Approved" && <div className="asetting-status-container"><div className="asetting-label">Trạng thái:</div><div className="asetting-status-approved">Đã thông qua</div></div>}
+                                        {x.status === "Draft" && <div className="asetting-status-container"><div className="asetting-label">Trạng thái:</div><div className="asetting-status-draft">Nháp</div></div>}
+                                        {x.status === "Rejected" && <div className="asetting-status-container"><div className="asetting-label">Trạng thái:</div><div className="asetting-status-rejected">Đã từ chối</div></div>}
+                                        {x.status === "Pending" && <div className="asetting-status-container"><div className="asetting-label">Trạng thái:</div><div className="asetting-status-pending">Đang duyệt</div></div>}
                                         <div className="asetting-view-container"><div className="asetting-label">Lượt xem:</div><div className="asetting-view">{x.views}</div></div>
                                     </div>
                                 ))}

@@ -381,8 +381,20 @@
     font-weight: bold;
 }
 
-.asetting-status{
+.asetting-status-approved{
     color: #01CE47;
+}
+
+.asetting-status-draft{
+    color: #E2D905;
+}
+
+.asetting-status-rejected{
+    color: #FE0000;
+}
+
+.asetting-status-pending{
+    color:#c95bdc;
 }
 
 .asetting-view-container{

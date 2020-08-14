@@ -6,3 +6,18 @@
 .Toastify__toast-container--top-right{
     top: 5em!important;
 }
+
+.home-section-title{
+    justify-content: space-between;
+    padding-right: 30px;
+}
+
+
+.home-view-all a{
+    font-size: 18px!important;
+    font-weight: normal!important;
+}
+
+.home-view-all:hover a{
+    text-decoration: underline!important;
+}

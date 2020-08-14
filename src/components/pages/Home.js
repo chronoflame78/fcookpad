@@ -13,7 +13,6 @@ import {
   getFormattedViews,
   getFormattedDate,
 } from "../../actions/GetFormat.js";
-import Section from "../../components/common/Section";
 import {removeStorage} from "../../utils/removeStorage";
 import "../../css/Home.css";
 
@@ -193,8 +192,9 @@ class Home extends Component {
       <div>
         <Category suggestions={this.state.category} />
         <div className="container home-container-child">
-          <div className="row search-section-title">
+          <div className="row search-section-title home-section-title">
             <Link to="/view_all/trending">NỔI BẬT</Link>
+            <div className="home-view-all"><Link to="/view_all/trending">Xem tất cả <i className="fas fa-chevron-right"/></Link></div>
           </div>
           <div className="row search-row">
             {trendingPosts &&
@@ -280,10 +280,11 @@ class Home extends Component {
             )}
           </div>
           <div
-            className="row search-section-title"
+            className="row search-section-title home-section-title"
             style={{ paddingTop: "20px" }}
           >
             <Link to="/view_all/new">MỚI NHẤT</Link>
+            <div className="home-view-all"><Link to="/view_all/new">Xem tất cả <i className="fas fa-chevron-right"/></Link></div>
           </div>
           <div className="row search-row">
             {newPosts &&
