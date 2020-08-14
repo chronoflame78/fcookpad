@@ -13,6 +13,7 @@ class Login extends Component {
       email: "",
       password: "",
       errors: {},
+      buttonLoading: false,
     };
   }
 
@@ -34,6 +35,7 @@ class Login extends Component {
     if (nextProps.errors) {
       this.setState({
         errors: nextProps.errors,
+        buttonLoading: false,
       });
     }
   }
@@ -42,6 +44,9 @@ class Login extends Component {
   };
   onSubmit = (e) => {
     e.preventDefault();
+    this.setState({
+      buttonLoading: true,
+    });
     const userData = {
       email: this.state.email,
       password: this.state.password,
@@ -121,19 +126,25 @@ class Login extends Component {
                     <Link to="/forgot_password">Tìm lại mật khẩu</Link>
                   </div>
                   <div className="login-btn-container">
-                    <button
+                    {!this.state.buttonLoading && <button
                       type="submit"
                       className="btn btn-pink btn-login"
                       onClick={this.onSubmit}
                     >
                       Đăng nhập
-                    </button>
+                    </button>}
+                    {this.state.buttonLoading && (
+                      <button type="submit" className="btn btn-pink btn-login">
+                        <i className="fa fa-spinner fa-spin"></i>
+                      </button>
+                    )}
                   </div>
                 </div>
               </form>
             </div>
             <div className="login-quest-text">
-              Bạn chưa có tài khoản của MlemMlem? <Link to="/register">Đăng ký</Link>
+              Bạn chưa có tài khoản của MlemMlem?{" "}
+              <Link to="/register">Đăng ký</Link>
             </div>
             {/* <div className="login-signup-btn">
               <Link to="/register">

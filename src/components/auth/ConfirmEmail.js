@@ -10,11 +10,15 @@ class ConfirmEmail extends Component {
     super(props);
     this.state = {
       sent: false,
+      buttonLoading: false,
     };
   }
 
   resendEmail = (e) => {
     let params = queryString.parse(this.props.location.search);
+    this.setState({
+      buttonLoading: true,
+    });
     let data = {
       email: params.email,
     };
@@ -23,6 +27,7 @@ class ConfirmEmail extends Component {
       .then((res) =>
         this.setState({
           sent: true,
+          buttonLoading: false
         })
       ).then((res) => {
         setTimeout(
@@ -32,19 +37,34 @@ class ConfirmEmail extends Component {
             }),
           60000
         )
-      }).catch((err) => console.log(err));
+      }).catch((err) => {
+        console.log(err);
+        this.setState({
+          buttonLoading: false
+        })
+      });
   };
 
   render() {
     let button;
     if (this.state.sent === false) {
-      button = (
-        <div className="resend-btn-container">
-          <button className="btn btn-pink btn-login" onClick={this.resendEmail}>
-            Gửi lại
+      if(this.state.buttonLoading){
+        button = (<div className="resend-btn-container">
+          <button className="btn btn-pink btn-login">
+            <i className="fa fa-spinner fa-spin"></i>
           </button>
-        </div>
-      );
+        </div>)
+      }
+      else{
+        button = (
+          <div className="resend-btn-container">
+            <button className="btn btn-pink btn-login" onClick={this.resendEmail}>
+              Gửi lại
+            </button>
+          </div>
+        );
+      }
+      
     } else {
       button = (
         <div>

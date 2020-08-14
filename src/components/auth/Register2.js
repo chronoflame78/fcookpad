@@ -16,6 +16,7 @@ class Register extends Component {
       passwordConfirm: "",
       errors: {},
       agree: false,
+      buttonLoading: false,
     };
     this.onAgree = this.onAgree.bind(this);
   }
@@ -31,6 +32,7 @@ class Register extends Component {
     if (nextProps.errors) {
       this.setState({
         errors: nextProps.errors,
+        buttonLoading: false,
       });
     }
   }
@@ -73,6 +75,9 @@ class Register extends Component {
         },
       });
     } else {
+      this.setState({
+        buttonLoading: true,
+      });
       const newUser = {
         //   name: this.state.name,
         email: this.state.email,
@@ -131,7 +136,7 @@ class Register extends Component {
                           type="email"
                         />
                         <div className="input-register-placeholder">
-                          <label className="create-label-name">Email</label>
+                          <label htmlFor="email" className="create-label-name">Email</label>
                         </div>
                       </div>
                     </div>
@@ -149,7 +154,7 @@ class Register extends Component {
                           type="password"
                         />
                         <div className="input-register-placeholder">
-                          <label className="create-label-name">Mật khẩu</label>
+                          <label htmlFor="password" className="create-label-name">Mật khẩu</label>
                         </div>
                       </div>
                     </div>
@@ -167,7 +172,7 @@ class Register extends Component {
                           type="password"
                         />
                         <div className="input-register-placeholder">
-                          <label className="create-label-name">
+                          <label htmlFor="passwordConfirm" className="create-label-name">
                             Nhập lại mật khẩu
                           </label>
                         </div>
@@ -186,18 +191,26 @@ class Register extends Component {
                 </div>
                 <div className="register-error">{errors && errors.message}</div>
                 <div className="login-btn-container">
-                  <button
-                    type="submit"
-                    className="btn btn-pink btn-login"
-                    onClick={this.onSubmit}
-                  >
-                    Tạo tài khoản
-                  </button>
+                  {!this.state.buttonLoading && (
+                    <button
+                      type="submit"
+                      className="btn btn-pink btn-login"
+                      onClick={this.onSubmit}
+                    >
+                      Tạo tài khoản
+                    </button>
+                  )}
+                  {this.state.buttonLoading && (
+                    <button type="submit" className="btn btn-pink btn-login">
+                      <i className="fa fa-spinner fa-spin"></i>
+                    </button>
+                  )}
                 </div>
               </form>
             </div>
             <div className="login-quest-text">
-              Bạn chưa có tài khoản của MlemMlem? <Link to="/login">Đăng nhập</Link>
+              Bạn chưa có tài khoản của MlemMlem?{" "}
+              <Link to="/login">Đăng nhập</Link>
             </div>
 
             {/* <div className="login-or-div">OR</div>
