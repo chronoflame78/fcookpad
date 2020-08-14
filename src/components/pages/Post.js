@@ -51,6 +51,7 @@ class Post extends Component {
             likes: res.data.post.likes,
             views: res.data.post.views,
           });
+          console.log(res.data.post);
         }
       })
       .catch((error) => {
@@ -260,22 +261,24 @@ class Post extends Component {
                       image={x.image}
                     />
                   ))}
+                  
               </div>
             </Col>
           </Row>
-          <Row className="post-video-wrapper">
-            <Col>
-              <div className="post-video-title">
-                {" "}
-                <img
-                  className="youtube-icon"
-                  width={35}
-                  src="/images/youtube-black-white.png"
-                  alt=""
-                />
-                Video
-              </div>
-              {post.video !== "chua co video" && (
+          {post.video && (
+            <Row className="post-video-wrapper">
+              <Col>
+                <div className="post-video-title">
+                  {" "}
+                  <img
+                    className="youtube-icon"
+                    width={35}
+                    src="/images/youtube-black-white.png"
+                    alt=""
+                  />
+                  Video
+                </div>
+
                 <div className="post-youtube-video">
                   <iframe
                     className="youtube-video"
@@ -288,9 +291,9 @@ class Post extends Component {
                     allowFullScreen
                   ></iframe>
                 </div>
-              )}
-            </Col>
-          </Row>
+              </Col>
+            </Row>
+          )}
           <Row className="post-comment-section">
             <Col>
               <div className="">
@@ -407,7 +410,7 @@ class Post extends Component {
                           />
                           <div className="insde-comment-input">
                             <label className="post-write-cmt-label">
-                              Viết bình luận..
+                              Viết bình luận để gửi.. 
                             </label>
                           </div>
                         </div>

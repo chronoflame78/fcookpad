@@ -9,7 +9,10 @@ import swal from "sweetalert";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { apiURL } from "../../config/Constant";
-import { getFormattedViews, getFormattedDate } from "../../actions/GetFormat.js";
+import {
+  getFormattedViews,
+  getFormattedDate,
+} from "../../actions/GetFormat.js";
 import Section from "../../components/common/Section";
 import {removeStorage} from "../../utils/removeStorage";
 
@@ -195,17 +198,6 @@ class Home extends Component {
           <div className="row search-row">
             {trendingPosts &&
               trendingPosts.map((x, index) => (
-                // <Section
-                //   index={index}
-                //   postId={x._id}
-                //   image={x.images[0]}
-                //   isLiked={x.isLiked}
-                //   likes={x.likes.length}
-                //   postTitle={x.title}
-                //   authorId={x.author._id}
-                //   authorFullname={x.author.fullName}
-                //   dateTime={x.datetime}
-                // />
                 <div
                   key={index}
                   className="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 py-4 col-12"
@@ -215,10 +207,6 @@ class Home extends Component {
                     style={{ textDecoration: "none" }}
                   >
                     <div className="section-image-container">
-                      <div
-                        className="section-image-holder"
-                        style={{ backgroundImage: "url(" + x.images[0] + ")" }}
-                      ></div>
                       <p className="item-cover">
                         {!x.isLiked && (
                           <span
@@ -239,6 +227,10 @@ class Home extends Component {
                           </span>
                         )}
                       </p>
+                      <div
+                        className="section-image-holder"
+                        style={{ backgroundImage: "url(" + x.images[0] + ")" }}
+                      ></div>
                     </div>
                   </NavLink>
                   <div className="section-item-title">
@@ -297,7 +289,7 @@ class Home extends Component {
               newPosts.map((x, index) => (
                 <div
                   key={index}
-                  className="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 py-4"
+                  className="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 py-4 col-12"
                 >
                   <NavLink
                     to={"/posts/" + x._id}

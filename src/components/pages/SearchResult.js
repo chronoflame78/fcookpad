@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import swal from 'sweetalert';
 import {apiURL} from "../../config/Constant";
-import { getFormattedViews } from "../../actions/GetFormat";
+import { getFormattedViews, getFormattedDate } from "../../actions/GetFormat";
 import {removeStorage} from "../../utils/removeStorage";
 
 class SearchResult extends Component {
@@ -199,13 +199,13 @@ class SearchResult extends Component {
                     {params.content && <div className="row search-section-result">{this.state.totalRecord} kết quả cho &nbsp;<span className="search-pink-text">{params.content}</span></div>}
                     <div className="row search-row">
                         {this.state.posts && this.state.posts.map((x, index) => (
-                            <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4">
+                            <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4 col-12">
                                 <NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>
                                     <div className="section-image-container">
                                         <div className="section-image-holder" style={{ backgroundImage: "url(" + x.images[0] + ")" }}></div>
                                         <p className="item-cover" >
-                                            {!x.isLiked && <span className="section-item-view" onClick={(e) => this.likePost(e, x._id)} >{x.likes.length} <i className="far fa-heart" /></span>}
-                                            {x.isLiked && <span className="section-item-view" onClick={(e) => this.likePost(e, x._id)} >{x.likes.length} <i className="fas fa-heart" /></span>}
+                                            {!x.isLiked && <span className="section-item-view" onClick={(e) => this.likePost(e, x._id)} >{x.likes.length} <i className="far fa-heart like-icon" /></span>}
+                                            {x.isLiked && <span className="section-item-view" onClick={(e) => this.likePost(e, x._id)} >{x.likes.length} <i className="fas fa-heart like-icon" /></span>}
                                         </p>
                                     </div>
                                 </NavLink>
@@ -213,7 +213,7 @@ class SearchResult extends Component {
                                 <div className="section-author-name"><NavLink to={"/user_profile/" + x.author._id}>{x.author.fullName}</NavLink></div>
                                 <div className="section-rating-date">
                                     <i className="far fa-eye" /> {getFormattedViews(x.views)}
-                                    <span className="section-item-date" style={{ paddingTop: '2px' }}> {this.getFormattedDate(x.datetime)}</span>
+                                    <span className="section-item-date" style={{ paddingTop: '2px' }}> {getFormattedDate(x.datetime)}</span>
                                 </div>
                             </div>
                         ))}

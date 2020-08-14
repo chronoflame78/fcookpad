@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import swal from "sweetalert";
 import { TRENDING, NEW } from "../../config/Constant";
 import {apiURL} from "../../config/Constant";
-import { getFormattedViews } from "../../actions/GetFormat";
+import { getFormattedViews, getFormattedDate } from "../../actions/GetFormat";
 import {removeStorage} from "../../utils/removeStorage";
 
 class ViewAll extends Component {
@@ -197,7 +197,7 @@ class ViewAll extends Component {
               this.state.posts.map((x, index) => (
                 <div
                   key={index}
-                  className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4"
+                  className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4 col-12"
                 >
                   <NavLink
                     to={"/posts/" + x._id}
@@ -246,7 +246,7 @@ class ViewAll extends Component {
                       style={{ paddingTop: "2px" }}
                     >
                       {" "}
-                      {this.getFormattedDate(x.datetime)}
+                      {getFormattedDate(x.datetime)}
                     </span>
                   </div>
                 </div>
