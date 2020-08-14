@@ -207,14 +207,14 @@ class Post extends Component {
             </Row>
             <div class="empty-block"></div>
             <Row className="post-ingredients-and-images">
-              <Col sm="7 12">
+              <div className="col-sm-7 col-12 post-images-slider-container">
                 <div className="d-flex flex-column flex-md-row align-items-center slide-container">
                   <div className="post-carousel-box-updt">
                     <CustomCarousel items={items} />
                   </div>
                 </div>
-              </Col>
-              <Col sm="5 12">
+              </div>
+              <Col className="col-sm-5 col-12">
                 <div className="post-ingredients-div">
                   <div className="post-ingredients-title">
                     <img

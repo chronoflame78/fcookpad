@@ -43,9 +43,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .post-ingredients p{
-        padding-left: 0px;
-    }
+
     .post-ingredients{
         margin-top: 30px;
     }
@@ -224,6 +222,7 @@ textarea:focus, input:focus{
 
 .post-ingredients-and-images {
     margin-top: 35px;
+    min-width: 100%;
 }
 
 .post-description {
@@ -545,8 +544,21 @@ textarea:focus, input:focus{
     }
 }
 
+.carousel .slider-wrapper {
+    min-width: 100% !important;
+}
+
 .slide div img {
     overflow: hidden;
     object-fit: cover !important;
+}
+
+.no-image-container {
+    height: 300px;
+    width: 500px;
+}
+
+.post-carousel-box-updt {
+    min-width: 100%;
 }
 
