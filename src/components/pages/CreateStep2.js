@@ -13,7 +13,7 @@ class CreateStep2 extends Component {
       errors: {},
       buttonLoading: false,
       loading: true,
-      error404: false
+      error404: false,
     };
   }
 
@@ -37,18 +37,17 @@ class CreateStep2 extends Component {
         }
       })
       .catch((error) => {
-        if(error.response.status === 404){
+        if (error.response.status === 404) {
           this.setState({
             error404: true,
-            loading: false
-          })
-        }else{
+            loading: false,
+          });
+        } else {
           this.setState({
             errors: error.response.data,
             loading: false,
           });
         }
-        
       });
   }
 
@@ -77,8 +76,7 @@ class CreateStep2 extends Component {
           postTab: 2,
         },
       });
-    }
-    else{
+    } else {
       this.props.history.push("/");
     }
   }
@@ -87,10 +85,10 @@ class CreateStep2 extends Component {
     e.preventDefault();
     let doneStep2 = localStorage.getItem("doneStep2");
     if (index === "1") {
-      this.props.history.push("/step1/"+this.props.match.params.id);
+      this.props.history.push("/step1/" + this.props.match.params.id);
     }
     if (doneStep2 && index === "3") {
-      this.props.history.push("/step3/"+this.props.match.params.id);
+      this.props.history.push("/step3/" + this.props.match.params.id);
     }
   };
 
@@ -112,40 +110,42 @@ class CreateStep2 extends Component {
   handleSubmit(e) {
     e.preventDefault();
     let action = localStorage.getItem("action");
-    this.setState({
-      buttonLoading: true,
-    });
-    let data = {
-      ingredients: this.state.ingredients,
-      step: 2,
-    };
-
-    axios
-      .post(
-        `${apiURL}/posts/` + this.props.match.params.id + "/update",
-        data
-      )
-      .then((res) => {
-        if (action === "update") {
-          this.props.history.push({
-            pathname: "/account_settings",
-            state: {
-              editSuccess: true,
-              postTab: 2,
-            },
-          });
-        }
-        else{
-          localStorage.setItem("doneStep2", true);
-          this.props.history.push("/step3/"+ this.props.match.params.id);
-        }
-      })
-      .catch((err) =>
-        this.setState({
-          errors: err.response.data,
-          buttonLoading: false,
+    let filteredArray = this.state.ingredients.filter(Boolean);
+    if (isEmpty(filteredArray)) {
+      this.setState({
+        errors: {message: "Nguyên liệu không được để trống"}
+      });
+    } else {
+      this.setState({
+        buttonLoading: true,
+      });
+      let data = {
+        ingredients: filteredArray,
+        step: 2,
+      };
+      axios
+        .post(`${apiURL}/posts/` + this.props.match.params.id + "/update", data)
+        .then((res) => {
+          if (action === "update") {
+            this.props.history.push({
+              pathname: "/account_settings",
+              state: {
+                editSuccess: true,
+                postTab: 2,
+              },
+            });
+          } else {
+            localStorage.setItem("doneStep2", true);
+            this.props.history.push("/step3/" + this.props.match.params.id);
+          }
         })
-      );
+        .catch((err) =>
+          this.setState({
+            errors: err.response.data,
+            buttonLoading: false,
+          })
+        );
+    }
   }
 
   render() {
@@ -366,7 +366,7 @@ class CreateStep2 extends Component {
                   <i class="fa fa-spinner fa-spin"></i>
                 </button>
               )}
-              {!this.state.buttonLoading && action !== 'update' && (
+              {!this.state.buttonLoading && action !== "update" && (
                 <button
                   className="btn btn-pink"
                   onClick={(e) => this.handleSubmit(e)}
@@ -374,7 +374,7 @@ class CreateStep2 extends Component {
                   Tiếp
                 </button>
               )}
-              {!this.state.buttonLoading && action === 'update' && (
+              {!this.state.buttonLoading && action === "update" && (
                 <button
                   className="btn btn-pink"
                   onClick={(e) => this.handleSubmit(e)}
@@ -382,7 +382,7 @@ class CreateStep2 extends Component {
                   Lưu
                 </button>
               )}
-              
+
               {/* <button
                 className="btn btn-pink create-mr"
                 onClick={(e) => this.handleBack(e)}
