@@ -21,7 +21,7 @@ class VerifyAccount extends Component {
   }
 
   componentDidMount() {
-    // If logged in and user navigates to Login page, should redirect them to dashboard
+    // If logged in and user navigates to Login page, should redirect them to home
     // if (this.props.auth.isAuthenticated) {
     //   this.props.history.push("/");
     // }

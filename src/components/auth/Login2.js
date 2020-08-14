@@ -18,7 +18,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    // If logged in and user navigates to Login page, should redirect them to dashboard
+    // If logged in and user navigates to Login page, should redirect them to home
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/");
     }
@@ -26,7 +26,6 @@ class Login extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      // this.props.history.push("/dashboard"); // push user to dashboard when they login
       toast.success("Login successfully!", {
         position: toast.POSITION.TOP_RIGHT,
       });

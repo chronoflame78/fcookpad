@@ -28,7 +28,6 @@ import ForgotPassword from "./components/auth/ForgotPassword";
 import { Provider } from "react-redux";
 import store from "./store";
 import PrivateRoute from "./components/private-route/PrivateRoute";
-import Dashboard from "./components/pages/Dashboard";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
@@ -68,7 +67,6 @@ const DefaultContainer = () => (
     <PrivateRoute path="/step2/:id" component={CreateStep2} />
     <PrivateRoute path="/step3/:id" component={CreateStep3} />
     <PrivateRoute path="/step1/:id" component={Edit} />
-    <PrivateRoute exact path="/dashboard" component={Dashboard} />
     <PrivateRoute path="/account_settings" component={AccountSetting} /> 
     <Route path="/search" component={SearchResult} />
     <Route path="/view_all/:name" component={ViewAll} />  
