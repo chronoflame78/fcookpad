@@ -1,0 +1,8 @@
+.Toastify__toast--success{
+    background: #07bc0c7a!important;
+    min-height: 55px!important;
+}
+
+.Toastify__toast-container--top-right{
+    top: 5em!important;
+}

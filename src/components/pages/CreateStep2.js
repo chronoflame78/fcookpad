@@ -69,8 +69,8 @@ class CreateStep2 extends Component {
 
   cancelSubmit(e) {
     e.preventDefault();
-    let action = localStorage.getItem("action");
-    if(action === 'update'){
+    let returnURL = localStorage.getItem("returnURL");
+    if (returnURL === "account_setting") {
       this.props.history.push({
         pathname: "/account_settings",
         state: {
@@ -111,6 +111,7 @@ class CreateStep2 extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    let action = localStorage.getItem("action");
     this.setState({
       buttonLoading: true,
     });
@@ -125,8 +126,19 @@ class CreateStep2 extends Component {
         data
       )
       .then((res) => {
-        localStorage.setItem("doneStep2", true);
-        this.props.history.push("/step3/"+ this.props.match.params.id);
+        if (action === "update") {
+          this.props.history.push({
+            pathname: "/account_settings",
+            state: {
+              editSuccess: true,
+              postTab: 2,
+            },
+          });
+        }
+        else{
+          localStorage.setItem("doneStep2", true);
+          this.props.history.push("/step3/"+ this.props.match.params.id);
+        }
       })
       .catch((err) =>
         this.setState({

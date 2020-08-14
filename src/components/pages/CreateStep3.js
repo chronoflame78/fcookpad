@@ -169,8 +169,8 @@ class CreateStep3 extends Component {
 
   cancelSubmit(e) {
     e.preventDefault();
-    let action = localStorage.getItem("action");
-    if(action === 'update'){
+    let returnURL = localStorage.getItem("returnURL");
+    if (returnURL === "account_setting") {
       this.props.history.push({
         pathname: "/account_settings",
         state: {

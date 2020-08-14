@@ -244,7 +244,7 @@ class TopMenu extends React.Component {
         );
       } else {
         fixedDiv = (
-          <div ref={this.wrapperRef} className="topmenu-abs-div"></div>
+          <div ref={this.wrapperRef} className="topmenu-abs-div" style={{display: 'none'}}></div>
         );
       }
     } else {
@@ -296,7 +296,7 @@ class TopMenu extends React.Component {
         );
       } else {
         fixedDiv = (
-          <div ref={this.wrapperRef} className="topmenu-abs-div"></div>
+          <div ref={this.wrapperRef} className="topmenu-abs-div"  style={{display: 'none'}}></div>
         );
       }
     }

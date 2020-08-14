@@ -98,12 +98,19 @@ class AccountSetting extends Component {
         })
     }
 
-    handleEditClick = (e, postId, step) => {
-        localStorage.setItem("action", "update"); 
-        if(step === 1){
+    handleEditClick = (e, postId, step, status) => {   
+        if(step === 1 && status === "Draft"){
+            localStorage.setItem("returnURL", "account_setting");
             this.props.history.push('/step2/'+ postId);
         }
+        else if(step === 2 && status === "Draft"){
+            localStorage.setItem("returnURL", "account_setting");
+            localStorage.setItem("doneStep2", true);
+            this.props.history.push('/step3/'+ postId);
+        }
         else{
+            localStorage.setItem("returnURL", "account_setting");
+            localStorage.setItem("action", "update"); 
             localStorage.setItem("doneStep2", true);
             this.props.history.push("/step1/" + postId);
         }
@@ -315,6 +322,7 @@ class AccountSetting extends Component {
     }
 
     render() {
+        console.log(this.state.posts);
         if (this.state.loading) return <Loader />;
         var tab1 = 'asetting-tab-active';
         var tab2 = 'asetting-tab';
@@ -431,7 +439,7 @@ class AccountSetting extends Component {
 
                                         <div className="asetting-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
                                             <div className="item-cover">
-                                                <span className="asetting-icon-edit" onClick={(e) => this.handleEditClick(e, x._id, x.step)}><i className="far fa-edit" /></span>
+                                                <span className="asetting-icon-edit" onClick={(e) => this.handleEditClick(e, x._id, x.step, x.status)}><i className="far fa-edit" /></span>
                                                 <span className="asetting-icon-line"></span>
                                                 <span className="asetting-icon-delete" onClick={(e) => this.handleDeleteClick(e, x._id)}><i className="fas fa-trash-alt" /></span>
                                             </div>

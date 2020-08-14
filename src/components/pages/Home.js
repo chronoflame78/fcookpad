@@ -15,6 +15,7 @@ import {
 } from "../../actions/GetFormat.js";
 import Section from "../../components/common/Section";
 import {removeStorage} from "../../utils/removeStorage";
+import "../../css/Home.css";
 
 class Home extends Component {
   constructor(props) {

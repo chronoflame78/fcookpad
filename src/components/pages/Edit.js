@@ -31,16 +31,15 @@ class Edit extends Component {
 
   cancelSubmit = (e) => {
     e.preventDefault();
-    let action = localStorage.getItem("action");
-    if(action === 'update'){
+    let returnURL = localStorage.getItem("returnURL");
+    if (returnURL === "account_setting") {
       this.props.history.push({
         pathname: "/account_settings",
         state: {
           postTab: 2,
         },
       });
-    }
-    else{
+    } else {
       this.props.history.push("/");
     }
   };
@@ -116,6 +115,7 @@ class Edit extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    let action = localStorage.getItem("action");
     let id = this.props.match.params.id;
     if (
       this.state.video &&
@@ -142,7 +142,17 @@ class Edit extends Component {
     axios
       .post(`${apiURL}/posts/` + id + "/update", formData)
       .then((res) => {
-        this.props.history.push("/step2/" + id);
+        if (action === "update") {
+          this.props.history.push({
+            pathname: "/account_settings",
+            state: {
+              editSuccess: true,
+              postTab: 2,
+            },
+          });
+        } else {
+          this.props.history.push("/step2/" + id);
+        }
       })
       .catch((err) => {
         this.setState({
@@ -445,7 +455,7 @@ class Edit extends Component {
                   <i className="fa fa-spinner fa-spin"></i>
                 </button>
               )}
-              {!this.state.buttonLoading && action !== 'update'&& (
+              {!this.state.buttonLoading && action !== "update" && (
                 <button
                   type="submit"
                   className="btn btn-pink"
@@ -454,7 +464,7 @@ class Edit extends Component {
                   Tiếp
                 </button>
               )}
-              {!this.state.buttonLoading && action === 'update'&& (
+              {!this.state.buttonLoading && action === "update" && (
                 <button
                   type="submit"
                   className="btn btn-pink"
