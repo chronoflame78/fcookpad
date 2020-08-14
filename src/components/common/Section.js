@@ -19,7 +19,7 @@ class Section extends Component {
   likePost = (e, id) => {
     e.preventDefault();
     axios
-      .post(`${apiURL}/posts/${id}/like`)
+      .post(`${apiURL}/recipes/${id}/like`)
       .then((res) => {
         console.log(res.data);
       })      .catch((err) => {

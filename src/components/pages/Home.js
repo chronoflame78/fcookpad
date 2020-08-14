@@ -38,15 +38,15 @@ class Home extends Component {
       });
       axios
         .all([
-          axios.get(`${apiURL}/home/post_trending?page=1&limit=8`),
-          axios.get(`${apiURL}/home/post_new?page=1&limit=8`),
+          axios.get(`${apiURL}/home/recipe_trending?page=1&limit=8`),
+          axios.get(`${apiURL}/home/recipe_new?page=1&limit=8`),
         ])
         .then(
           axios.spread((...res) => {
             if (this.mounted) {
               this.setState({
-                post_trending: res[0].data.posts,
-                post_new: res[1].data.posts,
+                post_trending: res[0].data.recipes,
+                post_new: res[1].data.recipes,
                 loading: false,
               });
             }
@@ -63,20 +63,18 @@ class Home extends Component {
     axios
       .all([
         axios.get(`${apiURL}/home/category`),
-        axios.get(`${apiURL}/home/post_trending?page=1&limit=8`),
-        axios.get(`${apiURL}/home/post_new?page=1&limit=8`),
+        axios.get(`${apiURL}/home/recipe_trending?page=1&limit=8`),
+        axios.get(`${apiURL}/home/recipe_new?page=1&limit=8`),
       ])
       .then(
         axios.spread((...res) => {
           if (this.mounted) {
             this.setState({
               category: res[0].data.data.categorys,
-              post_trending: res[1].data.posts,
-              post_new: res[2].data.posts,
+              post_trending: res[1].data.recipes,
+              post_new: res[2].data.recipes,
               loading: false,
             });
-            console.log(res[1].data.posts);
-            console.log(res[2].data.posts);
           }
         })
       )
@@ -132,10 +130,10 @@ class Home extends Component {
   likePost = (e, id) => {
     e.preventDefault();
     axios
-      .post(`${apiURL}/posts/${id}/like`)
+      .post(`${apiURL}/recipes/${id}/like`)
       .then((res) => {
         console.log(res);
-        let post = res.data.post;
+        let post = res.data.recipe;
         let newArr = this.state.post_trending;
         let newArr2 = this.state.post_new;
         let x = newArr.findIndex((a) => a._id === id);

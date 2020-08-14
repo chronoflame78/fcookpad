@@ -66,57 +66,57 @@ class CreateStep3 extends Component {
       .get(`${apiURL}/users/recipe/${id}`)
       .then((res) => {
         if (this.mounted) {
-          if (res.data.post.steps.length === 1) {
+          if (res.data.recipe.steps.length === 1) {
             this.setState({
-              imagePreviewUrl1: res.data.post.steps[0].image,
-              step_content_1: res.data.post.steps[0].content,
+              imagePreviewUrl1: res.data.recipe.steps[0].image,
+              step_content_1: res.data.recipe.steps[0].content,
               loading: false,
             });
-          } else if (res.data.post.steps.length === 2) {
+          } else if (res.data.recipe.steps.length === 2) {
             this.setState({
-              imagePreviewUrl1: res.data.post.steps[0].image,
-              step_content_1: res.data.post.steps[0].content,
-              imagePreviewUrl2: res.data.post.steps[1].image,
-              step_content_2: res.data.post.steps[1].content,
+              imagePreviewUrl1: res.data.recipe.steps[0].image,
+              step_content_1: res.data.recipe.steps[0].content,
+              imagePreviewUrl2: res.data.recipe.steps[1].image,
+              step_content_2: res.data.recipe.steps[1].content,
               total_steps: 2,
               loading: false,
             });
-          } else if (res.data.post.steps.length === 3) {
+          } else if (res.data.recipe.steps.length === 3) {
             this.setState({
-              imagePreviewUrl1: res.data.post.steps[0].image,
-              step_content_1: res.data.post.steps[0].content,
-              imagePreviewUrl2: res.data.post.steps[1].image,
-              step_content_2: res.data.post.steps[1].content,
-              imagePreviewUrl3: res.data.post.steps[2].image,
-              step_content_3: res.data.post.steps[2].content,
+              imagePreviewUrl1: res.data.recipe.steps[0].image,
+              step_content_1: res.data.recipe.steps[0].content,
+              imagePreviewUrl2: res.data.recipe.steps[1].image,
+              step_content_2: res.data.recipe.steps[1].content,
+              imagePreviewUrl3: res.data.recipe.steps[2].image,
+              step_content_3: res.data.recipe.steps[2].content,
               total_steps: 3,
               loading: false,
             });
-          } else if (res.data.post.steps.length === 4) {
+          } else if (res.data.recipe.steps.length === 4) {
             this.setState({
-              imagePreviewUrl1: res.data.post.steps[0].image,
-              step_content_1: res.data.post.steps[0].content,
-              imagePreviewUrl2: res.data.post.steps[1].image,
-              step_content_2: res.data.post.steps[1].content,
-              imagePreviewUrl3: res.data.post.steps[2].image,
-              step_content_3: res.data.post.steps[2].content,
-              imagePreviewUrl4: res.data.post.steps[3].image,
-              step_content_4: res.data.post.steps[3].content,
+              imagePreviewUrl1: res.data.recipe.steps[0].image,
+              step_content_1: res.data.recipe.steps[0].content,
+              imagePreviewUrl2: res.data.recipe.steps[1].image,
+              step_content_2: res.data.recipe.steps[1].content,
+              imagePreviewUrl3: res.data.recipe.steps[2].image,
+              step_content_3: res.data.recipe.steps[2].content,
+              imagePreviewUrl4: res.data.recipe.steps[3].image,
+              step_content_4: res.data.recipe.steps[3].content,
               total_steps: 4,
               loading: false,
             });
-          } else if (res.data.post.steps.length === 5) {
+          } else if (res.data.recipe.steps.length === 5) {
             this.setState({
-              imagePreviewUrl1: res.data.post.steps[0].image,
-              step_content_1: res.data.post.steps[0].content,
-              imagePreviewUrl2: res.data.post.steps[1].image,
-              step_content_2: res.data.post.steps[1].content,
-              imagePreviewUrl3: res.data.post.steps[2].image,
-              step_content_3: res.data.post.steps[2].content,
-              imagePreviewUrl4: res.data.post.steps[3].image,
-              step_content_4: res.data.post.steps[3].content,
-              imagePreviewUrl5: res.data.post.steps[4].image,
-              step_content_5: res.data.post.steps[4].content,
+              imagePreviewUrl1: res.data.recipe.steps[0].image,
+              step_content_1: res.data.recipe.steps[0].content,
+              imagePreviewUrl2: res.data.recipe.steps[1].image,
+              step_content_2: res.data.recipe.steps[1].content,
+              imagePreviewUrl3: res.data.recipe.steps[2].image,
+              step_content_3: res.data.recipe.steps[2].content,
+              imagePreviewUrl4: res.data.recipe.steps[3].image,
+              step_content_4: res.data.recipe.steps[3].content,
+              imagePreviewUrl5: res.data.recipe.steps[4].image,
+              step_content_5: res.data.recipe.steps[4].content,
               total_steps: 5,
               loading: false,
             });
@@ -274,7 +274,7 @@ class CreateStep3 extends Component {
     console.log(formData);
     axios
       .post(
-        `${apiURL}/posts/` + this.props.match.params.id + "/update",
+        `${apiURL}/recipes/` + this.props.match.params.id + "/update",
         formData
       )
       .then((res) => {

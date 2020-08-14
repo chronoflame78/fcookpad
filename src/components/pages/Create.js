@@ -84,7 +84,7 @@ class Create extends Component {
         "https://www.youtube.com/embed/" + this.state.video.slice(32)
       );
     axios
-      .post(`${apiURL}/posts/create`, formData)
+      .post(`${apiURL}/recipes/create`, formData)
       .then((res) => {
         console.log(res);
         const { id } = res.data;

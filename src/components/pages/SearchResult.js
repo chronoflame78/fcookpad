@@ -48,7 +48,7 @@ class SearchResult extends Component {
                 console.log(res);
                 if (this.mounted) {
                     this.setState({
-                        posts: res.data.posts,
+                        posts: res.data.recipes,
                         loading: false,
                         totalRecord: res.data.total,
                         categoryName: res.data.category
@@ -84,7 +84,7 @@ class SearchResult extends Component {
                 .then(res => {
                     if (this.mounted) {
                         this.setState({
-                            posts: res.data.posts,
+                            posts: res.data.recipes,
                             loading: false,
                             totalRecord: res.data.total,
                             categoryName: res.data.category
@@ -102,10 +102,10 @@ class SearchResult extends Component {
 
     likePost = (e, id) => {
         e.preventDefault();
-        axios.post(`${apiURL}/posts/${id}/like`)
+        axios.post(`${apiURL}/recipes/${id}/like`)
             .then(res => {
                 console.log(res)
-                let post = res.data.post;
+                let post = res.data.recipe;
                 let newArr = this.state.posts;
                 for (let x of newArr) {
                     if (x._id === id) {
@@ -174,7 +174,7 @@ class SearchResult extends Component {
         axios.get(apiLink)
             .then(res => {
                 const arr = this.state.posts;
-                arr.push(...res.data.posts);
+                arr.push(...res.data.recipes);
                 this.setState({
                     nextPage: this.state.nextPage + 1,
                     posts: arr,

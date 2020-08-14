@@ -131,11 +131,11 @@ class AccountSetting extends Component {
             .then((willDelete) => {
                 if (willDelete) {
                     axios
-                        .post(`${apiURL}/posts/${postId}/destroy`)
+                        .post(`${apiURL}/recipes/${postId}/destroy`)
                         .then(res => {
                             toast.success('Delete successfully!', { position: toast.POSITION.TOP_RIGHT });
                             axios.all([axios.get(`${apiURL}/users/${this.props.auth.user.id}`),
-                            axios.get(`${apiURL}/users/posts?page=1&limit=3`)])
+                            axios.get(`${apiURL}/users/recipes?page=1&limit=3`)])
                                 .then(axios.spread((...resp) => {
                                     this.setState({
                                         userInfo: resp[0].data.user,
@@ -254,7 +254,7 @@ class AccountSetting extends Component {
         this.setState({
             buttonLoadMore: true
         })
-        axios.get(`${apiURL}/users/posts?page=${nextPage}&limit=3`)
+        axios.get(`${apiURL}/users/recipes?page=${nextPage}&limit=3`)
             .then(res => {
                 const arr = this.state.posts;
                 arr.push(...res.data.allPosts);
@@ -278,7 +278,7 @@ class AccountSetting extends Component {
             loading: true
         })
         axios.all([axios.get(`${apiURL}/users/${this.props.auth.user.id}`),
-        axios.get(`${apiURL}/users/posts?page=1&limit=6`)])
+        axios.get(`${apiURL}/users/recipes?page=1&limit=6`)])
             .then(axios.spread((...res) => {
                 console.log(res[1]);
                 if (this.mounted) {
@@ -322,7 +322,7 @@ class AccountSetting extends Component {
     }
 
     render() {
-        console.log(this.state.posts);
+        console.log(isEmpty(this.state.posts))
         if (this.state.loading) return <Loader />;
         var tab1 = 'asetting-tab-active';
         var tab2 = 'asetting-tab';
@@ -455,7 +455,7 @@ class AccountSetting extends Component {
                                     </div>
                                 ))}
                             </div>
-                            {(this.state.posts.length < this.state.totalPost) &&
+                            {this.state.posts && (this.state.posts.length < this.state.totalPost) &&
                                 <div className="row asetting-see-more" style={{ marginLeft: '0px', marginRight: '0px' }}  >
                                     {!this.state.buttonLoadMore && <button onClick={() => this.showMore(this.state.nextPage)} type="submit" className="btn btn-more-pink">XEM THÊM</button>}
                                     {this.state.buttonLoadMore && <button type="submit" className="btn btn-more-pink"><i className="fa fa-spinner fa-spin"></i></button>}

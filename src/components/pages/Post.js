@@ -41,17 +41,17 @@ class Post extends Component {
     removeStorage();
     this.mounted = true;
     axios
-      .get(`${apiURL}/posts/${this.props.match.params.id}`)
+      .get(`${apiURL}/recipes/${this.props.match.params.id}`)
       .then((res) => {
         if (this.mounted) {
           this.setState({
-            post: res.data.post,
+            post: res.data.recipe,
             loading: false,
-            comments: res.data.post.comments,
-            likes: res.data.post.likes,
-            views: res.data.post.views,
+            comments: res.data.recipe.comments,
+            likes: res.data.recipe.likes,
+            views: res.data.recipe.views,
           });
-          console.log(res.data.post);
+          console.log(res.data.recipe);
         }
       })
       .catch((error) => {
@@ -91,7 +91,7 @@ class Post extends Component {
       buttonLoading: true,
     });
     axios
-      .post(`${apiURL}/posts/` + this.props.match.params.id + "/comment", data)
+      .post(`${apiURL}/recipes/` + this.props.match.params.id + "/comment", data)
       .then((res) => {
         this.setState({
           comments: res.data.comments,

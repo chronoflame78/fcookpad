@@ -66,27 +66,27 @@ class Edit extends Component {
       .then(
         axios.spread((...res) => {
           if (this.mounted) {
-            if (res[1].data.post.video) {
-              let video_url = res[1].data.post.video.replace(
+            if (res[1].data.recipe.video) {
+              let video_url = res[1].data.recipe.video.replace(
                 "embed/",
                 "watch?v="
               );
               this.setState({
                 category: res[0].data.data.categorys,
-                title: res[1].data.post.title,
-                description: res[1].data.post.description,
-                imagePreviewUrl: res[1].data.post.images[0],
+                title: res[1].data.recipe.title,
+                description: res[1].data.recipe.description,
+                imagePreviewUrl: res[1].data.recipe.images[0],
                 video: video_url,
-                dropdown_value: res[1].data.post.category,
+                dropdown_value: res[1].data.recipe.category,
                 loading: false,
               });
             } else {
               this.setState({
                 category: res[0].data.data.categorys,
-                title: res[1].data.post.title,
-                description: res[1].data.post.description,
-                imagePreviewUrl: res[1].data.post.images[0],
-                dropdown_value: res[1].data.post.category,
+                title: res[1].data.recipe.title,
+                description: res[1].data.recipe.description,
+                imagePreviewUrl: res[1].data.recipe.images[0],
+                dropdown_value: res[1].data.recipe.category,
                 loading: false,
               });
             }
@@ -140,7 +140,7 @@ class Edit extends Component {
         "https://www.youtube.com/embed/" + this.state.video.slice(32)
       );
     axios
-      .post(`${apiURL}/posts/` + id + "/update", formData)
+      .post(`${apiURL}/recipes/` + id + "/update", formData)
       .then((res) => {
         if (action === "update") {
           this.props.history.push({

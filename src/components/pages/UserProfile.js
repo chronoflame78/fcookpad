@@ -47,10 +47,10 @@ class UserProfile extends Component {
   likePost = (e, id) => {
     e.preventDefault();
     axios
-      .post(`${apiURL}/posts/${id}/like`)
+      .post(`${apiURL}/recipes/${id}/like`)
       .then((res) => {
         console.log(res);
-        let post = res.data.post;
+        let post = res.data.recipe;
         let newArr = this.state.posts;
         for (let x of newArr) {
           if (x._id === id) {
@@ -93,7 +93,7 @@ class UserProfile extends Component {
       .get(
         `${apiURL}/users/` +
           this.props.match.params.id +
-          "/posts?page=" +
+          "/recipes?page=" +
           nextPage
       )
       .then((res) => {
@@ -106,7 +106,7 @@ class UserProfile extends Component {
           .get(
             `${apiURL}/users/` +
               this.props.match.params.id +
-              "/posts?page=" +
+              "/recipes?page=" +
               nextPage
           )
           .then((res) => {
@@ -135,7 +135,7 @@ class UserProfile extends Component {
       .all([
         axios.get(`${apiURL}/users/${this.props.match.params.id}`),
         axios.get(
-          `${apiURL}/users/` + this.props.match.params.id + "/posts?page=1"
+          `${apiURL}/users/` + this.props.match.params.id + "/recipes?page=1"
         ),
         axios.get(`${apiURL}/users/` + this.props.match.params.id + "/top"),
       ])
@@ -143,12 +143,22 @@ class UserProfile extends Component {
         axios.spread((...res) => {
           console.log(...res);
           if (this.mounted) {
-            this.setState({
-              userInfo: res[0].data.user,
-              posts: res[1].data.allPosts,
-              top: res[2].data.topPost,
-              loading: false,
-            });
+            if(!res[1].data.allPosts){
+              this.setState({
+                userInfo: res[0].data.user,
+                posts: [],
+                top: [],
+                loading: false,
+              })
+            }else{
+              this.setState({
+                userInfo: res[0].data.user,
+                posts: res[1].data.allPosts,
+                top: res[2].data.topPost,
+                loading: false,
+              });
+            }
+            
           }
         })
       )
@@ -302,7 +312,7 @@ class UserProfile extends Component {
                 </div>
               ))}
           </div>
-          {this.state.posts.length < this.state.userInfo.posts && (
+          {this.state.posts && this.state.posts.length < this.state.userInfo.posts && (
             <div
               className="row userp-see-more"
               style={{ marginLeft: "0px", marginRight: "0px" }}

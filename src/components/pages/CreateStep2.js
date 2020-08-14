@@ -24,9 +24,9 @@ class CreateStep2 extends Component {
       .get(`${apiURL}/users/recipe/${id}`)
       .then((res) => {
         if (this.mounted) {
-          if (res.data.post.ingredients.length > 0) {
+          if (res.data.recipe.ingredients.length > 0) {
             this.setState({
-              ingredients: res.data.post.ingredients,
+              ingredients: res.data.recipe.ingredients,
               loading: false,
             });
           } else {
@@ -124,7 +124,7 @@ class CreateStep2 extends Component {
         step: 2,
       };
       axios
-        .post(`${apiURL}/posts/` + this.props.match.params.id + "/update", data)
+        .post(`${apiURL}/recipes/` + this.props.match.params.id + "/update", data)
         .then((res) => {
           if (action === "update") {
             this.props.history.push({

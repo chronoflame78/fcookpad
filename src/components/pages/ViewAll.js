@@ -50,14 +50,14 @@ class ViewAll extends Component {
       if (name === "trending" || name === "new") {
         axios
           .get(
-            `${apiURL}/home/post_` +
+            `${apiURL}/home/recipe_` +
               name +
               "?limit=8&page=1"
           )
           .then((res) => {
             if (this.mounted) {
               this.setState({
-                posts: res.data.posts,
+                posts: res.data.recipes,
                 totalRecord: res.data.total,
                 loading: false,
               });
@@ -78,14 +78,14 @@ class ViewAll extends Component {
         if (name === "trending" || name === "new") {
           axios
             .get(
-              `${apiURL}/home/post_` +
+              `${apiURL}/home/recipe_` +
                 name +
                 "?limit=8&page=1"
             )
             .then((res) => {
               if (this.mounted) {
                 this.setState({
-                  posts: res.data.posts,
+                  posts: res.data.recipes,
                   totalRecord: res.data.total,
                 });
               }
@@ -105,10 +105,10 @@ class ViewAll extends Component {
   likePost = (e, id) => {
     e.preventDefault();
     axios
-      .post(`${apiURL}/posts/${id}/like`)
+      .post(`${apiURL}/recipes/${id}/like`)
       .then((res) => {
         console.log(res);
-        let post = res.data.post;
+        let post = res.data.recipe;
         let newArr = this.state.posts;
         for (let x of newArr) {
           if (x._id === id) {
@@ -150,14 +150,14 @@ class ViewAll extends Component {
     let name = this.props.match.params.name;
     axios
       .get(
-        `${apiURL}/home/post_` +
+        `${apiURL}/home/recipe_` +
           name +
           "?limit=4&page=" +
           this.state.nextPage
       )
       .then((res) => {
         const arr = this.state.posts;
-        arr.push(...res.data.posts);
+        arr.push(...res.data.recipes);
         this.setState({
           nextPage: this.state.nextPage + 1,
           posts: arr,
