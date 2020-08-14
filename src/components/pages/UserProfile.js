@@ -10,6 +10,7 @@ import Loader from "../common/LoaderVer2";
 import { apiURL } from "../../config/Constant";
 import { getFormattedViews, getFormattedDate } from "../../actions/GetFormat";
 import { removeStorage } from "../../utils/removeStorage";
+import swal from "sweetalert";
 
 const isEmpty = require("is-empty");
 class UserProfile extends Component {
@@ -42,6 +43,47 @@ class UserProfile extends Component {
       today.getFullYear()
     );
   }
+
+  likePost = (e, id) => {
+    e.preventDefault();
+    axios
+      .post(`${apiURL}/posts/${id}/like`)
+      .then((res) => {
+        console.log(res);
+        let post = res.data.post;
+        let newArr = this.state.posts;
+        for (let x of newArr) {
+          if (x._id === id) {
+            Object.assign(x, post);
+          }
+        }
+        this.setState({
+          posts: newArr,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 401) {
+          swal("Bạn cần đăng nhập để like bài post này!", {
+            buttons: {
+              cancel: "Đóng",
+              login: {
+                text: "Đăng nhập ngay",
+                value: "login",
+              },
+            },
+          }).then((value) => {
+            switch (value) {
+              case "login":
+                this.props.history.push("/login");
+                break;
+              default:
+                break;
+            }
+          });
+        }
+      });
+  };
 
   showMore(nextPage) {
     this.setState({
