@@ -284,30 +284,46 @@
 }
 
 .asetting-image-container{
-    width: 100%;
-    height: 206px;
+    max-width: 100%;
+    /* height: 155px; */
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+    /* background-size: cover;
+    background-position: center; */
+    color:#fff;
+    font-size: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.asetting-image-holder{
+    width: 100%;
+    padding-top: 75%;
+    border-radius: 10px;
     background-size: cover;
     background-position: center;
-    color:#fff;
-    font-size: 18px;
+    background-repeat: no-repeat;
+    filter: brightness(80%);
 }
 
 .asetting-image-container .item-cover{
-    height: 100%;
-    background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 20%);
+    /* height: 100%; */
+    /* background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 20%); */
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
     opacity: 1; 
     transition: all 0.5s;
     border-radius: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
 }
 
-.asetting-image-container:hover .item-cover{
+/* .asetting-image-container:hover .item-cover{
     background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
-}
+} */
 
 .asetting-image-container .item-cover .asetting-icon-edit{
     transform: scale(1);
@@ -316,7 +332,7 @@
 }
 
 .asetting-image-container:hover .item-cover .asetting-icon-edit{
-    transform: scale(2) translate(-50px, -40px);
+    transform: scale(2) translate(-50px, -30px);
 }
 .asetting-image-container .item-cover .asetting-icon-delete{
     transform: scale(1);
@@ -325,13 +341,13 @@
 }
 
 .asetting-image-container:hover .item-cover .asetting-icon-delete{
-    transform: scale(2) translate(-12px, -40px);
+    transform: scale(2) translate(-12px, -30px);
 }
 
 .asetting-image-container .item-cover .asetting-icon-line{
     display: block; 
     position: relative;
-    top: -3px;
+    top: -5px;
     right: 5px;
     width: 2px; 
     background: #ffffff; 
@@ -341,8 +357,37 @@
 }
 
 .asetting-image-container:hover .item-cover .asetting-icon-line{
-    transform: scale(2) translate(-35px, -40px);
-   
+    transform: scale(2) translate(-35px, -30px); 
+}
+
+@media only screen and (max-width:550px){
+    .asetting-image-container .item-cover .asetting-icon-edit{
+        transform: scale(3) translate(-46px, -30px);
+    }
+    .asetting-image-container:hover .item-cover .asetting-icon-edit{
+        transform: scale(3) translate(-46px, -30px);
+    }
+    .asetting-image-container .item-cover .asetting-icon-delete{
+        transform: scale(3) translate(-15px, -30px);
+    }
+    .asetting-image-container:hover .item-cover .asetting-icon-delete{
+        transform: scale(3) translate(-15px, -30px);
+    }
+    .asetting-image-container .item-cover .asetting-icon-line{
+        transform: scale(3) translate(-35px, -30px);
+    }
+    .asetting-image-container:hover .item-cover .asetting-icon-line{
+        transform: scale(3) translate(-35px, -30px);
+    }
+    .asetting-item-title{
+        font-size: 30px!important;
+    }
+    .asetting-status-container{
+        font-size: 24px!important;
+    }
+    .asetting-view-container{
+        font-size: 24px!important;
+    }
 }
 
 .asetting-item-title a{
@@ -351,64 +396,59 @@
 
 .asetting-item-title:hover a{
     color: #212529;
-    text-decoration: none;
+    text-decoration: underline!important;
+    opacity: 0.8;
 }
 
 .asetting-item-title{
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 5px;
-    font-size: 16px;
-}
-
-.asetting-item-title a{
-    color: #212529;
-}
-
-.asetting-item-title:hover a{
-    color: #212529;
-    text-decoration: none;
+    font-size: 20px;
 }
 
 .asetting-status-container{
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
+    font-size: 16px;
     
 }
 
-.asetting-label{
+/* .asetting-label{
     font-weight: bold;
-}
+} */
 
 .asetting-status-approved{
     color: #01CE47;
+    font-weight: 100;
 }
 
 .asetting-status-draft{
     color: #E2D905;
+    font-weight: 100;
 }
 
 .asetting-status-rejected{
     color: #FE0000;
+    font-weight: 100;
 }
 
 .asetting-status-pending{
     color:#c95bdc;
+    font-weight: 100;
 }
 
 .asetting-view-container{
     display: flex;
     justify-content: space-between;
-    font-size: 12px;
-    margin-top: 5px;  
+    font-size: 16px;
+    margin-top: 0px;  
 }
 
 .asetting-see-more{
     justify-content: center;
     font-weight: bold;
     padding-bottom: 10px;
-    cursor: pointer;
     margin-bottom: 20px;
 }
 

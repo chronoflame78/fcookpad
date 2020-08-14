@@ -435,14 +435,15 @@ class AccountSetting extends Component {
                             <div className="row" style={{ padding: '0 15px' }}>
                                 {isEmpty(this.state.posts) && <div style={{ height: '100px', paddingLeft: '15px', paddingTop: '15px' }}>Bạn chưa có bài đăng nào</div>}
                                 {!isEmpty(this.state.posts) && this.state.posts.map((x, index) => (
-                                    <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-4 py-4">
+                                    <div key={index} className="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 py-4">
 
-                                        <div className="asetting-image-container" style={{ backgroundImage: "url(" + x.images[0] + ")" }}>
+                                        <div className="asetting-image-container">
                                             <div className="item-cover">
                                                 <span className="asetting-icon-edit" onClick={(e) => this.handleEditClick(e, x._id, x.step, x.status)}><i className="far fa-edit" /></span>
                                                 <span className="asetting-icon-line"></span>
                                                 <span className="asetting-icon-delete" onClick={(e) => this.handleDeleteClick(e, x._id)}><i className="fas fa-trash-alt" /></span>
                                             </div>
+                                            <div className="asetting-image-holder" style={{ backgroundImage: "url(" + x.images[0] + ")" }}></div>
                                         </div>
 
                                         <div className="asetting-item-title"><NavLink to={"/posts/" + x._id} style={{ textDecoration: 'none' }}>{x.title}</NavLink></div>
