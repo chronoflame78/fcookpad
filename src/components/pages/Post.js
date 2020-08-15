@@ -16,7 +16,8 @@ import Page500 from "../pages/Page500";
 import Emoji from "react-emoji-render";
 import { apiURL } from "../../config/Constant";
 import { getFormattedViews, getFormattedDate } from "../../actions/GetFormat";
-import {removeStorage} from "../../utils/removeStorage";
+import { removeStorage } from "../../utils/removeStorage";
+import swal from "sweetalert";
 
 const isEmpty = require("is-empty");
 const timediff = require("timediff");
@@ -81,36 +82,78 @@ class Post extends Component {
     this.setState({ isOpen: true });
   };
 
+  likePost = (e, id) => {
+    e.preventDefault();
+    axios
+      .post(`${apiURL}/posts/${id}/like`)
+      .then((res) => {
+        console.log(res);
+        let post = res.data.post;
+        this.setState({
+          likes: res.data.post.likes,
+          post: post
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 401) {
+          swal("Bạn cần đăng nhập để like bài post này!", {
+            buttons: {
+              cancel: "Đóng",
+              login: {
+                text: "Đăng nhập ngay",
+                value: "login",
+              },
+            },
+          }).then((value) => {
+            switch (value) {
+              case "login":
+                this.props.history.push("/login");
+                break;
+              default:
+                break;
+            }
+          });
+        }
+      });
+  };
+
   handleSubmit(e) {
     e.preventDefault();
     const data = {
       content: this.state.comment,
     };
-    this.setState({
-      comment: "",
-      buttonLoading: true,
-    });
-    axios
-      .post(`${apiURL}/recipes/` + this.props.match.params.id + "/comment", data)
-      .then((res) => {
-        this.setState({
-          comments: res.data.comments,
-          buttonLoading: false,
-        });
-      })
-      .catch((err) => {
-        this.setState({
-          errors: { message: "Hãy viết bình luận để gửi nhé" },
-          buttonLoading: false,
-        });
-        console.log(err);
+    if (data.content) {
+      this.setState({
+        comment: "",
+        buttonLoading: true,
       });
+      axios
+        .post(
+          `${apiURL}/posts/` + this.props.match.params.id + "/comment",
+          data
+        )
+        .then((res) => {
+          this.setState({
+            comments: res.data.comments,
+            buttonLoading: false,
+          });
+        })
+        .catch((err) => {
+          this.setState({
+            errors: { message: "Hãy viết bình luận để gửi nhé" },
+            buttonLoading: false,
+          });
+          console.log(err);
+        });
+    }
   }
 
   render() {
     if (this.state.loading) return <Loader />;
     if (this.state.error500) return <Page500 />;
     var post = this.state.post;
+    console.log(post);
     var images = [];
     if (this.state.post.images) {
       images = this.state.post.images;
@@ -150,6 +193,8 @@ class Post extends Component {
     }
     const { user } = this.props.auth;
     const user_avatar = user.user_avatar;
+    console.log(user);
+    console.log(user_avatar);
     return (
       <div className="post-container">
         <Container>
@@ -159,9 +204,16 @@ class Post extends Component {
                 <h3 className="post-title">{post.title}</h3>
                 <div className="post-title-icon">
                   <div className="post-likes">
-                    <div className="heart-icon">
-                      <i class="far fa-heart"></i>
-                    </div>
+                    {post.isLiked && (
+                      <div className="heart-icon" onClick={(e) => this.likePost(e, post._id)}>
+                        <i class="fas fa-heart"></i>
+                      </div>
+                    )}
+                    {!post.isLiked && (
+                      <div className="heart-icon" onClick={(e) => this.likePost(e, post._id)}>
+                        <i class="far fa-heart"></i>
+                      </div>
+                    )}
                     <div className="like-number">
                       {this.state.post.likes.length}
                     </div>
@@ -185,9 +237,9 @@ class Post extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="post-des-content post-description">
+                <p className="post-des-content post-description">
                   {post.description}
-                </div>
+                </p>
               </Col>
               <Col sm="2">
                 <div className="post-avatar">
@@ -261,7 +313,6 @@ class Post extends Component {
                       image={x.image}
                     />
                   ))}
-                  
               </div>
             </Col>
           </Row>
@@ -290,6 +341,7 @@ class Post extends Component {
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
+                  {console.log(post.video)}
                 </div>
               </Col>
             </Row>
@@ -378,7 +430,6 @@ class Post extends Component {
                 )}
                 {!isEmpty(user) && (
                   <div className="post-comment-item-login d-flex align-items-center">
-                    {console.log(user)}
                     <NavLink to={"/user_profile/" + user.id}>
                       <CommentAvatar
                         signature="main-user"
@@ -387,6 +438,7 @@ class Post extends Component {
                         name={user.user_name}
                         tooltip={true}
                       />
+                      {console.log(this.props.auth)}
                     </NavLink>
 
                     <div className="post-add-comment-login">
@@ -410,7 +462,7 @@ class Post extends Component {
                           />
                           <div className="insde-comment-input">
                             <label className="post-write-cmt-label">
-                              Viết bình luận để gửi.. 
+                              Viết bình luận..
                             </label>
                           </div>
                         </div>

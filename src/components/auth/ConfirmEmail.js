@@ -76,7 +76,6 @@ class ConfirmEmail extends Component {
               </div>
             </button>
           </div>
-          {/* <span className="confirm-alert">Email sent! Please wait <span><Countdown timer={20}/></span>  seconds before try again</span> */}
         </div>
       );
     }

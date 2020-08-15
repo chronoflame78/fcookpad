@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import $ from "jquery";
 import {apiURL} from "../../config/Constant";
+import Timer  from "../common/Timer";
 const isEmpty = require("is-empty");
 
 class ForgotPassword extends Component {
@@ -86,11 +87,13 @@ class ForgotPassword extends Component {
       button = (
         <div>
           <div className="resend-btn-container">
-            <button className="btn btn-pink-disabled btn-login btn-send-email" disabled>
-              Đã gửi
+          <button className="btn btn-pink-disabled btn-login" disabled>
+              <div class="inside-disabled-btn">
+                <div>Đã gửi, thử lại sau</div>
+                <Timer />
+              </div>
             </button>
           </div>
-          {/* <span className="confirm-alert">Email sent! Please wait <span><Countdown timer={20}/></span>  seconds before try again</span> */}
         </div>
       );
     }

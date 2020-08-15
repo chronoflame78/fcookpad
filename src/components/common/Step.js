@@ -89,8 +89,6 @@ class Step extends Component {
         </div>
       );
     } else {
-      console.log(this.props.image.length);
-
       return (
         <div className="step-custom-div">
           <div className="step-line-bottom"></div>

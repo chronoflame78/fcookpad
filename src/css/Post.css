@@ -33,7 +33,7 @@
 }
 
 .post-ingredients{
-    font-size: 20px;
+    font-size: 15px;
     flex-grow: 1;
     flex-basis: 0;
 }
@@ -55,13 +55,13 @@
 }
 
 .post-des-content{
-    font-size: 20px;
+    font-size: 15px;
     padding-top: 20px;
 }
 
 .post-youtube-video{
     text-align: center;
-    padding: 20px 20px 20px 35px;
+    padding: 20px 35px 23px 50px;
 }
 
 .post-comment-div{
@@ -127,7 +127,7 @@ textarea:focus, input:focus{
 }
 
 .post-user-name-comment{
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 500;
     color: #f15a24;
 }
@@ -227,6 +227,11 @@ textarea:focus, input:focus{
 
 .post-description {
     font-size: 15px;
+    white-space: pre-wrap;      /* Webkit */    
+    white-space: -moz-pre-wrap; /* Firefox */     
+    white-space: -pre-wrap;     /* Opera <7 */    
+    white-space: -o-pre-wrap;   /* Opera 7 */     
+    word-wrap: break-word;      /* IE */ 
 }
 
 .post-comment-section {
@@ -237,7 +242,7 @@ textarea:focus, input:focus{
 .post-step-title {
     font-size: 30px;
     padding-left: 35px;
-    padding-top: 45px;
+    padding-top: 48px;
     font-weight: 600;
     color: #191919;
 }
@@ -560,5 +565,9 @@ textarea:focus, input:focus{
 
 .post-carousel-box-updt {
     min-width: 100%;
+}
+
+.heart-icon:hover {
+    cursor: pointer;
 }
 
