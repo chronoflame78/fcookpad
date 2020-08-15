@@ -1,3 +1,11 @@
+div {
+    white-space: pre-wrap;      /* Webkit */    
+    white-space: -moz-pre-wrap; /* Firefox */     
+    white-space: -pre-wrap;     /* Opera <7 */    
+    white-space: -o-pre-wrap;   /* Opera 7 */     
+    word-wrap: break-word;      /* IE */ 
+}
+
 .post-container{
     background-color: #fafaf5;
     padding-top: 74px;
@@ -17,6 +25,13 @@
 
 .post-avatar{
     text-align: center;
+    width: 60%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.justify-content-end {
+    display: flex;
 }
 
 .post-info{
@@ -33,7 +48,7 @@
 }
 
 .post-ingredients{
-    font-size: 15px;
+    font-size: 18px;
     flex-grow: 1;
     flex-basis: 0;
 }
@@ -47,6 +62,10 @@
     .post-ingredients{
         margin-top: 30px;
     }
+
+    /* .post-ingredients-title {
+        margin-left:
+    } */
 }
 
 .post-carousel-box{
@@ -55,13 +74,13 @@
 }
 
 .post-des-content{
-    font-size: 15px;
+    font-size: 18px;
     padding-top: 20px;
 }
 
 .post-youtube-video{
     text-align: center;
-    padding: 20px 35px 23px 50px;
+    padding: 20px 35px 0 50px;
 }
 
 .post-comment-div{
@@ -123,11 +142,11 @@ textarea:focus, input:focus{
 }
 
 .post-comment-item-login{
-    padding: 20px;
+    padding: 20px 20px 20px 40px;
 }
 
 .post-user-name-comment{
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 500;
     color: #f15a24;
 }
@@ -138,6 +157,8 @@ textarea:focus, input:focus{
 
 .post-main-title{
     padding-top: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .post-avatar-cover{
@@ -226,7 +247,7 @@ textarea:focus, input:focus{
 }
 
 .post-description {
-    font-size: 15px;
+    font-size: 18px;
     white-space: pre-wrap;      /* Webkit */    
     white-space: -moz-pre-wrap; /* Firefox */     
     white-space: -pre-wrap;     /* Opera <7 */    
@@ -237,6 +258,7 @@ textarea:focus, input:focus{
 .post-comment-section {
     background-color: #ffffff;
     box-shadow: 0px 0px 7px darkgray;
+    margin-top: 48px;
 }
 
 .post-step-title {
@@ -317,7 +339,7 @@ textarea:focus, input:focus{
 
 .post-views {
     display: flex;
-    font-size: 15px;
+    font-size: 18px;
     margin-left: 15px;
 }
 
@@ -328,11 +350,11 @@ textarea:focus, input:focus{
 
 .view-number {
     margin-left: 5px;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .like-number {
-    font-size: 15px;
+    font-size: 18px;
     margin-left: 5px;
 }
 
@@ -345,11 +367,11 @@ textarea:focus, input:focus{
 }
 
 .tit-desc-container {
-    padding-left: 55px !important;
+    /* padding-left: 55px !important; */
 }
 
 .slide-container {
-    padding-left: 45px;
+    padding-left: 30px;
     padding-bottom: 45px;
     border-radius: 20px;
 }
@@ -424,6 +446,7 @@ textarea:focus, input:focus{
 
 .carousel-slider {
     border-radius: 20px;
+    box-shadow: 0px 0px 7px darkslategray;
 }
 
 .carousel {
@@ -440,14 +463,14 @@ textarea:focus, input:focus{
 
 .post-ingredients-div {
     height: 90% !important;
-    border-left: 1px solid #ff5f6d;
-    padding-left: 15px;
-    margin-left: 15px;
+    border-left: 1px solid rgba(255, 95, 109, 0.3);
+    /* padding-left: 15px;
+    margin-left: 15px; */
 }
 
 .post-video-wrapper {
     padding-top: 25px;
-    padding-bottom: 25px;
+    padding-bottom: 0px;
 }
 
 .post-comment-title {
@@ -470,6 +493,37 @@ textarea:focus, input:focus{
     .post-youtube-video iframe {
         height: 350px;
     }
+
+    .avatar-cover {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .post-comment-item-login {
+        padding-left: 7px;
+    }
+
+    .post-add-comment-login {
+        margin-left: 10px !important;
+    }
+
+    .post-step-title {
+        padding-left: 0px;
+    }
+
+    .step-custom-div {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .post-video-title {
+        padding-left: 0px;
+    }
+
+    .post-youtube-video {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 }
 
 @media only screen and (max-width: 568px) {
@@ -479,12 +533,12 @@ textarea:focus, input:focus{
     }
     
     .slide-container {
-        padding-left: 20px !important;
-        padding-right: 20px !important;
+        padding-left: 30px !important;
+        padding-right: 30px !important;
     }
 
     .post-ingredients-title {
-        padding-left: 0px;
+        padding-left: 25px;
         padding-bottom: 0px;
     }
 
@@ -493,13 +547,7 @@ textarea:focus, input:focus{
     }
 
     .post-ingredients-div p {
-        padding-left: 20px;
-    }
-
-    .post-author {
-        position: absolute;
-        right: 10px;
-        top: -120px;
+        padding-left: 30px;
     }
 
     .author-name {
@@ -513,39 +561,44 @@ textarea:focus, input:focus{
 
     .post-title {
         font-size: 25px;
-        padding-right: 55px;
+        /* padding-right: 55px; */
     }
 
     .post-title-icon {
-        font-size: 15px;
+        font-size: 18px;
     }
 
     .post-description {
         padding-top: 30px;
     }
 
-    .tit-desc-container {
-        padding-left: 38px !important;
-    }
 }
 
 @media only screen and (max-width: 420px) {
-    .post-author {
-        position: absolute;
-        right: 10px;
-        top: -160px;
-    }
-
     .carousel {
-        height: 250px !important;
+        height: 150px !important;
     }
     
     .carousel img {
-        height: 250px !important;
+        height: 150px !important;
     }
 
     .post-youtube-video iframe {
-        height: 150px;
+        height: 200px;
+    }
+
+    .fa-chevron-right {
+        right: 5px !important;    
+    }
+
+    .carousel-slider i {
+        font-size: 35px !important;
+        top: calc(50% - 15px) !important;
+    }
+
+    .control-dots li {
+        height: 15px !important;
+        width: 15px !important;
     }
 }
 
@@ -571,3 +624,32 @@ textarea:focus, input:focus{
     cursor: pointer;
 }
 
+.heart-icon {
+    padding-top: 3px;
+}
+
+.like-icon {
+    margin-top: 3px;
+}
+
+.post-5-ingredients {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 15px;
+    padding-left: 15px;
+}
+
+.post-5-ingredients div {
+    padding-bottom: 15px; 
+    min-height: 50px;
+}
+
+.row {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.container-padding-fix {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
