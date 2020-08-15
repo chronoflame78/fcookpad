@@ -100,31 +100,17 @@ class UserProfile extends Component {
         const arr = this.state.posts;
         arr.push(...res.data.allPosts);
         this.setState({
-          buttonLoadMore: true,
+          nextPage: this.state.nextPage + 1,
+          posts: arr,
+          buttonLoadMore: false,
         });
-        axios
-          .get(
-            `${apiURL}/users/` +
-              this.props.match.params.id +
-              "/recipes?page=" +
-              nextPage
-          )
-          .then((res) => {
-            const arr = this.state.posts;
-            arr.push(...res.data.allPosts);
-            this.setState({
-              nextPage: this.state.nextPage + 1,
-              posts: arr,
-              buttonLoadMore: false,
-            });
-            console.log(this.state.posts);
-          })
-          .catch((err) => {
-            console.log(err);
-            this.setState({
-              buttonLoadMore: false,
-            });
-          });
+        console.log(this.state.posts);
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setState({
+          buttonLoadMore: false,
+        });
       });
   }
 
