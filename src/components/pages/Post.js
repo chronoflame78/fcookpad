@@ -35,7 +35,9 @@ class Post extends Component {
       comments: [],
       likes: [],
       error500: false,
+      views: "",
     };
+    this.views = "";
   }
 
   componentDidMount() {
@@ -52,7 +54,6 @@ class Post extends Component {
             likes: res.data.recipe.likes,
             views: res.data.recipe.views,
           });
-          console.log(res.data.recipe);
         }
       })
       .catch((error) => {
@@ -67,6 +68,10 @@ class Post extends Component {
           });
         }
       });
+  }
+
+  componentDidUpdate() {
+    // this.views = this.state.views + 1;
   }
 
   componentWillUnmount() {
@@ -85,14 +90,15 @@ class Post extends Component {
   likePost = (e, id) => {
     e.preventDefault();
     axios
-      .post(`${apiURL}/posts/${id}/like`)
+      .post(`${apiURL}/recipes/${id}/like`)
       .then((res) => {
         console.log(res);
-        let post = res.data.post;
+        let post = res.data.recipe;
         this.setState({
-          likes: res.data.post.likes,
-          post: post
+          post: post,
+          // views: post.views
         });
+        console.log(this.state.post);
       })
       .catch((err) => {
         console.log(err);
@@ -130,7 +136,7 @@ class Post extends Component {
       });
       axios
         .post(
-          `${apiURL}/posts/` + this.props.match.params.id + "/comment",
+          `${apiURL}/recipes/` + this.props.match.params.id + "/comment",
           data
         )
         .then((res) => {
@@ -188,6 +194,8 @@ class Post extends Component {
       steps = this.state.post.steps;
     }
 
+    let views = this.state.views + 1;
+
     if (Object.keys(post).length === 0 && post.constructor === Object) {
       return <Page404 />;
     }
@@ -197,68 +205,79 @@ class Post extends Component {
     console.log(user_avatar);
     return (
       <div className="post-container">
-        <Container>
+        <Container className="container-padding-fix">
           <Row className="post-main-title post-tit-ava-ingre">
-            <Row className="post-tit-ava">
-              <Col className="tit-desc-container" sm="10">
-                <h3 className="post-title">{post.title}</h3>
-                <div className="post-title-icon">
-                  <div className="post-likes">
-                    {post.isLiked && (
-                      <div className="heart-icon" onClick={(e) => this.likePost(e, post._id)}>
-                        <i class="fas fa-heart"></i>
+            <div className="col-12 col-md-12 col-sm-12 col-xl-12 col-lg-12 post-tit-ava">
+              <Col className="tit-desc-container" sm="12">
+                <div className="row">
+                  <div className="col-8">
+                    <h3 className="post-title">{post.title}</h3>
+                    <div className="post-title-icon">
+                      <div className="post-likes">
+                        {post.isLiked && (
+                          <div
+                            className="heart-icon"
+                            onClick={(e) => this.likePost(e, post._id)}
+                          >
+                            <i class="fas fa-heart"></i>
+                          </div>
+                        )}
+                        {!post.isLiked && (
+                          <div
+                            className="heart-icon"
+                            onClick={(e) => this.likePost(e, post._id)}
+                          >
+                            <i class="far fa-heart"></i>
+                          </div>
+                        )}
+                        <div className="like-number">
+                          {this.state.post.likes.length}
+                        </div>
                       </div>
-                    )}
-                    {!post.isLiked && (
-                      <div className="heart-icon" onClick={(e) => this.likePost(e, post._id)}>
-                        <i class="far fa-heart"></i>
+                      <div className="post-views">
+                        {" "}
+                        <img
+                          className="like-icon"
+                          width={18}
+                          height={21}
+                          src="/images/eye.png"
+                          alt=""
+                        />{" "}
+                        <div className="view-number">
+                          {getFormattedViews(views)}
+                        </div>
                       </div>
-                    )}
-                    <div className="like-number">
-                      {this.state.post.likes.length}
                     </div>
-                  </div>
-                  <div className="post-views">
-                    {" "}
-                    <img
-                      className="like-icon"
-                      width={18}
-                      height={21}
-                      src="/images/eye.png"
-                      alt=""
-                    />{" "}
-                    <div className="view-number">
-                      {getFormattedViews(this.state.post.views)}
-                    </div>
-                  </div>
-                  <div className="post-share">
+                    {/* <div className="post-share">
                     <div className="share-icon">
                       <i class="far fa-share-square"></i>
                     </div>
+                  </div> */}
+                  </div>
+                  <div className="col-4 justify-content-end">
+                    <div className="post-avatar">
+                      <NavLink to={"/user_profile/" + post.author._id}>
+                        <Avatar
+                          className="post-avatar-cover"
+                          signature="author"
+                          image={post.author.avatar}
+                          size={64}
+                          name={post.author.fullName}
+                          tooltip={true}
+                        />
+                        <div className="author-name">{post.author.name}</div>
+                      </NavLink>
+                    </div>
                   </div>
                 </div>
+                <div className="col-sm-12 col-12 col-md-12 col-xl-12 col-lg-12"></div>
                 <p className="post-des-content post-description">
                   {post.description}
                 </p>
               </Col>
-              <Col sm="2">
-                <div className="post-avatar">
-                  <NavLink to={"/user_profile/" + post.author._id}>
-                    <Avatar
-                      className="post-avatar-cover"
-                      signature="author"
-                      image={post.author.avatar}
-                      size={64}
-                      name={post.author.fullName}
-                      tooltip={true}
-                    />
-                    <div className="author-name">{post.author.name}</div>
-                  </NavLink>
-                </div>
-              </Col>
-            </Row>
+            </div>
             <div class="empty-block"></div>
-            <Row className="post-ingredients-and-images">
+            <div className="post-ingredients-and-images row">
               <div className="col-sm-7 col-12 post-images-slider-container">
                 <div className="d-flex flex-column flex-md-row align-items-center slide-container">
                   <div className="post-carousel-box-updt">
@@ -277,17 +296,27 @@ class Post extends Component {
                     />
                     Nguyên liệu
                   </div>
-                  <div className="post-ingredients">
-                    {post.ingredients &&
-                      post.ingredients.map((x, index) => (
+                  {post.ingredients &&
+                    post.ingredients.length <= 5 &&
+                    post.ingredients.map((x, index) => (
+                      <div className="post-ingredients">
                         <p key={index}>
-                          <i class="fas fa-carrot" /> {x}
+                          <i class="fas fa-carrot fa-xs" /> {x}
                         </p>
+                      </div>
+                    ))}
+                  <div className="post-5-ingredients">
+                    {post.ingredients &&
+                      post.ingredients.length > 5 &&
+                      post.ingredients.map((x, index) => (
+                        <div className="col-6" key={index}>
+                          <i class="fas fa-carrot fa-xs" /> {x}
+                        </div>
                       ))}
                   </div>
                 </div>
               </Col>
-            </Row>
+            </div>
           </Row>
           <Row>
             <Col>

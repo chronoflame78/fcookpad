@@ -25,7 +25,6 @@ class Step extends Component {
                   <div className="mt-3">
                     <PostStepPicture
                       width="100%"
-                      height="300px"
                       src={this.props.image}
                       className="post-step-picture"
                     />

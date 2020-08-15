@@ -5,7 +5,7 @@ class PostStepPicture extends Component{
     render(){
         return(
             <div className="post-step-picture" 
-            style={{width:this.props.width, height:this.props.height, backgroundImage: "url("+this.props.src+")"}}>
+            style={{width:this.props.width, backgroundImage: "url("+this.props.src+")"}}>
                 
             </div>   
             );
