@@ -429,8 +429,7 @@ textarea:focus, input:focus{
 .time-diff-in-comment {
     font-size: 16px;
     font-weight: 100;
-    color: #191919;
-    opacity: 50% !important;
+    color: rgba(25, 25, 25, 0.5);
     padding-left: 15px;
     padding-top: 2px;
 }
