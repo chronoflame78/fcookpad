@@ -519,6 +519,7 @@ class CreateStep3 extends Component {
                 <input
                   style={{ display: "none" }}
                   type="file"
+                  accept="image/*"
                   ref={this.inputImage}
                   id="step_image_1"
                   onChange={(e) => this.handleImageChange(e)}
@@ -545,6 +546,7 @@ class CreateStep3 extends Component {
                     <input
                       style={{ display: "none" }}
                       type="file"
+                      accept="image/*"
                       ref={this.inputImage2}
                       id="step_image_2"
                       onChange={(e) => this.handleImageChange(e)}
@@ -583,6 +585,7 @@ class CreateStep3 extends Component {
                     <input
                       style={{ display: "none" }}
                       type="file"
+                      accept="image/*"
                       ref={this.inputImage3}
                       id="step_image_3"
                       onChange={(e) => this.handleImageChange(e)}
@@ -621,6 +624,7 @@ class CreateStep3 extends Component {
                     <input
                       style={{ display: "none" }}
                       type="file"
+                      accept="image/*"
                       ref={this.inputImage4}
                       id="step_image_4"
                       onChange={(e) => this.handleImageChange(e)}
@@ -659,6 +663,7 @@ class CreateStep3 extends Component {
                     <input
                       style={{ display: "none" }}
                       type="file"
+                      accept="image/*"
                       ref={this.inputImage5}
                       id="step_image_5"
                       onChange={(e) => this.handleImageChange(e)}

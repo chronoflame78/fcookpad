@@ -329,6 +329,7 @@ class Create extends Component {
             <input
               style={{ display: "none" }}
               type="file"
+              accept="image/*"
               ref={this.inputImage}
               id="upload_image"
               onChange={(e) => this.handleImageChange(e)}
