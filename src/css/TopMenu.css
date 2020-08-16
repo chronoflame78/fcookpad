@@ -78,8 +78,6 @@
 }
 
 .nav-add {
-    /* width: 168px;
-    height: 36px; */
     background-color: transparent;
     color: #ffffff;
     font-size: 20px;
@@ -93,14 +91,13 @@
 .nav-add:hover {
     background-color: #ffffff;
     color: #FCB59F;
+    transition: all 0.3s;
 }
 .nav-add:hover .cls-1{
     stroke: #FCB59F;
 }
 .nav-add:focus{
     outline: none!important;
-    /* position: relative;
-    top: -5px; */
 }
 
 .nav-bar-avatar {
@@ -153,6 +150,7 @@
 .input-group-text:hover{
     background-color: #ffffff!important;
     color: #FCB59F!important;
+    transition: all 0.3s;
 }
 
 .input-group-category{

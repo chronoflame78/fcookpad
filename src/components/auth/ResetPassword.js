@@ -146,7 +146,7 @@ class ResetPassword extends Component {
                         type="password"
                       />
                       <div className="forgot-email-input">
-                        <label className="create-label-name">Mật khẩu</label>
+                        <label htmlFor="password" className="create-label-name">Mật khẩu</label>
                       </div>
                     </div>
                   </div>
@@ -164,7 +164,7 @@ class ResetPassword extends Component {
                         type="password"
                       />
                       <div className="forgot-email-input">
-                        <label className="create-label-name">
+                        <label htmlFor="passwordConfirm" className="create-label-name">
                           Nhập lại mật khẩu
                         </label>
                       </div>

@@ -58,7 +58,6 @@ class Step extends Component {
                 <div className="col-lg-6">
                   <div className="mt-3 step-txt-description">
                     <div class="step-title">{this.props.title}</div>
-                    {console.log(this.props.title)}
                     <div className="step-content">{this.props.description}</div>
                   </div>
                 </div>

@@ -3,7 +3,7 @@ import "../../css/Section.css";
 import { NavLink, Link } from "react-router-dom";
 import axios from "axios";
 import { apiURL } from "../../config/Constant";
-import { getFormattedViews, getFormattedDate } from "../../actions/GetFormat.js";
+import { getFormattedViews, getFormattedDate } from "../../utils/GetFormat.js";
 import { connect } from "react-redux";
 import swal from "sweetalert";
 

@@ -148,7 +148,7 @@ class ForgotPassword extends Component {
                       type="email"
                     />
                     <div className="forgot-email-input">
-                      <label className="create-label-name">Email</label>
+                      <label htmlFor="email" className="create-label-name">Email</label>
                     </div>
                   </div>
                 </div>

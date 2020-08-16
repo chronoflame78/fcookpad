@@ -15,7 +15,7 @@ import Page404 from "../pages/Page404";
 import Page500 from "../pages/Page500";
 import Emoji from "react-emoji-render";
 import { apiURL } from "../../config/Constant";
-import { getFormattedViews, getFormattedDate } from "../../actions/GetFormat";
+import { getFormattedViews, getFormattedDate } from "../../utils/GetFormat";
 import { removeStorage } from "../../utils/removeStorage";
 import swal from "sweetalert";
 
@@ -209,7 +209,7 @@ class Post extends Component {
           <Row className="post-main-title post-tit-ava-ingre">
             <div className="col-12 col-md-12 col-sm-12 col-xl-12 col-lg-12 post-tit-ava">
               <Col className="tit-desc-container" sm="12">
-                <div className="row">
+                <div className="row  post-title-wrapper">
                   <div className="col-8 post-title-container">
                     <h3 className="post-title">{post.title}</h3>
                     <div className="post-title-icon">
@@ -318,7 +318,7 @@ class Post extends Component {
               </Col>
             </div>
           </Row>
-          <Row>
+          <Row className="post-steps-container">
             <Col>
               <div className="post-steps">
                 <div className="post-step-title">
@@ -490,7 +490,7 @@ class Post extends Component {
                             type="text"
                           />
                           <div className="insde-comment-input">
-                            <label className="post-write-cmt-label">
+                            <label htmlFor="comment" className="post-write-cmt-label">
                               Viết bình luận..
                             </label>
                           </div>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../css/Section.css";
 import { NavLink } from "react-router-dom";
-import { getFormattedDate, getFormattedViews } from "../../actions/GetFormat";
+import { getFormattedDate, getFormattedViews } from "../../utils/GetFormat";
 const isEmpty = require("is-empty");
 
 class SectionTop extends Component {
