@@ -251,7 +251,7 @@
 }
 
 .create-mini-text{
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .create-button-container{
@@ -608,10 +608,6 @@ select option:hover {
 }
 
 @media only screen and (min-width: 400px) {
-    .create-mini-text {
-        font-size: 8px;
-    }
-
     .create-input-yt {
         padding-top: 45px !important;
     }

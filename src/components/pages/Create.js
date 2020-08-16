@@ -3,7 +3,7 @@ import axios from "axios";
 import "../../css/Create.css";
 import Footer from "../layout/Footer";
 import { apiURL } from "../../config/Constant";
-import {removeStorage} from "../../utils/removeStorage";
+import { removeStorage } from "../../utils/removeStorage";
 const isEmpty = require("is-empty");
 
 class Create extends Component {
@@ -62,42 +62,43 @@ class Create extends Component {
   handleSubmit(e) {
     e.preventDefault();
     if (
-      this.state.video &&
-      this.state.video.indexOf("https://www.youtube.com/watch?v=") !== -1 &&
-      this.state.video.length !== 43
+      (this.state.video && this.state.video.length !== 43) ||
+      (this.state.video &&
+        this.state.video.indexOf("https://www.youtube.com/watch?v=") === -1)
     ) {
       this.setState({ errors: { message: "Incorrect youtube video url" } });
-      return;
-    }
-    this.setState({
-      buttonLoading: true,
-    });
-    let formData = new FormData();
-    formData.append("title", this.state.title);
-    formData.append("description", this.state.description);
-    formData.append("step", 1);
-    formData.append("imageCover", this.state.file);
-    formData.append("category", this.state.dropdown_value);
-    if (this.state.video)
-      formData.append(
-        "video",
-        "https://www.youtube.com/embed/" + this.state.video.slice(32)
-      );
-    axios
-      .post(`${apiURL}/recipes/create`, formData)
-      .then((res) => {
-        console.log(res);
-        const { id } = res.data;
-        this.props.history.push("/step2/" + id);
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log(err.response.data);
-        this.setState({
-          errors: err.response.data,
-          buttonLoading: false,
-        });
+    } else {
+      this.setState({
+        buttonLoading: true,
       });
+      let formData = new FormData();
+      formData.append("title", this.state.title);
+      formData.append("description", this.state.description);
+      formData.append("step", 1);
+      formData.append("imageCover", this.state.file);
+      formData.append("category", this.state.dropdown_value);
+      if (this.state.video)
+        formData.append(
+          "video",
+          this.state.video.slice(32)
+          // "https://www.youtube.com/embed/" + this.state.video.slice(32)
+        );
+      axios
+        .post(`${apiURL}/recipes/create`, formData)
+        .then((res) => {
+          console.log(res);
+          const { id } = res.data;
+          this.props.history.push("/step2/" + id);
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log(err.response.data);
+          this.setState({
+            errors: err.response.data,
+            buttonLoading: false,
+          });
+        });
+    }
   }
 
   handleImageChange(e) {
@@ -270,7 +271,7 @@ class Create extends Component {
             </div>
 
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-xl-6">
                 <div className="form-group create-dropdown">
                   <select
                     onChange={this.onChange}
@@ -296,7 +297,7 @@ class Create extends Component {
                   </select>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-xl-6">
                 <div className="form-group create-form-group create-form-group-youtube">
                   <input
                     autoComplete="off"
@@ -314,7 +315,7 @@ class Create extends Component {
                   >
                     Link youtube video{" "}
                     <span className="create-mini-text">
-                      (https://www.youtube.com/watch?v=RBYDnaP3sto)
+                    (Ví dụ: https://www.youtube.com/watch?v=RBYDnaP3sto)
                     </span>
                   </label>
                 </div>

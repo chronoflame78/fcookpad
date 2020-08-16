@@ -67,10 +67,7 @@ class Edit extends Component {
         axios.spread((...res) => {
           if (this.mounted) {
             if (res[1].data.recipe.video) {
-              let video_url = res[1].data.recipe.video.replace(
-                "embed/",
-                "watch?v="
-              );
+              let video_url = "https://www.youtube.com/watch?v=" + res[1].data.recipe.video;
               this.setState({
                 category: res[0].data.data.categorys,
                 title: res[1].data.recipe.title,
@@ -118,47 +115,50 @@ class Edit extends Component {
     let action = localStorage.getItem("action");
     let id = this.props.match.params.id;
     if (
-      this.state.video &&
-      this.state.video.indexOf("https://www.youtube.com/watch?v=") !== -1 &&
-      this.state.video.length !== 43
+      (this.state.video && this.state.video.length !== 43) ||
+      (this.state.video &&
+        this.state.video.indexOf("https://www.youtube.com/watch?v=") === -1)
     ) {
       this.setState({ errors: { message: "Incorrect youtube video url" } });
-      return;
-    }
-    this.setState({
-      buttonLoading: true,
-    });
-    let formData = new FormData();
-    formData.append("title", this.state.title);
-    formData.append("description", this.state.description);
-    formData.append("step", 1);
-    formData.append("imageCover", this.state.file);
-    formData.append("category", this.state.dropdown_value);
-    if (this.state.video)
-      formData.append(
-        "video",
-        "https://www.youtube.com/embed/" + this.state.video.slice(32)
-      );
-    axios
-      .post(`${apiURL}/recipes/` + id + "/update", formData)
-      .then((res) => {
-        if (action === "update") {
-          this.props.history.push({
-            pathname: "/account_settings",
-            state: {
-              editSuccess: true,
-              postTab: 2,
-            },
-          });
-        } else {
-          this.props.history.push("/step2/" + id);
-        }
-      })
-      .catch((err) => {
-        this.setState({
-          errors: err.response.data,
-        });
+    } 
+    else{
+      this.setState({
+        buttonLoading: true,
       });
+      let formData = new FormData();
+      formData.append("title", this.state.title);
+      formData.append("description", this.state.description);
+      formData.append("step", 1);
+      formData.append("imageCover", this.state.file);
+      formData.append("category", this.state.dropdown_value);
+      if (this.state.video)
+        formData.append(
+          "video",
+          this.state.video.slice(32)
+          // "https://www.youtube.com/embed/" + this.state.video.slice(32)
+        );
+      axios
+        .post(`${apiURL}/recipes/` + id + "/update", formData)
+        .then((res) => {
+          if (action === "update") {
+            this.props.history.push({
+              pathname: "/account_settings",
+              state: {
+                editSuccess: true,
+                postTab: 2,
+              },
+            });
+          } else {
+            this.props.history.push("/step2/" + id);
+          }
+        })
+        .catch((err) => {
+          this.setState({
+            errors: err.response.data,
+          });
+        });
+    }
+    
   }
 
   handleImageChange(e) {
@@ -418,7 +418,7 @@ class Edit extends Component {
                   >
                     Link youtube video{" "}
                     <span className="create-mini-text">
-                      (https://www.youtube.com/watch?v=RBYDnaP3sto)
+                      (Ví dụ: https://www.youtube.com/watch?v=RBYDnaP3sto)
                     </span>
                   </label>
                 </div>

@@ -13,7 +13,7 @@ import {
   getFormattedViews,
   getFormattedDate,
 } from "../../actions/GetFormat.js";
-import {removeStorage} from "../../utils/removeStorage";
+import { removeStorage } from "../../utils/removeStorage";
 import "../../css/Home.css";
 
 class Home extends Component {
@@ -192,7 +192,11 @@ class Home extends Component {
         <div className="container home-container-child">
           <div className="row search-section-title home-section-title">
             <Link to="/view_all/trending">NỔI BẬT</Link>
-            <div className="home-view-all"><Link to="/view_all/trending">Xem tất cả <i className="fas fa-chevron-right"/></Link></div>
+            <div className="home-view-all">
+              <Link to="/view_all/trending">
+                Xem tất cả <i className="fas fa-chevron-right" />
+              </Link>
+            </div>
           </div>
           <div className="row search-row">
             {trendingPosts &&
@@ -260,14 +264,16 @@ class Home extends Component {
               borderBottom: "1px solid #ff5f6d",
             }}
           >
-            {this.state.itemsToShowTrending === 4 && (
-              <button
-                onClick={this.showMoreTrending}
-                className="btn btn-more-pink"
-              >
-                XEM THÊM
-              </button>
-            )}
+            {this.state.post_trending &&
+              this.state.post_trending.length > 4 &&
+              this.state.itemsToShowTrending === 4 && (
+                <button
+                  onClick={this.showMoreTrending}
+                  className="btn btn-more-pink"
+                >
+                  XEM THÊM
+                </button>
+              )}
             {this.state.itemsToShowTrending !== 4 && (
               <button
                 onClick={this.showMoreTrending}
@@ -282,7 +288,11 @@ class Home extends Component {
             style={{ paddingTop: "20px" }}
           >
             <Link to="/view_all/new">MỚI NHẤT</Link>
-            <div className="home-view-all"><Link to="/view_all/new">Xem tất cả <i className="fas fa-chevron-right"/></Link></div>
+            <div className="home-view-all">
+              <Link to="/view_all/new">
+                Xem tất cả <i className="fas fa-chevron-right" />
+              </Link>
+            </div>
           </div>
           <div className="row search-row">
             {newPosts &&
@@ -350,11 +360,16 @@ class Home extends Component {
               borderBottom: "1px solid #ff5f6d",
             }}
           >
-            {this.state.itemsToShowNew === 4 && (
-              <button onClick={this.showMoreNew} className="btn btn-more-pink">
-                XEM THÊM
-              </button>
-            )}
+            {this.state.post_new &&
+              this.state.post_new.length > 4 &&
+              this.state.itemsToShowNew === 4 && (
+                <button
+                  onClick={this.showMoreNew}
+                  className="btn btn-more-pink"
+                >
+                  XEM THÊM
+                </button>
+              )}
             {this.state.itemsToShowNew !== 4 && (
               <button onClick={this.showMoreNew} className="btn btn-more-pink">
                 THU GỌN

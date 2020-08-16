@@ -365,7 +365,7 @@ class Post extends Component {
                     title="video"
                     width="100%"
                     height="600px"
-                    src={post.video}
+                    src={"https://www.youtube.com/embed/"+post.video}
                     frameBorder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen

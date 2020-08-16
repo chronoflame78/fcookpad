@@ -129,7 +129,7 @@ class UserProfile extends Component {
         axios.spread((...res) => {
           console.log(...res);
           if (this.mounted) {
-            if(!res[1].data.allPosts){
+            if(!res[1].data.allRecipes){
               this.setState({
                 userInfo: res[0].data.user,
                 posts: [],
@@ -139,8 +139,8 @@ class UserProfile extends Component {
             }else{
               this.setState({
                 userInfo: res[0].data.user,
-                posts: res[1].data.allPosts,
-                top: res[2].data.topPost,
+                posts: res[1].data.allRecipes,
+                top: res[2].data.topRecipe,
                 loading: false,
               });
             }
@@ -187,7 +187,7 @@ class UserProfile extends Component {
                   />{" "}
                   &nbsp;Bài viết:
                 </div>
-                <div className="userp-right">{this.state.userInfo.posts}</div>
+                <div className="userp-right">{this.state.userInfo.recipes}</div>
               </div>
               <div className="userp-views">
                 <div className="userp-left">

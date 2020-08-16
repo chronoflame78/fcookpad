@@ -139,7 +139,7 @@ class AccountSetting extends Component {
                                 .then(axios.spread((...resp) => {
                                     this.setState({
                                         userInfo: resp[0].data.user,
-                                        posts: resp[1].data.allPosts,
+                                        posts: resp[1].data.allRecipes,
                                         totalPost: resp[1].data.total,
                                     })
                                 })).catch(errs =>
@@ -257,7 +257,7 @@ class AccountSetting extends Component {
         axios.get(`${apiURL}/users/recipes?page=${nextPage}&limit=3`)
             .then(res => {
                 const arr = this.state.posts;
-                arr.push(...res.data.allPosts);
+                arr.push(...res.data.allRecipes);
                 this.setState({
                     nextPage: this.state.nextPage + 1,
                     posts: arr,
@@ -285,7 +285,7 @@ class AccountSetting extends Component {
                     this.setState({
                         userInfo: res[0].data.user,
                         userInfoUpdate: res[0].data.user,
-                        posts: res[1].data.allPosts,
+                        posts: res[1].data.allRecipes,
                         totalPost: res[1].data.total,
                         loading: false
                     });
@@ -322,7 +322,6 @@ class AccountSetting extends Component {
     }
 
     render() {
-        console.log(isEmpty(this.state.posts))
         if (this.state.loading) return <Loader />;
         var tab1 = 'asetting-tab-active';
         var tab2 = 'asetting-tab';
