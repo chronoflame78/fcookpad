@@ -12,8 +12,8 @@ import { apiURL } from "../../config/Constant";
 import {
   getFormattedViews,
   getFormattedDate,
-} from "../../actions/GetFormat.js";
-import { removeStorage } from "../../utils/removeStorage";
+} from "../../utils/GetFormat.js";
+import {removeStorage} from "../../utils/removeStorage";
 import "../../css/Home.css";
 
 class Home extends Component {

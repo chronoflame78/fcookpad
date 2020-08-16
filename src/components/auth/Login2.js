@@ -95,7 +95,7 @@ class Login extends Component {
                       type="email"
                     />
                     <div className="forgot-email-input">
-                      <label className="create-label-name">Email</label>
+                      <label htmlFor="email" className="create-label-name">Email</label>
                     </div>
                   </div>
                   <div className="input-container input-container-login">
@@ -111,7 +111,7 @@ class Login extends Component {
                       type="password"
                     />
                     <div className="forgot-email-input">
-                      <label className="create-label-name">Mật khẩu</label>
+                      <label htmlFor="password" className="create-label-name">Mật khẩu</label>
                     </div>
                   </div>
 

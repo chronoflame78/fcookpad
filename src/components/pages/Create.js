@@ -20,8 +20,12 @@ class Create extends Component {
       dropdown_value: "",
       buttonLoading: false,
       loading: true,
+      isOpen: false,
+      categoryName: ""
     };
     this.inputImage = React.createRef();
+    this.categoryRef = React.createRef();
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   onChange = (e) => {
@@ -34,12 +38,38 @@ class Create extends Component {
     this.props.history.push("/");
   };
 
+  toggleMenuOpen = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+    console.log(this.state.isOpen);
+  }
+  
+
+  onCategoryClick = (e, id, name) => {
+    this.setState({
+      isOpen: false,
+      categoryName: name,
+      dropdown_value: id,
+    });
+  };
+
+  handleClickOutside(event) {
+    if (this.categoryRef && this.categoryRef.current) {
+      if (!this.categoryRef.current.contains(event.target)) {
+        this.setState({
+          isOpen: false,
+        });
+      }
+    }
+  }
+
   componentDidMount() {
+    document.addEventListener("mousedown", this.handleClickOutside);
     this.mounted = true;
     removeStorage();
     axios
       .get(`${apiURL}/home/category`)
       .then((res) => {
+        console.log(res);
         if (this.mounted) {
           this.setState({
             category: res.data.data.categorys,
@@ -123,6 +153,13 @@ class Create extends Component {
     let $imagePreview = null;
     let youtube_video = null;
     let embed_video = "";
+    let categoryDiv, dropdownText;
+    console.log(this.state.category);
+    if (!this.state.categoryName) {
+      dropdownText = "Danh mục";
+    } else {
+      dropdownText = this.state.categoryName;
+    }
     if (imagePreviewUrl) {
       $imagePreview = (
         <div
@@ -219,6 +256,25 @@ class Create extends Component {
         </div>
       );
     }
+
+    if (this.state.isOpen) {
+      categoryDiv = (
+        <div ref={this.categoryRef} className="create-category-abs">
+          <div className="row create-cate-item-container">
+            {this.state.category.map((x, index) => (
+              <div
+                key={index}
+                onClick={(e) => this.onCategoryClick(e, x._id, x.title)}
+                className="col-12 create-cate-item"
+              >
+                {x.title}
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="outer-div">
         <div className="container create-bg-white">
@@ -271,30 +327,32 @@ class Create extends Component {
             </div>
 
             <div className="row">
-              <div className="col-xl-6">
+              <div className="col-xl-6 create-dropdown-container">
                 <div className="form-group create-dropdown">
-                  <select
-                    onChange={this.onChange}
-                    className="form-control create-form-group create-dropdown-color create-dropdown-style"
-                    value={this.state.dropdown_value}
-                    id="dropdown_value"
-                  >
-                    <option
-                      className="create-option"
-                      disabled
-                      defaultValue
-                      hidden
-                      value=""
+                  <div className="category-select">
+                    <div
+                      className="input-group-prepend"
+                      onClick={() => this.toggleMenuOpen()}
                     >
-                      Danh mục
-                    </option>
-                    {this.state.category &&
-                      this.state.category.map((x, i) => (
-                        <option className="create-option" key={i} value={x._id}>
-                          {x.title}
-                        </option>
-                      ))}
-                  </select>
+                      {!this.state.isOpen && (
+                        <div className="create-category">
+                          <span className="create-dropdown-txt">
+                            {dropdownText}&nbsp;
+                          </span>
+                          <i className="fas fa-chevron-down down-arrow"></i>
+                        </div>
+                      )}
+                      {this.state.isOpen && (
+                        <div className="create-category">
+                          <span className="create-dropdown-txt">
+                            {dropdownText}&nbsp;
+                          </span>
+                          <i className="fas fa-chevron-up up-arrow"></i>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="dropdown-container">{categoryDiv}</div>
                 </div>
               </div>
               <div className="col-xl-6">

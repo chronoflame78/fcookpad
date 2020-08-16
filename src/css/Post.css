@@ -142,7 +142,7 @@ textarea:focus, input:focus{
 }
 
 .post-comment-item-login{
-    padding: 20px 40px 35px 40px;
+    padding: 20px 25px 35px 25px;
 }
 
 .post-user-name-comment{
@@ -235,6 +235,8 @@ textarea:focus, input:focus{
 .post-tit-ava-ingre {
     background-color: #ffffff;
     box-shadow: 0px 0px 7px darkgray;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
 }
 
 .post-tit-ava {
@@ -244,6 +246,8 @@ textarea:focus, input:focus{
 .post-ingredients-and-images {
     margin-top: 35px;
     min-width: 100%;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
 }
 
 .post-description {
@@ -259,6 +263,13 @@ textarea:focus, input:focus{
     background-color: #ffffff;
     box-shadow: 0px 0px 7px darkgray;
     margin-top: 32px;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.post-steps-container {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
 }
 
 .post-step-title {
@@ -476,6 +487,7 @@ textarea:focus, input:focus{
 
 .post-comment-title {
     padding-top: 30px !important;
+    padding-left: 20px !important;
 }
 
 .post-write-cmt-label {
@@ -491,6 +503,11 @@ textarea:focus, input:focus{
 }
 
 @media only screen and (max-width: 768px) {
+
+    .post-comment-title {
+        padding-left: 0 !important;
+    }
+
     .post-youtube-video iframe {
         height: 350px;
     }
@@ -524,6 +541,10 @@ textarea:focus, input:focus{
     .post-youtube-video {
         padding-left: 15px;
         padding-right: 15px;
+    }
+
+    .post-comment-item-login {
+        padding-right: 7px;
     }
 }
 
@@ -645,11 +666,6 @@ textarea:focus, input:focus{
     min-height: 50px;
 }
 
-.row {
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-}
-
 .container-padding-fix {
     padding-left: 0px !important;
     padding-right: 0px !important;
@@ -661,4 +677,9 @@ textarea:focus, input:focus{
 
 .post-avatar-container {
     padding-right: 0px !important;
+}
+
+.post-title-wrapper {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
 }
