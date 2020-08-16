@@ -512,7 +512,7 @@ textarea:focus, input:focus{
         height: 350px;
     }
 
-    .avatar-cover {
+    .post-avatar-cover {
         width: 50px !important;
         height: 50px !important;
     }
@@ -577,8 +577,8 @@ textarea:focus, input:focus{
     }
 
     .post-avatar-cover {
-        width: 48px !important;
-        height: 48px !important;
+        width: 45px !important;
+        height: 45px !important;
     }
 
     .post-title {

@@ -23,7 +23,7 @@ class ConfirmEmail extends Component {
       email: params.email,
     };
     axios
-      .post(`${apiURL}/auth/resendEmail`, data)
+      .post(`${apiURL}/auth/resend_email`, data)
       .then((res) =>
         this.setState({
           sent: true,
@@ -64,7 +64,6 @@ class ConfirmEmail extends Component {
           </div>
         );
       }
-      
     } else {
       button = (
         <div>
