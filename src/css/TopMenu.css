@@ -255,6 +255,9 @@
     border-radius: 10px;
     max-height: 600px !important;
     overflow: unset;
+    font-size: 14px;
+    padding-left: 0px!important;
+    padding-right: 0px!important;
 }
 
 .topmenu-abs-con{
@@ -435,41 +438,46 @@
     border-right: 1px solid #FCBFAE;
 }
 
-@media only screen and (max-width: 350px) {
-
-    .cate-item-border {
-        border-right: none;
-        
-    }
-
+@media only screen and (max-width: 576px) {
     .topmenu-category-abs {
-        position: absolute;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        top: 55px;
-        background-color: #ffffff;
-        border: 1px solid #ff5f6d;
-        z-index: 9999;
-        max-width: 150px !important;
-        max-height: 350px !important;
-        border-radius: 10px;
-        margin-left: -40px !important;
-        margin-top: 10px;
-        overflow: scroll;
+        margin-left: -35px!important;
     }
 }
 
-@media only screen and (min-width: 351px) {
+@media only screen and (max-width: 768px) {
+    .topmenu-category-abs {
+        max-width: 200px !important;     
+    }
+
+    .topcate-row-con{
+        overflow-y: scroll; 
+        max-height: 350px !important;
+    }
+
+    .topcate-row-con::-webkit-scrollbar{
+        width: 2px;
+    }
+}
+
+
+@media only screen and (max-width: 350px) {
+
+    .cate-item-border {
+        border-right: none; 
+    }
+}
+
+/* @media only screen and (min-width: 351px) {
     .topmenu-category-abs {
         margin-left: -10px !important;
         max-width: 250px !important;
         margin-top: 3px;
         max-height: 350px !important;
     }
-}
-@media only screen and (min-width: 601px) {
+} */
+@media only screen and (min-width: 768px) {
     .topmenu-category-abs {
-        max-width: 450px !important;
+        max-width: 600px !important;
     }
 }
 
@@ -502,9 +510,6 @@
         padding: 17px 0;
     }
 
-    .topmenu-category-abs {
-        overflow: scroll;
-    }
 }
 
 .border-bottom {
@@ -523,3 +528,9 @@
 }
 .cls-1{fill:none;stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;stroke-width:30px;}
 .cls-3,.cls-4{fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:30px;}.cls-4{stroke-linecap:round;}
+
+@media only screen and (max-width: 768px) {
+    .cate-item-border{
+        border-right: none!important
+    }   
+}

@@ -62,7 +62,7 @@ class Home extends Component {
     this.mounted = true;
     axios
       .all([
-        axios.get(`${apiURL}/home/category`),
+        axios.get(`${apiURL}/categories/order`),
         axios.get(`${apiURL}/home/recipe_trending?page=1&limit=8`),
         axios.get(`${apiURL}/home/recipe_new?page=1&limit=8`),
       ])

@@ -37,6 +37,7 @@ class AccountSetting extends Component {
             nextPage: 3,
             loading: false,
             errors: {},
+            errorsChangePassword: {},
             buttonLoading: false,
             buttonLoadMore: false,
             file: '',
@@ -237,13 +238,13 @@ class AccountSetting extends Component {
             .then(res => {
                 toast.success('Thay đổi mật khẩu thành công!', { position: toast.POSITION.TOP_RIGHT });
                 this.setState({
-                    errors: {},
+                    errorsChangePassword: {},
                     buttonLoading: false
                 })
             })
             .catch(err => {
                 this.setState({
-                    errors: err.response.data,
+                    errorsChangePassword: err.response.data,
                     buttonLoading: false
                 })
             }
@@ -264,8 +265,8 @@ class AccountSetting extends Component {
                     buttonLoadMore: false
                 })
             }).catch(err => {
+                console.log(err)
                 this.setState({
-                    errors: err,
                     buttonLoadMore: false
                 })
             })
@@ -291,11 +292,12 @@ class AccountSetting extends Component {
                     });
                 }
             }))
-            .catch(err =>
+            .catch(err =>{
+                console.log(err)
                 this.setState({
-                    errors: err,
                     loading: false
                 })
+            }     
             );
         if (this.props.location.state) {
             var { editSuccess, postTab } = this.props.location.state;
@@ -473,12 +475,12 @@ class AccountSetting extends Component {
                                     <input autoComplete="off" maxLength="100" onChange={this.onChange}  id="newPassword" value={this.state.newPassword} type="password" className="form-control asetting-input-email" placeholder=" " />
                                     <label className="asetting-label-email" htmlFor="newPassword">Mật khẩu mới</label>
                                 </div>
-                                <div className="form-group asetting-form-group">
+                                <div className="form-group asetting-form-group" style={{marginBottom:'0px'}}>
                                     <input autoComplete="off" maxLength="100" onChange={this.onChange}  id="confirmPassword" value={this.state.confirmPassword} type="password" className="form-control asetting-input-email" placeholder=" " />
                                     <label className="asetting-label-email" htmlFor="confirmPassword">Xác nhận mật khẩu mới</label>
                                 </div>
-                                {!isEmpty(this.state.errors) && <div className="alert alert-danger">{this.state.errors.message}</div>}
-                                <div className="asetting-button-container">
+                                {!isEmpty(this.state.errorsChangePassword) && <div className="alert alert-danger">{this.state.errorsChangePassword.message}</div>}
+                                <div className="asetting-button-container" style={{marginTop: '20px'}}>
                                     {!this.state.buttonLoading && <button type="submit" className="btn btn-pink" onClick={(e) => this.changePassword(e)}>Lưu</button>}
                                     {this.state.buttonLoading && <button type="submit" className="btn btn-pink"><i class="fa fa-spinner fa-spin"></i></button>}
                                 </div>

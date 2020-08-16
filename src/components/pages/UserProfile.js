@@ -159,7 +159,7 @@ class UserProfile extends Component {
     if (this.state.loading) return <Loader />;
     return (
       <div className="userp-container">
-        <div className="container">
+        <div className="container userp-child-container">
           <div className="row userp-row-updt cold-lg-12">
             <div className="col-md-4 userp-info-container-updt">
               <Avatar

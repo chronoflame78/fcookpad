@@ -304,10 +304,10 @@ class TopMenu extends React.Component {
       categoryDiv = (
         <div ref={this.categoryRef} className="topmenu-category-abs container">
           <div className="arrow-up"></div>
-          <div className="row" style={{ paddingBottom: "5px" }}>
+          <div className="row topcate-row-con" style={{ paddingBottom: "5px" }}>
             <div
               onClick={(e) => this.onAllClick(e)}
-              className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 col-12 top-cate-item cate-item-border"
+              className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 top-cate-item cate-item-border"
             >
               Tất cả
             </div>
@@ -316,7 +316,7 @@ class TopMenu extends React.Component {
                 <div
                   key={index}
                   onClick={(e) => this.onCategoryClick(e, x._id, x.title)}
-                  className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 col-12 top-cate-item cate-item-border"
+                  className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 top-cate-item cate-item-border"
                 >
                   {x.title}
                 </div>
@@ -324,7 +324,7 @@ class TopMenu extends React.Component {
                 <div
                   key={index}
                   onClick={(e) => this.onCategoryClick(e, x._id, x.title)}
-                  className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 col-12 top-cate-item"
+                  className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3  top-cate-item"
                 >
                   {x.title}
                 </div>

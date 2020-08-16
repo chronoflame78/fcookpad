@@ -9,6 +9,14 @@
     padding-top: 73px;
 }
 
+@media only screen and  (max-width: 768px){
+    userp-child-container{
+        padding-left: 0px!important;
+        padding-right: 0px!important;
+    }
+}
+
+
 .userp-row{
     padding: 0 15px;
 }
