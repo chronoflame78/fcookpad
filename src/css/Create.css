@@ -757,6 +757,10 @@ select option:hover {
         color: #FF5F6D;
 }
 
+.create-dropdown:hover {
+    cursor: pointer;
+}
+
 .create-dropdown span {
     color: rgba(0, 0, 0, 0.6);
 }
@@ -779,6 +783,10 @@ select option:hover {
     display: flex;
     justify-content: space-between;
     margin-top: 22px;
+}
+
+.create-category:hover {
+    cursor: default;
 }
 
 .create-category-abs {
@@ -838,4 +846,5 @@ select option:hover {
     margin-left: 0px !important;
     margin-right: 0px !important;
 }
+
 
