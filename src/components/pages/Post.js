@@ -210,9 +210,22 @@ class Post extends Component {
             <div className="col-12 col-md-12 col-sm-12 col-xl-12 col-lg-12 post-tit-ava">
               <Col className="tit-desc-container" sm="12">
                 <div className="row">
-                  <div className="col-8">
+                  <div className="col-8 post-title-container">
                     <h3 className="post-title">{post.title}</h3>
                     <div className="post-title-icon">
+                      <div className="post-views">
+                        {" "}
+                        <img
+                          className="like-icon"
+                          width={18}
+                          height={21}
+                          src="/images/eye.png"
+                          alt=""
+                        />{" "}
+                        <div className="view-number">
+                          {getFormattedViews(views)}
+                        </div>
+                      </div>
                       <div className="post-likes">
                         {post.isLiked && (
                           <div
@@ -234,19 +247,6 @@ class Post extends Component {
                           {this.state.post.likes.length}
                         </div>
                       </div>
-                      <div className="post-views">
-                        {" "}
-                        <img
-                          className="like-icon"
-                          width={18}
-                          height={21}
-                          src="/images/eye.png"
-                          alt=""
-                        />{" "}
-                        <div className="view-number">
-                          {getFormattedViews(views)}
-                        </div>
-                      </div>
                     </div>
                     {/* <div className="post-share">
                     <div className="share-icon">
@@ -254,7 +254,7 @@ class Post extends Component {
                     </div>
                   </div> */}
                   </div>
-                  <div className="col-4 justify-content-end">
+                  <div className="col-4 justify-content-end post-avatar-container">
                     <div className="post-avatar">
                       <NavLink to={"/user_profile/" + post.author._id}>
                         <Avatar
