@@ -3,7 +3,7 @@ import '../../css/Confirm.css';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { verifyAccount } from "../../actions/authActions";
-import Page404 from '../pages/Page404';
+import Page404 from '../pages/error/Page404';
 import { Link } from 'react-router-dom';
 
 const isEmpty = require("is-empty");

@@ -6,7 +6,7 @@ import "../../css/UserProfile.css";
 import Avatar from "../common/Avatar";
 import { NavLink } from "react-router-dom";
 import "../../css/Section.css";
-import Loader from "../common/LoaderVer2";
+import Loader from "../common/Loader";
 import { apiURL } from "../../config/Constant";
 import { getFormattedViews, getFormattedDate } from "../../utils/GetFormat";
 import { removeStorage } from "../../utils/removeStorage";

@@ -254,8 +254,8 @@
     max-height: 600px !important;
     overflow: unset;
     font-size: 14px;
-    padding-left: 0px!important;
-    padding-right: 0px!important;
+    /* padding-left: 0px!important;
+    padding-right: 0px!important; */
 }
 
 .topmenu-abs-con{

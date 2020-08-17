@@ -344,7 +344,7 @@ class Create extends Component {
                       )}
                       {this.state.isOpen && (
                         <div className="create-category">
-                          <span className="create-dropdown-txt">
+                          <span className="create-dropdown-pink-txt">
                             {dropdownText}&nbsp;
                           </span>
                           <i className="fas fa-chevron-up up-arrow"></i>
