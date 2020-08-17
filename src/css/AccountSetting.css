@@ -178,6 +178,7 @@
     outline: none;
     border-radius: 0px!important;
     height: calc(2.25rem + 2px)!important;
+    padding-right: 0px !important;
 }
 
 .asetting-date-text:focus {
@@ -205,7 +206,7 @@
 
 .asetting-input-description:focus{
     border: 0!important;
-    border-bottom: 1px solid #FF5F6D!important;
+    border-bottom: 1px solid #e5e5e5 !important;
     outline: none!important;
     box-shadow: none!important;
     border-radius: 0px;
@@ -252,6 +253,9 @@
 .asetting-datepicker{
     display: block;
     margin-top: -10px;
+    /* border-bottom: 1px solid rgba(161, 161, 161, 0.25); */
+    margin-left: 0px !important;
+    margin-right: 0px !important;
 }
 
 .asetting-label-email{
@@ -287,7 +291,23 @@
 }
 
 .asetting-datepicker-wrapper{
-    width: 100%;
+    /* padding-right: 0px !important; */
+    padding-left: 0px !important;
+}
+
+.date-picker-icon {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+.date-picker-icon label {
+    margin-bottom: 0px !important;
+    position: absolute;
+    top: 15px;
+}
+
+.date-picker-icon i {
+    color: rgba(25, 25, 25, 0.3);
 }
 
 .react-datepicker__triangle{
@@ -625,4 +645,21 @@
     padding-left: 12px;
 }
 
+@media only screen and (max-width: 992px){
+    .asetting-container-child{
+        padding-left: 0px!important;
+        padding-right: 0px!important;
+    }
 
+    .asetting-row{
+        margin-right:0px!important;
+        margin-left: 0px!important;
+        padding:0px!important;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .asetting-title {
+        padding-left: 0px !important;
+    }
+}

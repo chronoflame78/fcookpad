@@ -3,8 +3,8 @@ import axios from "axios";
 import Footer from "../layout/Footer";
 import "../../css/AccountSetting.css";
 import { NavLink } from "react-router-dom";
-import '../../css/Section.css';
-import Loader from '../common/Loader';
+import "../../css/Section.css";
+import Loader from "../common/Loader";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import DatePicker from "react-datepicker";
@@ -100,7 +100,7 @@ class AccountSetting extends Component {
   onGenderChange = (e, gender) => {
     this.setState({
       userInfoUpdate: { ...this.state.userInfoUpdate, gender: gender },
-      isOpen: false
+      isOpen: false,
     });
   };
 
@@ -369,7 +369,7 @@ class AccountSetting extends Component {
   toggleMenuOpen = () => {
     this.setState({ isOpen: !this.state.isOpen });
     console.log(this.state.isOpen);
-  }
+  };
 
   render() {
     let genderDiv, dropdownText;
@@ -594,24 +594,32 @@ class AccountSetting extends Component {
                           )}
                         </div>
                       </div>
-                      <div className="gender-dropdown-container">{genderDiv}</div>
+                      <div className="gender-dropdown-container">
+                        {genderDiv}
+                      </div>
                     </div>
                   </div>
                   <div className="form-group asetting-form-group">
                     <label className="asetting-label-date" htmlFor="title">
                       Ngày sinh
                     </label>
-                    <div className="asetting-datepicker">
+                    <div className="asetting-datepicker row">
                       <DatePicker
                         onChange={this.onDateChange}
                         selected={new Date(this.state.userInfoUpdate.birthday)}
                         showMonthDropdown
                         showYearDropdown
                         dropdownMode="select"
+                        id="datepicker-birthday"
                         className="form-control asetting-date-text"
-                        wrapperClassName="asetting-datepicker-wrapper"
+                        wrapperClassName="asetting-datepicker-wrapper col-11"
                         popperClassName="asetting-datepicker-popper"
                       ></DatePicker>
+                      <div className="date-picker-icon col-1">
+                        <label htmlFor="datepicker-birthday">
+                          <i class="far fa-calendar-alt"></i>
+                        </label>
+                      </div>
                     </div>
                   </div>
                   <div className="form-group asetting-form-group asetting-description-form-group">
