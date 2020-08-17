@@ -251,7 +251,7 @@
 }
 
 .asetting-datepicker{
-    display: block;
+    display: flex;
     margin-top: -10px;
     /* border-bottom: 1px solid rgba(161, 161, 161, 0.25); */
     margin-left: 0px !important;
