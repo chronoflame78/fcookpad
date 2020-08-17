@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../../css/Error.css'
+import '../../../css/Error.css'
  class Page500 extends Component {
     render() {
         return (

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Picture from "../common/Picture";
 import Footer from "../layout/Footer";
-import Page404 from "../pages/Page404";
+import Page404 from "./error/Page404";
 import { apiURL } from "../../config/Constant";
 const isEmpty = require("is-empty");
 

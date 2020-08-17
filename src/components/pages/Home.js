@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Category from "../common/Category";
 import Footer from "../layout/Footer";
 import { toast } from "react-toastify";
-import Loader from "../common/LoaderVer2";
+import Loader from "../common/Loader";
 import axios from "axios";
 import { NavLink, Link } from "react-router-dom";
 import swal from "sweetalert";

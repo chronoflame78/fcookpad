@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Footer from "../layout/Footer";
-import Loader from '../common/LoaderVer2';
+import Loader from '../common/Loader';
 import axios from "axios";
 import queryString from 'query-string';
 import '../../css/SearchResult.css';

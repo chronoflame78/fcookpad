@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Footer from "../layout/Footer";
-import Loader from "../common/LoaderVer2";
+import Loader from "../common/Loader";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-import Page404 from "../pages/Page404";
+import Page404 from "./error/Page404";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import swal from "sweetalert";

@@ -4,7 +4,7 @@ import Footer from '../layout/Footer';
 import '../../css/AccountSetting.css';
 import { NavLink } from "react-router-dom";
 import '../../css/Section.css';
-import Loader from '../common/LoaderVer2';
+import Loader from '../common/Loader';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import DatePicker from 'react-datepicker';
