@@ -172,7 +172,22 @@
 }
 
 .asetting-date-text{
+    border: 0 !important;
     color: rgba(0, 0, 0, 0.6)!important;
+    border-bottom: 1px solid #e5e5e5!important;
+    outline: none;
+    border-radius: 0px!important;
+    height: calc(2.25rem + 2px)!important;
+}
+
+.asetting-date-text:focus {
+    color:#FF5F6D !important;
+    box-shadow: none !important;
+    border-color: none !important;
+}
+
+.asetting-datepicker-wrapper:focus ~ .asetting-label-date {
+    color:#FF5F6D !important;
 }
 
 .asetting-description{
@@ -236,6 +251,7 @@
 
 .asetting-datepicker{
     display: block;
+    margin-top: -10px;
 }
 
 .asetting-label-email{
@@ -274,21 +290,15 @@
     width: 100%;
 }
 
-.asetting-datepicker-popper{
-    
-}
-
 .react-datepicker__triangle{
     left: 200px!important;
 }
 
 .asetting-image-container{
     max-width: 100%;
-    /* height: 155px; */
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
-    /* background-size: cover;
-    background-position: center; */
+
     color:#fff;
     font-size: 20px;
     overflow: hidden;
@@ -306,8 +316,6 @@
 }
 
 .asetting-image-container .item-cover{
-    /* height: 100%; */
-    /* background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 20%); */
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
@@ -319,10 +327,6 @@
     width: 100%;
     z-index: 1;
 }
-
-/* .asetting-image-container:hover .item-cover{
-    background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
-} */
 
 .asetting-image-container .item-cover .asetting-icon-edit{
     transform: scale(1);
@@ -471,11 +475,9 @@
     width: 120px;
     float: right;
     background-color: #ffffff;
-    /* font-weight: bold!important; */
     font-size: 14px!important;
     color: #FF5F6D;
     border:1px solid #FF5F6D!important;
-    /* border-radius: 20px!important; */
 }
 
 .btn-more-pink:hover{
@@ -530,3 +532,97 @@
 .asetting-form-position {
     max-height: 50px;
 }
+
+.asetting-description-input {
+    border: 0!important;
+    border-bottom: 1px solid #e5e5e5!important;
+    outline: none;
+    border-radius: 0px!important;
+    color: rgba(0, 0, 0, 0.6)!important;
+}
+
+.asetting-description-input:focus{
+    border: 0!important;
+    border-bottom: 1px solid #FF5F6D!important;
+    outline: none!important;
+    box-shadow: none!important;
+    border-radius: 0px;
+    color: #FF5F6D!important;
+}
+
+.form-group .asetting-description-input:focus + .asetting-description-label{
+    top:-100px;
+    transition-duration: 0.5s;
+    color: #FF5F6D;
+    font-size: 12px;
+}
+
+.form-group .asetting-description-input + .asetting-description-label{
+    transition-duration: 0.5s;
+}
+
+ .form-group .asetting-description-input:not(:placeholder-shown) + .asetting-description-label {
+    top:-100px;
+    font-size: 12px;
+} 
+
+.asetting-description-label {
+    position: relative;
+    top: -28px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.asetting-description-form-group {
+    margin-bottom: 0 !important;
+    margin-top: 1.8rem;
+}
+
+.asetting-gender {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #ff5f6d;
+    text-align: center;
+    max-width: 100%;
+    margin-right: 0px;
+}
+
+.asetting-gender:hover{
+    background-color: #ff5f6d;
+    color: #ffffff;
+    cursor: default;
+}
+
+.gender-dropdown-container {
+    width: 100%;
+    position: relative;
+}
+
+.asetting-gender-abs {
+    position: absolute;
+    background-color: #ffffff;
+    border: 1px solid #ff5f6d;
+    z-index: 9999;
+    width: 100%;
+    max-height: 300px !important;
+    box-shadow: 0px 5px 7px darkgrey;
+    box-sizing: content-box;
+    left: 0;
+    right: 0;
+}
+
+.asetting-gender-container {
+    width: 100%;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.asetting-gender-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 12px;
+}
+
+

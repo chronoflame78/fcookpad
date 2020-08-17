@@ -758,7 +758,7 @@ select option:hover {
 }
 
 .create-dropdown:hover {
-    cursor: pointer;
+    cursor: default;
 }
 
 .create-dropdown span {
@@ -778,7 +778,6 @@ select option:hover {
 }
 
 .create-category {
-    /* border-bottom: 1px solid #FF5F6D; */
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -846,5 +845,10 @@ select option:hover {
     margin-left: 0px !important;
     margin-right: 0px !important;
 }
+
+.category-select {
+    width: 100%;
+}
+
 
 
