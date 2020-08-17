@@ -309,6 +309,7 @@ class AccountSetting extends Component {
   }
 
   componentDidMount() {
+    document.addEventListener("mousedown", this.handleClickOutside);
     this.mounted = true;
     removeStorage();
     this.setState({
