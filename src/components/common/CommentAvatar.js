@@ -10,6 +10,7 @@ class CommentAvatar extends Component {
     this.toggle = this.toggle.bind(this);
   }
 
+  //change state to show tooltip when hover on avatar
   toggle() {
     this.setState({
       tooltipOpen: !this.state.tooltipOpen,
