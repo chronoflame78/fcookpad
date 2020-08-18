@@ -152,14 +152,42 @@ class CreateStep3 extends Component {
 
   addStep(e) {
     e.preventDefault();
-    if (this.state.total_steps < 5) {
-      this.setState({ total_steps: this.state.total_steps + 1 });
-    }
+    this.setState({ total_steps: this.state.total_steps + 1 });
   }
 
-  handleRemove() {
-    if (this.state.total_steps > 1) {
-      this.setState({ total_steps: this.state.total_steps - 1 });
+  handleRemove(e) {
+    e.preventDefault();
+    if (this.state.total_steps === 2) {
+      this.setState({ 
+          total_steps: this.state.total_steps - 1,
+          step_content_2: "",
+          step_image_2: "",
+          imagePreviewUrl2: ""
+        });
+    }
+    else if (this.state.total_steps === 3) {
+      this.setState({ 
+          total_steps: this.state.total_steps - 1,
+          step_content_3: "",
+          step_image_3: "",
+          imagePreviewUrl3: ""
+        });
+    }
+    else if (this.state.total_steps === 4) {
+      this.setState({ 
+          total_steps: this.state.total_steps - 1,
+          step_content_4: "",
+          step_image_4: "",
+          imagePreviewUrl4: ""
+        });
+    }
+    else if (this.state.total_steps === 5) {
+      this.setState({ 
+          total_steps: this.state.total_steps - 1,
+          step_content_5: "",
+          step_image_5: "",
+          imagePreviewUrl5: ""
+        });
     }
   }
 
@@ -199,7 +227,6 @@ class CreateStep3 extends Component {
     let reader = new FileReader();
     let file = e.target.files[0];
     if (file) {
-      console.log(e.target.id);
       if (e.target.id === "step_image_1") {
         reader.onloadend = () => {
           this.setState({
@@ -236,8 +263,36 @@ class CreateStep3 extends Component {
           });
         };
       }
+      reader.readAsDataURL(file);
     }
-    reader.readAsDataURL(file);
+    else{
+      if (e.target.id === "step_image_1") {
+          this.setState({
+            step_image_1: "",
+            imagePreviewUrl1: "",
+          })
+      } else if (e.target.id === "step_image_2") {
+          this.setState({
+            step_image_2: "",
+            imagePreviewUrl2: "",
+        })
+      } else if (e.target.id === "step_image_3") {
+          this.setState({
+            step_image_3: "",
+            imagePreviewUrl3: "",
+          });
+      } else if (e.target.id === "step_image_4") {
+          this.setState({
+            step_image_4: "",
+            imagePreviewUrl4: "",
+          });
+      } else if (e.target.id === "step_image_5"){
+          this.setState({
+            step_image_5: "",
+            imagePreviewUrl5: "",
+          });
+    }
+  }
   }
 
   handleSubmit(e) {

@@ -145,6 +145,11 @@ class Create extends Component {
       };
 
       reader.readAsDataURL(file);
+    }else{
+      this.setState({
+        file:"",
+        imagePreviewUrl:""
+      })
     }
   }
 

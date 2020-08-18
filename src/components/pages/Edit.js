@@ -175,6 +175,11 @@ class Edit extends Component {
       };
 
       reader.readAsDataURL(file);
+    }else{
+      this.setState({
+        file: "",
+        imagePreviewUrl: "",
+      });
     }
   }
 

@@ -10,7 +10,6 @@ class Register extends Component {
   constructor() {
     super();
     this.state = {
-      // name: "",
       email: "",
       password: "",
       passwordConfirm: "",
@@ -36,14 +35,20 @@ class Register extends Component {
       });
     }
   }
+
+  //handle input changes
   onChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
   };
+
+  //handle checkbox click
   onAgree() {
     this.setState({
       agree: !this.state.agree,
     });
   }
+
+  //handle form submit
   onSubmit = (e) => {
     e.preventDefault();
     if (isEmpty(this.state.email)) {
