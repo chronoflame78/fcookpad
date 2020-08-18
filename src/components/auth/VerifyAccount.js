@@ -17,7 +17,6 @@ class VerifyAccount extends Component {
       verify: false,
       errors: {}
     };
-
   }
 
   componentDidMount() {
@@ -42,11 +41,34 @@ class VerifyAccount extends Component {
   }
 
   render() {
-    console.log(this.props.match.params.token);
-    console.log(this.state.errors);
-    console.log(this.props);
     if (!isEmpty(this.state.errors)) {
-      return (<div><Page404 /></div>);
+      return (
+        <div className="parent-content">
+        <div className="verify-content-wrapper">
+          <div className="form-wrapper">
+            <div className="back-container">
+              <Link to="/">
+                <img src="/images/back-arrow.png" alt="Back" width="16.91" height="12.3" />
+              </Link>
+            </div>
+            <div className="justify-content">
+              <div className="main-content">
+                <div className="logo-container">
+                  <img src="/images/NewLogo.png" alt="Back" width="122" height="100" />
+                </div>
+                <div className="oms-title">
+                  <h1><b>Lỗi!</b></h1>
+                </div>
+                <div className="text-container">
+                  <label>Token không đúng hoặc đã hết hạn.
+                            </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      );
 
     }
     if (this.state.verify === false) {
