@@ -9,7 +9,8 @@ class Avatar extends Component {
     };
     this.toggle = this.toggle.bind(this);
   }
-
+  
+  //change state when hover on avatar
   toggle() {
     this.setState({
       tooltipOpen: !this.state.tooltipOpen,
