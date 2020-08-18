@@ -15,6 +15,7 @@ class ConfirmEmail extends Component {
   }
 
   resendEmail = (e) => {
+    //get email from query params
     let params = queryString.parse(this.props.location.search);
     this.setState({
       buttonLoading: true,
