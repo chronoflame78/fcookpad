@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import "../../css/Step.css";
-import PostStepPicture from "../common/PostStepPicture";
+import RecipeStepPicture from "../common/RecipeStepPicture";
 
 class Step extends Component {
-  componentDidMount() {}
-
-  componentWillUnmount() {}
 
   render() {
     if (this.props.num === 0) {
@@ -23,7 +20,7 @@ class Step extends Component {
                 </div>
                 <div className="col-lg-6 col-12 step-padding-custom">
                   <div className="mt-3">
-                    <PostStepPicture
+                    <RecipeStepPicture
                       width="100%"
                       src={this.props.image}
                       className="post-step-picture"
@@ -63,7 +60,7 @@ class Step extends Component {
                 </div>
                 <div className="col-lg-6 step-padding-custom">
                   <div className="mt-3">
-                    <PostStepPicture
+                    <RecipeStepPicture
                       width="100%"
                       height="300px"
                       src={this.props.image}
@@ -103,7 +100,7 @@ class Step extends Component {
 
                 <div className="col-lg-6 order-lg-1">
                   <div className="mt-3">
-                    <PostStepPicture
+                    <RecipeStepPicture
                       width="100%"
                       height="300px"
                       src={this.props.image}

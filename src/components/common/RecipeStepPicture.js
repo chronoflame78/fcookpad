@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import '../../css/Picture.css';
 
-class PostStepPicture extends Component{
+class RecipeStepPicture extends Component{
     render(){
         return(
             <div className="post-step-picture" 
@@ -12,4 +12,4 @@ class PostStepPicture extends Component{
     }
 }
 
-export default PostStepPicture;
+export default RecipeStepPicture;

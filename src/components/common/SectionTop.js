@@ -13,23 +13,6 @@ class SectionTop extends Component {
     };
   }
 
-  getFormattedDate(date) {
-    var today = new Date(date);
-    var month = "";
-    if (today.getMonth() < 9) {
-      month = "0" + (today.getMonth() + 1);
-    } else {
-      month = today.getMonth() + 1;
-    }
-    return (
-      today.getDate().toLocaleString("en-US", { minimumIntegerDigits: 2 }) +
-      "/" +
-      month +
-      "/" +
-      today.getFullYear()
-    );
-  }
-
   render() {
     var topFourPosts = [];
     if (this.props.posts.length < 4) {

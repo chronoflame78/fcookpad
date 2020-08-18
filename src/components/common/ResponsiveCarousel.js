@@ -6,7 +6,7 @@ import { Carousel } from "react-responsive-carousel";
 class DemoCarousel extends Component {
   render() {
     var images = this.props.items;
-    const arrowStyles: CSSProperties = {
+    const arrowStyles = {
       position: "absolute",
       zIndex: 2,
       top: "calc(50% - 15px)",
@@ -17,7 +17,7 @@ class DemoCarousel extends Component {
       color: "#ffffff",
     };
 
-    const indicatorStyles: CSSProperties = {
+    const indicatorStyles = {
       background: "#fff",
       width: 15,
       height: 15,

@@ -91,6 +91,7 @@ class TopMenu extends React.Component {
     }
   }
 
+  //handle event click on category
   onCategoryClick = (e, id, name) => {
     this.setState({
       categoryId: id,
@@ -103,6 +104,7 @@ class TopMenu extends React.Component {
     this.props.history.push(path);
   };
 
+  //handle event click on all
   onAllClick = (e) => {
     this.setState({
       categoryId: "",
