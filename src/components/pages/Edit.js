@@ -50,9 +50,6 @@ class Edit extends Component {
     }
   };
 
-<<<<<<< Updated upstream
-  //handle change step
-=======
   toggleMenuOpen = () => {
     this.setState({ isOpen: !this.state.isOpen });
     console.log(this.state.isOpen);
@@ -76,7 +73,7 @@ class Edit extends Component {
     }
   }
 
->>>>>>> Stashed changes
+  //handle change step
   onStepClick = (e, index) => {
     e.preventDefault();
     let doneStep2 = localStorage.getItem("doneStep2");
