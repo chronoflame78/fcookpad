@@ -55,17 +55,14 @@ class CreateStep2 extends Component {
     this.mounted = false;
   }
 
+  //handle ingredients change
   handleChange(e, index) {
     let ingredients = this.state.ingredients;
     ingredients[index] = e.target.value;
-    // this.state.ingredients[index] = e.target.value;
     this.setState({ ingredients: ingredients });
   }
 
-  // handleBack(e) {
-  //   this.props.history.push("/step1/" + this.props.match.params.id);
-  // }
-
+  //handle cancle button onClick
   cancelSubmit(e) {
     e.preventDefault();
     let returnURL = localStorage.getItem("returnURL");
@@ -81,6 +78,7 @@ class CreateStep2 extends Component {
     }
   }
 
+  //handle change step
   onStepClick = (e, index) => {
     e.preventDefault();
     let doneStep2 = localStorage.getItem("doneStep2");
