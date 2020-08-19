@@ -191,10 +191,7 @@ class CreateStep3 extends Component {
     }
   }
 
-  // handleBack(e) {
-  //   this.props.history.push("/step2/" + this.props.match.params.id);
-  // }
-
+  //handle cancle submit button onClick
   cancelSubmit(e) {
     e.preventDefault();
     let returnURL = localStorage.getItem("returnURL");
@@ -211,6 +208,7 @@ class CreateStep3 extends Component {
     }
   }
 
+  //handle change step
   onStepClick = (e, index) => {
     console.log(index);
     e.preventDefault();
@@ -221,6 +219,7 @@ class CreateStep3 extends Component {
     }
   };
 
+  //preview image
   handleImageChange(e) {
     e.preventDefault();
 
