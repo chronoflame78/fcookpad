@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../css/Section.css";
 import { NavLink } from "react-router-dom";
-import { getFormattedDate, getFormattedViews } from "../../utils/getFormat";
+import { getFormattedDate, getFormattedViews } from "../../utils/getFormat.js";
 import axios from "axios";
 import swal from "sweetalert";
 import { apiURL } from "../../config/Constant";

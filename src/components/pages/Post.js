@@ -15,7 +15,7 @@ import Page404 from "./error/Page404";
 import Page500 from "./error/Page500";
 import Emoji from "react-emoji-render";
 import { apiURL } from "../../config/Constant";
-import { getFormattedViews, getFormattedDate } from "../../utils/getFormat";
+import { getFormattedViews, getFormattedDate } from "../../utils/getFormat.js";
 import { removeStorage } from "../../utils/removeStorage";
 import swal from "sweetalert";
 

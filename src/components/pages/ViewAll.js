@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import swal from "sweetalert";
 import { TRENDING, NEW } from "../../config/Constant";
 import { apiURL } from "../../config/Constant";
-import { getFormattedViews, getFormattedDate } from "../../utils/getFormat";
+import { getFormattedViews, getFormattedDate } from "../../utils/getFormat.js";
 import { removeStorage } from "../../utils/removeStorage";
 
 class ViewAll extends Component {

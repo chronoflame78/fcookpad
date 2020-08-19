@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 import "../../css/Section.css";
 import Loader from "../common/Loader";
 import { apiURL } from "../../config/Constant";
-import { getFormattedViews, getFormattedDate } from "../../utils/getFormat";
+import { getFormattedViews, getFormattedDate } from "../../utils/getFormat.js";
 import { removeStorage } from "../../utils/removeStorage";
 import swal from "sweetalert";
 
