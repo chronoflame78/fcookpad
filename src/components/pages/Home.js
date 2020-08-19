@@ -98,35 +98,21 @@ class Home extends Component {
     this.mounted = false;
   }
 
-  getFormattedDate(date) {
-    var today = new Date(date);
-    var month = "";
-    if (today.getMonth() < 9) {
-      month = "0" + (today.getMonth() + 1);
-    } else {
-      month = today.getMonth() + 1;
-    }
-    return (
-      today.getDate().toLocaleString("en-US", { minimumIntegerDigits: 2 }) +
-      "/" +
-      month +
-      "/" +
-      today.getFullYear()
-    );
-  }
-
+  //show more trending recipes
   showMoreTrending() {
     this.state.itemsToShowTrending === 4
       ? this.setState({ itemsToShowTrending: 8 })
       : this.setState({ itemsToShowTrending: 4 });
   }
 
+  //show more new recipes
   showMoreNew() {
     this.state.itemsToShowNew === 4
       ? this.setState({ itemsToShowNew: 8 })
       : this.setState({ itemsToShowNew: 4 });
   }
 
+  //handle like button click
   likePost = (e, id) => {
     e.preventDefault();
     axios
