@@ -113,7 +113,7 @@ class Home extends Component {
   }
 
   //handle like button click
-  likePost = (e, id) => {
+  likeRecipe = (e, id) => {
     e.preventDefault();
     axios
       .post(`${apiURL}/recipes/${id}/like`)
@@ -200,7 +200,7 @@ class Home extends Component {
                         {!x.isLiked && (
                           <span
                             className="section-item-view"
-                            onClick={(e) => this.likePost(e, x._id)}
+                            onClick={(e) => this.likeRecipe(e, x._id)}
                           >
                             {x.likes.length}{" "}
                             <i className="far fa-heart like-icon" />
@@ -209,7 +209,7 @@ class Home extends Component {
                         {x.isLiked && (
                           <span
                             className="section-item-view"
-                            onClick={(e) => this.likePost(e, x._id)}
+                            onClick={(e) => this.likeRecipe(e, x._id)}
                           >
                             {x.likes.length}{" "}
                             <i className="fas fa-heart like-icon" />
@@ -300,7 +300,7 @@ class Home extends Component {
                         {!x.isLiked && (
                           <span
                             className="section-item-view"
-                            onClick={(e) => this.likePost(e, x._id)}
+                            onClick={(e) => this.likeRecipe(e, x._id)}
                           >
                             {x.likes.length}{" "}
                             <i className="far fa-heart like-icon" />
@@ -309,7 +309,7 @@ class Home extends Component {
                         {x.isLiked && (
                           <span
                             className="section-item-view"
-                            onClick={(e) => this.likePost(e, x._id)}
+                            onClick={(e) => this.likeRecipe(e, x._id)}
                           >
                             {x.likes.length}{" "}
                             <i className="fas fa-heart like-icon" />
