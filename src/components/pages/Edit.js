@@ -24,11 +24,13 @@ class Edit extends Component {
     this.inputImage = React.createRef();
   }
 
+  //handle image changes
   onChange = (e) => {
     e.preventDefault();
     this.setState({ [e.target.id]: e.target.value });
   };
 
+  //handle cancle submit button onclick
   cancelSubmit = (e) => {
     e.preventDefault();
     let returnURL = localStorage.getItem("returnURL");
@@ -44,6 +46,7 @@ class Edit extends Component {
     }
   };
 
+  //handle change step
   onStepClick = (e, index) => {
     e.preventDefault();
     let doneStep2 = localStorage.getItem("doneStep2");
