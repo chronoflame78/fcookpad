@@ -28,22 +28,25 @@ class Create extends Component {
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
+  //handle input change
   onChange = (e) => {
     e.preventDefault();
     this.setState({ [e.target.id]: e.target.value });
   };
 
+  //handle cancel button
   cancelSubmit = (e) => {
     e.preventDefault();
     this.props.history.push("/");
   };
 
+  //handle toggle menu
   toggleMenuOpen = () => {
     this.setState({ isOpen: !this.state.isOpen });
     console.log(this.state.isOpen);
   }
   
-
+  //handle select category
   onCategoryClick = (e, id, name) => {
     this.setState({
       isOpen: false,
@@ -51,6 +54,29 @@ class Create extends Component {
       dropdown_value: id,
     });
   };
+
+  //set preview image
+  handleImageChange(e) {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    if (file) {
+      reader.onloadend = () => {
+        this.setState({
+          file: file,
+          imagePreviewUrl: reader.result,
+        });
+      };
+
+      reader.readAsDataURL(file);
+    }else{
+      this.setState({
+        file:"",
+        imagePreviewUrl:""
+      })
+    }
+  }
 
   handleClickOutside(event) {
     if (this.categoryRef && this.categoryRef.current) {
@@ -128,28 +154,6 @@ class Create extends Component {
             buttonLoading: false,
           });
         });
-    }
-  }
-
-  handleImageChange(e) {
-    e.preventDefault();
-
-    let reader = new FileReader();
-    let file = e.target.files[0];
-    if (file) {
-      reader.onloadend = () => {
-        this.setState({
-          file: file,
-          imagePreviewUrl: reader.result,
-        });
-      };
-
-      reader.readAsDataURL(file);
-    }else{
-      this.setState({
-        file:"",
-        imagePreviewUrl:""
-      })
     }
   }
 
