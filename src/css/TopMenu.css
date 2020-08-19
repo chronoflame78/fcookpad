@@ -216,16 +216,18 @@
     color: #ff5f6d;
     cursor: pointer;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .top-cate-item:hover{
     background-color: #ff5f6d;
     color: #ffffff;
-
 }
 
-.top-cate-item:after {
-    border-bottom: 1px solid #ff5f6d;
+.top-cate-item div{
+    width: 90%;
+    height: 25px;
 }
 
 .topmenu-abs-div{
@@ -510,11 +512,10 @@
 
 }
 
-.border-bottom {
-    /* border-bottom: 1px solid #ff5f6d; */
-    text-decoration: underline;
-    line-height: 1rem;
+.border-bottom-selected {
+    border-bottom: 1px solid #ff5f6d;
 }
+
 
 .topmenu-plus-icon{
     width: 20px;

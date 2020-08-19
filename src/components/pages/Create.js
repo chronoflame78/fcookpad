@@ -21,7 +21,7 @@ class Create extends Component {
       buttonLoading: false,
       loading: true,
       isOpen: false,
-      categoryName: ""
+      categoryName: "",
     };
     this.inputImage = React.createRef();
     this.categoryRef = React.createRef();
@@ -162,12 +162,13 @@ class Create extends Component {
     let youtube_video = null;
     let embed_video = "";
     let categoryDiv, dropdownText;
-    console.log(this.state.category);
+
     if (!this.state.categoryName) {
       dropdownText = "Danh mục";
     } else {
       dropdownText = this.state.categoryName;
     }
+    
     if (imagePreviewUrl) {
       $imagePreview = (
         <div
@@ -179,9 +180,17 @@ class Create extends Component {
             style={{
               width: "100%",
               height: "705px",
-              backgroundImage: "url(" + imagePreviewUrl + ")",
             }}
-          ></div>
+          >
+            <img
+              style={{
+                objectFit: "cover",
+                height: "100%",
+                width: "100%",
+              }}
+              src={imagePreviewUrl}
+            />
+          </div>
         </div>
       );
     } else {
@@ -381,7 +390,7 @@ class Create extends Component {
                   >
                     Link youtube video{" "}
                     <span className="create-mini-text">
-                    (Ví dụ: https://www.youtube.com/watch?v=RBYDnaP3sto)
+                      (Ví dụ: https://www.youtube.com/watch?v=RBYDnaP3sto)
                     </span>
                   </label>
                 </div>

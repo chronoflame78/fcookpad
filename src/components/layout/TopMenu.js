@@ -24,12 +24,22 @@ class TopMenu extends React.Component {
       avatar: "",
       email: "",
       fullName: "",
+      selectedIndex: "",
+      allSelected: "",
     };
+
+    this.categoryRefs = [];
+
     this.wrapperRef = React.createRef();
     this.avatarRef = React.createRef();
     this.categoryRef = React.createRef();
+    this.selectedRef = React.createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
+
+  setRef = (ref) => {
+    this.categoryRefs.push(ref);
+  };
 
   componentDidMount() {
     document.addEventListener("mousedown", this.handleClickOutside);
@@ -91,13 +101,15 @@ class TopMenu extends React.Component {
     }
   }
 
-  //handle event click on category
-  onCategoryClick = (e, id, name) => {
+  onCategoryClick = (e, id, name, index) => {
     this.setState({
       categoryId: id,
       categoryName: name,
       isMenuOpen: false,
+      selectedIndex: index,
     });
+
+
     let path = "/search?categoryid=" + id;
     if (this.state.searchText)
       path = path.concat("&content=" + this.state.searchText);
@@ -110,6 +122,7 @@ class TopMenu extends React.Component {
       categoryId: "",
       categoryName: "Tất cả",
       isMenuOpen: false,
+      selectedIndex: "",
     });
     let path = "/search";
     if (this.state.searchText)
@@ -141,6 +154,8 @@ class TopMenu extends React.Component {
             categoryName: "Danh mục",
             categoryId: "",
             searchText: "",
+            selectedIndex: "",
+            // allSelected: false
           });
       }
     } else {
@@ -186,7 +201,6 @@ class TopMenu extends React.Component {
     this.setState({
       isOpen: false,
     });
-    // window.location.href = "/";
     toast.success("Logout successfully!", {
       position: toast.POSITION.TOP_RIGHT,
     });
@@ -203,6 +217,7 @@ class TopMenu extends React.Component {
     } else {
       dropdownText = this.state.categoryName;
     }
+    console.log(this.categoryRefs);
     if (isEmpty(user)) {
       avatar = (
         <div>
@@ -212,13 +227,6 @@ class TopMenu extends React.Component {
           <Link to="/login">
             <div className="btn btn-topmenu-login">Đăng nhập</div>
           </Link>
-          {/* <Avatar
-          className="topmenu-margin-auto topmenu-bg topmenu-unauth-ava"
-          signature="nav_avatar"
-          image={"/images/user_white.png"}
-          size={50}
-          tooltip={false}
-        /> */}
           <img
             className="topmenu-unauth-ava"
             width={33}
@@ -246,7 +254,11 @@ class TopMenu extends React.Component {
         );
       } else {
         fixedDiv = (
-          <div ref={this.wrapperRef} className="topmenu-abs-div" style={{display: 'none'}}></div>
+          <div
+            ref={this.wrapperRef}
+            className="topmenu-abs-div"
+            style={{ display: "none" }}
+          ></div>
         );
       }
     } else {
@@ -298,7 +310,11 @@ class TopMenu extends React.Component {
         );
       } else {
         fixedDiv = (
-          <div ref={this.wrapperRef} className="topmenu-abs-div"  style={{display: 'none'}}></div>
+          <div
+            ref={this.wrapperRef}
+            className="topmenu-abs-div"
+            style={{ display: "none" }}
+          ></div>
         );
       }
     }
@@ -308,27 +324,47 @@ class TopMenu extends React.Component {
           <div className="arrow-up"></div>
           <div className="row topcate-row-con" style={{ paddingBottom: "5px" }}>
             <div
-              onClick={(e) => this.onAllClick(e)}
-              className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 top-cate-item cate-item-border"
+              className={
+                "col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 top-cate-item cate-item-border "
+              }
             >
-              Tất cả
+              <div onClick={(e) => this.onAllClick(e)}>Tất cả</div>
             </div>
+
             {this.state.categories.map((x, index) =>
               (index + 2) % 4 !== 0 ? (
-                <div
-                  key={index}
-                  onClick={(e) => this.onCategoryClick(e, x._id, x.title)}
-                  className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 top-cate-item cate-item-border"
-                >
-                  {x.title}
+                <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 top-cate-item cate-item-border">
+                  <div
+                    key={index}
+                    ref={this.setRef}
+                    onClick={(e) =>
+                      this.onCategoryClick(e, x._id, x.title, index)
+                    }
+                    className={
+                      this.state.selectedIndex !== index
+                        ? ""
+                        : "border-bottom-selected"
+                    }
+                  >
+                    {x.title}
+                  </div>
                 </div>
               ) : (
-                <div
-                  key={index}
-                  onClick={(e) => this.onCategoryClick(e, x._id, x.title)}
-                  className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3  top-cate-item"
-                >
-                  {x.title}
+                <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 top-cate-item ">
+                  <div
+                    key={index}
+                    ref={this.setRef}
+                    onClick={(e) =>
+                      this.onCategoryClick(e, x._id, x.title, index)
+                    }
+                    className={
+                      this.state.selectedIndex !== index
+                        ? ""
+                        : "border-bottom-selected"
+                    }
+                  >
+                    {x.title}
+                  </div>
                 </div>
               )
             )}

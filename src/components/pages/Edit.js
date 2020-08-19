@@ -20,8 +20,12 @@ class Edit extends Component {
       buttonLoading: false,
       loading: true,
       error404: false,
+      isOpen: false,
+      categoryName: "",
     };
     this.inputImage = React.createRef();
+    this.categoryRef = React.createRef();
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   //handle image changes
@@ -46,7 +50,33 @@ class Edit extends Component {
     }
   };
 
+<<<<<<< Updated upstream
   //handle change step
+=======
+  toggleMenuOpen = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+    console.log(this.state.isOpen);
+  };
+
+  onCategoryClick = (e, id, name) => {
+    this.setState({
+      isOpen: false,
+      categoryName: name,
+      dropdown_value: id,
+    });
+  };
+
+  handleClickOutside(event) {
+    if (this.categoryRef && this.categoryRef.current) {
+      if (!this.categoryRef.current.contains(event.target)) {
+        this.setState({
+          isOpen: false,
+        });
+      }
+    }
+  }
+
+>>>>>>> Stashed changes
   onStepClick = (e, index) => {
     e.preventDefault();
     let doneStep2 = localStorage.getItem("doneStep2");
@@ -70,7 +100,8 @@ class Edit extends Component {
         axios.spread((...res) => {
           if (this.mounted) {
             if (res[1].data.recipe.video) {
-              let video_url = "https://www.youtube.com/watch?v=" + res[1].data.recipe.video;
+              let video_url =
+                "https://www.youtube.com/watch?v=" + res[1].data.recipe.video;
               this.setState({
                 category: res[0].data.data.categorys,
                 title: res[1].data.recipe.title,
@@ -123,8 +154,7 @@ class Edit extends Component {
         this.state.video.indexOf("https://www.youtube.com/watch?v=") === -1)
     ) {
       this.setState({ errors: { message: "Incorrect youtube video url" } });
-    } 
-    else{
+    } else {
       this.setState({
         buttonLoading: true,
       });
@@ -161,7 +191,6 @@ class Edit extends Component {
           });
         });
     }
-    
   }
 
   handleImageChange(e) {
@@ -178,7 +207,7 @@ class Edit extends Component {
       };
 
       reader.readAsDataURL(file);
-    }else{
+    } else {
       this.setState({
         file: "",
         imagePreviewUrl: "",
@@ -194,6 +223,14 @@ class Edit extends Component {
     let $imagePreview = null;
     let youtube_video = null;
     let embed_video = "";
+    let categoryDiv, dropdownText;
+
+    if (!this.state.categoryName) {
+      dropdownText = "Danh mục";
+    } else {
+      dropdownText = this.state.categoryName;
+    }
+
     if (imagePreviewUrl) {
       $imagePreview = (
         <div
@@ -313,6 +350,25 @@ class Edit extends Component {
         </div>
       );
     }
+
+    if (this.state.isOpen) {
+      categoryDiv = (
+        <div ref={this.categoryRef} className="create-category-abs">
+          <div className="row create-cate-item-container">
+            {this.state.category.map((x, index) => (
+              <div
+                key={index}
+                onClick={(e) => this.onCategoryClick(e, x._id, x.title)}
+                className="col-12 create-cate-item"
+              >
+                {x.title}
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="outer-div">
         <div className="container create-bg-white">
@@ -382,33 +438,33 @@ class Edit extends Component {
             </div>
 
             <div className="row">
-              <div className="col-md-6">
-                <div className="form-group create-dropdown">
-                  <select
-                    onChange={this.onChange}
-                    className="form-control create-form-group create-dropdown-color create-dropdown-style"
-                    value={this.state.dropdown_value}
-                    id="dropdown_value"
+              <div className="col-md-6 create-dropdown-container">
+                <div className="form-group create-dropdown edit-dropdown">
+                  <div
+                    className="input-group-prepend"
+                    onClick={() => this.toggleMenuOpen()}
                   >
-                    <option
-                      className="create-option"
-                      disabled
-                      defaultValue
-                      hidden
-                      value=""
-                    >
-                      Danh mục
-                    </option>
-                    {this.state.category &&
-                      this.state.category.map((x, i) => (
-                        <option className="create-option" key={i} value={x._id}>
-                          {x.title}
-                        </option>
-                      ))}
-                  </select>
+                    {!this.state.isOpen && (
+                      <div className="create-category">
+                        <span className="create-dropdown-txt">
+                          {dropdownText}&nbsp;
+                        </span>
+                        <i className="fas fa-chevron-down down-arrow"></i>
+                      </div>
+                    )}
+                    {this.state.isOpen && (
+                      <div className="create-category">
+                        <span className="create-dropdown-pink-txt">
+                          {dropdownText}&nbsp;
+                        </span>
+                        <i className="fas fa-chevron-up up-arrow"></i>
+                      </div>
+                    )}
+                  </div>
                 </div>
+                <div className="dropdown-container">{categoryDiv}</div>
               </div>
-              <div className="col-md-6">
+              <div className="col-md-6 col-xl-6">
                 <div className="form-group create-form-group create-form-group-youtube">
                   <input
                     autoComplete="off"
@@ -432,6 +488,7 @@ class Edit extends Component {
                 </div>
               </div>
             </div>
+
             <div className="row">
               <div className="col-md-6"></div>
               <div className="col-md-6">{youtube_video}</div>
@@ -490,12 +547,20 @@ class Edit extends Component {
               >
                 Hủy
               </button>
-              {!this.state.buttonLoading && (
+              {!this.state.buttonLoading && action !== "update" && (
                 <div
-                  className="next-arrow"
+                  className="arrow-next"
                   onClick={(e) => this.handleSubmit(e)}
                 >
                   <i className="fas fa-chevron-right"></i>
+                </div>
+              )}
+              {!this.state.buttonLoading && action === "update" && (
+                <div
+                  className="arrow-next"
+                  onClick={(e) => this.handleSubmit(e)}
+                >
+                  <i className="fas fa-check"></i>
                 </div>
               )}
               {this.state.buttonLoading && (

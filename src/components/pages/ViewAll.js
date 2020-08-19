@@ -8,9 +8,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import swal from "sweetalert";
 import { TRENDING, NEW } from "../../config/Constant";
-import {apiURL} from "../../config/Constant";
-import { getFormattedViews, getFormattedDate } from "../../utils/GetFormat";
-import {removeStorage} from "../../utils/removeStorage";
+import { apiURL } from "../../config/Constant";
+import { getFormattedViews, getFormattedDate } from "../../utils/getFormat";
+import { removeStorage } from "../../utils/removeStorage";
 
 class ViewAll extends Component {
   constructor(props) {
@@ -49,11 +49,7 @@ class ViewAll extends Component {
       name = this.props.match.params.name;
       if (name === "trending" || name === "new") {
         axios
-          .get(
-            `${apiURL}/home/recipe_` +
-              name +
-              "?limit=8&page=1"
-          )
+          .get(`${apiURL}/home/recipe_` + name + "?limit=8&page=1")
           .then((res) => {
             if (this.mounted) {
               this.setState({
@@ -77,11 +73,7 @@ class ViewAll extends Component {
         name = this.props.match.params.name;
         if (name === "trending" || name === "new") {
           axios
-            .get(
-              `${apiURL}/home/recipe_` +
-                name +
-                "?limit=8&page=1"
-            )
+            .get(`${apiURL}/home/recipe_` + name + "?limit=8&page=1")
             .then((res) => {
               if (this.mounted) {
                 this.setState({
@@ -150,10 +142,7 @@ class ViewAll extends Component {
     let name = this.props.match.params.name;
     axios
       .get(
-        `${apiURL}/home/recipe_` +
-          name +
-          "?limit=4&page=" +
-          this.state.nextPage
+        `${apiURL}/home/recipe_` + name + "?limit=4&page=" + this.state.nextPage
       )
       .then((res) => {
         const arr = this.state.posts;
@@ -191,13 +180,13 @@ class ViewAll extends Component {
     return (
       <div className="search-container">
         <div className="container search-container-child">
-          <div className="row search-section-title">{ name }</div>
+          <div className="row search-section-title">{name}</div>
           <div className="row search-row">
             {this.state.posts &&
               this.state.posts.map((x, index) => (
                 <div
                   key={index}
-                  className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-3 py-4 col-12"
+                  className="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 py-4 col-12"
                 >
                   <NavLink
                     to={"/posts/" + x._id}
@@ -205,12 +194,20 @@ class ViewAll extends Component {
                   >
                     <div
                       className="section-image-container"
-                      style={{ backgroundImage: "url(" + x.images[0] + ")" }}
                     >
                       <div
                         className="section-image-holder"
-                        style={{ backgroundImage: "url(" + x.images[0] + ")" }}
-                      ></div>
+                      >
+                        <img
+                          style={{
+                            objectFit: "cover",
+                            width: "100%",
+                            height: "100%",
+                            // paddingTop: "75%"
+                          }}
+                          src={x.images[0]}
+                        />
+                      </div>
                       <p className="item-cover">
                         {!x.isLiked && (
                           <span
@@ -256,11 +253,13 @@ class ViewAll extends Component {
             <div
               className="row section-see-more"
               style={{ marginLeft: "0px", marginRight: "0px" }}
-              
             >
               {!this.state.buttonLoadMore && (
-                <button type="submit" className="btn btn-more-pink"
-                onClick={() => this.showMore(this.state.nextPage)}>
+                <button
+                  type="submit"
+                  className="btn btn-more-pink"
+                  onClick={() => this.showMore(this.state.nextPage)}
+                >
                   XEM THÊM
                 </button>
               )}

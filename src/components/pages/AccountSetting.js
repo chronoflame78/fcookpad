@@ -177,11 +177,8 @@ class AccountSetting extends Component {
               position: toast.POSITION.TOP_RIGHT,
             });
           });
-        // swal("Poof! Your post has been deleted!", {
-        //     icon: "success",
-        // });
       } else {
-        // swal("Your imaginary file is safe!");
+
       }
     });
   };
@@ -437,9 +434,15 @@ class AccountSetting extends Component {
                   style={{
                     width: 200,
                     height: 200,
-                    backgroundImage: "url(" + this.state.userInfo.avatar + ")",
                   }}
-                ></div>
+                >
+                  <img style={{
+                    objectFit: "cover",
+                    height: "100%",
+                    width: "100%",
+                    borderRadius: "50%"
+                  }} src={this.state.userInfo.avatar}/>
+                </div>
               )}
               {this.state.imagePreviewUrl && (
                 <div
@@ -447,9 +450,15 @@ class AccountSetting extends Component {
                   style={{
                     width: 200,
                     height: 200,
-                    backgroundImage: "url(" + this.state.imagePreviewUrl + ")",
                   }}
-                ></div>
+                >
+                  <img style={{
+                    objectFit: "cover",
+                    height: "100%",
+                    width: "100%",
+                    borderRadius: "50%"
+                  }} src={this.state.imagePreviewUrl}/>
+                </div>
               )}
               <div className="asetting-name">
                 {this.state.userInfo.fullName}

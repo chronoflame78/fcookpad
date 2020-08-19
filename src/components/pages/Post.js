@@ -15,7 +15,7 @@ import Page404 from "./error/Page404";
 import Page500 from "./error/Page500";
 import Emoji from "react-emoji-render";
 import { apiURL } from "../../config/Constant";
-import { getFormattedViews, getFormattedDate } from "../../utils/GetFormat";
+import { getFormattedViews, getFormattedDate } from "../../utils/getFormat";
 import { removeStorage } from "../../utils/removeStorage";
 import swal from "sweetalert";
 
@@ -248,11 +248,6 @@ class Post extends Component {
                         </div>
                       </div>
                     </div>
-                    {/* <div className="post-share">
-                    <div className="share-icon">
-                      <i class="far fa-share-square"></i>
-                    </div>
-                  </div> */}
                   </div>
                   <div className="col-4 justify-content-end post-avatar-container">
                     <div className="post-avatar">

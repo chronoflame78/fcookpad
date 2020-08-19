@@ -26,10 +26,18 @@ class Avatar extends Component {
             style={{
               width: this.props.size,
               height: this.props.size,
-              backgroundImage: "url(" + this.props.image + ")",
             }}
             id={"TooltipExample-" + this.props.signature}
           >
+            <img
+              style={{
+                objectFit: "cover",
+                height: "100%",
+                width: "100%",
+                borderRadius: "50%",
+              }}
+              src={this.props.image}
+            />
             <Tooltip
               placement="top"
               isOpen={this.state.tooltipOpen}
@@ -49,10 +57,19 @@ class Avatar extends Component {
           style={{
             width: this.props.size,
             height: this.props.size,
-            backgroundImage: "url(" + this.props.image + ")",
           }}
           id={"TooltipExample-" + this.props.signature}
-        ></div>
+        >
+          <img
+            style={{
+              objectFit: "cover",
+              height: "100%",
+              width: "100%",
+              borderRadius: "50%",
+            }}
+            src={this.props.image}
+          />
+        </div>
       );
     }
   }

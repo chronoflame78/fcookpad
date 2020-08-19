@@ -283,6 +283,7 @@
     background-position: center;
     border-radius: 50%;
     border: 1px solid #D3D3D3;
+    object-fit: contain;
 }
 
 .asetting-image-upload{
@@ -662,4 +663,8 @@
     .asetting-title {
         padding-left: 0px !important;
     }
+}
+
+.asetting-avatar-cover img {
+    object-fit: cover;
 }

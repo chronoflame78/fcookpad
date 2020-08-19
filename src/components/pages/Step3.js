@@ -757,12 +757,6 @@ class CreateStep3 extends Component {
               >
                 Hủy
               </button>
-              {/* <div
-                className="back-arrow create-mr"
-                onClick={(e) => this.handleBack(e)}
-              >
-                <i className="fas fa-chevron-left"></i>
-              </div> */}
               {!this.state.buttonLoading && (
                 <div
                   className="arrow-next"
@@ -807,13 +801,6 @@ class CreateStep3 extends Component {
                   Lưu
                 </button>
               )}
-              {/* <button
-                type="submit"
-                className="btn btn-pink create-mr"
-                onClick={(e) => this.handleBack(e)}
-              >
-                Trở lại
-              </button> */}
             </div>
           </form>
         </div>
