@@ -1,11 +1,3 @@
-div {
-    white-space: pre-wrap;      /* Webkit */    
-    white-space: -moz-pre-wrap; /* Firefox */     
-    white-space: -pre-wrap;     /* Opera <7 */    
-    white-space: -o-pre-wrap;   /* Opera 7 */     
-    word-wrap: break-word;      /* IE */ 
-}
-
 .post-container{
     background-color: #fafaf5;
     padding-top: 74px;
@@ -475,13 +467,13 @@ textarea:focus, input:focus{
 .post-ingredients-div {
     height: 90% !important;
     border-left: 1px solid rgba(255, 95, 109, 0.3);
-    /* padding-left: 15px;
-    margin-left: 15px; */
 }
 
 .post-video-wrapper {
     padding-top: 25px;
     padding-bottom: 0px;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
 }
 
 .post-comment-title {
@@ -582,7 +574,6 @@ textarea:focus, input:focus{
 
     .post-title {
         font-size: 25px;
-        /* padding-right: 55px; */
     }
 
     .post-title-icon {
@@ -682,3 +673,4 @@ textarea:focus, input:focus{
     margin-left: 0px !important;
     margin-right: 0px !important;
 }
+

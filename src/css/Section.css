@@ -10,13 +10,18 @@
 
 .section-image-holder{
     width: 100%;
-    padding-top: 75%;
     border-radius: 10px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     filter: brightness(80%);
     transition: all 1s;
+    height: 185px;
+}
+
+.section-image-top-holder {
+    width: 100%;
+    border-radius: 10px;
+    filter: brightness(80%);
+    transition: all 1s;
+    height: 160px;
 }
 
 .section-image-holder:after {
@@ -95,8 +100,6 @@
 .search-section-title:hover a{
     text-decoration: none;
     color: #FF606D;
-    /* transform: translateY(-3px);
-    transition: 1s; */
 }
 
 .section-title2{
@@ -234,6 +237,11 @@
     padding-bottom: 20px;
 }
 
+.image-home {
+    position: absolute;
+    top: 100px;
+}
+
 @media only screen and (max-width: 576px) {
     .home-container-child{
         padding-top: 94px;
@@ -249,6 +257,100 @@
 @media (min-width: 576px){
     .container {
         max-width: 1140px!important;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .section-image-holder {
+        height: 337px;
+    }
+}
+
+@media only screen and (max-width: 910px) {
+    .section-image-holder {
+        height: 304px;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .section-image-holder {
+        height: 285px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .section-image-holder {
+        height: 254px;
+    }
+
+    .section-image-top-holder {
+        height: 247px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .section-image-holder {
+        height: 210px;
+    }
+
+    .section-image-top-holder {
+        height: 210px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .section-image-top-holder {
+        height: 137px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .section-image-holder {
+        height: 386px;
+    }
+
+    .section-image-top-holder {
+        height: 341px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .section-image-holder {
+        height: 330px;
+    }
+
+    .section-image-top-holder {
+        height: 285px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .section-image-holder {
+        height: 292px;
+    }
+
+    .section-image-top-holder {
+        height: 247px;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .section-image-holder {
+        height: 277px;
+    }
+
+    .section-image-top-holder {
+        height: 209px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .section-image-holder {
+        height: 217px;
+    }
+
+    .section-image-top-holder {
+        height: 172px;
     }
 }
 

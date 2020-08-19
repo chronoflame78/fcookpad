@@ -9,11 +9,8 @@ import swal from "sweetalert";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { apiURL } from "../../config/Constant";
-import {
-  getFormattedViews,
-  getFormattedDate,
-} from "../../utils/GetFormat.js";
-import {removeStorage} from "../../utils/removeStorage";
+import { getFormattedViews, getFormattedDate } from "../../utils/getFormat.js";
+import { removeStorage } from "../../utils/removeStorage";
 import "../../css/Home.css";
 
 class Home extends Component {
@@ -216,10 +213,17 @@ class Home extends Component {
                           </span>
                         )}
                       </p>
-                      <div
-                        className="section-image-holder"
-                        style={{ backgroundImage: "url(" + x.images[0] + ")" }}
-                      ></div>
+                      <div className="section-image-holder">
+                        <img
+                          style={{
+                            objectFit: "cover",
+                            height: "100%",
+                            width: "100%",
+                            // paddingTop: "75%"
+                          }}
+                          src={x.images[0]}
+                        />
+                      </div>
                     </div>
                   </NavLink>
                   <div className="section-item-title">
@@ -292,10 +296,17 @@ class Home extends Component {
                     style={{ textDecoration: "none" }}
                   >
                     <div className="section-image-container">
-                      <div
-                        className="section-image-holder"
-                        style={{ backgroundImage: "url(" + x.images[0] + ")" }}
-                      ></div>
+                      <div className="section-image-holder">
+                        <img 
+                          style={{
+                            objectFit: "cover",
+                            width: "100%",
+                            height: "100%"
+                            // paddingTop: "75%"
+                          }}
+                          src={x.images[0]}
+                        />
+                      </div>
                       <p className="item-cover">
                         {!x.isLiked && (
                           <span

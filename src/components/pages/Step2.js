@@ -332,13 +332,15 @@ class CreateStep2 extends Component {
               >
                 Hủy
               </button>
-              {/* <div
-                className="back-arrow create-mr"
-                onClick={(e) => this.handleBack(e)}
-              >
-                <i class="fas fa-chevron-left"></i>
-              </div> */}
-              {!this.state.buttonLoading && (
+              {!this.state.buttonLoading && action ==="update" && (
+                <div
+                  className="arrow-next"
+                  onClick={(e) => this.handleSubmit(e)}
+                >
+                  <i class="fas fa-check"></i>
+                </div>
+              )}
+              {!this.state.buttonLoading && action !=="update" && (
                 <div
                   className="arrow-next"
                   onClick={(e) => this.handleSubmit(e)}
@@ -380,13 +382,6 @@ class CreateStep2 extends Component {
                   Lưu
                 </button>
               )}
-
-              {/* <button
-                className="btn btn-pink create-mr"
-                onClick={(e) => this.handleBack(e)}
-              >
-                Trở lại
-              </button> */}
             </div>
           </form>
         </div>

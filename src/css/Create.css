@@ -754,8 +754,14 @@ select option:hover {
 
 .create-dropdown {
     border-bottom: 1px solid #e5e5e5;
-        color: #FF5F6D;
+    color: #FF5F6D;
 }
+
+.edit-dropdown {
+    margin-bottom: 0px !important;
+}
+
+.edit-dropdown
 
 .create-dropdown:hover {
     cursor: default;
@@ -793,14 +799,14 @@ select option:hover {
     background-color: #ffffff;
     border: 1px solid #ff5f6d;
     z-index: 9999;
-    width: calc(100% - 15px) !important;
+    width: calc(100% - 30px) !important;
     max-height: 300px !important;
     overflow-y: scroll;
     overflow-x: hidden;
     box-shadow: 0px 5px 7px darkgrey;
     box-sizing: content-box;
-    left: 0;
-    right: 0;
+    /* left: 0; */
+    /* right: 0; */
     /* transition: all 0.5s; */
 }
 
