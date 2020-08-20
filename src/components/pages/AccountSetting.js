@@ -158,7 +158,7 @@ class AccountSetting extends Component {
             axios
               .all([
                 axios.get(`${apiURL}/users/${this.props.auth.user.id}`),
-                axios.get(`${apiURL}/users/recipes?page=1&limit=3`),
+                axios.get(`${apiURL}/users/recipes?page=1&limit=6`),
               ])
               .then(
                 axios.spread((...resp) => {
