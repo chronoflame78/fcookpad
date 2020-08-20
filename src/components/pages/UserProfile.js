@@ -27,24 +27,8 @@ class UserProfile extends Component {
     this.showMore = this.showMore.bind(this);
   }
 
-  getFormattedDate(date) {
-    var today = new Date(date);
-    var month = "";
-    if (today.getMonth() < 9) {
-      month = "0" + (today.getMonth() + 1);
-    } else {
-      month = today.getMonth() + 1;
-    }
-    return (
-      today.getDate().toLocaleString("en-US", { minimumIntegerDigits: 2 }) +
-      "/" +
-      month +
-      "/" +
-      today.getFullYear()
-    );
-  }
-
-  likePost = (e, id) => {
+  //handle like recipe button
+  likeRecipe = (e, id) => {
     e.preventDefault();
     axios
       .post(`${apiURL}/recipes/${id}/like`)
@@ -85,6 +69,7 @@ class UserProfile extends Component {
       });
   };
 
+  //load more recipe
   showMore(nextPage) {
     this.setState({
       buttonLoadMore: true,
@@ -256,7 +241,7 @@ class UserProfile extends Component {
                         {!x.isLiked && (
                           <span
                             className="section-item-view"
-                            onClick={(e) => this.likePost(e, x._id)}
+                            onClick={(e) => this.likeRecipe(e, x._id)}
                           >
                             {x.likes.length}{" "}
                             <i className="far fa-heart like-icon" />
@@ -265,7 +250,7 @@ class UserProfile extends Component {
                         {x.isLiked && (
                           <span
                             className="section-item-view"
-                            onClick={(e) => this.likePost(e, x._id)}
+                            onClick={(e) => this.likeRecipe(e, x._id)}
                           >
                             {x.likes.length}{" "}
                             <i className="fas fa-heart like-icon" />
