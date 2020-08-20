@@ -22,7 +22,7 @@ import swal from "sweetalert";
 const isEmpty = require("is-empty");
 const timediff = require("timediff");
 
-class Post extends Component {
+class Recipe extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -70,24 +70,23 @@ class Post extends Component {
       });
   }
 
-  componentDidUpdate() {
-    // this.views = this.state.views + 1;
-  }
-
   componentWillUnmount() {
     this.mounted = false;
   }
 
+  //handle input changes
   onChange = (e) => {
     e.preventDefault();
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  openComment = (e) => {
+  //load more comment
+  openComment = () => {
     this.setState({ isOpen: true });
   };
 
-  likePost = (e, id) => {
+  //handle like button click
+  likeRecipe = (e, id) => {
     e.preventDefault();
     axios
       .post(`${apiURL}/recipes/${id}/like`)
@@ -96,7 +95,6 @@ class Post extends Component {
         let post = res.data.recipe;
         this.setState({
           post: post,
-          // views: post.views
         });
         console.log(this.state.post);
       })
@@ -230,7 +228,7 @@ class Post extends Component {
                         {post.isLiked && (
                           <div
                             className="heart-icon"
-                            onClick={(e) => this.likePost(e, post._id)}
+                            onClick={(e) => this.likeRecipe(e, post._id)}
                           >
                             <i class="fas fa-heart"></i>
                           </div>
@@ -238,7 +236,7 @@ class Post extends Component {
                         {!post.isLiked && (
                           <div
                             className="heart-icon"
-                            onClick={(e) => this.likePost(e, post._id)}
+                            onClick={(e) => this.likeRecipe(e, post._id)}
                           >
                             <i class="far fa-heart"></i>
                           </div>
@@ -503,10 +501,10 @@ class Post extends Component {
     );
   }
 }
-Post.propTypes = {
+Recipe.propTypes = {
   auth: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
-export default connect(mapStateToProps)(Post);
+export default connect(mapStateToProps)(Recipe);

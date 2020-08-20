@@ -6,7 +6,7 @@ import {
   Switch
 } from "react-router-dom";
 import './App.css';
-import Post from "./components/pages/Post";
+import Recipe from "./components/pages/Recipe";
 import Home from "./components/pages/Home";
 import Create from "./components/pages/Create";
 import CreateStep2 from "./components/pages/Step2";
@@ -61,7 +61,7 @@ const DefaultContainer = () => (
     <TopMenu />
     <Switch>
     <Route path="/" exact component={Home} />
-    <Route path="/posts/:id" component={Post} />
+    <Route path="/posts/:id" component={Recipe} />
     <Route path="/user_profile/:id" component={UserProfile} />
     <PrivateRoute path="/create" component={Create} />
     <PrivateRoute path="/step2/:id" component={CreateStep2} />
