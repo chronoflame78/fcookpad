@@ -60,7 +60,7 @@ class VerifyAccount extends Component {
                   <h1><b>Lỗi!</b></h1>
                 </div>
                 <div className="text-container">
-                  <label>Token không đúng hoặc đã hết hạn.
+                  <label>Phiên đăng ký đã hết hạn.
                             </label>
                 </div>
               </div>
