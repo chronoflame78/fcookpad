@@ -1,7 +1,7 @@
 import timediff from "timediff";
 
 const getFormattedViews = (views) => {
-  let formattedViews = views;
+  let formattedViews;
   let flag = true;
   switch (flag) {
     case views >= 100000000:
@@ -21,6 +21,9 @@ const getFormattedViews = (views) => {
       break;
     case views >= 1000:
       formattedViews = String(views).slice(0, 1) + "N";
+      break;
+    default:
+      return views;
       break;
   }
   return formattedViews;
