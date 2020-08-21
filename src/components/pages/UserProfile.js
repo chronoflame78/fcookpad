@@ -27,7 +27,6 @@ class UserProfile extends Component {
     this.showMore = this.showMore.bind(this);
   }
 
-  //get format date
   getFormattedDate(date) {
     var today = new Date(date);
     var month = "";
@@ -44,7 +43,6 @@ class UserProfile extends Component {
       today.getFullYear()
     );
   }
-
 
   //handle like recipe button
   likeRecipe = (e, id) => {
