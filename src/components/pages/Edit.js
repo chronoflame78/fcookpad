@@ -150,7 +150,7 @@ class Edit extends Component {
       (this.state.video &&
         this.state.video.indexOf("https://www.youtube.com/watch?v=") === -1)
     ) {
-      this.setState({ errors: { message: "Incorrect youtube video url" } });
+      this.setState({ errors: { message: "Sai định dạng đường dẫn đến video trên youtube" } });
     } else {
       this.setState({
         buttonLoading: true,

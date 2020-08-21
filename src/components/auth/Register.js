@@ -62,21 +62,21 @@ class Register extends Component {
       this.setState({
         errors: {
           status: "fail",
-          message: "Password không được để trống",
+          message: "Mật khẩu không được để trống",
         },
       });
     } else if (this.state.password !== this.state.passwordConfirm) {
       this.setState({
         errors: {
           status: "fail",
-          message: "Passwood nhập lại không khớp",
+          message: "Mật khẩu nhập lại không khớp",
         },
       });
     } else if (this.state.agree === false) {
       this.setState({
         errors: {
           status: "fail",
-          message: "Please read our terms of service and tick the checkbox",
+          message: "Bạn chưa đồng ý với Điều khoản dịch vụ và Chính sách quyền riêng tư của chúng tôi",
         },
       });
     } else {
