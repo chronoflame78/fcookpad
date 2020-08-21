@@ -92,7 +92,7 @@ class CreateStep2 extends Component {
 
   addIngredient(e) {
     e.preventDefault();
-    if (this.state.ingredients.length < 10) {
+    if (this.state.ingredients.length < 50) {
       this.setState({
         ingredients: [...this.state.ingredients, ""],
       });

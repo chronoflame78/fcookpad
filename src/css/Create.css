@@ -306,6 +306,7 @@
 
 .create-add-btn-container{
     text-align: center;
+    min-height: 90px;
 }
 
 .create-add-ingre{

@@ -738,12 +738,12 @@ class CreateStep3 extends Component {
               </div>
             )}
             <div className="create-add-btn-container">
-              <button
+              {this.state.total_steps !== 5 && <button
                 className="create-add-ingre-step3"
                 onClick={(e) => this.addStep(e)}
               >
                 <i className="fa fa-plus" />
-              </button>
+              </button>}
             </div>
             {!isEmpty(this.state.errors) && (
               <div className="alert alert-danger">
