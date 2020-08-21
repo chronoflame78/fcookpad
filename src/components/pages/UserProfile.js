@@ -27,6 +27,25 @@ class UserProfile extends Component {
     this.showMore = this.showMore.bind(this);
   }
 
+  //get format date
+  getFormattedDate(date) {
+    var today = new Date(date);
+    var month = "";
+    if (today.getMonth() < 9) {
+      month = "0" + (today.getMonth() + 1);
+    } else {
+      month = today.getMonth() + 1;
+    }
+    return (
+      today.getDate().toLocaleString("en-US", { minimumIntegerDigits: 2 }) +
+      "/" +
+      month +
+      "/" +
+      today.getFullYear()
+    );
+  }
+
+
   //handle like recipe button
   likeRecipe = (e, id) => {
     e.preventDefault();
