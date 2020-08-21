@@ -217,6 +217,7 @@ class TopMenu extends React.Component {
     } else {
       dropdownText = this.state.categoryName;
     }
+    console.log(this.categoryRefs);
     if (isEmpty(user)) {
       avatar = (
         <div>
