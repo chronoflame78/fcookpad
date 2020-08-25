@@ -5,22 +5,22 @@ const getFormattedViews = (views) => {
   let flag = true;
   switch (flag) {
     case views >= 100000000:
-      formattedViews = String(views).slice(0, 3) + "Tr";
+      formattedViews = String(views).slice(0, 3) + " Tr";
       break;
     case views >= 10000000:
-      formattedViews = String(views).slice(0, 2) + "Tr";
+      formattedViews = String(views).slice(0, 2) + " Tr";
       break;
     case views >= 1000000:
-      formattedViews = String(views).slice(0, 1) + "Tr";
+      formattedViews = String(views).slice(0, 1) + " Tr";
       break;
     case views >= 100000:
-      formattedViews = String(views).slice(0, 3) + "N";
+      formattedViews = String(views).slice(0, 3) + " N";
       break;
     case views >= 10000:
-      formattedViews = String(views).slice(0, 2) + "N";
+      formattedViews = String(views).slice(0, 2) + " N";
       break;
     case views >= 1000:
-      formattedViews = String(views).slice(0, 1) + "N";
+      formattedViews = String(views).slice(0, 1) + " N";
       break;
     default:
       return views;
