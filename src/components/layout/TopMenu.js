@@ -109,7 +109,6 @@ class TopMenu extends React.Component {
       selectedIndex: index,
     });
 
-
     let path = "/search?categoryid=" + id;
     if (this.state.searchText)
       path = path.concat("&content=" + this.state.searchText);
@@ -326,19 +325,22 @@ class TopMenu extends React.Component {
               className={
                 "col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 top-cate-item cate-item-border "
               }
+              onClick={(e) => this.onAllClick(e)}
             >
-              <div onClick={(e) => this.onAllClick(e)}>Tất cả</div>
+              <div >Tất cả</div>
             </div>
 
             {this.state.categories.map((x, index) =>
               (index + 2) % 4 !== 0 ? (
-                <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 top-cate-item cate-item-border">
+                <div
+                  className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 top-cate-item cate-item-border"
+                  onClick={(e) =>
+                    this.onCategoryClick(e, x._id, x.title, index)
+                  }
+                >
                   <div
                     key={index}
                     ref={this.setRef}
-                    onClick={(e) =>
-                      this.onCategoryClick(e, x._id, x.title, index)
-                    }
                     className={
                       this.state.selectedIndex !== index
                         ? ""
@@ -349,13 +351,15 @@ class TopMenu extends React.Component {
                   </div>
                 </div>
               ) : (
-                <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 top-cate-item ">
+                <div
+                  className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 top-cate-item "
+                  onClick={(e) =>
+                    this.onCategoryClick(e, x._id, x.title, index)
+                  }
+                >
                   <div
                     key={index}
                     ref={this.setRef}
-                    onClick={(e) =>
-                      this.onCategoryClick(e, x._id, x.title, index)
-                    }
                     className={
                       this.state.selectedIndex !== index
                         ? ""
