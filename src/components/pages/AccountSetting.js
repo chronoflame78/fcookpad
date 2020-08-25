@@ -14,6 +14,7 @@ import swal from "sweetalert";
 import { apiURL } from "../../config/Constant";
 import { removeStorage } from "../../utils/removeStorage";
 import { MALE, FEMALE, OTHERS } from "../../config/Constant";
+import { getFormattedViews } from "../../utils/getFormat";
 const isEmpty = require("is-empty");
 
 class AccountSetting extends Component {
@@ -484,7 +485,7 @@ class AccountSetting extends Component {
                   <i className="far fa-eye asetting-icon"></i>Lượt xem:
                 </div>{" "}
                 <div className="asetting-right">
-                  {this.state.userInfo.views}
+                  {getFormattedViews(this.state.userInfo.views)}
                 </div>
               </div>
               <div className="asetting-likes">

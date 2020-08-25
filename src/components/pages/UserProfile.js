@@ -201,7 +201,7 @@ class UserProfile extends Component {
                   />{" "}
                   &nbsp;Lượt xem:
                 </div>{" "}
-                <div className="userp-right">{this.state.userInfo.views}</div>
+                <div className="userp-right">{getFormattedViews(this.state.userInfo.views)}</div>
               </div>
               <div className="userp-likes">
                 <div className="userp-left">
