@@ -9,8 +9,8 @@
 }
 
 .step-padding-custom{
-    padding-left: 0px;
-    padding-right: 0px;
+    /* padding-left: 0px;
+    padding-right: 0px; */
 }
 
 .step-line-bottom {
@@ -56,4 +56,5 @@
         width: 100%;
         padding-top: 10px;
     }
+
 }
