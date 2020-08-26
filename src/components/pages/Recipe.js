@@ -40,6 +40,34 @@ class Recipe extends Component {
     this.views = "";
   }
 
+  // componentDidUpdate() {
+  //   axios
+  //     .get(`${apiURL}/recipes/${this.props.match.params.id}`)
+  //     .then((res) => {
+  //       if (this.mounted) {
+  //         this.setState({
+  //           post: res.data.recipe,
+  //           loading: false,
+  //           comments: res.data.recipe.comments,
+  //           likes: res.data.recipe.likes,
+  //           views: res.data.recipe.views,
+  //         });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       if (error.response.status === 500) {
+  //         this.setState({
+  //           loading: false,
+  //           error500: true,
+  //         });
+  //       } else {
+  //         this.setState({
+  //           loading: false,
+  //         });
+  //       }
+  //     });
+  // }
+
   componentDidMount() {
     removeStorage();
     this.mounted = true;
