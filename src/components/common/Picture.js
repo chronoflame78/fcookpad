@@ -19,6 +19,7 @@ class Picture extends Component {
             width: "100%",
           }}
           src={this.props.src}
+          alt=""
         />
       </div>
     );

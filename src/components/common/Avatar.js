@@ -20,7 +20,7 @@ class Avatar extends Component {
   render() {
     if (this.props.tooltip === true) {
       return (
-        <div class="post-author">
+        <div className="post-author">
           <div
             className={"avatar-cover " + this.props.className}
             style={{
@@ -37,6 +37,7 @@ class Avatar extends Component {
                 borderRadius: "50%",
               }}
               src={this.props.image}
+              alt=""
             />
             <Tooltip
               placement="top"
@@ -47,7 +48,7 @@ class Avatar extends Component {
               {this.props.name}
             </Tooltip>
           </div>
-          <div class="author-name">{this.props.name}</div>
+          <div className="author-name">{this.props.name}</div>
         </div>
       );
     } else {
@@ -67,6 +68,7 @@ class Avatar extends Component {
               width: "100%",
               borderRadius: "50%",
             }}
+            alt=""
             src={this.props.image}
           />
         </div>

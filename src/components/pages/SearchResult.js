@@ -33,7 +33,6 @@ class SearchResult extends Component {
       content: params.content,
       categoryid: params.categoryid,
     };
-    console.log(data);
     let apiLink = `${apiURL}/search?page=1&limit=8`;
     if (data.content) {
       apiLink = apiLink.concat("&content=" + data.content);
@@ -45,7 +44,6 @@ class SearchResult extends Component {
     axios
       .get(apiLink)
       .then((res) => {
-        console.log(res);
         if (this.mounted) {
           this.setState({
             posts: res.data.recipes,
@@ -56,7 +54,6 @@ class SearchResult extends Component {
         }
       })
       .catch((error) => {
-        console.log(error);
         this.setState({
           loading: false,
         });
@@ -94,7 +91,6 @@ class SearchResult extends Component {
           }
         })
         .catch((error) => {
-          console.log(error);
           this.setState({
             loading: false,
           });
@@ -108,7 +104,6 @@ class SearchResult extends Component {
     axios
       .post(`${apiURL}/recipes/${id}/like`)
       .then((res) => {
-        console.log(res);
         let post = res.data.recipe;
         let newArr = this.state.posts;
         for (let x of newArr) {
@@ -121,7 +116,6 @@ class SearchResult extends Component {
         });
       })
       .catch((err) => {
-        console.log(err);
         if (err.response.status === 401) {
           swal("Bạn cần đăng nhập để like bài post này!", {
             buttons: {
@@ -224,6 +218,7 @@ class SearchResult extends Component {
                             width: "100%",
                             height: "100%",
                           }}
+                          alt=""
                           src={x.images[0]}
                         />
                       </div>

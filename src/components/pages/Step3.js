@@ -210,7 +210,6 @@ class CreateStep3 extends Component {
 
   //handle change step
   onStepClick = (e, index) => {
-    console.log(index);
     e.preventDefault();
     if (index === "1") {
       this.props.history.push("/step1/" + this.props.match.params.id);
@@ -325,14 +324,12 @@ class CreateStep3 extends Component {
       formData.append("step5_content", this.state.step_content_5);
     }
     formData.append("step", 3);
-    console.log(formData);
     axios
       .post(
         `${apiURL}/recipes/` + this.props.match.params.id + "/update",
         formData
       )
       .then((res) => {
-        console.log(res);
         if (action === "update") {
           this.props.history.push({
             pathname: "/account_settings",
@@ -375,7 +372,7 @@ class CreateStep3 extends Component {
       imagestep1 = (
         <div
           className="create-image-placeholder"
-          onClick={() => console.log(this.inputImage.current.click())}
+          onClick={() => this.inputImage.current.click()}
         >
           <Picture height="250px" src={imagePreviewUrl1} />
         </div>
@@ -384,7 +381,7 @@ class CreateStep3 extends Component {
       imagestep1 = (
         <div
           className="create-image-placeholder"
-          onClick={() => console.log(this.inputImage.current.click())}
+          onClick={() => this.inputImage.current.click()}
         >
           <img
             className="create-step1-image"
@@ -398,7 +395,7 @@ class CreateStep3 extends Component {
       imagestep2 = (
         <div
           className="create-image-placeholder2"
-          onClick={() => console.log(this.inputImage2.current.click())}
+          onClick={() => this.inputImage2.current.click()}
         >
           <Picture height="250px" src={imagePreviewUrl2} />
         </div>
@@ -407,7 +404,7 @@ class CreateStep3 extends Component {
       imagestep2 = (
         <div
           className="create-image-placeholder2"
-          onClick={() => console.log(this.inputImage2.current.click())}
+          onClick={() => this.inputImage2.current.click()}
         >
           <img
             className="create-step1-image"
@@ -421,7 +418,7 @@ class CreateStep3 extends Component {
       imagestep3 = (
         <div
           className="create-image-placeholder2"
-          onClick={() => console.log(this.inputImage3.current.click())}
+          onClick={() => this.inputImage3.current.click()}
         >
           <Picture height="250px" src={imagePreviewUrl3} />
         </div>
@@ -430,7 +427,7 @@ class CreateStep3 extends Component {
       imagestep3 = (
         <div
           className="create-image-placeholder2"
-          onClick={() => console.log(this.inputImage3.current.click())}
+          onClick={() => this.inputImage3.current.click()}
         >
           <img
             className="create-step1-image"
@@ -444,7 +441,7 @@ class CreateStep3 extends Component {
       imagestep4 = (
         <div
           className="create-image-placeholder2"
-          onClick={() => console.log(this.inputImage4.current.click())}
+          onClick={() => this.inputImage4.current.click()}
         >
           <Picture height="250px" src={imagePreviewUrl4} />
         </div>
@@ -453,7 +450,7 @@ class CreateStep3 extends Component {
       imagestep4 = (
         <div
           className="create-image-placeholder2"
-          onClick={() => console.log(this.inputImage4.current.click())}
+          onClick={() => this.inputImage4.current.click()}
         >
           <img
             className="create-step1-image"
@@ -467,7 +464,7 @@ class CreateStep3 extends Component {
       imagestep5 = (
         <div
           className="create-image-placeholder2"
-          onClick={() => console.log(this.inputImage5.current.click())}
+          onClick={() => this.inputImage5.current.click()}
         >
           <Picture height="250px" src={imagePreviewUrl5} />
         </div>
@@ -476,7 +473,7 @@ class CreateStep3 extends Component {
       imagestep5 = (
         <div
           className="create-image-placeholder2"
-          onClick={() => console.log(this.inputImage5.current.click())}
+          onClick={() => this.inputImage5.current.click()}
         >
           <img
             className="create-step1-image"
@@ -486,7 +483,7 @@ class CreateStep3 extends Component {
         </div>
       );
     }
-    console.log(this.state.loading);
+
     if (this.state.loading) {
       return (
         <div className="outer-div">

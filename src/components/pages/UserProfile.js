@@ -11,6 +11,7 @@ import { apiURL } from "../../config/Constant";
 import { getFormattedViews, getFormattedDate } from "../../utils/getFormat.js";
 import { removeStorage } from "../../utils/removeStorage";
 import swal from "sweetalert";
+import Page404 from "./error/Page404";
 
 const isEmpty = require("is-empty");
 class UserProfile extends Component {
@@ -23,6 +24,7 @@ class UserProfile extends Component {
       nextPage: 2,
       loading: true,
       buttonLoadMore: false,
+      error404: false
     };
     this.showMore = this.showMore.bind(this);
   }
@@ -50,7 +52,6 @@ class UserProfile extends Component {
     axios
       .post(`${apiURL}/recipes/${id}/like`)
       .then((res) => {
-        console.log(res);
         let post = res.data.recipe;
         let newArr = this.state.posts;
         for (let x of newArr) {
@@ -63,7 +64,6 @@ class UserProfile extends Component {
         });
       })
       .catch((err) => {
-        console.log(err);
         if (err.response.status === 401) {
           swal("Bạn cần đăng nhập để like bài post này!", {
             buttons: {
@@ -100,16 +100,14 @@ class UserProfile extends Component {
       )
       .then((res) => {
         const arr = this.state.posts;
-        arr.push(...res.data.allPosts);
+        arr.push(...res.data.allRecipes);
         this.setState({
           nextPage: this.state.nextPage + 1,
           posts: arr,
           buttonLoadMore: false,
         });
-        console.log(this.state.posts);
       })
       .catch((err) => {
-        console.log(err);
         this.setState({
           buttonLoadMore: false,
         });
@@ -129,7 +127,6 @@ class UserProfile extends Component {
       ])
       .then(
         axios.spread((...res) => {
-          console.log(...res);
           if (this.mounted) {
             if (!res[1].data.allRecipes) {
               this.setState({
@@ -149,7 +146,59 @@ class UserProfile extends Component {
           }
         })
       )
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if(err.response && err.response.status === 404){
+          this.setState({
+            loading: false,
+            error404: true
+          })
+        }
+        
+      });
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if(this.props.location.pathname !== prevProps.location.pathname){
+      axios
+      .all([
+        axios.get(`${apiURL}/users/${this.props.match.params.id}`),
+        axios.get(
+          `${apiURL}/users/` + this.props.match.params.id + "/recipes?page=1"
+        ),
+        axios.get(`${apiURL}/users/` + this.props.match.params.id + "/top"),
+      ])
+      .then(
+        axios.spread((...res) => {
+          if (this.mounted) {
+            if(!res[1].data.allRecipes){
+              this.setState({
+                userInfo: res[0].data.user,
+                posts: [],
+                top: [],
+                loading: false,
+              })
+            }else{
+              this.setState({
+                userInfo: res[0].data.user,
+                posts: res[1].data.allRecipes,
+                top: res[2].data.topRecipe,
+                loading: false,
+              });
+            }
+            
+          }
+        })
+      )
+      .catch((err) => {
+        if(err.response && err.response.status === 404){
+          this.setState({
+            loading: false,
+            error404: true
+          })
+        }
+        
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -158,6 +207,7 @@ class UserProfile extends Component {
 
   render() {
     if (this.state.loading) return <Loader />;
+    if (this.state.error404) return <Page404 />;
     return (
       <div className="userp-container">
         <div className="container userp-child-container">
@@ -307,28 +357,27 @@ class UserProfile extends Component {
                 </div>
               ))}
           </div>
-          {this.state.posts &&
-            this.state.posts.length < this.state.userInfo.posts && (
-              <div
-                className="row userp-see-more"
-                style={{ marginLeft: "0px", marginRight: "0px" }}
-              >
-                {!this.state.buttonLoadMore && (
-                  <button
-                    onClick={() => this.showMore(this.state.nextPage)}
-                    type="submit"
-                    className="btn btn-more-pink"
-                  >
-                    XEM THÊM
-                  </button>
-                )}
-                {this.state.buttonLoadMore && (
-                  <button type="submit" className="btn btn-more-pink">
-                    <i class="fa fa-spinner fa-spin"></i>
-                  </button>
-                )}
-              </div>
-            )}
+          {this.state.posts && this.state.posts.length < this.state.userInfo.recipes && (
+            <div
+              className="row userp-see-more"
+              style={{ marginLeft: "0px", marginRight: "0px" }}
+            >
+              {!this.state.buttonLoadMore && (
+                <button
+                  onClick={() => this.showMore(this.state.nextPage)}
+                  type="submit"
+                  className="btn btn-more-userp"
+                >
+                  XEM THÊM
+                </button>
+              )}
+              {this.state.buttonLoadMore && (
+                <button type="submit" className="btn btn-more-userp">
+                  <i class="fa fa-spinner fa-spin"></i>
+                </button>
+              )}
+            </div>
+          )}
         </div>
 
         <Footer />

@@ -49,7 +49,6 @@ class ResetPassword extends Component {
         });
       })
       .catch((err) => {
-        console.log(err);
         this.setState({
           buttonLoading: false,
           errors: err.response.data,

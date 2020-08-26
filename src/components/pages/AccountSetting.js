@@ -143,17 +143,17 @@ class AccountSetting extends Component {
 
   handleDeleteClick = (e, postId) => {
     swal({
-      title: "Do you really want to delete post?",
-      text: "Once deleted, you will not be able to recover this post!",
+      title: "Bạn có chắc chắn muốn xóa công thức này không?",
+      text: "Hành động này không thể phục hồi được!",
       icon: "warning",
-      buttons: ["Cancel", "Delete"],
+      buttons: ["Hủy", "Xóa"],
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
         axios
           .post(`${apiURL}/recipes/${postId}/destroy`)
           .then((res) => {
-            toast.success("Delete successfully!", {
+            toast.success("Xóa thành công!", {
               position: toast.POSITION.TOP_RIGHT,
             });
             axios
@@ -170,10 +170,11 @@ class AccountSetting extends Component {
                   });
                 })
               )
-              .catch((errs) => console.log(errs));
+              .catch((errs) => {
+
+              });
           })
           .catch((err) => {
-            console.log(err);
             toast.error(err.response.data.message, {
               position: toast.POSITION.TOP_RIGHT,
             });
@@ -234,7 +235,7 @@ class AccountSetting extends Component {
               buttonLoading: false,
             });
           })
-          .catch((errs) => console.log(errs));
+          .catch((errs) => {});
       })
       .catch((err) => {
         this.setState({
@@ -299,7 +300,6 @@ class AccountSetting extends Component {
         });
       })
       .catch((err) => {
-        console.log(err);
         this.setState({
           buttonLoadMore: false,
         });
@@ -320,7 +320,6 @@ class AccountSetting extends Component {
       ])
       .then(
         axios.spread((...res) => {
-          console.log(res[1]);
           if (this.mounted) {
             this.setState({
               userInfo: res[0].data.user,
@@ -333,7 +332,6 @@ class AccountSetting extends Component {
         })
       )
       .catch((err) => {
-        console.log(err);
         this.setState({
           loading: false,
         });
@@ -366,7 +364,6 @@ class AccountSetting extends Component {
 
   toggleMenuOpen = () => {
     this.setState({ isOpen: !this.state.isOpen });
-    console.log(this.state.isOpen);
   };
 
   render() {
@@ -389,7 +386,6 @@ class AccountSetting extends Component {
       tab3 = "asetting-tab-active";
     }
 
-    console.log(this.state.userInfoUpdate.gender);
 
     if (!this.state.userInfoUpdate.gender) {
       dropdownText = "Khác";
@@ -437,12 +433,15 @@ class AccountSetting extends Component {
                     height: 200,
                   }}
                 >
-                  <img style={{
+                  <img 
+                  style={{
                     objectFit: "cover",
                     height: "100%",
                     width: "100%",
                     borderRadius: "50%"
-                  }} src={this.state.userInfo.avatar}/>
+                  }}
+                  alt=""
+                   src={this.state.userInfo.avatar}/>
                 </div>
               )}
               {this.state.imagePreviewUrl && (
@@ -453,12 +452,15 @@ class AccountSetting extends Component {
                     height: 200,
                   }}
                 >
-                  <img style={{
+                  <img 
+                  style={{
                     objectFit: "cover",
                     height: "100%",
                     width: "100%",
                     borderRadius: "50%"
-                  }} src={this.state.imagePreviewUrl}/>
+                  }}
+                  alt=""
+                  src={this.state.imagePreviewUrl}/>
                 </div>
               )}
               <div className="asetting-name">
@@ -627,7 +629,7 @@ class AccountSetting extends Component {
                       ></DatePicker>
                       <div className="date-picker-icon col-1">
                         <label htmlFor="datepicker-birthday">
-                          <i class="far fa-calendar-alt"></i>
+                          <i className="far fa-calendar-alt"></i>
                         </label>
                       </div>
                     </div>

@@ -43,7 +43,7 @@ class ViewAll extends Component {
             }
           })
           .catch((err) => {
-            console.log(err);
+
           });
       }
     }
@@ -66,7 +66,7 @@ class ViewAll extends Component {
               }
             })
             .catch((err) => {
-              console.log(err);
+
             });
         }
       }
@@ -83,7 +83,6 @@ class ViewAll extends Component {
     axios
       .post(`${apiURL}/recipes/${id}/like`)
       .then((res) => {
-        console.log(res);
         let post = res.data.recipe;
         let newArr = this.state.posts;
         for (let x of newArr) {
@@ -96,7 +95,6 @@ class ViewAll extends Component {
         });
       })
       .catch((err) => {
-        console.log(err);
         if (err.response.status === 401) {
           swal("Bạn cần đăng nhập để like bài post này!", {
             buttons: {
@@ -186,10 +184,10 @@ class ViewAll extends Component {
                           style={{
                             objectFit: "cover",
                             width: "100%",
-                            height: "100%",
-                            // paddingTop: "75%"
+                            height: "100%"                           
                           }}
                           src={x.images[0]}
+                          alt=""
                         />
                       </div>
                       <p className="item-cover">

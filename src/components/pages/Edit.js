@@ -52,7 +52,6 @@ class Edit extends Component {
 
   toggleMenuOpen = () => {
     this.setState({ isOpen: !this.state.isOpen });
-    console.log(this.state.isOpen);
   };
 
   onCategoryClick = (e, id, name) => {
@@ -163,12 +162,18 @@ class Edit extends Component {
       formData.append("step", 1);
       formData.append("imageCover", this.state.file);
       formData.append("category", this.state.dropdown_value);
-      if (this.state.video)
+      if (this.state.video){
         formData.append(
           "video",
           this.state.video.slice(32)
-          // "https://www.youtube.com/embed/" + this.state.video.slice(32)
         );
+      }
+      else{
+        formData.append(
+          "video", ""
+        );
+      }
+        
       axios
         .post(`${apiURL}/recipes/` + id + "/update", formData)
         .then((res) => {
@@ -234,7 +239,6 @@ class Edit extends Component {
       $imagePreview = (
         <div
           className="img-preview"
-          onClick={() => console.log(this.inputImage.current.click())}
         >
           <div
             className="picture-cover"

@@ -23,7 +23,7 @@ const getFormattedViews = (views) => {
       formattedViews = String(views).slice(0, 1) + " N";
       break;
     default:
-      return views;
+      formattedViews = views;
       break;
   }
   return formattedViews;

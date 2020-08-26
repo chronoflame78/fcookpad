@@ -20,7 +20,6 @@ import { removeStorage } from "../../utils/removeStorage";
 import swal from "sweetalert";
 
 const isEmpty = require("is-empty");
-const timediff = require("timediff");
 
 class Recipe extends Component {
   constructor(props) {
@@ -119,15 +118,12 @@ class Recipe extends Component {
     axios
       .post(`${apiURL}/recipes/${id}/like`)
       .then((res) => {
-        console.log(res);
         let post = res.data.recipe;
         this.setState({
           post: post,
         });
-        console.log(this.state.post);
       })
       .catch((err) => {
-        console.log(err);
         if (err.response.status === 401) {
           swal("Bạn cần đăng nhập để like bài post này!", {
             buttons: {
@@ -176,7 +172,6 @@ class Recipe extends Component {
             errors: { message: "Hãy viết bình luận để gửi nhé" },
             buttonLoading: false,
           });
-          console.log(err);
         });
     }
   }
@@ -185,7 +180,6 @@ class Recipe extends Component {
     if (this.state.loading) return <Loader />;
     if (this.state.error500) return <Page500 />;
     var post = this.state.post;
-    console.log(post);
     var images = [];
     if (this.state.post.images) {
       images = this.state.post.images;
@@ -200,7 +194,6 @@ class Recipe extends Component {
       comments = this.state.comments;
 
       comments.forEach((element) => {
-        console.log(element.datetime);
         element.timeDiff = getFormattedDate(element.datetime);
       });
 
@@ -227,8 +220,6 @@ class Recipe extends Component {
     }
     const { user } = this.props.auth;
     const user_avatar = user.user_avatar;
-    console.log(user);
-    console.log(user_avatar);
     return (
       <div className="post-container">
         <Container className="container-padding-fix">
@@ -258,7 +249,7 @@ class Recipe extends Component {
                             className="heart-icon"
                             onClick={(e) => this.likeRecipe(e, post._id)}
                           >
-                            <i class="fas fa-heart"></i>
+                            <i className="fas fa-heart"></i>
                           </div>
                         )}
                         {!post.isLiked && (
@@ -297,7 +288,7 @@ class Recipe extends Component {
                 </p>
               </Col>
             </div>
-            <div class="empty-block"></div>
+            <div className="empty-block"></div>
             <div className="post-ingredients-and-images row">
               <div className="col-sm-7 col-12 post-images-slider-container">
                 <div className="d-flex flex-column flex-md-row align-items-center slide-container">
@@ -331,7 +322,7 @@ class Recipe extends Component {
                       post.ingredients.length > 5 &&
                       post.ingredients.map((x, index) => (
                         <div className="col-6" key={index}>
-                          <i class="fas fa-carrot fa-xs" /> {x}
+                          <i className="fas fa-carrot fa-xs" /> {x}
                         </div>
                       ))}
                   </div>
@@ -391,7 +382,6 @@ class Recipe extends Component {
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
-                  {console.log(post.video)}
                 </div>
               </Col>
             </Row>
@@ -488,7 +478,6 @@ class Recipe extends Component {
                         name={user.user_name}
                         tooltip={true}
                       />
-                      {console.log(this.props.auth)}
                     </NavLink>
 
                     <div className="post-add-comment-login">

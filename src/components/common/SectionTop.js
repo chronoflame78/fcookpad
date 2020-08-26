@@ -38,12 +38,10 @@ class SectionTop extends Component {
     axios
       .post(`${apiURL}/recipes/${id}/like`)
       .then((res) => {
-        console.log(res);
         let post = res.data.recipe;
         let newArr = this.props.posts;
         
         for (let x of newArr) {
-          console.log(x._id);
           if (x._id === id) {
             Object.assign(x, post);
           }
@@ -53,7 +51,6 @@ class SectionTop extends Component {
         });
       })
       .catch((err) => {
-        console.log(err);
         if (err.response.status === 401) {
           swal("Bạn cần đăng nhập để like bài post này!", {
             buttons: {
@@ -138,6 +135,7 @@ class SectionTop extends Component {
                           width: "100%",
                           height: "100%",
                         }}
+                        alt=""
                         src={x.images[0]}
                       />
                     </div>

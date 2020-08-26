@@ -194,7 +194,7 @@ class Register extends Component {
                     tôi.
                   </label>
                 </div>
-                <div className="register-error">{errors && errors.message}</div>
+                {errors && errors.message && <div className="register-error alert alert-danger">{errors.message}</div>}
                 <div className="login-btn-container">
                   {!this.state.buttonLoading && (
                     <button
@@ -218,25 +218,6 @@ class Register extends Component {
               <Link to="/login">Đăng nhập</Link>
             </div>
 
-            {/* <div className="login-or-div">OR</div>
-            <div className="login-gg-cont">
-              <Link to="/">
-                <img
-                  className="login-btn"
-                  src="/images/log-in-google.png"
-                  alt="Log In"
-                />
-              </Link>
-            </div>
-            <div className="login-fb-cont">
-              <Link to="/">
-                <img
-                  className="login-btn"
-                  src="/images/log-in-fb.png"
-                  alt="Log In"
-                />
-              </Link>
-            </div> */}
           </div>
           <div className="login-form-image"></div>
         </div>

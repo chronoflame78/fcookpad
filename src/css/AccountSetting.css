@@ -506,6 +506,20 @@
     color: #ffffff;
 }
 
+.btn-more-userp{  
+    width: 120px;
+    float: right;
+    background-color: #F9F7F2;
+    font-size: 14px!important;
+    color: #FF5F6D;
+    border:1px solid #FF5F6D!important;
+}
+
+.btn-more-userp:hover{
+    background-color: #FF5F6D;
+    color: #ffffff;
+}
+
 .swal-button--login{
     color: #FF5F6D!important;
     background-color: #ffffff!important;

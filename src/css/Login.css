@@ -250,6 +250,13 @@
 }
 
 .register-error{
+    margin: auto;
+    font-size: 12px;
+    max-width: 300px;
+    margin-bottom: 10px;
+}
+
+.login-error{
     margin: 10px auto;
     font-size: 12px;
 }

@@ -94,7 +94,6 @@ class Create extends Component {
     axios
       .get(`${apiURL}/home/category`)
       .then((res) => {
-        console.log(res);
         if (this.mounted) {
           this.setState({
             category: res.data.data.categorys,
@@ -138,18 +137,14 @@ class Create extends Component {
         formData.append(
           "video",
           this.state.video.slice(32)
-          // "https://www.youtube.com/embed/" + this.state.video.slice(32)
         );
       axios
         .post(`${apiURL}/recipes/create`, formData)
         .then((res) => {
-          console.log(res);
           const { id } = res.data;
           this.props.history.push("/step2/" + id);
         })
         .catch((err) => {
-          console.log(err);
-          console.log(err.response.data);
           this.setState({
             errors: err.response.data,
             buttonLoading: false,
@@ -175,7 +170,7 @@ class Create extends Component {
       $imagePreview = (
         <div
           className="img-preview"
-          onClick={() => console.log(this.inputImage.current.click())}
+          onClick={() => this.inputImage.current.click()}
         >
           <div
             className="picture-cover"
@@ -190,6 +185,7 @@ class Create extends Component {
                 height: "100%",
                 width: "100%",
               }}
+              alt=""
               src={imagePreviewUrl}
             />
           </div>
@@ -280,7 +276,7 @@ class Create extends Component {
               </div>
             </div>
             <div className="create-loading-container">
-              <i class="fa fa-spinner fa-spin"></i>
+              <i className="fa fa-spinner fa-spin"></i>
             </div>
           </div>
           <Footer />
