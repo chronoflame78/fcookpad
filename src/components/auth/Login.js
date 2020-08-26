@@ -126,7 +126,7 @@ class Login extends Component {
 
                   <input type="submit" style={{ display: "none" }} />
                   {!isEmpty(errors) && (
-                    <div className="register-error alert alert-danger">
+                    <div className="login-error alert alert-danger">
                       {errors.message}
                     </div>
                   )}

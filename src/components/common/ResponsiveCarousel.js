@@ -33,12 +33,12 @@ class DemoCarousel extends Component {
         infiniteLoop={true}
         renderArrowPrev={(onClickHandler, hasPrev, label) =>
           hasPrev && (
-            <i style={{ ...arrowStyles, left: 15 }} onClick={onClickHandler} class="fas fa-chevron-left"></i>
+            <i style={{ ...arrowStyles, left: 15 }} onClick={onClickHandler} className="fas fa-chevron-left"></i>
           )
         }
         renderArrowNext={(onClickHandler, hasNext, label) =>
           hasNext && (
-            <i  style={{ ...arrowStyles, right: 15 }} onClick={onClickHandler} class="fas fa-chevron-right"></i>
+            <i  style={{ ...arrowStyles, right: 15 }} onClick={onClickHandler} className="fas fa-chevron-right"></i>
           )
         }
         renderIndicator={(onClickHandler, isSelected, index, label) => {

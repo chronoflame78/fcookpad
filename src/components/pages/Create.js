@@ -262,7 +262,7 @@ class Create extends Component {
               </div>
             </div>
             <div className="create-loading-container">
-              <i class="fa fa-spinner fa-spin"></i>
+              <i className="fa fa-spinner fa-spin"></i>
             </div>
           </div>
           <Footer />

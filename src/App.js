@@ -62,7 +62,7 @@ const DefaultContainer = () => (
     <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/posts/:id" component={Recipe} />
-    <Route path="/user_profile/:id" component={UserProfile} />
+    <Route path="/user_profile/:id" exact component={UserProfile} />
     <PrivateRoute path="/create" component={Create} />
     <PrivateRoute path="/step2/:id" component={CreateStep2} />
     <PrivateRoute path="/step3/:id" component={CreateStep3} />

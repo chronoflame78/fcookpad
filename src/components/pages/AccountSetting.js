@@ -143,17 +143,17 @@ class AccountSetting extends Component {
 
   handleDeleteClick = (e, postId) => {
     swal({
-      title: "Do you really want to delete post?",
-      text: "Once deleted, you will not be able to recover this post!",
+      title: "Bạn có chắc chắn muốn xóa công thức này không?",
+      text: "Hành động này không thể phục hồi được!",
       icon: "warning",
-      buttons: ["Cancel", "Delete"],
+      buttons: ["Hủy", "Xóa"],
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
         axios
           .post(`${apiURL}/recipes/${postId}/destroy`)
           .then((res) => {
-            toast.success("Delete successfully!", {
+            toast.success("Xóa thành công!", {
               position: toast.POSITION.TOP_RIGHT,
             });
             axios
@@ -629,7 +629,7 @@ class AccountSetting extends Component {
                       ></DatePicker>
                       <div className="date-picker-icon col-1">
                         <label htmlFor="datepicker-birthday">
-                          <i class="far fa-calendar-alt"></i>
+                          <i className="far fa-calendar-alt"></i>
                         </label>
                       </div>
                     </div>

@@ -30,7 +30,7 @@ class Step extends Component {
             )}
             {this.props.image.length === 26 && (
               <div className="row no-image-step">
-                <div className="col-lg-6">
+                <div className="col-lg-12">
                   <div className="mt-3 step-txt-description">
                     <div className="step-title">{this.props.title}</div>
                     <div className="step-content">{this.props.description}</div>
@@ -52,7 +52,7 @@ class Step extends Component {
               <div className="row">
                 <div className="col-lg-6">
                   <div className="mt-3 step-txt-description">
-                    <div class="step-title">{this.props.title}</div>
+                    <div className="step-title">{this.props.title}</div>
                     <div className="step-content">{this.props.description}</div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@ class Step extends Component {
             )}
             {this.props.image.length === 26 && (
               <div className="row no-image-step">
-                <div className="col-md-6">
+                <div className="col-md-12">
                   <div className="mt-3 step-txt-description">
                     <div className="step-title">{this.props.title}</div>
                     <div className="step-content">{this.props.description}</div>
@@ -90,7 +90,7 @@ class Step extends Component {
               <div className="row">
                 <div className="col-lg-6 order-lg-2">
                   <div className="mt-3 step-txt-description">
-                    <div class="step-title">{this.props.title}</div>
+                    <div className="step-title">{this.props.title}</div>
                     <div className="step-content">{this.props.description}</div>
                   </div>
                 </div>
@@ -109,7 +109,7 @@ class Step extends Component {
             )}
             {this.props.image.length === 26 && (
               <div className="row no-image-step">
-                <div className="col-md-6">
+                <div className="col-md-12">
                   <div className="mt-3 step-txt-description">
                     <div className="step-title">{this.props.title}</div>
                     <div className="step-content">{this.props.description}</div>

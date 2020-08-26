@@ -334,12 +334,12 @@ class TopMenu extends React.Component {
               (index + 2) % 4 !== 0 ? (
                 <div
                   className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 top-cate-item cate-item-border"
+                  key={index}
                   onClick={(e) =>
                     this.onCategoryClick(e, x._id, x.title, index)
                   }
                 >
                   <div
-                    key={index}
                     ref={this.setRef}
                     className={
                       this.state.selectedIndex !== index
@@ -353,12 +353,12 @@ class TopMenu extends React.Component {
               ) : (
                 <div
                   className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 top-cate-item "
+                  key={index}
                   onClick={(e) =>
                     this.onCategoryClick(e, x._id, x.title, index)
                   }
                 >
-                  <div
-                    key={index}
+                  <div    
                     ref={this.setRef}
                     className={
                       this.state.selectedIndex !== index

@@ -221,7 +221,7 @@ class Recipe extends Component {
                             className="heart-icon"
                             onClick={(e) => this.likeRecipe(e, post._id)}
                           >
-                            <i class="fas fa-heart"></i>
+                            <i className="fas fa-heart"></i>
                           </div>
                         )}
                         {!post.isLiked && (
@@ -260,7 +260,7 @@ class Recipe extends Component {
                 </p>
               </Col>
             </div>
-            <div class="empty-block"></div>
+            <div className="empty-block"></div>
             <div className="post-ingredients-and-images row">
               <div className="col-sm-7 col-12 post-images-slider-container">
                 <div className="d-flex flex-column flex-md-row align-items-center slide-container">
@@ -294,7 +294,7 @@ class Recipe extends Component {
                       post.ingredients.length > 5 &&
                       post.ingredients.map((x, index) => (
                         <div className="col-6" key={index}>
-                          <i class="fas fa-carrot fa-xs" /> {x}
+                          <i className="fas fa-carrot fa-xs" /> {x}
                         </div>
                       ))}
                   </div>
