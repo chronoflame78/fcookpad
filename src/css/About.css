@@ -1,0 +1,56 @@
+.mlem-about {
+    display: block;
+    background-color: bisque;
+    /* position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0; */
+}
+
+.team-title {
+    padding-top: 100px;
+    justify-content: center;
+    font-size: 32px;
+}
+
+.team-name {
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.member-container {
+    display: block !important;
+}
+
+.test-lead-container, .lil-xuan-container, .leo-nguyen-container, .hieu-bolt-container, .longlh-container {
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    min-width: 100%;
+    padding-top: 75%;
+    border-radius: 20px;
+}
+
+.test-lead-container {
+    background-image: url('/images/test-lead.jpg');
+}
+
+.lil-xuan-container {
+    background-image: url('/images/test-lead.jpg');
+}
+
+.leo-nguyen-container {
+    background-image: url('/images/test-lead.jpg');
+}
+
+.hieu-bolt-container {
+    background-image: url('/images/test-lead.jpg');
+}
+
+.longlh-container {
+    background-image: url('/images/test-lead.jpg');
+}

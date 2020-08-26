@@ -128,14 +128,14 @@ class UserProfile extends Component {
       .then(
         axios.spread((...res) => {
           if (this.mounted) {
-            if(!res[1].data.allRecipes){
+            if (!res[1].data.allRecipes) {
               this.setState({
                 userInfo: res[0].data.user,
                 posts: [],
                 top: [],
                 loading: false,
-              })
-            }else{
+              });
+            } else {
               this.setState({
                 userInfo: res[0].data.user,
                 posts: res[1].data.allRecipes,
@@ -143,7 +143,6 @@ class UserProfile extends Component {
                 loading: false,
               });
             }
-            
           }
         })
       )
@@ -251,7 +250,9 @@ class UserProfile extends Component {
                   />{" "}
                   &nbsp;Lượt xem:
                 </div>{" "}
-                <div className="userp-right">{getFormattedViews(this.state.userInfo.views)}</div>
+                <div className="userp-right">
+                  {getFormattedViews(this.state.userInfo.views)}
+                </div>
               </div>
               <div className="userp-likes">
                 <div className="userp-left">
@@ -290,7 +291,7 @@ class UserProfile extends Component {
                   paddingTop: "15px",
                 }}
               >
-                Bạn chưa có bài đăng nào
+                Người dùng chưa có bài đăng nào
               </div>
             )}
             {!isEmpty(this.state.posts) &&
@@ -324,10 +325,16 @@ class UserProfile extends Component {
                           </span>
                         )}
                       </p>
-                      <div
-                        className="section-image-holder"
-                        style={{ backgroundImage: "url(" + x.images[0] + ")" }}
-                      ></div>
+                      <div className="section-image-holder">
+                        <img
+                          style={{
+                            objectFit: "cover",
+                            height: "100%",
+                            width: "100%",
+                          }}
+                          src={x.images[0]}
+                        />
+                      </div>
                     </div>
                   </NavLink>
                   <div className="section-item-title">

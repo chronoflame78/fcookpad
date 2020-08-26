@@ -92,7 +92,7 @@ class SectionTop extends Component {
                 paddingTop: "15px",
               }}
             >
-              Bạn chưa có bài đăng nào
+              Người dùng chưa có bài đăng nào
             </div>
           )}
           {topFourPosts &&
@@ -105,7 +105,7 @@ class SectionTop extends Component {
                   to={"/posts/" + x._id}
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="section-image-container">
+                  <div className="section-image-container" style={{ marginTop: "25px" }}>
                     <p className="item-cover">
                       {!x.isLiked && (
                         <span
@@ -134,7 +134,6 @@ class SectionTop extends Component {
                           objectFit: "cover",
                           width: "100%",
                           height: "100%",
-                          // paddingTop: "75%"
                         }}
                         alt=""
                         src={x.images[0]}

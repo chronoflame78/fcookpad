@@ -149,7 +149,9 @@ class Edit extends Component {
       (this.state.video &&
         this.state.video.indexOf("https://www.youtube.com/watch?v=") === -1)
     ) {
-      this.setState({ errors: { message: "Sai định dạng đường dẫn đến video trên youtube" } });
+      this.setState({
+        errors: { message: "Sai định dạng đường dẫn đến video trên youtube" },
+      });
     } else {
       this.setState({
         buttonLoading: true,
@@ -243,9 +245,17 @@ class Edit extends Component {
             style={{
               width: "100%",
               height: "705px",
-              backgroundImage: "url(" + imagePreviewUrl + ")",
             }}
-          ></div>
+          >
+            <img
+              style={{
+                objectFit: "cover",
+                height: "100%",
+                width: "100%",
+              }}
+              src={imagePreviewUrl}
+            />
+          </div>
         </div>
       );
     } else {
