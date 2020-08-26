@@ -33,3 +33,7 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+
+.search-container-child {
+    min-height: 720px;
+}

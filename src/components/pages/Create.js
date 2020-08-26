@@ -43,8 +43,8 @@ class Create extends Component {
   //handle toggle menu
   toggleMenuOpen = () => {
     this.setState({ isOpen: !this.state.isOpen });
-  }
-  
+  };
+
   //handle select category
   onCategoryClick = (e, id, name) => {
     this.setState({
@@ -69,11 +69,11 @@ class Create extends Component {
       };
 
       reader.readAsDataURL(file);
-    }else{
+    } else {
       this.setState({
-        file:"",
-        imagePreviewUrl:""
-      })
+        file: "",
+        imagePreviewUrl: "",
+      });
     }
   }
 
@@ -121,7 +121,9 @@ class Create extends Component {
       (this.state.video &&
         this.state.video.indexOf("https://www.youtube.com/watch?v=") === -1)
     ) {
-      this.setState({ errors: { message: "Sai định dạng đường dẫn đến video trên youtube" } });
+      this.setState({
+        errors: { message: "Sai định dạng đường dẫn đến video trên youtube" },
+      });
     } else {
       this.setState({
         buttonLoading: true,
@@ -168,7 +170,7 @@ class Create extends Component {
     } else {
       dropdownText = this.state.categoryName;
     }
-    
+
     if (imagePreviewUrl) {
       $imagePreview = (
         <div
@@ -214,8 +216,20 @@ class Create extends Component {
         </div>
       );
     }
-    if (video.indexOf("https://www.youtube.com/watch?v=") > -1) {
-      embed_video = "https://www.youtube.com/embed/" + video.slice(32);
+    if (
+      video.indexOf("https://www.youtube.com/watch?v=") > -1 ||
+      video.indexOf("https://youtu.be/") > -1
+    ) {
+      let flag = true;
+      switch (flag) {
+        case video.indexOf("https://youtu.be/") > -1:
+          embed_video = "https://www.youtube.com/embed/" + video.slice(17);
+          break;
+        default:
+          embed_video = "https://www.youtube.com/embed/" + video.slice(32);
+          break;
+      }
+
       youtube_video = (
         <iframe
           title="video"
@@ -397,8 +411,8 @@ class Create extends Component {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-6"></div>
-              <div className="col-md-6">{youtube_video}</div>
+              <div className="col-lg-6"></div>
+              <div className="create-youtube-video col-lg-6 col-md-12">{youtube_video}</div>
             </div>
 
             <input
