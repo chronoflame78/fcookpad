@@ -131,14 +131,14 @@ class UserProfile extends Component {
         axios.spread((...res) => {
           console.log(...res);
           if (this.mounted) {
-            if(!res[1].data.allRecipes){
+            if (!res[1].data.allRecipes) {
               this.setState({
                 userInfo: res[0].data.user,
                 posts: [],
                 top: [],
                 loading: false,
-              })
-            }else{
+              });
+            } else {
               this.setState({
                 userInfo: res[0].data.user,
                 posts: res[1].data.allRecipes,
@@ -146,7 +146,6 @@ class UserProfile extends Component {
                 loading: false,
               });
             }
-            
           }
         })
       )
@@ -201,7 +200,9 @@ class UserProfile extends Component {
                   />{" "}
                   &nbsp;Lượt xem:
                 </div>{" "}
-                <div className="userp-right">{getFormattedViews(this.state.userInfo.views)}</div>
+                <div className="userp-right">
+                  {getFormattedViews(this.state.userInfo.views)}
+                </div>
               </div>
               <div className="userp-likes">
                 <div className="userp-left">
@@ -240,7 +241,7 @@ class UserProfile extends Component {
                   paddingTop: "15px",
                 }}
               >
-                Bạn chưa có bài đăng nào
+                Người dùng chưa có bài đăng nào
               </div>
             )}
             {!isEmpty(this.state.posts) &&
@@ -274,10 +275,16 @@ class UserProfile extends Component {
                           </span>
                         )}
                       </p>
-                      <div
-                        className="section-image-holder"
-                        style={{ backgroundImage: "url(" + x.images[0] + ")" }}
-                      ></div>
+                      <div className="section-image-holder">
+                        <img
+                          style={{
+                            objectFit: "cover",
+                            height: "100%",
+                            width: "100%",
+                          }}
+                          src={x.images[0]}
+                        />
+                      </div>
                     </div>
                   </NavLink>
                   <div className="section-item-title">
@@ -300,27 +307,28 @@ class UserProfile extends Component {
                 </div>
               ))}
           </div>
-          {this.state.posts && this.state.posts.length < this.state.userInfo.posts && (
-            <div
-              className="row userp-see-more"
-              style={{ marginLeft: "0px", marginRight: "0px" }}
-            >
-              {!this.state.buttonLoadMore && (
-                <button
-                  onClick={() => this.showMore(this.state.nextPage)}
-                  type="submit"
-                  className="btn btn-more-pink"
-                >
-                  XEM THÊM
-                </button>
-              )}
-              {this.state.buttonLoadMore && (
-                <button type="submit" className="btn btn-more-pink">
-                  <i class="fa fa-spinner fa-spin"></i>
-                </button>
-              )}
-            </div>
-          )}
+          {this.state.posts &&
+            this.state.posts.length < this.state.userInfo.posts && (
+              <div
+                className="row userp-see-more"
+                style={{ marginLeft: "0px", marginRight: "0px" }}
+              >
+                {!this.state.buttonLoadMore && (
+                  <button
+                    onClick={() => this.showMore(this.state.nextPage)}
+                    type="submit"
+                    className="btn btn-more-pink"
+                  >
+                    XEM THÊM
+                  </button>
+                )}
+                {this.state.buttonLoadMore && (
+                  <button type="submit" className="btn btn-more-pink">
+                    <i class="fa fa-spinner fa-spin"></i>
+                  </button>
+                )}
+              </div>
+            )}
         </div>
 
         <Footer />
