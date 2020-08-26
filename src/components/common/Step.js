@@ -6,7 +6,6 @@ class Step extends Component {
 
   render() {
     if (this.props.num === 0) {
-      console.log(this.props.image.length);
       return (
         <div className="step-custom-div step-1-custom-div">
           <div className="container">
@@ -43,7 +42,6 @@ class Step extends Component {
         </div>
       );
     } else if (this.props.num % 2 === 0) {
-      console.log(this.props.image.length);
 
       return (
         <div className="step-custom-div">
@@ -93,7 +91,6 @@ class Step extends Component {
                 <div className="col-lg-6 order-lg-2">
                   <div className="mt-3 step-txt-description">
                     <div class="step-title">{this.props.title}</div>
-                    {console.log(this.props.title)}
                     <div className="step-content">{this.props.description}</div>
                   </div>
                 </div>

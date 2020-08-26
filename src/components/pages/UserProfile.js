@@ -50,7 +50,6 @@ class UserProfile extends Component {
     axios
       .post(`${apiURL}/recipes/${id}/like`)
       .then((res) => {
-        console.log(res);
         let post = res.data.recipe;
         let newArr = this.state.posts;
         for (let x of newArr) {
@@ -63,7 +62,6 @@ class UserProfile extends Component {
         });
       })
       .catch((err) => {
-        console.log(err);
         if (err.response.status === 401) {
           swal("Bạn cần đăng nhập để like bài post này!", {
             buttons: {
@@ -106,10 +104,8 @@ class UserProfile extends Component {
           posts: arr,
           buttonLoadMore: false,
         });
-        console.log(this.state.posts);
       })
       .catch((err) => {
-        console.log(err);
         this.setState({
           buttonLoadMore: false,
         });
@@ -129,7 +125,6 @@ class UserProfile extends Component {
       ])
       .then(
         axios.spread((...res) => {
-          console.log(...res);
           if (this.mounted) {
             if(!res[1].data.allRecipes){
               this.setState({
@@ -150,7 +145,7 @@ class UserProfile extends Component {
           }
         })
       )
-      .catch((err) => console.log(err));
+      .catch((err) => {});
   }
 
   componentWillUnmount() {

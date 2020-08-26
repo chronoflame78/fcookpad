@@ -39,7 +39,6 @@ class ConfirmEmail extends Component {
           60000
         )
       }).catch((err) => {
-        console.log(err);
         this.setState({
           buttonLoading: false
         })

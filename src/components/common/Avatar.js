@@ -37,6 +37,7 @@ class Avatar extends Component {
                 borderRadius: "50%",
               }}
               src={this.props.image}
+              alt=""
             />
             <Tooltip
               placement="top"
@@ -67,6 +68,7 @@ class Avatar extends Component {
               width: "100%",
               borderRadius: "50%",
             }}
+            alt=""
             src={this.props.image}
           />
         </div>

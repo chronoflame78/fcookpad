@@ -34,9 +34,10 @@ class CommentAvatar extends Component {
                 objectFit: "cover",
                 height: "100%",
                 width: "100%",
-                borderRadius: "50%",
+                borderRadius: "50%"
               }}
               src={this.props.image}
+              alt=""
             />
             <Tooltip
               placement="top"
@@ -66,6 +67,7 @@ class CommentAvatar extends Component {
               width: "100%",
               borderRadius: "50%",
             }}
+            alt=""
             src={this.props.image}
           />
         </div>

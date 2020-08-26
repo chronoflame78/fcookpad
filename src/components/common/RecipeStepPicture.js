@@ -13,6 +13,7 @@ class RecipeStepPicture extends Component {
             borderRadius: "20px"
           }}
           src={this.props.src}
+          alt=""
         />
       </div>
     );

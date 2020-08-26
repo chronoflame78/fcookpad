@@ -50,7 +50,7 @@ class Home extends Component {
           })
         )
         .catch((error) => {
-          console.log(error);
+
         });
     }
   }
@@ -76,12 +76,11 @@ class Home extends Component {
         })
       )
       .catch((error) => {
-        console.log(error);
+
       });
 
     if (this.props.location.state) {
       var { createSuccess } = this.props.location.state;
-      console.log(createSuccess);
       if (createSuccess === true) {
         toast.success("Create successfully!", {
           position: toast.POSITION.TOP_RIGHT,
@@ -115,7 +114,6 @@ class Home extends Component {
     axios
       .post(`${apiURL}/recipes/${id}/like`)
       .then((res) => {
-        console.log(res);
         let post = res.data.recipe;
         let newArr = this.state.post_trending;
         let newArr2 = this.state.post_new;
@@ -129,7 +127,6 @@ class Home extends Component {
         });
       })
       .catch((err) => {
-        console.log(err);
         if (err.response.status === 401) {
           swal("Bạn cần đăng nhập để like bài post này!", {
             buttons: {
@@ -219,8 +216,8 @@ class Home extends Component {
                             objectFit: "cover",
                             height: "100%",
                             width: "100%",
-                            // paddingTop: "75%"
                           }}
+                          alt=""
                           src={x.images[0]}
                         />
                       </div>
@@ -302,9 +299,9 @@ class Home extends Component {
                             objectFit: "cover",
                             width: "100%",
                             height: "100%"
-                            // paddingTop: "75%"
                           }}
                           src={x.images[0]}
+                          alt=""
                         />
                       </div>
                       <p className="item-cover">

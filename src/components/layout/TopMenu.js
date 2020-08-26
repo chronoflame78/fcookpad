@@ -53,7 +53,6 @@ class TopMenu extends React.Component {
           });
         })
         .catch((err) => {
-          console.log(err);
         });
     } else {
       axios
@@ -72,7 +71,7 @@ class TopMenu extends React.Component {
           })
         )
         .catch((err) => {
-          console.log(err);
+
         });
     }
   }
@@ -164,14 +163,15 @@ class TopMenu extends React.Component {
           axios
             .get(`${apiURL}/users`)
             .then((res) => {
-              if (prevState.avatar !== res.data.freshUser.avatar) {
+              if (prevState.avatar !== res.data.freshUser.avatar || prevState.fullName !== res.data.freshUser.fullName) {
                 this.setState({
                   avatar: res.data.freshUser.avatar,
+                  fullName: res.data.freshUser.fullName
                 });
               }
             })
             .catch((err) => {
-              console.log(err);
+
             });
         }
       }

@@ -171,7 +171,6 @@ class CreateStep2 extends Component {
         done: doneStep2,
       },
     ];
-    console.log(this.state.loading);
     if (this.state.loading) {
       return (
         <div className="outer-div">
