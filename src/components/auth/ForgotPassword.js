@@ -40,9 +40,10 @@ class ForgotPassword extends Component {
           "Một email đã được gửi đến hòm thư của bạn!",
           "success"
         ).then((res) => {
-          $(".email-input").val('');
-          $(".btn-send-email").addClass('btn-pink');
-          $('.btn-send-email').removeClass('btn-pink-disabled');
+          this.setState({
+            email: "",
+            sent: false
+          })
         });
       })
       .catch((err) => {
@@ -72,14 +73,12 @@ class ForgotPassword extends Component {
       } else {
         button = (
           <div className="resend-btn-container">
-            <Link to="/">
               <button
                 className="btn btn-pink btn-login btn-send-email"
                 onClick={this.sendEmail}
               >
                 Gửi email
               </button>
-            </Link>
           </div>
         );
       }
@@ -87,14 +86,15 @@ class ForgotPassword extends Component {
       button = (
         <div>
           <div className="resend-btn-container">
-          <button className="btn btn-pink-disabled btn-login" disabled>
-              <div class="inside-disabled-btn">
-                <div>Đã gửi, thử lại sau</div>
-                <Timer />
-              </div>
-            </button>
+          <button
+                className="btn btn-pink btn-login btn-send-email"
+                onClick={this.sendEmail}
+              >
+                Gửi email
+              </button>
           </div>
         </div>
+        
       );
     }
 
