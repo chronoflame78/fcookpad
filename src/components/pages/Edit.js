@@ -239,6 +239,7 @@ class Edit extends Component {
       $imagePreview = (
         <div
           className="img-preview"
+          onClick={() => this.inputImage.current.click()}
         >
           <div
             className="picture-cover"

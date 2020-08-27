@@ -47,6 +47,23 @@ test('format_view', () => {
     expect(getFormattedViews(999999999)).toBe("999Tr");
   });
 
+  test('format_date_inside', () => {
+    expect(getDateString("2020-08-19T07:28:45.167Z")).toBe("19/08/2020");  
+    expect(getDateString("2020-08-01T07:28:45.167Z")).toBe("01/08/2020");  
+    expect(getDateString("2020-08-30T07:28:45.167Z")).toBe("30/08/2020");  
+    expect(getDateString("2020-12-31T07:28:45.167Z")).toBe("31/12/2020");  
+    expect(getDateString("2020-01-01T07:28:45.167Z")).toBe("01/01/2020");  
+    expect(getDateString("2021-04-15T07:28:45.167Z")).toBe("15/04/2021");  
+    expect(getDateString("2019-07-30T07:28:45.167Z")).toBe("30/07/2019");  
+    expect(getDateString("2020-02-28T07:28:45.167Z")).toBe("28/02/2020");  
+    expect(getDateString("2018-08-22T07:28:45.167Z")).toBe("22/08/2018");  
+    expect(getDateString("1998-02-03T07:28:45.167Z")).toBe("03/02/1998");  
+    expect(getDateString("1980-02-03T07:28:45.167Z")).toBe("03/02/1980"); 
+    expect(getDateString("2022-04-04T07:28:45.167Z")).toBe("04/04/2022"); 
+    expect(getDateString("2010-02-03T07:28:45.167Z")).toBe("03/02/2010"); 
+    expect(getDateString("2015-12-31T07:28:45.167Z")).toBe("31/12/2015"); 
+  });
+
   test('format_date', () => {
     expect(getFormattedDate("2017-31-12T07:28:45.167Z")).toBe("31/12/2017");
     expect(getFormattedDate("2018-12-12T07:28:45.167Z")).toBe("12/12/2019");
@@ -107,19 +124,4 @@ test('format_view', () => {
     });
   });
 
-  test('format_date_inside', () => {
-    expect(getDateString("2020-08-19T07:28:45.167Z")).toBe("19/08/2020");  
-    expect(getDateString("2020-08-01T07:28:45.167Z")).toBe("01/08/2020");  
-    expect(getDateString("2020-08-30T07:28:45.167Z")).toBe("30/08/2020");  
-    expect(getDateString("2020-12-31T07:28:45.167Z")).toBe("31/12/2020");  
-    expect(getDateString("2020-01-01T07:28:45.167Z")).toBe("01/01/2020");  
-    expect(getDateString("2021-04-15T07:28:45.167Z")).toBe("15/04/2021");  
-    expect(getDateString("2019-07-30T07:28:45.167Z")).toBe("30/07/2019");  
-    expect(getDateString("2020-02-28T07:28:45.167Z")).toBe("28/02/2020");  
-    expect(getDateString("2018-08-22T07:28:45.167Z")).toBe("22/08/2018");  
-    expect(getDateString("1998-02-03T07:28:45.167Z")).toBe("03/02/1998");  
-    expect(getDateString("1980-02-03T07:28:45.167Z")).toBe("03/02/1980"); 
-    expect(getDateString("2022-04-04T07:28:45.167Z")).toBe("04/04/2022"); 
-    expect(getDateString("2010-02-03T07:28:45.167Z")).toBe("03/02/2010"); 
-    expect(getDateString("2015-12-31T07:28:45.167Z")).toBe("31/12/2015"); 
-  });
+  
