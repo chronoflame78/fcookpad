@@ -176,7 +176,7 @@ class Create extends Component {
             className="picture-cover"
             style={{
               width: "100%",
-              height: "705px",
+              height: "650px",
             }}
           >
             <img
