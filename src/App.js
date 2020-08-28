@@ -56,6 +56,14 @@ if (localStorage.jwtToken) {
   }
 }
 
+window.addEventListener('storage', e => {
+  
+  if(e.key === 'jwtToken' && e.oldValue && !e.newValue) {
+     store.dispatch(logoutUser());
+   }
+
+});
+
 const DefaultContainer = () => (
   <div>
     <TopMenu />

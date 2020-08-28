@@ -87,6 +87,7 @@ class SearchResult extends Component {
               loading: false,
               totalRecord: res.data.total,
               categoryName: res.data.category,
+              nextPage: 3
             });
           }
         })
@@ -281,7 +282,7 @@ class SearchResult extends Component {
               )}
               {this.state.buttonLoadMore && (
                 <button type="submit" className="btn btn-more-pink">
-                  <i class="fa fa-spinner fa-spin"></i>
+                  <i className="fa fa-spinner fa-spin"></i>
                 </button>
               )}
             </div>

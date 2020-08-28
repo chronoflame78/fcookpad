@@ -257,7 +257,7 @@ class Recipe extends Component {
                             className="heart-icon"
                             onClick={(e) => this.likeRecipe(e, post._id)}
                           >
-                            <i class="far fa-heart"></i>
+                            <i className="far fa-heart"></i>
                           </div>
                         )}
                         <div className="like-number">

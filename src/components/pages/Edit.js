@@ -189,6 +189,7 @@ class Edit extends Component {
         .catch((err) => {
           this.setState({
             errors: err.response.data,
+            buttonLoading: false
           });
         });
     }
@@ -251,6 +252,7 @@ class Edit extends Component {
                 height: "100%",
                 width: "100%",
               }}
+              alt=""
               src={imagePreviewUrl}
             />
           </div>

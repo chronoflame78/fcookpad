@@ -3,9 +3,7 @@ import "../../css/Confirm.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
-import $ from "jquery";
 import {apiURL} from "../../config/Constant";
-import Timer  from "../common/Timer";
 const isEmpty = require("is-empty");
 
 class ForgotPassword extends Component {

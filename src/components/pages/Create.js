@@ -348,7 +348,7 @@ class Create extends Component {
                 rows="3"
                 placeholder=" "
               ></textarea>
-              <label className="create-label-name" for="description">
+              <label className="create-label-name" htmlFor="description">
                 Mô tả món ăn *
               </label>
             </div>
@@ -396,7 +396,7 @@ class Create extends Component {
                   />
                   <label
                     className="create-label-name create-input-yt-label"
-                    for="video"
+                    htmlFor="video"
                   >
                     Link youtube video{" "}
                     <span className="create-mini-text">
@@ -460,12 +460,12 @@ class Create extends Component {
                   className="arrow-next"
                   onClick={(e) => this.handleSubmit(e)}
                 >
-                  <i class="fas fa-chevron-right"></i>
+                  <i className="fas fa-chevron-right"></i>
                 </div>
               )}
               {this.state.buttonLoading && (
                 <div type="submit" className="">
-                  <i class="fa fa-spinner fa-spin"></i>
+                  <i className="fa fa-spinner fa-spin"></i>
                 </div>
               )}
             </div>
