@@ -877,30 +877,59 @@ select option:hover {
     .create-youtube-video iframe {
         height: 315px;
     }    
+    
+    .picture-cover {
+        height: 350px !important;
+    }
 }
 
 @media only screen and (min-width: 601px) and (max-width: 700px) {
     .create-youtube-video iframe {
         height: 375px;
-    }    
+    }   
+    
+    
+    .picture-cover {
+        height: 375px !important;
+    }
+
 }
 
 @media only screen and (min-width: 701px) and (max-width: 767px) {
     .create-youtube-video iframe {
         height: 385px;
     }    
+
+    .picture-cover {
+        height: 425px !important;
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 900px) {
     .create-youtube-video iframe {
         height: 375px;
-    }    
+    }
+    
+    .picture-cover {
+        height: 375px !important;
+    }
+
 }
 
 @media only screen and (min-width: 901px) and (max-width: 991px) {
     .create-youtube-video iframe {
         height: 475px;
     }    
+
+    .picture-cover {
+        height: 450px !important;
+    }
+}
+
+@media only screen and (min-width: 1001px) and (max-width: 1153px) {
+    .picture-cover {
+        height: 600px !important;
+    }
 }
 
 

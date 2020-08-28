@@ -94,6 +94,7 @@ class Edit extends Component {
       ])
       .then(
         axios.spread((...res) => {
+          console.log(res);
           if (this.mounted) {
             if (res[1].data.recipe.video) {
               let video_url =
@@ -104,7 +105,8 @@ class Edit extends Component {
                 description: res[1].data.recipe.description,
                 imagePreviewUrl: res[1].data.recipe.images[0],
                 video: video_url,
-                dropdown_value: res[1].data.recipe.category,
+                dropdown_value: res[1].data.recipe.category._id,
+                categoryName: res[1].data.recipe.category.title,
                 loading: false,
               });
             } else {
@@ -113,7 +115,8 @@ class Edit extends Component {
                 title: res[1].data.recipe.title,
                 description: res[1].data.recipe.description,
                 imagePreviewUrl: res[1].data.recipe.images[0],
-                dropdown_value: res[1].data.recipe.category,
+                dropdown_value: res[1].data.recipe.category._id,
+                categoryName: res[1].data.recipe.category.title,
                 loading: false,
               });
             }
@@ -162,18 +165,12 @@ class Edit extends Component {
       formData.append("step", 1);
       formData.append("imageCover", this.state.file);
       formData.append("category", this.state.dropdown_value);
-      if (this.state.video){
-        formData.append(
-          "video",
-          this.state.video.slice(32)
-        );
+      if (this.state.video) {
+        formData.append("video", this.state.video.slice(32));
+      } else {
+        formData.append("video", "");
       }
-      else{
-        formData.append(
-          "video", ""
-        );
-      }
-        
+
       axios
         .post(`${apiURL}/recipes/` + id + "/update", formData)
         .then((res) => {
@@ -229,8 +226,8 @@ class Edit extends Component {
     let youtube_video = null;
     let embed_video = "";
     let categoryDiv, dropdownText;
-
-    if (!this.state.categoryName) {
+    console.log(this.state);
+    if (!this.state.category) {
       dropdownText = "Danh mục";
     } else {
       dropdownText = this.state.categoryName;
@@ -246,7 +243,7 @@ class Edit extends Component {
             className="picture-cover"
             style={{
               width: "100%",
-              height: "705px",
+              height: "650px",
             }}
           >
             <img
