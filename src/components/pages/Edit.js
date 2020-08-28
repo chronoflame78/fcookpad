@@ -192,6 +192,7 @@ class Edit extends Component {
         .catch((err) => {
           this.setState({
             errors: err.response.data,
+            buttonLoading: false
           });
         });
     }
