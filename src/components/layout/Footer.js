@@ -53,7 +53,7 @@ render(){
                 <div className="footer-mail-cont">mlemmlem@gmail.com</div>
                 <div className="footer-bottom-links">
                     <div>
-                        <a href="/">Policy</a>
+                        <a href="/policy">Policy</a>
                     </div>
                     <div className="footer-mid-link">
                         <a href="/">About us</a>   

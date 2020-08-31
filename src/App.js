@@ -24,6 +24,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import ConfirmEmail from "./components/auth/ConfirmEmail";
+import Policy from "./components/pages/Policy"
 import ForgotPassword from "./components/auth/ForgotPassword";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -78,6 +79,7 @@ const DefaultContainer = () => (
     <PrivateRoute path="/account_settings" component={AccountSetting} /> 
     <Route path="/search" component={SearchResult} />
     <Route path="/view_all/:name" component={ViewAll} />  
+    <Route path="/policy" exact component={Policy} />
     <Route path="*" component={Page404} />
     </Switch>
   </div>
