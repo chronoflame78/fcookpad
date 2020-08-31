@@ -359,10 +359,22 @@ textarea:focus, input:focus{
 .like-number {
     font-size: 18px;
     margin-left: 5px;
+    padding-top: 2px;
 }
 
 .post-share {
     margin-left: 15px;
+    display: flex;
+}
+
+.share-icon {
+    padding-top: 3px;
+}
+
+.share-numbers {
+    margin-left: 5px;
+    font-size: 18px;
+    padding-top: 2px;
 }
 
 .post-title-icon {
