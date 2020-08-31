@@ -264,6 +264,12 @@ class Recipe extends Component {
                           {this.state.post.likes.length}
                         </div>
                       </div>
+                      <div className="post-share">
+                        <div className="share-icon">
+                          <i class="far fa-share-square"></i>
+                        </div>
+                        <div className="share-numbers">2</div>
+                      </div>
                     </div>
                   </div>
                   <div className="col-4 justify-content-end post-avatar-container">
@@ -377,7 +383,7 @@ class Recipe extends Component {
                     title="video"
                     width="100%"
                     height="600px"
-                    src={"https://www.youtube.com/embed/"+post.video}
+                    src={"https://www.youtube.com/embed/" + post.video}
                     frameBorder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
@@ -500,7 +506,10 @@ class Recipe extends Component {
                             type="text"
                           />
                           <div className="insde-comment-input">
-                            <label htmlFor="comment" className="post-write-cmt-label">
+                            <label
+                              htmlFor="comment"
+                              className="post-write-cmt-label"
+                            >
                               Viết bình luận..
                             </label>
                           </div>
