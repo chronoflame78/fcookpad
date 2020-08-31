@@ -1,0 +1,81 @@
+.policy-container {
+    background-color: #fff;
+    box-shadow: 0px 0px 7px darkgrey;
+    padding-top: 100px;
+    padding-bottom: 30px;
+    padding-left: 30px !important;
+    padding-right: 90px !important;
+}
+
+.policy-container h2 {
+    font-weight: 600;
+}
+
+.policy-container h1 {
+    color: #ff5f6d;
+    font-weight: 900;
+    font-size: 50px;
+}
+
+.title-container {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.title-container ~ div {
+    margin-left: 30px;
+}
+
+.title-container-next-sibling {
+    text-align: justify;
+}
+
+.consent-container, .information-collect-container, 
+.information-using-container, .log-file-container, 
+.advertising-container, .privacy-container, 
+.gdpr-container, .children-info-container, .third-privacy-container {
+    padding-top: 30px;
+}
+
+.consent-container div, .information-collect-container div, 
+.information-using-container div, .log-file-container div, 
+.advertising-container div, .privacy-container div, 
+.gdpr-container div, .children-info-container div, .third-privacy-container div {
+    margin-left: 30px;
+    text-align: justify;
+}
+
+.information-using-container ul {
+    margin-left: 30px;
+}
+
+@media only screen and (max-width: 650px) {
+    .title-container ~ div {
+        margin-left: 15px;
+    }
+    
+    .consent-container, .information-collect-container, 
+    .information-using-container, .log-file-container, 
+    .advertising-container, .privacy-container, 
+    .gdpr-container, .children-info-container, .third-privacy-container {
+        padding-top: 15px;
+    }
+    
+    .consent-container > div, .information-collect-container > div, 
+    .information-using-container > div, .log-file-container > div, 
+    .advertising-container > div, .privacy-container > div, 
+    .gdpr-container > div, .children-info-container > div, .third-privacy-container > div {
+        margin-left: 15px;
+    }
+    
+    .information-using-container ul {
+        margin-left: 15px;
+        margin-right: 45px;
+    }
+
+    .policy-container {
+        padding-left: 15px !important;
+        padding-right: 45px !important;
+    }
+} 
