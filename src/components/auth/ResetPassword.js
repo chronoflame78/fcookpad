@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "../../css/Confirm.css";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
@@ -17,6 +19,12 @@ class ResetPassword extends Component {
       buttonLoading: false,
       errors: {},
     };
+  }
+
+  componentDidMount(){
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/");
+    }
   }
 
   resetPassword = (e) => {
@@ -187,4 +195,11 @@ class ResetPassword extends Component {
   }
 }
 
-export default ResetPassword;
+ResetPassword.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(ResetPassword);

@@ -18,7 +18,9 @@ import { apiURL } from "../../config/Constant";
 import { getFormattedViews, getFormattedDate } from "../../utils/getFormat.js";
 import { removeStorage } from "../../utils/removeStorage";
 import swal from "sweetalert";
-
+import { FacebookShareButton } from "react-share";
+import MetaTags from "react-meta-tags";
+import {Helmet} from "react-helmet";
 const isEmpty = require("is-empty");
 
 class Recipe extends Component {
@@ -73,6 +75,7 @@ class Recipe extends Component {
     axios
       .get(`${apiURL}/recipes/${this.props.match.params.id}`)
       .then((res) => {
+        console.log(res);
         if (this.mounted) {
           this.setState({
             post: res.data.recipe,
@@ -177,6 +180,7 @@ class Recipe extends Component {
   }
 
   render() {
+    let shareURL = "https://mlemmlem.site" + this.props.location.pathname;
     if (this.state.loading) return <Loader />;
     if (this.state.error500) return <Page500 />;
     var post = this.state.post;
@@ -222,6 +226,11 @@ class Recipe extends Component {
     const user_avatar = user.user_avatar;
     return (
       <div className="post-container">
+        <Helmet>
+          <meta property="og:description" content={post.description} />
+          <meta property="og:title" content={post.title} />
+          <meta property="og:image" content={post.imageCover} />
+        </Helmet>
         <Container className="container-padding-fix">
           <Row className="post-main-title post-tit-ava-ingre">
             <div className="col-12 col-md-12 col-sm-12 col-xl-12 col-lg-12 post-tit-ava">
@@ -264,11 +273,19 @@ class Recipe extends Component {
                           {this.state.post.likes.length}
                         </div>
                       </div>
-                      <div className="post-share">
-                        <div className="share-icon">
-                          <i class="far fa-share-square"></i>
+                      <div className="post-likes">
+                        <div style={{ paddingTop: "2px" }}>
+                          <FacebookShareButton url={shareURL}>
+                            <i className="far fa-share-square"></i>
+                          </FacebookShareButton>
+                          {/* <a
+                            href={"https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(shareURL)}
+                            target="_blank"
+                          >
+                           <i className="far fa-share-square"></i>
+                          </a> */}
                         </div>
-                        <div className="share-numbers">2</div>
+                        {/* <div className="like-number">0</div> */}
                       </div>
                     </div>
                   </div>
@@ -317,9 +334,9 @@ class Recipe extends Component {
                   {post.ingredients &&
                     post.ingredients.length <= 5 &&
                     post.ingredients.map((x, index) => (
-                      <div className="post-ingredients">
-                        <p key={index}>
-                          <i class="fas fa-carrot fa-xs" /> {x}
+                      <div key={index} className="post-ingredients">
+                        <p>
+                          <i className="fas fa-carrot fa-xs" /> {x}
                         </p>
                       </div>
                     ))}

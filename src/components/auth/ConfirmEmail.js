@@ -5,6 +5,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Timer from "../common/Timer";
 import {apiURL} from "../../config/Constant";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 class ConfirmEmail extends Component {
   constructor(props) {
     super(props);
@@ -12,6 +14,12 @@ class ConfirmEmail extends Component {
       sent: false,
       buttonLoading: false,
     };
+  }
+
+  componentDidMount(){
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/");
+    }
   }
 
   resendEmail = (e) => {
@@ -130,4 +138,11 @@ class ConfirmEmail extends Component {
   }
 }
 
-export default ConfirmEmail;
+ConfirmEmail.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(ConfirmEmail);

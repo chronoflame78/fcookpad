@@ -26,7 +26,7 @@ class Login extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      toast.success("Login successfully!", {
+      toast.success("Đăng nhập thành công!", {
         position: toast.POSITION.TOP_RIGHT,
       });
       this.props.history.goBack();

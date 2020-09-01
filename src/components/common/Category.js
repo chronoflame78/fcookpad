@@ -65,13 +65,15 @@ class Category extends Component {
                             <Slider {...this.settings}>
                                 {this.props.suggestions.map(current => (
                                     <div className="out" key={current._id}>
-                                        <Link to={"/search?categoryid="+current._id} onClick={(e)=> dragging && e.preventDefault()}>
+                                        
                                         <div className="category-cover" style={{ backgroundImage: "url(" + current.image + ")" }}>
+                                        <Link to={"/search?categoryid="+current._id} onClick={(e)=> dragging && e.preventDefault()}>
                                             <div className="overlay">
                                                 {current.title.toUpperCase()}
                                             </div>
+                                            </Link>
                                         </div>
-                                        </Link>
+                                        
                                     </div>
                                 ))}
 

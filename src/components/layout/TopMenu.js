@@ -200,7 +200,7 @@ class TopMenu extends React.Component {
     this.setState({
       isOpen: false,
     });
-    toast.success("Logout successfully!", {
+    toast.success("Đăng xuất thành công!", {
       position: toast.POSITION.TOP_RIGHT,
     });
   };

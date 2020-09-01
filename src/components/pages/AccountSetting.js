@@ -223,7 +223,7 @@ class AccountSetting extends Component {
     axios
       .post(`${apiURL}/users`, formData)
       .then((res) => {
-        toast.success("Save successfully!", {
+        toast.success("Lưu thành công!", {
           position: toast.POSITION.TOP_RIGHT,
         });
         axios
@@ -339,7 +339,7 @@ class AccountSetting extends Component {
     if (this.props.location.state) {
       var { editSuccess, postTab } = this.props.location.state;
       if (editSuccess === true) {
-        toast.success("Edit successfully!", {
+        toast.success("Sửa thành công!", {
           position: toast.POSITION.TOP_RIGHT,
         });
         if (postTab) {

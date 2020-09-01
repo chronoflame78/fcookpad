@@ -82,7 +82,7 @@ class Home extends Component {
     if (this.props.location.state) {
       var { createSuccess } = this.props.location.state;
       if (createSuccess === true) {
-        toast.success("Create successfully!", {
+        toast.success("Tạo công thức thành công!", {
           position: toast.POSITION.TOP_RIGHT,
         });
         this.props.history.replace("", null);
