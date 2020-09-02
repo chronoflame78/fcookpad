@@ -14,7 +14,7 @@ import swal from "sweetalert";
 import { apiURL } from "../../config/Constant";
 import { removeStorage } from "../../utils/removeStorage";
 import { MALE, FEMALE, OTHERS } from "../../config/Constant";
-import { getFormattedViews } from "../../utils/getFormat";
+import { getFormattedDate, getFormattedViews } from "../../utils/getFormat.js";
 const isEmpty = require("is-empty");
 
 class AccountSetting extends Component {
@@ -37,12 +37,18 @@ class AccountSetting extends Component {
         createAt: "",
       },
       posts: [],
+      likedPosts: [],
+      viewedPosts:[],
       nextPage: 3,
+      nextPageLiked: 3,
+      nextPageViewed: 3,
       loading: false,
       errors: {},
       errorsChangePassword: {},
       buttonLoading: false,
       buttonLoadMore: false,
+      buttonLoadMoreLiked: false,
+      buttonLoadMoreViewed: false,
       file: "",
       imagePreviewUrl: "",
       tab: 1,
@@ -50,6 +56,8 @@ class AccountSetting extends Component {
       newPassword: "",
       confirmPassword: "",
       totalPost: 0,
+      totalPostLiked: 0,
+      totalPostViewed: 0,
       isOpen: false,
     };
     this.genderRef = React.createRef();
@@ -160,13 +168,19 @@ class AccountSetting extends Component {
               .all([
                 axios.get(`${apiURL}/users/${this.props.auth.user.id}`),
                 axios.get(`${apiURL}/users/recipes?page=1&limit=6`),
+                axios.get(`${apiURL}/users/likes?page=1&limit=6`),
+                axios.get(`${apiURL}/users/recent_view?page=1&limit=6`),
               ])
               .then(
                 axios.spread((...resp) => {
                   this.setState({
                     userInfo: resp[0].data.user,
                     posts: resp[1].data.allRecipes,
+                    likedPosts: resp[2].data.recipes,
+                    viewedPosts: resp[3].data.recipes,
                     totalPost: resp[1].data.total,
+                    totalPostLiked: resp[2].data.total,
+                    totalPostViewed: resp[3].data.total,
                   });
                 })
               )
@@ -306,6 +320,50 @@ class AccountSetting extends Component {
       });
   }
 
+  showMoreLiked(nextPage) {
+    this.setState({
+      buttonLoadMoreLiked: true,
+    });
+    axios
+      .get(`${apiURL}/users/likes?page=${nextPage}&limit=3`)
+      .then((res) => {
+        const arr = this.state.likedPosts;
+        arr.push(...res.data.recipes);
+        this.setState({
+          nextPageLiked: this.state.nextPageLiked + 1,
+          likedPosts: arr,
+          buttonLoadMoreLiked: false,
+        });
+      })
+      .catch((err) => {
+        this.setState({
+          buttonLoadMoreLiked: false,
+        });
+      });
+  }
+
+  showMoreViewed(nextPage) {
+    this.setState({
+      buttonLoadMoreViewed: true,
+    });
+    axios
+      .get(`${apiURL}/users/recent_view?page=${nextPage}&limit=3`)
+      .then((res) => {
+        const arr = this.state.viewedPosts;
+        arr.push(...res.data.recipes);
+        this.setState({
+          nextPageViewed: this.state.nextPageViewed + 1,
+          viewedPosts: arr,
+          buttonLoadMoreViewed: false,
+        });
+      })
+      .catch((err) => {
+        this.setState({
+          buttonLoadMoreViewed: false,
+        });
+      });
+  }
+
   componentDidMount() {
     document.addEventListener("mousedown", this.handleClickOutside);
     this.mounted = true;
@@ -317,15 +375,22 @@ class AccountSetting extends Component {
       .all([
         axios.get(`${apiURL}/users/${this.props.auth.user.id}`),
         axios.get(`${apiURL}/users/recipes?page=1&limit=6`),
+        axios.get(`${apiURL}/users/likes?page=1&limit=6`),
+        axios.get(`${apiURL}/users/recent_view?page=1&limit=6`),
       ])
       .then(
         axios.spread((...res) => {
+          console.log(...res);
           if (this.mounted) {
             this.setState({
               userInfo: res[0].data.user,
               userInfoUpdate: res[0].data.user,
               posts: res[1].data.allRecipes,
+              likedPosts: res[2].data.recipes,
+              viewedPosts: res[3].data.recipes,
               totalPost: res[1].data.total,
+              totalPostLiked: res[2].data.total,
+              totalPostViewed: res[3].data.total,
               loading: false,
             });
           }
@@ -366,25 +431,68 @@ class AccountSetting extends Component {
     this.setState({ isOpen: !this.state.isOpen });
   };
 
+  likeRecipe = (e, id) => {
+    e.preventDefault();
+    axios
+      .post(`${apiURL}/recipes/${id}/like`)
+      .then((res) => {
+        let post = res.data.recipe;
+        let newArr = this.state.likedPosts;
+        let newArr2 = this.state.viewedPosts;
+        let x = newArr.findIndex((a) => a._id === id);
+        if (x !== -1) newArr[x] = post;
+        let y = newArr2.findIndex((b) => b._id === id);
+        if (y !== -1) newArr2[y] = post;
+        this.setState({
+          likedPosts: newArr,
+          viewedPosts: newArr2,
+        });
+      })
+      .catch((err) => {
+        
+      });
+  };
+
   render() {
     let genderDiv, dropdownText;
     if (this.state.loading) return <Loader />;
     var tab1 = "asetting-tab-active";
     var tab2 = "asetting-tab";
     var tab3 = "asetting-tab";
+    var tab4 = "asetting-tab";
+    var tab5 = "asetting-tab";
     if (this.state.tab === 1) {
       tab1 = "asetting-tab-active";
       tab2 = "asetting-tab";
       tab3 = "asetting-tab";
+      tab4 = "asetting-tab";
+      tab5 = "asetting-tab";
     } else if (this.state.tab === 2) {
       tab1 = "asetting-tab";
       tab2 = "asetting-tab-active";
       tab3 = "asetting-tab";
+      tab4 = "asetting-tab";
+      tab5 = "asetting-tab";
     } else if (this.state.tab === 3) {
       tab1 = "asetting-tab";
       tab2 = "asetting-tab";
       tab3 = "asetting-tab-active";
+      tab4 = "asetting-tab";
+      tab5 = "asetting-tab";
+    } else if (this.state.tab === 4) {
+      tab1 = "asetting-tab";
+      tab2 = "asetting-tab";
+      tab3 = "asetting-tab";
+      tab4 = "asetting-tab-active";
+      tab5 = "asetting-tab";
+    } else if (this.state.tab === 5) {
+      tab1 = "asetting-tab";
+      tab2 = "asetting-tab";
+      tab1 = "asetting-tab";
+      tab2 = "asetting-tab";
+      tab5 = "asetting-tab-active";
     }
+    
 
 
     if (!this.state.userInfoUpdate.gender) {
@@ -520,6 +628,18 @@ class AccountSetting extends Component {
                 onClick={(e, index) => this.changeTab(e, 3)}
               >
                 Thay đổi mật khẩu
+              </div>
+              <div
+                className={tab4}
+                onClick={(e, index) => this.changeTab(e, 4)}
+              >
+                Công thức yêu thích
+              </div>
+              <div
+                className={tab5}
+                onClick={(e, index) => this.changeTab(e, 5)}
+              >
+                Công thức gần đây
               </div>
               <div className="asetting-line asetting-line-display"></div>
             </div>
@@ -898,6 +1018,216 @@ class AccountSetting extends Component {
                     )}
                   </div>
                 </form>
+              </div>
+            )}
+            {this.state.tab === 4 && (
+              <div className="col-md-8 asetting-form-container">
+                <div className="asetting-title-tab2">Công thức yêu thích</div>
+                <div className="row" style={{ padding: "0 15px" }}>
+                  {isEmpty(this.state.likedPosts) && (
+                    <div
+                      style={{
+                        height: "100px",
+                        paddingLeft: "15px",
+                        paddingTop: "15px",
+                      }}
+                    >
+                      Bạn chưa thích công thức nào
+                    </div>
+                  )}
+                  {!isEmpty(this.state.likedPosts) &&
+                    this.state.likedPosts.map((x, index) => (
+                      <div
+                key={index}
+                className="col-6 col-sm-6 col-md-6 col-lg-4 col-12 food-item py-4"
+              >
+                <NavLink
+                  to={"/posts/" + x._id}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="section-image-container" style={{ marginTop: "25px" }}>
+                    <p className="item-cover">
+                      {!x.isLiked && (
+                        <span
+                          className="section-item-view"
+                          onClick={(e) => this.likeRecipe(e, x._id)}
+                        >
+                          {x.likes.length}{" "}
+                          <i className="far fa-heart like-icon" />
+                        </span>
+                      )}
+                      {x.isLiked && (
+                        <span
+                          className="section-item-view"
+                          onClick={(e) => this.likeRecipe(e, x._id)}
+                        >
+                          {x.likes.length}{" "}
+                          <i className="fas fa-heart like-icon" />
+                        </span>
+                      )}
+                    </p>
+                    <div
+                      className="section-image-top-holder"
+                    >
+                      <img
+                        style={{
+                          objectFit: "cover",
+                          width: "100%",
+                          height: "100%",
+                        }}
+                        alt=""
+                        src={x.images[0]}
+                      />
+                    </div>
+                  </div>
+                </NavLink>
+                <div className="section-item-title">
+                  <NavLink to={"/posts/" + x._id}>{x.title}</NavLink>
+                </div>
+                <div className="section-author-name">
+                  <NavLink to={"/user_profile/" + x.author._id}>
+                    {x.author.fullName}
+                  </NavLink>
+                </div>
+                <div className="section-rating-date">
+                  <i className="far fa-eye" /> {getFormattedViews(x.views)}
+                  <span
+                    className="section-item-date"
+                    style={{ paddingTop: "2px" }}
+                  >
+                    {getFormattedDate(x.datetime)}
+                  </span>
+                </div>
+              </div>
+                    ))}
+                </div>
+                {this.state.likedPosts &&
+                  this.state.likedPosts.length < this.state.totalPostLiked && (
+                    <div
+                      className="row asetting-see-more"
+                      style={{ marginLeft: "0px", marginRight: "0px" }}
+                    >
+                      {!this.state.buttonLoadMoreLiked && (
+                        <button
+                          onClick={() => this.showMoreLiked(this.state.nextPageLiked)}
+                          type="submit"
+                          className="btn btn-more-pink"
+                        >
+                          XEM THÊM
+                        </button>
+                      )}
+                      {this.state.buttonLoadMoreLiked && (
+                        <button type="submit" className="btn btn-more-pink">
+                          <i className="fa fa-spinner fa-spin"></i>
+                        </button>
+                      )}
+                    </div>
+                  )}
+              </div>
+            )}
+            {this.state.tab === 5 && (
+              <div className="col-md-8 asetting-form-container">
+                <div className="asetting-title-tab2">Công thức gần đây</div>
+                <div className="row" style={{ padding: "0 15px" }}>
+                  {isEmpty(this.state.viewedPosts) && (
+                    <div
+                      style={{
+                        height: "100px",
+                        paddingLeft: "15px",
+                        paddingTop: "15px",
+                      }}
+                    >
+                      Bạn chưa xem công thức nào gần đây.
+                    </div>
+                  )}
+                  {!isEmpty(this.state.viewedPosts) &&
+                    this.state.viewedPosts.map((x, index) => (
+                      <div
+                key={index}
+                className="col-6 col-sm-6 col-md-6 col-lg-4 col-12 food-item py-4"
+              >
+                <NavLink
+                  to={"/posts/" + x._id}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="section-image-container" style={{ marginTop: "25px" }}>
+                    <p className="item-cover">
+                      {!x.isLiked && (
+                        <span
+                          className="section-item-view"
+                          onClick={(e) => this.likeRecipe(e, x._id)}
+                        >
+                          {x.likes.length}{" "}
+                          <i className="far fa-heart like-icon" />
+                        </span>
+                      )}
+                      {x.isLiked && (
+                        <span
+                          className="section-item-view"
+                          onClick={(e) => this.likeRecipe(e, x._id)}
+                        >
+                          {x.likes.length}{" "}
+                          <i className="fas fa-heart like-icon" />
+                        </span>
+                      )}
+                    </p>
+                    <div
+                      className="section-image-top-holder"
+                    >
+                      <img
+                        style={{
+                          objectFit: "cover",
+                          width: "100%",
+                          height: "100%",
+                        }}
+                        alt=""
+                        src={x.images[0]}
+                      />
+                    </div>
+                  </div>
+                </NavLink>
+                <div className="section-item-title">
+                  <NavLink to={"/posts/" + x._id}>{x.title}</NavLink>
+                </div>
+                <div className="section-author-name">
+                  <NavLink to={"/user_profile/" + x.author._id}>
+                    {x.author.fullName}
+                  </NavLink>
+                </div>
+                <div className="section-rating-date">
+                  <i className="far fa-eye" /> {getFormattedViews(x.views)}
+                  <span
+                    className="section-item-date"
+                    style={{ paddingTop: "2px" }}
+                  >
+                    {getFormattedDate(x.datetime)}
+                  </span>
+                </div>
+              </div>
+                    ))}
+                </div>
+                {this.state.viewedPosts &&
+                  this.state.viewedPosts.length < this.state.totalPostViewed && (
+                    <div
+                      className="row asetting-see-more"
+                      style={{ marginLeft: "0px", marginRight: "0px" }}
+                    >
+                      {!this.state.buttonLoadMoreViewed && (
+                        <button
+                          onClick={() => this.showMoreViewed(this.state.nextPageViewed)}
+                          type="submit"
+                          className="btn btn-more-pink"
+                        >
+                          XEM THÊM
+                        </button>
+                      )}
+                      {this.state.buttonLoadMoreViewed && (
+                        <button type="submit" className="btn btn-more-pink">
+                          <i className="fa fa-spinner fa-spin"></i>
+                        </button>
+                      )}
+                    </div>
+                  )}
               </div>
             )}
           </div>

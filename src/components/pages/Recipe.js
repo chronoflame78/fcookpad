@@ -19,7 +19,7 @@ import { getFormattedViews, getFormattedDate } from "../../utils/getFormat.js";
 import { removeStorage } from "../../utils/removeStorage";
 import swal from "sweetalert";
 import { FacebookShareButton } from "react-share";
-import MetaTags from "react-meta-tags";
+// import MetaTags from "react-meta-tags";
 import {Helmet} from "react-helmet";
 const isEmpty = require("is-empty");
 
@@ -75,7 +75,6 @@ class Recipe extends Component {
     axios
       .get(`${apiURL}/recipes/${this.props.match.params.id}`)
       .then((res) => {
-        console.log(res);
         if (this.mounted) {
           this.setState({
             post: res.data.recipe,

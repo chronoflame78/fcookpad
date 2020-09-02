@@ -113,13 +113,64 @@ class Create extends Component {
     this.mounted = false;
   }
 
+  checkVideoURL(videoURL){
+    if(videoURL){
+      if(videoURL.length === 43){
+        if(videoURL.indexOf("https://www.youtube.com/watch?v=") === 0){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+      else if(videoURL.length === 28){
+        if(videoURL.indexOf("https://youtu.be/") === 0){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+      else if(videoURL.length > 43){
+        if(videoURL.indexOf("https://www.youtube.com/watch?v=") === 0){
+          if(videoURL.charAt(43) === "&"){
+            return true;
+          }
+          else{
+            return false;
+          }
+        }
+        else{
+          return false;
+        }
+      }
+      else{
+        return false;
+      }
+    }
+    else{
+      return true;
+    }
+  }
+
+  formatVideoURL(videoURL){
+    if(videoURL.length === 43){
+      return videoURL.slice(32);
+    }
+    else if(videoURL.length === 28){
+      return videoURL.slice(17);
+    }
+    else if(videoURL.length > 43){
+      return videoURL.slice(32,43);
+    }
+    else{
+      return "";
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    if (
-      (this.state.video && this.state.video.length !== 43) ||
-      (this.state.video &&
-        this.state.video.indexOf("https://www.youtube.com/watch?v=") === -1)
-    ) {
+    if (this.checkVideoURL(this.state.video) === false) {
       this.setState({
         errors: { message: "Sai định dạng đường dẫn đến video trên youtube" },
       });
@@ -133,11 +184,13 @@ class Create extends Component {
       formData.append("step", 1);
       formData.append("imageCover", this.state.file);
       formData.append("category", this.state.dropdown_value);
-      if (this.state.video)
+      if (this.state.video){
+        let youtubeVideo = this.formatVideoURL(this.state.video);
         formData.append(
           "video",
-          this.state.video.slice(32)
+          youtubeVideo
         );
+      } 
       axios
         .post(`${apiURL}/recipes/create`, formData)
         .then((res) => {
@@ -222,7 +275,7 @@ class Create extends Component {
           embed_video = "https://www.youtube.com/embed/" + video.slice(17);
           break;
         default:
-          embed_video = "https://www.youtube.com/embed/" + video.slice(32);
+          embed_video = "https://www.youtube.com/embed/" + video.slice(32,43);
           break;
       }
 
