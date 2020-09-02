@@ -380,7 +380,6 @@ class AccountSetting extends Component {
       ])
       .then(
         axios.spread((...res) => {
-          console.log(...res);
           if (this.mounted) {
             this.setState({
               userInfo: res[0].data.user,
