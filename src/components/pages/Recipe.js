@@ -19,8 +19,7 @@ import { getFormattedViews, getFormattedDate } from "../../utils/getFormat.js";
 import { removeStorage } from "../../utils/removeStorage";
 import swal from "sweetalert";
 import { FacebookShareButton } from "react-share";
-// import MetaTags from "react-meta-tags";
-import {Helmet} from "react-helmet";
+// import {Helmet} from "react-helmet";
 const isEmpty = require("is-empty");
 
 class Recipe extends Component {
@@ -40,34 +39,6 @@ class Recipe extends Component {
     };
     this.views = "";
   }
-
-  // componentDidUpdate() {
-  //   axios
-  //     .get(`${apiURL}/recipes/${this.props.match.params.id}`)
-  //     .then((res) => {
-  //       if (this.mounted) {
-  //         this.setState({
-  //           post: res.data.recipe,
-  //           loading: false,
-  //           comments: res.data.recipe.comments,
-  //           likes: res.data.recipe.likes,
-  //           views: res.data.recipe.views,
-  //         });
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       if (error.response.status === 500) {
-  //         this.setState({
-  //           loading: false,
-  //           error500: true,
-  //         });
-  //       } else {
-  //         this.setState({
-  //           loading: false,
-  //         });
-  //       }
-  //     });
-  // }
 
   componentDidMount() {
     removeStorage();
@@ -225,11 +196,11 @@ class Recipe extends Component {
     const user_avatar = user.user_avatar;
     return (
       <div className="post-container">
-        <Helmet>
+        {/* <Helmet>
           <meta property="og:description" content={post.description} />
           <meta property="og:title" content={post.title} />
           <meta property="og:image" content={post.imageCover} />
-        </Helmet>
+        </Helmet> */}
         <Container className="container-padding-fix">
           <Row className="post-main-title post-tit-ava-ingre">
             <div className="col-12 col-md-12 col-sm-12 col-xl-12 col-lg-12 post-tit-ava">

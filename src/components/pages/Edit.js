@@ -94,7 +94,6 @@ class Edit extends Component {
       ])
       .then(
         axios.spread((...res) => {
-          console.log(res);
           if (this.mounted) {
             if (res[1].data.recipe.video) {
               let video_url =
@@ -281,7 +280,6 @@ class Edit extends Component {
     let youtube_video = null;
     let embed_video = "";
     let categoryDiv, dropdownText;
-    console.log(this.state);
     if (!this.state.category) {
       dropdownText = "Danh mục";
     } else {

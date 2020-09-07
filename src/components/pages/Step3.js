@@ -41,22 +41,42 @@ class CreateStep3 extends Component {
       step_content_4: "",
       step_image_5: "",
       step_content_5: "",
+      step_image_6: "",
+      step_content_6: "",
+      step_image_7: "",
+      step_content_7: "",
+      step_image_8: "",
+      step_content_8: "",
+      step_image_9: "",
+      step_content_9: "",
+      step_image_10: "",
+      step_content_10: "",
       imagePreviewUrl1: "",
       imagePreviewUrl2: "",
       imagePreviewUrl3: "",
       imagePreviewUrl4: "",
       imagePreviewUrl5: "",
+      imagePreviewUrl6: "",
+      imagePreviewUrl7: "",
+      imagePreviewUrl8: "",
+      imagePreviewUrl9: "",
+      imagePreviewUrl10: "",
       total_steps: 1,
       errors: {},
       buttonLoading: false,
       loading: true,
-      error404: false
+      error404: false,
     };
     this.inputImage = React.createRef();
     this.inputImage2 = React.createRef();
     this.inputImage3 = React.createRef();
     this.inputImage4 = React.createRef();
     this.inputImage5 = React.createRef();
+    this.inputImage6 = React.createRef();
+    this.inputImage7 = React.createRef();
+    this.inputImage8 = React.createRef();
+    this.inputImage9 = React.createRef();
+    this.inputImage10 = React.createRef();
   }
 
   componentDidMount() {
@@ -120,6 +140,111 @@ class CreateStep3 extends Component {
               total_steps: 5,
               loading: false,
             });
+          } else if (res.data.recipe.steps.length === 6) {
+            this.setState({
+              imagePreviewUrl1: res.data.recipe.steps[0].image,
+              step_content_1: res.data.recipe.steps[0].content,
+              imagePreviewUrl2: res.data.recipe.steps[1].image,
+              step_content_2: res.data.recipe.steps[1].content,
+              imagePreviewUrl3: res.data.recipe.steps[2].image,
+              step_content_3: res.data.recipe.steps[2].content,
+              imagePreviewUrl4: res.data.recipe.steps[3].image,
+              step_content_4: res.data.recipe.steps[3].content,
+              imagePreviewUrl5: res.data.recipe.steps[4].image,
+              step_content_5: res.data.recipe.steps[4].content,
+              imagePreviewUrl6: res.data.recipe.steps[5].image,
+              step_content_6: res.data.recipe.steps[5].content,
+              total_steps: 6,
+              loading: false,
+            });
+          } else if (res.data.recipe.steps.length === 7) {
+            this.setState({
+              imagePreviewUrl1: res.data.recipe.steps[0].image,
+              step_content_1: res.data.recipe.steps[0].content,
+              imagePreviewUrl2: res.data.recipe.steps[1].image,
+              step_content_2: res.data.recipe.steps[1].content,
+              imagePreviewUrl3: res.data.recipe.steps[2].image,
+              step_content_3: res.data.recipe.steps[2].content,
+              imagePreviewUrl4: res.data.recipe.steps[3].image,
+              step_content_4: res.data.recipe.steps[3].content,
+              imagePreviewUrl5: res.data.recipe.steps[4].image,
+              step_content_5: res.data.recipe.steps[4].content,
+              imagePreviewUrl6: res.data.recipe.steps[5].image,
+              step_content_6: res.data.recipe.steps[5].content,
+              imagePreviewUrl7: res.data.recipe.steps[6].image,
+              step_content_7: res.data.recipe.steps[6].content,
+              total_steps: 7,
+              loading: false,
+            });
+          } else if (res.data.recipe.steps.length === 8) {
+            this.setState({
+              imagePreviewUrl1: res.data.recipe.steps[0].image,
+              step_content_1: res.data.recipe.steps[0].content,
+              imagePreviewUrl2: res.data.recipe.steps[1].image,
+              step_content_2: res.data.recipe.steps[1].content,
+              imagePreviewUrl3: res.data.recipe.steps[2].image,
+              step_content_3: res.data.recipe.steps[2].content,
+              imagePreviewUrl4: res.data.recipe.steps[3].image,
+              step_content_4: res.data.recipe.steps[3].content,
+              imagePreviewUrl5: res.data.recipe.steps[4].image,
+              step_content_5: res.data.recipe.steps[4].content,
+              imagePreviewUrl6: res.data.recipe.steps[5].image,
+              step_content_6: res.data.recipe.steps[5].content,
+              imagePreviewUrl7: res.data.recipe.steps[6].image,
+              step_content_7: res.data.recipe.steps[6].content,
+              imagePreviewUrl8: res.data.recipe.steps[7].image,
+              step_content_8: res.data.recipe.steps[7].content,
+              total_steps: 8,
+              loading: false,
+            });
+          } else if (res.data.recipe.steps.length === 9) {
+            this.setState({
+              imagePreviewUrl1: res.data.recipe.steps[0].image,
+              step_content_1: res.data.recipe.steps[0].content,
+              imagePreviewUrl2: res.data.recipe.steps[1].image,
+              step_content_2: res.data.recipe.steps[1].content,
+              imagePreviewUrl3: res.data.recipe.steps[2].image,
+              step_content_3: res.data.recipe.steps[2].content,
+              imagePreviewUrl4: res.data.recipe.steps[3].image,
+              step_content_4: res.data.recipe.steps[3].content,
+              imagePreviewUrl5: res.data.recipe.steps[4].image,
+              step_content_5: res.data.recipe.steps[4].content,
+              imagePreviewUrl6: res.data.recipe.steps[5].image,
+              step_content_6: res.data.recipe.steps[5].content,
+              imagePreviewUrl7: res.data.recipe.steps[6].image,
+              step_content_7: res.data.recipe.steps[6].content,
+              imagePreviewUrl8: res.data.recipe.steps[7].image,
+              step_content_8: res.data.recipe.steps[7].content,
+              imagePreviewUrl9: res.data.recipe.steps[8].image,
+              step_content_9: res.data.recipe.steps[8].content,
+              total_steps: 9,
+              loading: false,
+            });
+          } else if (res.data.recipe.steps.length === 10) {
+            this.setState({
+              imagePreviewUrl1: res.data.recipe.steps[0].image,
+              step_content_1: res.data.recipe.steps[0].content,
+              imagePreviewUrl2: res.data.recipe.steps[1].image,
+              step_content_2: res.data.recipe.steps[1].content,
+              imagePreviewUrl3: res.data.recipe.steps[2].image,
+              step_content_3: res.data.recipe.steps[2].content,
+              imagePreviewUrl4: res.data.recipe.steps[3].image,
+              step_content_4: res.data.recipe.steps[3].content,
+              imagePreviewUrl5: res.data.recipe.steps[4].image,
+              step_content_5: res.data.recipe.steps[4].content,
+              imagePreviewUrl6: res.data.recipe.steps[5].image,
+              step_content_6: res.data.recipe.steps[5].content,
+              imagePreviewUrl7: res.data.recipe.steps[6].image,
+              step_content_7: res.data.recipe.steps[6].content,
+              imagePreviewUrl8: res.data.recipe.steps[7].image,
+              step_content_8: res.data.recipe.steps[7].content,
+              imagePreviewUrl9: res.data.recipe.steps[8].image,
+              step_content_9: res.data.recipe.steps[8].content,
+              imagePreviewUrl10: res.data.recipe.steps[9].image,
+              step_content_10: res.data.recipe.steps[9].content,
+              total_steps: 10,
+              loading: false,
+            });
           } else {
             this.setState({
               loading: false,
@@ -128,17 +253,17 @@ class CreateStep3 extends Component {
         }
       })
       .catch((error) => {
-        if(error.response.status === 404){
+        if (error.response.status === 404) {
           this.setState({
             error404: true,
-            loading: false
-          })
-        }else{
+            loading: false,
+          });
+        } else {
           this.setState({
             errors: error.response.data,
             loading: false,
           });
-        }      
+        }
       });
   }
 
@@ -158,36 +283,68 @@ class CreateStep3 extends Component {
   handleRemove(e) {
     e.preventDefault();
     if (this.state.total_steps === 2) {
-      this.setState({ 
-          total_steps: this.state.total_steps - 1,
-          step_content_2: "",
-          step_image_2: "",
-          imagePreviewUrl2: ""
-        });
-    }
-    else if (this.state.total_steps === 3) {
-      this.setState({ 
-          total_steps: this.state.total_steps - 1,
-          step_content_3: "",
-          step_image_3: "",
-          imagePreviewUrl3: ""
-        });
-    }
-    else if (this.state.total_steps === 4) {
-      this.setState({ 
-          total_steps: this.state.total_steps - 1,
-          step_content_4: "",
-          step_image_4: "",
-          imagePreviewUrl4: ""
-        });
-    }
-    else if (this.state.total_steps === 5) {
-      this.setState({ 
-          total_steps: this.state.total_steps - 1,
-          step_content_5: "",
-          step_image_5: "",
-          imagePreviewUrl5: ""
-        });
+      this.setState({
+        total_steps: this.state.total_steps - 1,
+        step_content_2: "",
+        step_image_2: "",
+        imagePreviewUrl2: "",
+      });
+    } else if (this.state.total_steps === 3) {
+      this.setState({
+        total_steps: this.state.total_steps - 1,
+        step_content_3: "",
+        step_image_3: "",
+        imagePreviewUrl3: "",
+      });
+    } else if (this.state.total_steps === 4) {
+      this.setState({
+        total_steps: this.state.total_steps - 1,
+        step_content_4: "",
+        step_image_4: "",
+        imagePreviewUrl4: "",
+      });
+    } else if (this.state.total_steps === 5) {
+      this.setState({
+        total_steps: this.state.total_steps - 1,
+        step_content_5: "",
+        step_image_5: "",
+        imagePreviewUrl5: "",
+      });
+    } else if (this.state.total_steps === 6) {
+      this.setState({
+        total_steps: this.state.total_steps - 1,
+        step_content_6: "",
+        step_image_6: "",
+        imagePreviewUrl6: "",
+      });
+    } else if (this.state.total_steps === 7) {
+      this.setState({
+        total_steps: this.state.total_steps - 1,
+        step_content_7: "",
+        step_image_7: "",
+        imagePreviewUrl7: "",
+      });
+    } else if (this.state.total_steps === 8) {
+      this.setState({
+        total_steps: this.state.total_steps - 1,
+        step_content_8: "",
+        step_image_8: "",
+        imagePreviewUrl8: "",
+      });
+    } else if (this.state.total_steps === 9) {
+      this.setState({
+        total_steps: this.state.total_steps - 1,
+        step_content_9: "",
+        step_image_9: "",
+        imagePreviewUrl9: "",
+      });
+    } else if (this.state.total_steps === 10) {
+      this.setState({
+        total_steps: this.state.total_steps - 1,
+        step_content_10: "",
+        step_image_10: "",
+        imagePreviewUrl10: "",
+      });
     }
   }
 
@@ -202,8 +359,7 @@ class CreateStep3 extends Component {
           postTab: 2,
         },
       });
-    }
-    else{
+    } else {
       this.props.history.push("/");
     }
   }
@@ -253,44 +409,103 @@ class CreateStep3 extends Component {
             imagePreviewUrl4: reader.result,
           });
         };
-      } else {
+      } else if (e.target.id === "step_image_5") {
         reader.onloadend = () => {
           this.setState({
             step_image_5: file,
             imagePreviewUrl5: reader.result,
           });
         };
+      } else if (e.target.id === "step_image_6") {
+        reader.onloadend = () => {
+          this.setState({
+            step_image_6: file,
+            imagePreviewUrl6: reader.result,
+          });
+        };
+      } else if (e.target.id === "step_image_7") {
+        reader.onloadend = () => {
+          this.setState({
+            step_image_7: file,
+            imagePreviewUrl7: reader.result,
+          });
+        };
+      } else if (e.target.id === "step_image_8") {
+        reader.onloadend = () => {
+          this.setState({
+            step_image_8: file,
+            imagePreviewUrl8: reader.result,
+          });
+        };
+      } else if (e.target.id === "step_image_9") {
+        reader.onloadend = () => {
+          this.setState({
+            step_image_9: file,
+            imagePreviewUrl9: reader.result,
+          });
+        };
+      } else {
+        reader.onloadend = () => {
+          this.setState({
+            step_image_10: file,
+            imagePreviewUrl10: reader.result,
+          });
+        };
       }
       reader.readAsDataURL(file);
-    }
-    else{
+    } else {
       if (e.target.id === "step_image_1") {
-          this.setState({
-            step_image_1: "",
-            imagePreviewUrl1: "",
-          })
+        this.setState({
+          step_image_1: "",
+          imagePreviewUrl1: "",
+        });
       } else if (e.target.id === "step_image_2") {
-          this.setState({
-            step_image_2: "",
-            imagePreviewUrl2: "",
-        })
+        this.setState({
+          step_image_2: "",
+          imagePreviewUrl2: "",
+        });
       } else if (e.target.id === "step_image_3") {
-          this.setState({
-            step_image_3: "",
-            imagePreviewUrl3: "",
-          });
+        this.setState({
+          step_image_3: "",
+          imagePreviewUrl3: "",
+        });
       } else if (e.target.id === "step_image_4") {
-          this.setState({
-            step_image_4: "",
-            imagePreviewUrl4: "",
-          });
-      } else if (e.target.id === "step_image_5"){
-          this.setState({
-            step_image_5: "",
-            imagePreviewUrl5: "",
-          });
+        this.setState({
+          step_image_4: "",
+          imagePreviewUrl4: "",
+        });
+      } else if (e.target.id === "step_image_5") {
+        this.setState({
+          step_image_5: "",
+          imagePreviewUrl5: "",
+        });
+      } else if (e.target.id === "step_image_6") {
+        this.setState({
+          step_image_6: "",
+          imagePreviewUrl6: "",
+        });
+      } else if (e.target.id === "step_image_7") {
+        this.setState({
+          step_image_7: "",
+          imagePreviewUrl7: "",
+        });
+      } else if (e.target.id === "step_image_8") {
+        this.setState({
+          step_image_8: "",
+          imagePreviewUrl8: "",
+        });
+      } else if (e.target.id === "step_image_9") {
+        this.setState({
+          step_image_9: "",
+          imagePreviewUrl9: "",
+        });
+      } else if (e.target.id === "step_image_10") {
+        this.setState({
+          step_image_10: "",
+          imagePreviewUrl10: "",
+        });
+      }
     }
-  }
   }
 
   handleSubmit(e) {
@@ -323,6 +538,31 @@ class CreateStep3 extends Component {
         formData.append("step5_image", this.state.step_image_5);
       formData.append("step5_content", this.state.step_content_5);
     }
+    if (this.state.total_steps > 5) {
+      if (this.state.step_image_6)
+        formData.append("step6_image", this.state.step_image_6);
+      formData.append("step6_content", this.state.step_content_6);
+    }
+    if (this.state.total_steps > 6) {
+      if (this.state.step_image_7)
+        formData.append("step7_image", this.state.step_image_7);
+      formData.append("step7_content", this.state.step_content_7);
+    }
+    if (this.state.total_steps > 7) {
+      if (this.state.step_image_8)
+        formData.append("step8_image", this.state.step_image_8);
+      formData.append("step8_content", this.state.step_content_8);
+    }
+    if (this.state.total_steps > 8) {
+      if (this.state.step_image_9)
+        formData.append("step9_image", this.state.step_image_9);
+      formData.append("step9_content", this.state.step_content_9);
+    }
+    if (this.state.total_steps > 9) {
+      if (this.state.step_image_10)
+        formData.append("step10_image", this.state.step_image_10);
+      formData.append("step10_content", this.state.step_content_10);
+    }
     formData.append("step", 3);
     axios
       .post(
@@ -353,7 +593,7 @@ class CreateStep3 extends Component {
       );
   }
 
-  render() {   
+  render() {
     if (this.state.error404) return <Page404 />;
     let action = localStorage.getItem("action");
     let {
@@ -362,12 +602,22 @@ class CreateStep3 extends Component {
       imagePreviewUrl3,
       imagePreviewUrl4,
       imagePreviewUrl5,
+      imagePreviewUrl6,
+      imagePreviewUrl7,
+      imagePreviewUrl8,
+      imagePreviewUrl9,
+      imagePreviewUrl10,
     } = this.state;
     let imagestep1,
       imagestep2,
       imagestep3,
       imagestep4,
-      imagestep5 = null;
+      imagestep5,
+      imagestep6,
+      imagestep7,
+      imagestep8,
+      imagestep9,
+      imagestep10 = null;
     if (imagePreviewUrl1) {
       imagestep1 = (
         <div
@@ -474,6 +724,121 @@ class CreateStep3 extends Component {
         <div
           className="create-image-placeholder2"
           onClick={() => this.inputImage5.current.click()}
+        >
+          <img
+            className="create-step1-image"
+            alt=""
+            src="/images/photo_icon.png"
+          />
+        </div>
+      );
+    }
+    if (imagePreviewUrl6) {
+      imagestep6 = (
+        <div
+          className="create-image-placeholder2"
+          onClick={() => this.inputImage6.current.click()}
+        >
+          <Picture height="250px" src={imagePreviewUrl6} />
+        </div>
+      );
+    } else {
+      imagestep6 = (
+        <div
+          className="create-image-placeholder2"
+          onClick={() => this.inputImage6.current.click()}
+        >
+          <img
+            className="create-step1-image"
+            alt=""
+            src="/images/photo_icon.png"
+          />
+        </div>
+      );
+    }
+    if (imagePreviewUrl7) {
+      imagestep7 = (
+        <div
+          className="create-image-placeholder2"
+          onClick={() => this.inputImage7.current.click()}
+        >
+          <Picture height="250px" src={imagePreviewUrl7} />
+        </div>
+      );
+    } else {
+      imagestep7 = (
+        <div
+          className="create-image-placeholder2"
+          onClick={() => this.inputImage7.current.click()}
+        >
+          <img
+            className="create-step1-image"
+            alt=""
+            src="/images/photo_icon.png"
+          />
+        </div>
+      );
+    }
+    if (imagePreviewUrl8) {
+      imagestep8 = (
+        <div
+          className="create-image-placeholder2"
+          onClick={() => this.inputImage8.current.click()}
+        >
+          <Picture height="250px" src={imagePreviewUrl8} />
+        </div>
+      );
+    } else {
+      imagestep8 = (
+        <div
+          className="create-image-placeholder2"
+          onClick={() => this.inputImage8.current.click()}
+        >
+          <img
+            className="create-step1-image"
+            alt=""
+            src="/images/photo_icon.png"
+          />
+        </div>
+      );
+    }
+    if (imagePreviewUrl9) {
+      imagestep9 = (
+        <div
+          className="create-image-placeholder2"
+          onClick={() => this.inputImage9.current.click()}
+        >
+          <Picture height="250px" src={imagePreviewUrl9} />
+        </div>
+      );
+    } else {
+      imagestep9 = (
+        <div
+          className="create-image-placeholder2"
+          onClick={() => this.inputImage9.current.click()}
+        >
+          <img
+            className="create-step1-image"
+            alt=""
+            src="/images/photo_icon.png"
+          />
+        </div>
+      );
+    }
+    if (imagePreviewUrl10) {
+      imagestep10 = (
+        <div
+          className="create-image-placeholder2"
+          onClick={() => this.inputImage10.current.click()}
+        >
+          <Picture height="250px" src={imagePreviewUrl10} />
+        </div>
+      );
+    } else {
+      imagestep10 = (
+        <div
+          className="create-image-placeholder2"
+          onClick={() => this.inputImage10.current.click()}
         >
           <img
             className="create-step1-image"
@@ -734,13 +1099,210 @@ class CreateStep3 extends Component {
                 )}
               </div>
             )}
+            {this.state.total_steps > 5 && (
+              <div>
+                <div className="create-step-title">Bước 6</div>
+                <div className="row form-group">
+                  <div className="col col-md-6 col-12">
+                    <textarea
+                      spellCheck="false"
+                      className="create-steps-textarea"
+                      value={this.state.step_content_6}
+                      maxLength="1000"
+                      id="step_content_6"
+                      placeholder="Làm gì ở bước này vậy?"
+                      onChange={(e) => this.handleChange(e)}
+                    />
+                  </div>
+                  <div className="col col-md-6 col-12">
+                    <input
+                      style={{ display: "none" }}
+                      type="file"
+                      accept="image/*"
+                      ref={this.inputImage6}
+                      id="step_image_6"
+                      onChange={(e) => this.handleImageChange(e)}
+                    />
+                    {imagestep6}
+                  </div>
+                </div>
+                {this.state.total_steps === 6 && (
+                  <div className="create-delete-btn">
+                    <button
+                      className="create-delete-step"
+                      onClick={(e) => this.handleRemove(e)}
+                    >
+                      <i className="fas fa-trash-alt" />
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+            {this.state.total_steps > 6 && (
+              <div>
+                <div className="create-step-title">Bước 7</div>
+                <div className="row form-group">
+                  <div className="col col-md-6 col-12">
+                    <textarea
+                      spellCheck="false"
+                      className="create-steps-textarea"
+                      value={this.state.step_content_7}
+                      maxLength="1000"
+                      id="step_content_7"
+                      placeholder="Làm gì ở bước này vậy?"
+                      onChange={(e) => this.handleChange(e)}
+                    />
+                  </div>
+                  <div className="col col-md-6 col-12">
+                    <input
+                      style={{ display: "none" }}
+                      type="file"
+                      accept="image/*"
+                      ref={this.inputImage7}
+                      id="step_image_7"
+                      onChange={(e) => this.handleImageChange(e)}
+                    />
+                    {imagestep7}
+                  </div>
+                </div>
+                {this.state.total_steps === 7 && (
+                  <div className="create-delete-btn">
+                    <button
+                      className="create-delete-step"
+                      onClick={(e) => this.handleRemove(e)}
+                    >
+                      <i className="fas fa-trash-alt" />
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+            {this.state.total_steps > 7 && (
+              <div>
+                <div className="create-step-title">Bước 8</div>
+                <div className="row form-group">
+                  <div className="col col-md-6 col-12">
+                    <textarea
+                      spellCheck="false"
+                      className="create-steps-textarea"
+                      value={this.state.step_content_8}
+                      maxLength="1000"
+                      id="step_content_8"
+                      placeholder="Làm gì ở bước này vậy?"
+                      onChange={(e) => this.handleChange(e)}
+                    />
+                  </div>
+                  <div className="col col-md-6 col-12">
+                    <input
+                      style={{ display: "none" }}
+                      type="file"
+                      accept="image/*"
+                      ref={this.inputImage8}
+                      id="step_image_8"
+                      onChange={(e) => this.handleImageChange(e)}
+                    />
+                    {imagestep8}
+                  </div>
+                </div>
+                {this.state.total_steps === 8 && (
+                  <div className="create-delete-btn">
+                    <button
+                      className="create-delete-step"
+                      onClick={(e) => this.handleRemove(e)}
+                    >
+                      <i className="fas fa-trash-alt" />
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+            {this.state.total_steps > 8 && (
+              <div>
+                <div className="create-step-title">Bước 9</div>
+                <div className="row form-group">
+                  <div className="col col-md-6 col-12">
+                    <textarea
+                      spellCheck="false"
+                      className="create-steps-textarea"
+                      value={this.state.step_content_9}
+                      maxLength="1000"
+                      id="step_content_9"
+                      placeholder="Làm gì ở bước này vậy?"
+                      onChange={(e) => this.handleChange(e)}
+                    />
+                  </div>
+                  <div className="col col-md-6 col-12">
+                    <input
+                      style={{ display: "none" }}
+                      type="file"
+                      accept="image/*"
+                      ref={this.inputImage9}
+                      id="step_image_9"
+                      onChange={(e) => this.handleImageChange(e)}
+                    />
+                    {imagestep9}
+                  </div>
+                </div>
+                {this.state.total_steps === 9 && (
+                  <div className="create-delete-btn">
+                    <button
+                      className="create-delete-step"
+                      onClick={(e) => this.handleRemove(e)}
+                    >
+                      <i className="fas fa-trash-alt" />
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+            {this.state.total_steps > 9 && (
+              <div>
+                <div className="create-step-title">Bước 10</div>
+                <div className="row form-group">
+                  <div className="col col-md-6 col-12">
+                    <textarea
+                      spellCheck="false"
+                      className="create-steps-textarea"
+                      value={this.state.step_content_10}
+                      maxLength="1000"
+                      id="step_content_10"
+                      placeholder="Làm gì ở bước này vậy?"
+                      onChange={(e) => this.handleChange(e)}
+                    />
+                  </div>
+                  <div className="col col-md-6 col-12">
+                    <input
+                      style={{ display: "none" }}
+                      type="file"
+                      accept="image/*"
+                      ref={this.inputImage10}
+                      id="step_image_10"
+                      onChange={(e) => this.handleImageChange(e)}
+                    />
+                    {imagestep10}
+                  </div>
+                </div>
+                {this.state.total_steps === 10 && (
+                  <div className="create-delete-btn">
+                    <button
+                      className="create-delete-step"
+                      onClick={(e) => this.handleRemove(e)}
+                    >
+                      <i className="fas fa-trash-alt" />
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
             <div className="create-add-btn-container">
-              {this.state.total_steps !== 5 && <button
-                className="create-add-ingre-step3"
-                onClick={(e) => this.addStep(e)}
-              >
-                <i className="fa fa-plus" />
-              </button>}
+              {this.state.total_steps !== 10 && (
+                <button
+                  className="create-add-ingre-step3"
+                  onClick={(e) => this.addStep(e)}
+                >
+                  <i className="fa fa-plus" />
+                </button>
+              )}
             </div>
             {!isEmpty(this.state.errors) && (
               <div className="alert alert-danger">
@@ -774,13 +1336,13 @@ class CreateStep3 extends Component {
                 onClick={(e) => this.cancelSubmit(e)}
               >
                 Hủy
-              </button>             
+              </button>
               {this.state.buttonLoading && (
                 <button type="submit" className="btn btn-pink">
                   <i class="fa fa-spinner fa-spin"></i>
                 </button>
               )}
-              {!this.state.buttonLoading && action !== 'update' &&(
+              {!this.state.buttonLoading && action !== "update" && (
                 <button
                   type="submit"
                   className="btn btn-pink"
@@ -789,7 +1351,7 @@ class CreateStep3 extends Component {
                   Đăng
                 </button>
               )}
-              {!this.state.buttonLoading && action === 'update' &&(
+              {!this.state.buttonLoading && action === "update" && (
                 <button
                   type="submit"
                   className="btn btn-pink"

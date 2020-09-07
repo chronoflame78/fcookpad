@@ -22,8 +22,12 @@ class Register extends Component {
 
   componentDidMount() {
     // If logged in and user navigates to Register page, should redirect them to home
+    let jwtToken = localStorage.getItem("jwtToken");
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/");
+    }
+    else if(jwtToken){
+      window.location = "/";
     }
   }
 
