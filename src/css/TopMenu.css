@@ -514,6 +514,7 @@
 
 .border-bottom-selected {
     border-bottom: 1px solid #ff5f6d;
+    width: 120px;
 }
 
 

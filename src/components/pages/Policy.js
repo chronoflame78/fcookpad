@@ -8,34 +8,34 @@ export default class Policy extends Component {
       <div>
         <div className="container policy-container">
           <div className="title-container">
-            <h1>Privacy Policy for Mlem Mlem</h1>
+            <h1>Chính sách bảo mật</h1>
           </div>
           <div className="title-container-next-sibling">
             <p>
-              &emsp;&emsp;At Mlem Mlem - Cooking Recipes Sharing Network,
-              accessible from mlemmlem.site, one of our main priorities is the
-              privacy of our visitors. This Privacy Policy document contains
-              types of information that is collected and recorded by Mlem Mlem -
-              Cooking Recipes Sharing Network and how we use it.
+              &emsp;&emsp;Tại Mlem Mlem - Mạng xã hội chia sẻ Công thức nấu ăn,
+              có thể truy cập từ mlemmlem.site, một trong những ưu tiên chính
+              của chúng tôi là quyền riêng tư của khách hàng của chúng tôi. Tài
+              liệu Chính sách Bảo mật này chứa các loại thông tin được Mlem Mlem
+              thu thập và ghi lại cũng như cách chúng tôi sử dụng nó.
             </p>
 
             <p>
-              &emsp;&emsp;If you have additional questions or require more
-              information about our Privacy Policy, do not hesitate to contact
-              us.
+              &emsp;&emsp;Nếu bạn có thêm câu hỏi hoặc yêu cầu thêm thông tin về
+              Chính sách bảo mật của chúng tôi, vui lòng liên hệ với chúng tôi.
             </p>
 
             <p>
-              &emsp;&emsp;This Privacy Policy applies only to our online
-              activities and is valid for visitors to our website with regards
-              to the information that they shared and/or collect in Mlem Mlem -
-              Cooking Recipes Sharing Network. This policy is not applicable to
-              any information collected offline or via channels other than this
-              website. Our Privacy Policy was created with the help of the{" "}
+              &emsp;&emsp;Chính sách Bảo mật này chỉ áp dụng cho các hoạt động
+              trực tuyến của chúng tôi và có giá trị đối với những khách truy
+              cập vào trang web của chúng tôi liên quan đến thông tin mà họ đã
+              chia sẻ hoặc thu thập trong Mlem Mlem. Chính sách này không áp
+              dụng cho bất kỳ thông tin nào được thu thập ngoại tuyến hoặc qua
+              các kênh khác ngoài trang web này. Chính sách Bảo mật của chúng
+              tôi được tạo với sự trợ giúp của{" "}
               <a href="https://www.privacypolicygenerator.info">
                 Privacy Policy Generator
               </a>{" "}
-              and the{" "}
+              và{" "}
               <a href="https://www.generateprivacypolicy.com">
                 Generate Privacy Policy Generator
               </a>
@@ -44,135 +44,138 @@ export default class Policy extends Component {
           </div>
 
           <div className="consent-container">
-            <h2>Consent</h2>
+            <h2>Bằng lòng</h2>
             <div>
               <p>
-                &emsp;&emsp;By using our website, you hereby consent to our
-                Privacy Policy and agree to its terms.
+                &emsp;&emsp;Bằng cách sử dụng trang web của chúng tôi, bạn đồng
+                ý với Chính sách bảo mật của chúng tôi và đồng ý với các điều
+                khoản của nó.
               </p>
             </div>
           </div>
 
           <div className="information-collect-container">
-            <h2>Information we collect</h2>
+            <h2>Những thông tin mà chúng tôi thu thập</h2>
             <div>
               <p>
-                &emsp;&emsp;The personal information that you are asked to
-                provide, and the reasons why you are asked to provide it, will
-                be made clear to you at the point we ask you to provide your
-                personal information.
+                &emsp;&emsp;Thông tin cá nhân mà bạn được yêu cầu cung cấp và lý
+                do tại sao bạn được yêu cầu cung cấp sẽ được làm rõ cho bạn tại
+                thời điểm chúng tôi yêu cầu bạn cung cấp thông tin cá nhân của
+                mình.
               </p>
               <p>
-                &emsp;&emsp;If you contact us directly, we may receive
-                additional information about you such as your name, email
-                address, phone number, the contents of the message and/or
-                attachments you may send us, and any other information you may
-                choose to provide.
+                &emsp;&emsp;Nếu bạn liên hệ trực tiếp với chúng tôi, chúng tôi
+                có thể nhận được thông tin bổ sung về bạn như tên, địa chỉ
+                email, số điện thoại, nội dung thư và / hoặc tệp đính kèm bạn có
+                thể gửi cho chúng tôi và bất kỳ thông tin nào khác mà bạn có thể
+                chọn cung cấp.
               </p>
               <p>
-                &emsp;&emsp;When you register for an Account, we may ask for
-                your contact information, including items such as name, company
-                name, address, email address, and telephone number.
+                &emsp;&emsp;Sau khi bạn đăng ký một Tài khoản, chúng tôi có thể
+                yêu cầu thêm thông tin liên hệ của bạn, bao gồm các mục như tên,
+                giới tính, ngày sinh, địa chỉ email và mô tả về bạn.
               </p>
             </div>
           </div>
 
           <div className="information-using-container">
-            <h2>How we use your information</h2>
+            <h2>Chúng tôi sẽ sử dụng các thông tin đó ra sao?</h2>
             <div>
               <p>
-                &emsp;&emsp;We use the information we collect in various ways,
-                including to:
+                &emsp;&emsp;Chúng tôi sử dụng thông tin thu thập được theo nhiều
+                cách khác nhau, bao gồm:
               </p>
 
               <ul>
-                <li>Provide, operate, and maintain our webste</li>
-                <li>Improve, personalize, and expand our webste</li>
-                <li>Understand and analyze how you use our webste</li>
+                <li>Cung cấp, vận hành và duy trì trang web của chúng tôi</li>
                 <li>
-                  Develop new products, services, features, and functionality
+                  Cải thiện, cá nhân hóa và mở rộng trang web của chúng tôi
                 </li>
                 <li>
-                  Communicate with you, either directly or through one of our
-                  partners, including for customer service, to provide you with
-                  updates and other information relating to the webste, and for
-                  marketing and promotional purposes
+                  Hiểu và phân tích cách bạn sử dụng trang web của chúng tôi
                 </li>
-                <li>Send you emails</li>
-                <li>Find and prevent fraud</li>
+                <li>
+                  Phát triển các sản phẩm, dịch vụ, tính năng và chức năng mới
+                </li>
+                <li>
+                  Liên lạc với bạn, trực tiếp hoặc thông qua một trong các đối
+                  tác, bao gồm cả dịch vụ khách hàng, để cung cấp cho bạn thông
+                  tin về cập nhật và thông tin khác liên quan đến webste, và cho
+                  mục đích tiếp thị và khuyến mại
+                </li>
+                <li>Gửi cho bạn email</li>
+                <li>Tìm và ngăn chặn gian lận</li>
               </ul>
             </div>
           </div>
 
           <div className="log-file-container">
-            <h2>Log Files</h2>
+            <h2>Các file nhật ký</h2>
             <div>
               <p>
-                &emsp;&emsp;Mlem Mlem - Cooking Recipes Sharing Network follows
-                a standard procedure of using log files. These files log
-                visitors when they visit websites. All hosting companies do this
-                and a part of hosting services' analytics. The information
-                collected by log files include internet protocol (IP) addresses,
-                browser type, Internet Service Provider (ISP), date and time
-                stamp, referring/exit pages, and possibly the number of clicks.
-                These are not linked to any information that is personally
-                identifiable. The purpose of the information is for analyzing
-                trends, administering the site, tracking users' movement on the
-                website, and gathering demographic information.
+                &emsp;&emsp;Mlem Mlem tuân theo quy trình tiêu chuẩn sử dụng tệp
+                nhật ký. Các tệp này ghi nhật ký khách truy cập khi họ truy cập
+                các trang web. Tất cả các công ty lưu trữ đều làm điều này và
+                một phần của phân tích dịch vụ lưu trữ. Thông tin được thu thập
+                bởi các tệp nhật ký bao gồm địa chỉ giao thức internet (IP),
+                loại trình duyệt, Nhà cung cấp dịch vụ Internet (ISP), dấu ngày
+                và giờ, các trang giới thiệu / thoát và có thể cả số lần nhấp
+                chuột. Chúng không được liên kết với bất kỳ thông tin nào có thể
+                nhận dạng cá nhân. Mục đích của thông tin là để phân tích xu
+                hướng, quản trị trang web, theo dõi chuyển động của người dùng
+                trên trang web và thu thập thông tin nhân khẩu học.
               </p>
             </div>
           </div>
 
           <div className="advertising-container">
-            <h2>Advertising Partners Privacy Policies</h2>
+            <h2>Chính sách Bảo mật của các Đối tác Quảng cáo</h2>
             <div>
               <p>
-                &emsp;&emsp;You may consult this list to find the Privacy Policy
-                for each of the advertising partners of Mlem Mlem - Cooking
-                Recipes Sharing Network.
+                &emsp;&emsp;Bạn có thể tham khảo danh sách này để tìm Chính sách
+                bảo mật cho từng đối tác quảng cáo của Mlem Mlem.
               </p>
 
               <p>
-                &emsp;&emsp;Third-party ad servers or ad networks uses
-                technologies like cookies, JavaScript, or Web Beacons that are
-                used in their respective advertisements and links that appear on
-                Mlem Mlem - Cooking Recipes Sharing Network, which are sent
-                directly to users' browser. They automatically receive your IP
-                address when this occurs. These technologies are used to measure
-                the effectiveness of their advertising campaigns and/or to
-                personalize the advertising content that you see on websites
-                that you visit.
+                &emsp;&emsp;Máy chủ quảng cáo hoặc mạng quảng cáo của bên thứ ba
+                sử dụng các công nghệ như cookie, JavaScript hoặc Web Beacons
+                được sử dụng trong các quảng cáo và liên kết tương ứng của chúng
+                xuất hiện trên Mlem Mlem, được gửi trực tiếp đến trình duyệt của
+                người dùng. Họ tự động nhận địa chỉ IP của bạn khi điều này xảy
+                ra. Những công nghệ này được sử dụng để đo lường hiệu quả của
+                các chiến dịch quảng cáo của họ và / hoặc để cá nhân hóa nội
+                dung quảng cáo mà bạn thấy trên các trang web mà bạn truy cập.
               </p>
 
               <p>
-                &emsp;&emsp;Note that Mlem Mlem - Cooking Recipes Sharing
-                Network has no access to or control over these cookies that are
-                used by third-party advertisers.
+                &emsp;&emsp;Lưu ý rằng Mlem Mlem không có quyền truy cập hoặc
+                kiểm soát các cookie được sử dụng bởi các nhà quảng cáo bên thứ
+                ba.
               </p>
             </div>
           </div>
           <div className="third-privacy-container">
-            <h2>Third Party Privacy Policies</h2>
+            <h2>Chính sách bảo mật của bên thứ ba</h2>
             <div>
               <p>
-                &emsp;&emsp;Mlem Mlem - Cooking Recipes Sharing Network's
-                Privacy Policy does not apply to other advertisers or websites.
-                Thus, we are advising you to consult the respective Privacy
-                Policies of these third-party ad servers for more detailed
-                information. It may include their practices and instructions
-                about how to opt-out of certain options.{" "}
+                &emsp;&emsp;Chính sách Bảo mật của Mlem Mlem không áp dụng cho
+                các nhà quảng cáo hoặc trang web khác. Do đó, chúng tôi khuyên
+                bạn nên tham khảo Chính sách Bảo mật tương ứng của các máy chủ
+                quảng cáo của bên thứ ba này để biết thêm thông tin chi tiết. Nó
+                có thể bao gồm các thực hành và hướng dẫn của họ về cách chọn
+                không tham gia các tùy chọn nhất định.{" "}
               </p>
 
               <p>
-                &emsp;&emsp;You can choose to disable cookies through your
-                individual browser options. To know more detailed information
-                about cookie management with specific web browsers, it can be
-                found at the browsers' respective websites.
+                &emsp;&emsp;Bạn có thể chọn tắt cookie thông qua các tùy chọn
+                trình duyệt cá nhân của mình. Để biết thêm thông tin chi tiết về
+                quản lý cookie với các trình duyệt web cụ thể, bạn có thể tìm
+                thấy thông tin này tại các trang web tương ứng của trình duyệt.
               </p>
             </div>
           </div>
 
-          <div className="privacy-container">
+          {/* <div className="privacy-container">
             <h2>CCPA Privacy Rights (Do Not Sell My Personal Information)</h2>
             <div>
               <p>
@@ -198,9 +201,9 @@ export default class Policy extends Component {
                 please contact us.
               </p>
             </div>
-          </div>
+          </div> */}
 
-          <div className="gdpr-container">
+          {/* <div className="gdpr-container">
             <h2>GDPR Data Protection Rights</h2>
             <div>
               <p>
@@ -245,25 +248,25 @@ export default class Policy extends Component {
                 please contact us.
               </p>
             </div>
-          </div>
+          </div> */}
 
           <div className="children-info-container">
-            <h2>Children's Information</h2>
+            <h2>Thông tin của các bạn nhỏ</h2>
             <div>
               <p>
-                &emsp;&emsp;Another part of our priority is adding protection
-                for children while using the internet. We encourage parents and
-                guardians to observe, participate in, and/or monitor and guide
-                their online activity.
+                &emsp;&emsp;Một phần ưu tiên khác của chúng tôi là tăng cường
+                bảo vệ trẻ em khi sử dụng internet. Chúng tôi khuyến khích cha
+                mẹ và người giám hộ quan sát, tham gia hoặc giám sát và hướng
+                dẫn hoạt động trực tuyến của các em.
               </p>
 
               <p>
-                &emsp;&emsp;Mlem Mlem - Cooking Recipes Sharing Network does not
-                knowingly collect any Personal Identifiable Information from
-                children under the age of 13. If you think that your child
-                provided this kind of information on our website, we strongly
-                encourage you to contact us immediately and we will do our best
-                efforts to promptly remove such information from our records.
+                &emsp;&emsp;Mlem Mlem không cố ý thu thập bất kỳ Thông tin Nhận
+                dạng Cá nhân nào từ trẻ em dưới 13 tuổi. Nếu bạn cho rằng con
+                bạn đã cung cấp loại thông tin này trên trang web của chúng tôi,
+                chúng tôi đặc biệt khuyến khích bạn liên hệ với chúng tôi ngay
+                lập tức và chúng tôi sẽ cố gắng hết sức để kịp thời xóa thông
+                tin đó khỏi hồ sơ của chúng tôi.
               </p>
             </div>
           </div>
