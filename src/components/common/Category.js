@@ -14,11 +14,11 @@ class Category extends Component {
 
 
     settings = {
-        infinite: false,
+        infinite: true,
         speed: 500,
         arrows: true,
         slidesToShow: 7,
-        slidesToScroll: 2,
+        slidesToScroll: 3,
         swipeToSlide: true,
         beforeChange: () => dragging = true,
         afterChange: () => dragging = false,
@@ -28,14 +28,14 @@ class Category extends Component {
                 breakpoint: 1200,
                 settings: {
                     slidesToShow: 4,
-                    slidesToScroll: 2
+                    slidesToScroll: 3
                 }
             },
             {
                 breakpoint: 960,
                 settings: {
                     slidesToShow: 3,
-                    slidesToScroll: 2
+                    slidesToScroll: 1
                 }
             },
             {
