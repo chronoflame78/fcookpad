@@ -38,6 +38,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ResetPassword from './components/auth/ResetPassword';
 import AboutUs from './components/pages/AboutUs';
+import Term from './components/pages/Term';
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -82,6 +83,7 @@ const DefaultContainer = () => (
     <Route path="/view_all/:name" component={ViewAll} />  
     <Route path="/policy" exact component={Policy} />
     <Route path="/about" exact component={AboutUs} />
+    <Route path="/term" exact component={Term} />
     <Route path="*" component={Page404} />
     </Switch>
   </div>
