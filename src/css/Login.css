@@ -268,8 +268,13 @@
 
 .register-pol-text a{
     color: #ff5f6d!important;
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
+
+/* .register-pol-text a{
+    color: #ff5f6d!important;
+    text-decoration: underline;
+} */
 
 /* UPDATE ISSUE */
 .log-in-form-wrapper {
