@@ -26,7 +26,7 @@ class Register extends Component {
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/");
     }
-    else if(jwtToken){
+    else if (jwtToken) {
       window.location = "/";
     }
   }
@@ -194,7 +194,7 @@ class Register extends Component {
                   <input onClick={this.onAgree} type="checkbox" />
                   <label className="register-pol-text">
                     Khi sử dụng MlemMlem, bạn đồng ý với
-                    <b> Điều Khoản Dịch Vụ & Chính Sách Bảo Mật</b> của chúng
+                    <b><a href="/policy"> Điều Khoản Dịch Vụ & Chính Sách Bảo Mật </a> </b> của chúng
                     tôi.
                   </label>
                 </div>
