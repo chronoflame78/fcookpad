@@ -195,7 +195,7 @@ class Register extends Component {
                   <label className="register-pol-text">
                     Khi sử dụng MlemMlem, bạn đồng ý với
                     <b>
-                      <Link to="/policy">Điều Khoản Dịch Vụ & Chính Sách Bảo Mật </Link></b> của chúng
+                      <Link to="/term">Điều Khoản Dịch Vụ </Link>& <Link to="/policy">Chính Sách Bảo Mật</Link> </b> của chúng
                     tôi.
                   </label>
                 </div>

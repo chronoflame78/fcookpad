@@ -54,13 +54,13 @@ export default class Footer extends React.Component {
                         <div className="footer-mail-cont">mlemmlem0520@gmail.com</div>
                         <div className="footer-bottom-links">
                             <div>
-                                <Link to="/policy">Policies</Link>
+                                <Link to="/policy">CHÍNH SÁCH BẢO MẬT</Link>
                             </div>
                             <div className="footer-mid-link">
-                                <Link to="/about">About us</Link>
+                                <Link to="/about">VỀ CHÚNG TÔI</Link>
                             </div>
                             <div>
-                                <Link to="/term">Terms</Link>
+                                <Link to="/term">ĐIỀU KHOẢN DỊCH VỤ</Link>
                             </div>
                         </div>
                     </div>
