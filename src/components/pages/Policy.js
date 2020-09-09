@@ -30,16 +30,7 @@ export default class Policy extends Component {
               cập vào trang web của chúng tôi liên quan đến thông tin mà họ đã
               chia sẻ hoặc thu thập trong Mlem Mlem. Chính sách này không áp
               dụng cho bất kỳ thông tin nào được thu thập ngoại tuyến hoặc qua
-              các kênh khác ngoài trang web này. Chính sách Bảo mật của chúng
-              tôi được tạo với sự trợ giúp của{" "}
-              <a href="https://www.privacypolicygenerator.info">
-                Privacy Policy Generator
-              </a>{" "}
-              và{" "}
-              <a href="https://www.generateprivacypolicy.com">
-                Generate Privacy Policy Generator
-              </a>
-              .
+              các kênh khác ngoài trang web này.
             </p>
           </div>
 
@@ -174,7 +165,7 @@ export default class Policy extends Component {
               </p>
             </div>
           </div>
-          
+
           <div className="children-info-container">
             <h2>Thông tin của các bạn nhỏ</h2>
             <div>
