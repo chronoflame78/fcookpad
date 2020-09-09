@@ -42,7 +42,7 @@
 .information-using-container div, .log-file-container div, 
 .advertising-container div, .privacy-container div, 
 .gdpr-container div, .children-info-container div, .third-privacy-container div {
-    margin-left: 30px;
+    /* margin-left: 30px; */
     text-align: justify;
 }
 

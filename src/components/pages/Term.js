@@ -7,20 +7,20 @@ export default class Term extends Component {
       <div>
         <div className="container policy-container">
           <div className="title-container">
-            <h1>Các điều khoản và điều kiện</h1>
+            <h1>Các điều khoản dịch vụ</h1>
           </div>
           <div className="title-container-next-sibling">
             <p>Chào mừng đến với Mlem Mlem!</p>
 
             <p>
-              &emsp;&emsp;Các điều khoản và điều kiện này phác thảo các quy tắc
+              &emsp;&emsp;Các điều khoản dịch vụ này phác thảo các quy tắc
               và quy định cho việc sử dụng Trang web của Mlem Mlem, có địa chỉ
               tại https://mlemmlem.site.
             </p>
 
             <p>
               &emsp;&emsp;Bằng cách truy cập trang web này, chúng tôi cho rằng
-              bạn chấp nhận các điều khoản và điều kiện này. Không tiếp tục sử
+              bạn chấp nhận các điều khoản dịch vụ này. Không tiếp tục sử
               dụng Mlem Mlem nếu bạn không đồng ý thực hiện tất cả các điều
               khoản và điều kiện nêu trên trang này.
             </p>
@@ -57,7 +57,7 @@ export default class Term extends Component {
                 cả tài liệu trên Mlem Mlem. Tất cả các quyền sở hữu trí tuệ được
                 bảo lưu. Bạn có thể truy cập thông tin này từ Mlem Mlem cho mục
                 đích sử dụng cá nhân của riêng bạn theo các hạn chế được đặt ra
-                trong các điều khoản và điều kiện này.
+                trong các điều khoản dịch vụ này.
               </p>
               <p>&emsp;&emsp;Bạn không được: </p>
               <ul>
@@ -189,7 +189,7 @@ export default class Term extends Component {
                 kết hoặc bất kỳ liên kết cụ thể nào đến Trang web của chúng tôi.
                 Bạn chấp thuận xóa ngay lập tức tất cả các liên kết đến Trang
                 web của chúng tôi theo yêu cầu. Chúng tôi cũng có quyền tuân
-                theo các điều khoản và điều kiện này và đó là chính sách liên
+                theo các điều khoản dịch vụ này và đó là chính sách liên
                 kết bất kỳ lúc nào. Bằng cách liên tục liên kết đến Trang web
                 của chúng tôi, bạn đồng ý bị ràng buộc và tuân theo các điều
                 khoản và điều kiện liên kết này.
