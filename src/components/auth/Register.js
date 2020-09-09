@@ -193,9 +193,7 @@ class Register extends Component {
                 <div className="register-policy-part">
                   <input onClick={this.onAgree} type="checkbox" />
                   <label className="register-pol-text">
-                    Khi sử dụng MlemMlem, bạn đồng ý với
-                    <b>
-                      <Link to="/term">Điều Khoản Dịch Vụ </Link>& <Link to="/policy">Chính Sách Bảo Mật</Link> </b> của chúng
+                    Khi sử dụng Mlem Mlem, bạn đồng ý với <Link to="/term">Điều Khoản Dịch Vụ</Link> & <Link to="/policy">Chính Sách Bảo Mật</Link> của chúng
                     tôi.
                   </label>
                 </div>
