@@ -266,6 +266,11 @@
     font-size: 10px;
 }
 
+.register-pol-text a{
+    color: #ff5f6d!important;
+    text-decoration: underline;
+}
+
 /* UPDATE ISSUE */
 .log-in-form-wrapper {
     display: block;
