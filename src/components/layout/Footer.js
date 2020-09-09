@@ -1,5 +1,6 @@
 import React from "react";
 import '../../css/Footer.css';
+import { Link } from "react-router-dom";
 
 export default class Footer extends React.Component {
 
@@ -53,13 +54,13 @@ export default class Footer extends React.Component {
                         <div className="footer-mail-cont">mlemmlem0520@gmail.com</div>
                         <div className="footer-bottom-links">
                             <div>
-                                <a href="/policy">Policies</a>
+                                <Link to="/policy">Policies</Link>
                             </div>
                             <div className="footer-mid-link">
-                                <a href="/about">About us</a>
+                                <Link to="/about">About us</Link>
                             </div>
                             <div>
-                                <a href="/term">Terms</a>
+                                <Link to="/term">Terms</Link>
                             </div>
                         </div>
                     </div>
