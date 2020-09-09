@@ -43,7 +43,38 @@ class Recipe extends Component {
   componentDidMount() {
     removeStorage();
     this.mounted = true;
-    axios
+    let { user } = this.props.auth;
+    if(!isEmpty(user)){
+      axios.all([axios.get(`${apiURL}/recipes/${this.props.match.params.id}`),
+      axios.get(`${apiURL}/users/${this.props.auth.user.id}`)])
+     
+      .then(axios.spread((...res) => {
+        if (this.mounted) {
+          this.setState({
+            post: res[0].data.recipe,
+            loading: false,
+            comments: res[0].data.recipe.comments,
+            likes: res[0].data.recipe.likes,
+            views: res[0].data.recipe.views,
+            userInfo: res[1].data.user,
+          });
+        }
+      }))
+      .catch((error) => {
+        if (error.response.status === 500) {
+          this.setState({
+            loading: false,
+            error500: true,
+          });
+        } else {
+          this.setState({
+            loading: false,
+          });
+        }
+      });
+    }
+    else{
+      axios
       .get(`${apiURL}/recipes/${this.props.match.params.id}`)
       .then((res) => {
         if (this.mounted) {
@@ -68,6 +99,8 @@ class Recipe extends Component {
           });
         }
       });
+    }
+    
   }
 
   componentWillUnmount() {
@@ -193,7 +226,13 @@ class Recipe extends Component {
       return <Page404 />;
     }
     const { user } = this.props.auth;
-    const user_avatar = user.user_avatar;
+    let user_avatar;
+    let user_fullname;
+    if(this.state.userInfo){
+      user_avatar = this.state.userInfo.avatar;
+      user_fullname = this.state.userInfo.fullName;
+    }
+    
     return (
       <div className="post-container">
         {/* <Helmet>
@@ -468,7 +507,7 @@ class Recipe extends Component {
                         signature="main-user"
                         image={user_avatar}
                         size={64}
-                        name={user.user_name}
+                        name={user_fullname}
                         tooltip={true}
                       />
                     </NavLink>
