@@ -227,7 +227,12 @@ class AccountSetting extends Component {
     let formData = new FormData();
     formData.append("firstName", this.state.userInfoUpdate.firstName);
     formData.append("lastName", this.state.userInfoUpdate.lastName);
-    formData.append("birthday", this.state.userInfoUpdate.birthday);
+    if(this.state.userInfoUpdate.birthday){
+      formData.append("birthday", this.state.userInfoUpdate.birthday);
+    }else{
+      formData.append("birthday", new Date(0));
+    }
+    
     formData.append("description", this.state.userInfoUpdate.description);
     formData.append("gender", this.state.userInfoUpdate.gender);
     if (this.state.file) {
